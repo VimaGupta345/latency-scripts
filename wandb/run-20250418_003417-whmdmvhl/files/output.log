@@ -1,0 +1,39 @@
+INFO 04-18 00:34:18 cuda.py:225] Using Flash Attention backend.
+INFO 04-18 00:34:19 model_runner.py:1114] Starting to load model /home/vimagupta123/.cache/huggingface/hub/models--RedHatAI--Mixtral-8x7B-Instruct-v0.1-FP8/snapshots/9a978d5cc7dabc37b3d13d6501426081c99c4cbd/...
+Loading safetensors checkpoint shards:   0% Completed | 0/10 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards:  10% Completed | 1/10 [00:00<00:06,  1.39it/s]
+Loading safetensors checkpoint shards:  20% Completed | 2/10 [00:01<00:05,  1.38it/s]
+Loading safetensors checkpoint shards:  30% Completed | 3/10 [00:02<00:05,  1.38it/s]
+Loading safetensors checkpoint shards:  40% Completed | 4/10 [00:02<00:04,  1.38it/s]
+Loading safetensors checkpoint shards:  50% Completed | 5/10 [00:03<00:03,  1.38it/s]
+Loading safetensors checkpoint shards:  60% Completed | 6/10 [00:04<00:02,  1.38it/s]
+Loading safetensors checkpoint shards:  70% Completed | 7/10 [00:05<00:02,  1.38it/s]
+Loading safetensors checkpoint shards:  80% Completed | 8/10 [00:05<00:01,  1.67it/s]
+Loading safetensors checkpoint shards:  90% Completed | 9/10 [00:06<00:00,  1.59it/s]
+Loading safetensors checkpoint shards: 100% Completed | 10/10 [00:06<00:00,  1.53it/s]
+Loading safetensors checkpoint shards: 100% Completed | 10/10 [00:06<00:00,  1.47it/s]
+WARNING 04-18 00:34:26 compressed_tensors_moe.py:150] Found input_scales that are not equal for fp8 MoE layer. Using the maximum across experts for each layer.
+INFO 04-18 00:34:26 model_runner.py:1119] Loading model weights took 43.7487 GB
+INFO 04-18 00:34:26 fused_moe.py:822] Using configuration from /home/vimagupta123/prowl/vllm/model_executor/layers/fused_moe/configs/E=8,N=14336,device_name=NVIDIA_H100_80GB_HBM3,dtype=fp8_w8a8.json for MoE layer.
+INFO 04-18 00:34:29 worker.py:272] Memory profiling takes 2.88 seconds
+INFO 04-18 00:34:29 worker.py:272] the current vLLM instance can use total_gpu_memory (79.10GiB) x gpu_memory_utilization (0.80) = 63.28GiB
+INFO 04-18 00:34:29 worker.py:272] model weights take 43.75GiB; non_torch_memory takes 0.15GiB; PyTorch activation peak memory takes 0.95GiB; the rest of the memory reserved for KV Cache is 18.42GiB.
+INFO 04-18 00:34:29 executor_base.py:108] # CUDA blocks: 9431, # CPU blocks: 2048
+INFO 04-18 00:34:29 executor_base.py:113] Maximum concurrency for 4096 tokens per request: 36.84x
+INFO 04-18 00:34:31 model_runner.py:1434] Capturing cudagraphs for decoding. This may lead to unexpected consequences if the model is not static. To run the model in eager mode, set 'enforce_eager=True' or use '--enforce-eager' in the CLI. If out-of-memory error occurs during cudagraph capture, consider decreasing `gpu_memory_utilization` or switching to eager mode. You can also reduce the `max_num_seqs` as needed to decrease memory usage.
+
+Capturing CUDA graph shapes: 100%|██████████| 5/5 [00:02<00:00,  2.36it/s]
+INFO 04-18 00:34:33 model_runner.py:1569] Graph capturing finished in 2 secs, took 0.21 GiB
+The profiling is done and the flag is set for MixtralLogitStore
+Profiling done and flag is being set
+INFO 04-18 00:34:33 llm_engine.py:478] init engine (profile, create kv cache, warmup model) took 6.56 seconds
+Gracefully shutting down (signal=2)...
+Process is exiting...
+Num prefill batches: 0, Num decode batches: 0
+Num batches: 0
+Gracefully shutting down (signal=None)...
+Process is exiting...
+Num prefill batches: 0, Num decode batches: 0
+Num batches: 0
+{}
+Exception ignored in atexit callback: <function LLMEngine.__init__.<locals>._handle_exit_signal at 0x7f77d420a3b0>Exception ignored in sys.unraisablehook: <built-in function unraisablehook>

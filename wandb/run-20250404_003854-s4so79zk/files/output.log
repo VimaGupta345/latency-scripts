@@ -1,0 +1,81 @@
+The MixtralLogitStore is created and prefill is set to true:  True
+The number of experts to keep is:  32
+The number of total experts is:  64
+The num experts to keep is:  32
+The num experts to drop is:  32
+The policy is:  do-nothing
+The num total experts is:  64
+WARNING 04-04 00:38:54 multiproc_worker_utils.py:298] Reducing Torch parallelism from 12 threads to 1 to avoid unnecessary CPU contention. Set OMP_NUM_THREADS in the external environment to tune this value as needed.
+INFO 04-04 00:38:54 custom_cache_manager.py:17] Setting Triton cache manager to: vllm.triton_utils.custom_cache_manager:CustomCacheManager
+INFO 04-04 00:38:56 cuda.py:225] Using Flash Attention backend.
+INFO 04-04 00:38:57 utils.py:938] Found nccl from library libnccl.so.2
+INFO 04-04 00:38:57 pynccl.py:67] vLLM is using nccl==2.21.5
+INFO 04-04 00:38:58 custom_all_reduce_utils.py:242] reading GPU P2P access cache from /home/vimagupta123/.cache/vllm/gpu_p2p_access_cache_for_0,1.json
+INFO 04-04 00:38:58 shm_broadcast.py:256] vLLM message queue communication handle: Handle(connect_ip='127.0.0.1', local_reader_ranks=[1], buffer_handle=(1, 4194304, 6, 'psm_76b57172'), local_subscribe_port=53013, remote_subscribe_port=None)
+INFO 04-04 00:38:58 model_runner.py:1114] Starting to load model /home/vimagupta123/models/deepseek_v2_lite/...
+Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]
+Gracefully shutting down (signal=2)...Gracefully shutting down (signal=15)...
+Process is exiting...
+ERROR 04-04 00:39:00 engine.py:387] 0
+ERROR Traceback (most recent call last):
+ERROR   File "/home/vimagupta123/prowl/vllm/engine/multiprocessing/engine.py", line 378, in run_mp_engine
+ERROR     engine = MQLLMEngine.from_engine_args(engine_args=engine_args,
+ERROR   File "/home/vimagupta123/prowl/vllm/engine/multiprocessing/engine.py", line 121, in from_engine_args
+ERROR     return cls(ipc_path=ipc_path,
+ERROR   File "/home/vimagupta123/prowl/vllm/engine/multiprocessing/engine.py", line 73, in __init__
+ERROR     self.engine = LLMEngine(*args, **kwargs)
+ERROR   File "/home/vimagupta123/prowl/vllm/engine/llm_engine.py", line 320, in __init__
+ERROR     self.model_executor = executor_class(vllm_config=vllm_config, )
+ERROR   File "/home/vimagupta123/prowl/vllm/executor/executor_base.py", line 260, in __init__
+ERROR     super().__init__(*args, **kwargs)
+ERROR   File "/home/vimagupta123/prowl/vllm/executor/executor_base.py", line 49, in __init__
+ERROR     self._init_executor()
+ERROR   File "/home/vimagupta123/prowl/vllm/executor/mp_distributed_executor.py", line 123, in _init_executor
+ERROR     self._run_workers("load_model",
+ERROR   File "/home/vimagupta123/prowl/vllm/executor/mp_distributed_executor.py", line 183, in _run_workers
+ERROR     driver_worker_output = run_method(self.driver_worker, sent_method,
+ERROR   File "/home/vimagupta123/prowl/vllm/utils.py", line 2208, in run_method
+ERROR     return func(*args, **kwargs)
+ERROR   File "/home/vimagupta123/prowl/vllm/worker/worker.py", line 186, in load_model
+ERROR     self.model_runner.load_model()
+ERROR   File "/home/vimagupta123/prowl/vllm/worker/model_runner.py", line 1116, in load_model
+ERROR     self.model = get_model(vllm_config=self.vllm_config)
+ERROR   File "/home/vimagupta123/prowl/vllm/model_executor/model_loader/__init__.py", line 12, in get_model
+ERROR     return loader.load_model(vllm_config=vllm_config)
+ERROR   File "/home/vimagupta123/prowl/vllm/model_executor/model_loader/loader.py", line 379, in load_model
+ERROR     loaded_weights = model.load_weights(
+ERROR   File "/home/vimagupta123/prowl/vllm/model_executor/models/deepseek_v2.py", line 621, in load_weights
+ERROR     weight_loader(param,
+ERROR   File "/home/vimagupta123/prowl/vllm/model_executor/layers/fused_moe/layer.py", line 553, in weight_loader
+ERROR     self._load_model_weight_or_group_weight_scale(
+ERROR   File "/home/vimagupta123/prowl/vllm/model_executor/layers/fused_moe/layer.py", line 372, in _load_model_weight_or_group_weight_scale
+ERROR     self._load_w13(shard_id=shard_id,
+ERROR   File "/home/vimagupta123/prowl/vllm/model_executor/layers/fused_moe/layer.py", line 408, in _load_w13
+ERROR     expert_data.copy_(loaded_weight)
+ERROR   File "/home/vimagupta123/prowl/vllm/engine/llm_engine.py", line 288, in _handle_exit_signal
+ERROR     print(f"Gracefully shutting down (signal={signum})...")
+ERROR   File "/home/vimagupta123/miniconda3/envs/vllm-env/lib/python3.10/site-packages/wandb/sdk/lib/console_capture.py", line 155, in write_with_callbacks
+ERROR     cb(s, n)
+ERROR   File "/home/vimagupta123/miniconda3/envs/vllm-env/lib/python3.10/site-packages/wandb/sdk/lib/redirect.py", line 659, in _on_write
+ERROR     cb(written_data)
+ERROR   File "/home/vimagupta123/miniconda3/envs/vllm-env/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 2375, in <lambda>
+ERROR     lambda data: self._console_raw_callback("stdout", data),
+ERROR   File "/home/vimagupta123/miniconda3/envs/vllm-env/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 387, in wrapper
+ERROR     return func(self, *args, **kwargs)
+ERROR   File "/home/vimagupta123/miniconda3/envs/vllm-env/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 435, in wrapper_fn
+ERROR     return func(self, *args, **kwargs)
+ERROR   File "/home/vimagupta123/miniconda3/envs/vllm-env/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 1518, in _console_raw_callback
+ERROR     self._backend.interface.publish_output_raw(name, data)
+ERROR   File "/home/vimagupta123/miniconda3/envs/vllm-env/lib/python3.10/site-packages/wandb/sdk/interface/interface.py", line 761, in publish_output_raw
+ERROR     self._publish_output_raw(o)
+ERROR   File "/home/vimagupta123/miniconda3/envs/vllm-env/lib/python3.10/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+ERROR     self._publish(rec)
+ERROR   File "/home/vimagupta123/miniconda3/envs/vllm-env/lib/python3.10/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+ERROR     self._sock_client.send_record_publish(record)
+ERROR   File "/home/vimagupta123/prowl/vllm/engine/llm_engine.py", line 291, in _handle_exit_signal
+ERROR     sys.exit(0)
+ERROR   File "/home/vimagupta123/miniconda3/envs/vllm-env/lib/python3.10/site-packages/wandb/sdk/lib/exit_hooks.py", line 36, in exit
+ERROR     self._orig_exit(orig_code)  # type: ignore
+ERROR SystemExit: 0
+INFO 04-04 00:39:00 multiproc_worker_utils.py:126] Killing local vLLM worker processes
+Exception ignored in: <generator object tqdm.__iter__ at 0x7fc49467fa00>Exception ignored in sys.unraisablehook: <built-in function unraisablehook>

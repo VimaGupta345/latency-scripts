@@ -1,0 +1,329 @@
+INFO 04-17 23:59:17 cuda.py:225] Using Flash Attention backend.
+INFO 04-17 23:59:18 model_runner.py:1114] Starting to load model /home/vimagupta123/.cache/huggingface/hub/models--RedHatAI--Mixtral-8x7B-Instruct-v0.1-FP8/snapshots/9a978d5cc7dabc37b3d13d6501426081c99c4cbd/...
+Loading safetensors checkpoint shards:   0% Completed | 0/10 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards:  10% Completed | 1/10 [00:00<00:06,  1.44it/s]
+Loading safetensors checkpoint shards:  20% Completed | 2/10 [00:01<00:05,  1.42it/s]
+Loading safetensors checkpoint shards:  30% Completed | 3/10 [00:02<00:04,  1.42it/s]
+Loading safetensors checkpoint shards:  40% Completed | 4/10 [00:02<00:04,  1.42it/s]
+Loading safetensors checkpoint shards:  50% Completed | 5/10 [00:03<00:03,  1.41it/s]
+Loading safetensors checkpoint shards:  60% Completed | 6/10 [00:04<00:02,  1.41it/s]
+Loading safetensors checkpoint shards:  70% Completed | 7/10 [00:04<00:02,  1.41it/s]
+Loading safetensors checkpoint shards:  80% Completed | 8/10 [00:05<00:01,  1.72it/s]
+Loading safetensors checkpoint shards:  90% Completed | 9/10 [00:05<00:00,  1.63it/s]
+Loading safetensors checkpoint shards: 100% Completed | 10/10 [00:06<00:00,  1.56it/s]
+Loading safetensors checkpoint shards: 100% Completed | 10/10 [00:06<00:00,  1.51it/s]
+WARNING 04-17 23:59:25 compressed_tensors_moe.py:150] Found input_scales that are not equal for fp8 MoE layer. Using the maximum across experts for each layer.
+INFO 04-17 23:59:25 model_runner.py:1119] Loading model weights took 43.7487 GB
+INFO 04-17 23:59:26 fused_moe.py:822] Using configuration from /home/vimagupta123/prowl/vllm/model_executor/layers/fused_moe/configs/E=8,N=14336,device_name=NVIDIA_H100_80GB_HBM3,dtype=fp8_w8a8.json for MoE layer.
+INFO 04-17 23:59:28 worker.py:272] Memory profiling takes 2.86 seconds
+INFO 04-17 23:59:28 worker.py:272] the current vLLM instance can use total_gpu_memory (79.10GiB) x gpu_memory_utilization (0.80) = 63.28GiB
+INFO 04-17 23:59:28 worker.py:272] model weights take 43.75GiB; non_torch_memory takes 0.15GiB; PyTorch activation peak memory takes 0.95GiB; the rest of the memory reserved for KV Cache is 18.42GiB.
+INFO 04-17 23:59:29 executor_base.py:108] # CUDA blocks: 9431, # CPU blocks: 2048
+INFO 04-17 23:59:29 executor_base.py:113] Maximum concurrency for 4096 tokens per request: 36.84x
+INFO 04-17 23:59:30 model_runner.py:1434] Capturing cudagraphs for decoding. This may lead to unexpected consequences if the model is not static. To run the model in eager mode, set 'enforce_eager=True' or use '--enforce-eager' in the CLI. If out-of-memory error occurs during cudagraph capture, consider decreasing `gpu_memory_utilization` or switching to eager mode. You can also reduce the `max_num_seqs` as needed to decrease memory usage.
+
+Capturing CUDA graph shapes: 100%|██████████| 5/5 [00:02<00:00,  2.46it/s]
+INFO 04-17 23:59:32 model_runner.py:1569] Graph capturing finished in 2 secs, took 0.21 GiB
+The profiling is done and the flag is set for MixtralLogitStore
+Profiling done and flag is being set
+INFO 04-17 23:59:32 llm_engine.py:478] init engine (profile, create kv cache, warmup model) took 6.43 seconds
+INFO 04-18 00:00:13 engine.py:273] Added request cmpl-25020af1a9f64709af674578d91170b7-0.
+INFO 04-18 00:00:13 engine.py:273] Added request cmpl-bdbdabf56079495490b1288d95eabf75-0.
+INFO 04-18 00:00:13 engine.py:273] Added request cmpl-93ea48b710f6455287671af1160da9a2-0.
+INFO 04-18 00:00:13 engine.py:273] Added request cmpl-95405c618f3d496e8c38f65ed2254685-0.
+INFO 04-18 00:00:13 engine.py:273] Added request cmpl-9441e524667c4abc9f109130bd314fc3-0.
+INFO 04-18 00:00:13 engine.py:273] Added request cmpl-93d1cce7b22942278578a2a773119c89-0.
+INFO 04-18 00:00:13 engine.py:273] Added request cmpl-036f677eb6c44d8a9867d5d05210b694-0.
+INFO 04-18 00:00:13 engine.py:273] Added request cmpl-ea14095f565646baa24c567a6982c158-0.
+INFO 04-18 00:00:13 engine.py:273] Added request cmpl-dd1066f073464ae8b0c6d9299f369ea2-0.
+INFO 04-18 00:00:13 engine.py:273] Added request cmpl-7a32fdd4fb8e4fcf8f36398516e6e234-0.
+INFO 04-18 00:00:13 engine.py:273] Added request cmpl-7a202e66fefc495ca8dfde82403213b1-0.
+INFO 04-18 00:00:13 engine.py:273] Added request cmpl-13593c38424c47b2a0fe1d60f0f719cc-0.
+INFO 04-18 00:00:13 engine.py:273] Added request cmpl-d8672144d8a143298ed922d9d7c0769e-0.
+INFO 04-18 00:00:13 engine.py:273] Added request cmpl-40920e0f6d4541c89e083e49f056b397-0.
+INFO 04-18 00:00:13 engine.py:273] Added request cmpl-7f6a8e5fbdba439db87f0ca4fa849fe1-0.
+INFO 04-18 00:00:13 engine.py:273] Added request cmpl-8dac6d6aa4f84c6ca9a0d69e7ea6e1f9-0.
+INFO 04-18 00:00:13 engine.py:273] Added request cmpl-505a112eedd54af89e1b7cd87f5ae283-0.
+INFO 04-18 00:00:13 engine.py:273] Added request cmpl-764872c5e01048e6afc8756322142cb0-0.
+INFO 04-18 00:00:13 engine.py:273] Added request cmpl-833e202bd00b462a9a3303af20098588-0.
+INFO 04-18 00:00:13 engine.py:273] Added request cmpl-bd0d9fc85e9a4ef5a0efb1f52506b13f-0.
+INFO 04-18 00:00:13 engine.py:273] Added request cmpl-3724e36c65ef429f9c39b7df0e77a77b-0.
+INFO 04-18 00:00:13 engine.py:273] Added request cmpl-baf6074b0a4842f4b4a46001afe4aafb-0.
+INFO 04-18 00:00:13 engine.py:273] Added request cmpl-51693c9df48d4a1b8c9dbcfd6224a522-0.
+INFO 04-18 00:00:13 engine.py:273] Added request cmpl-75f96de0d2c24d30b9d57a36b70ec4fa-0.
+INFO 04-18 00:00:13 engine.py:273] Added request cmpl-ab131b8849a641919a52e85a5e42f12d-0.
+INFO 04-18 00:00:13 engine.py:273] Added request cmpl-cc59733b388248699c644db3abfdf6f5-0.
+INFO 04-18 00:00:13 engine.py:273] Added request cmpl-8ee71df8c3f84deb9b4ee83e69dbba32-0.
+INFO 04-18 00:00:13 engine.py:273] Added request cmpl-40c2ae16d35a49598e51f97600b72fe9-0.
+INFO 04-18 00:00:13 engine.py:273] Added request cmpl-c1195ad6f8304abd8cd84b016bfb12b0-0.
+INFO 04-18 00:00:13 engine.py:273] Added request cmpl-cada923d904146ee8bc85f075468fa6e-0.
+INFO 04-18 00:00:13 engine.py:273] Added request cmpl-43e908c0fb0a47fe9858851e991a4fdb-0.
+INFO 04-18 00:00:13 engine.py:273] Added request cmpl-38cac8a8f2624b28bc6ba150eed99a1d-0.
+INFO 04-18 00:00:13 engine.py:273] Added request cmpl-d1a21578cc6c4d22b1bf560ce9569e82-0.
+INFO 04-18 00:00:13 engine.py:273] Added request cmpl-8e79d03517d84a2eb7997382b1bc5773-0.
+INFO 04-18 00:00:13 engine.py:273] Added request cmpl-6d51c212a7df4d7281b33e099a874b13-0.
+INFO 04-18 00:00:13 engine.py:273] Added request cmpl-2d01f3e28b954d88a51a1b097c780cab-0.
+INFO 04-18 00:00:17 metrics.py:453] Avg prompt throughput: 1612.2 tokens/s, Avg generation throughput: 1.2 tokens/s, Running: 9 reqs, Swapped: 0 reqs, Pending: 27 reqs, GPU KV cache usage: 8.2%, CPU KV cache usage: 0.0%.
+INFO 04-18 00:00:23 metrics.py:453] Avg prompt throughput: 1926.0 tokens/s, Avg generation throughput: 1.5 tokens/s, Running: 16 reqs, Swapped: 0 reqs, Pending: 20 reqs, GPU KV cache usage: 14.5%, CPU KV cache usage: 0.0%.
+INFO 04-18 00:00:25 engine.py:273] Added request cmpl-005e1e8df53c4565bca9fa8d72c8b2ac-0.
+INFO 04-18 00:00:27 engine.py:273] Added request cmpl-35f47906d3c44895806c7f7d17ec76e9-0.
+INFO 04-18 00:00:28 engine.py:273] Added request cmpl-375db74c6d72495483fe7e99b8a484c6-0.
+INFO 04-18 00:00:28 metrics.py:453] Avg prompt throughput: 1076.4 tokens/s, Avg generation throughput: 252.5 tokens/s, Running: 16 reqs, Swapped: 0 reqs, Pending: 20 reqs, GPU KV cache usage: 15.1%, CPU KV cache usage: 0.0%.
+INFO 04-18 00:00:29 engine.py:273] Added request cmpl-ea0ec6baa2d94e3089b5e190809d5b38-0.
+INFO 04-18 00:00:30 engine.py:273] Added request cmpl-dd7b0e18f46948899e0818e34a45dcf6-0.
+INFO 04-18 00:00:30 engine.py:273] Added request cmpl-6ba4d48a6471422dab142562432fe8fa-0.
+INFO 04-18 00:00:32 engine.py:273] Added request cmpl-c305e83140e94d1cac845af113867fce-0.
+INFO 04-18 00:00:33 engine.py:273] Added request cmpl-5f88f85290cb4c1cacd0186d69c98ed2-0.
+INFO 04-18 00:00:33 engine.py:273] Added request cmpl-07b647f155d640d682fa92cfffa3e214-0.
+INFO 04-18 00:00:33 metrics.py:453] Avg prompt throughput: 1294.8 tokens/s, Avg generation throughput: 178.1 tokens/s, Running: 16 reqs, Swapped: 0 reqs, Pending: 20 reqs, GPU KV cache usage: 15.1%, CPU KV cache usage: 0.0%.
+INFO 04-18 00:00:34 engine.py:273] Added request cmpl-bb6bd78a992d470ba05ec1faa4e02e5f-0.
+INFO 04-18 00:00:35 engine.py:273] Added request cmpl-b42caa1ed0b7462c9072512176a4721c-0.
+INFO 04-18 00:00:36 engine.py:273] Added request cmpl-bf96855289fb479192a38e1c457fb9e1-0.
+INFO 04-18 00:00:37 engine.py:273] Added request cmpl-80243fa1316743a685fe799d33288fb5-0.
+INFO 04-18 00:00:38 engine.py:273] Added request cmpl-d6f3023f76634079b55a2be6c642f497-0.
+INFO 04-18 00:00:39 metrics.py:453] Avg prompt throughput: 1503.0 tokens/s, Avg generation throughput: 115.7 tokens/s, Running: 16 reqs, Swapped: 0 reqs, Pending: 20 reqs, GPU KV cache usage: 14.7%, CPU KV cache usage: 0.0%.
+INFO 04-18 00:00:39 engine.py:273] Added request cmpl-a95b10ae59d34edbb2c1ccef38f2e104-0.
+INFO 04-18 00:00:41 engine.py:273] Added request cmpl-b1c390f9e2f1442f80428d75b49024a0-0.
+INFO 04-18 00:00:42 engine.py:273] Added request cmpl-735302d8e3b8444c9b0f342ac8f15b84-0.
+INFO 04-18 00:00:42 engine.py:273] Added request cmpl-1d4d78c34031412b9f0d95650044e7d5-0.
+INFO 04-18 00:00:43 engine.py:273] Added request cmpl-d21b17f5a6ac43fda9bf6b63dac5aa8a-0.
+INFO 04-18 00:00:44 engine.py:273] Added request cmpl-531ab92878cc4e458b5acf628a320b7f-0.
+INFO 04-18 00:00:44 metrics.py:453] Avg prompt throughput: 1206.6 tokens/s, Avg generation throughput: 207.5 tokens/s, Running: 16 reqs, Swapped: 0 reqs, Pending: 20 reqs, GPU KV cache usage: 15.0%, CPU KV cache usage: 0.0%.
+INFO 04-18 00:00:45 engine.py:273] Added request cmpl-0f525653ab1c4d75913a9af43db774aa-0.
+INFO 04-18 00:00:46 engine.py:273] Added request cmpl-9e5583f211dc4a3f9bc545585f7281da-0.
+INFO 04-18 00:00:47 engine.py:273] Added request cmpl-5ab7e0bd0cab4583be5ce6e4c7632889-0.
+INFO 04-18 00:00:47 engine.py:273] Added request cmpl-4f2ed9a7baa54976a664f44c76186846-0.
+INFO 04-18 00:00:48 engine.py:273] Added request cmpl-5cd8565c766b4328880d8ee5c7eb4d13-0.
+INFO 04-18 00:00:49 metrics.py:453] Avg prompt throughput: 1577.7 tokens/s, Avg generation throughput: 95.9 tokens/s, Running: 16 reqs, Swapped: 0 reqs, Pending: 20 reqs, GPU KV cache usage: 14.8%, CPU KV cache usage: 0.0%.
+INFO 04-18 00:00:49 engine.py:273] Added request cmpl-c54f7ade33734f83aa1d98b24968cc76-0.
+INFO 04-18 00:00:50 engine.py:273] Added request cmpl-576845def6bc4eb99a15ee0a06626476-0.
+INFO 04-18 00:00:51 engine.py:273] Added request cmpl-703d6d236b344f5faa78f0999bb978b3-0.
+INFO 04-18 00:00:52 engine.py:273] Added request cmpl-7e954723ebaf469eb86158f57432ab17-0.
+INFO 04-18 00:00:53 engine.py:273] Added request cmpl-d322bd5d061f4b9daa831c8f10895a22-0.
+INFO 04-18 00:00:54 engine.py:273] Added request cmpl-5b55b23e1cf94b5cb4c1b51b443b4556-0.
+INFO 04-18 00:00:54 engine.py:273] Added request cmpl-bd8104d2c03e4f3dbba6b6fb6b1d1db2-0.
+INFO 04-18 00:00:54 metrics.py:453] Avg prompt throughput: 1425.5 tokens/s, Avg generation throughput: 136.6 tokens/s, Running: 16 reqs, Swapped: 0 reqs, Pending: 20 reqs, GPU KV cache usage: 14.3%, CPU KV cache usage: 0.0%.
+INFO 04-18 00:00:55 engine.py:273] Added request cmpl-b7461c013dd64589a66939fe3fb02466-0.
+INFO 04-18 00:00:56 engine.py:273] Added request cmpl-fb6246e9181448b8b31cfd154b4aeeca-0.
+INFO 04-18 00:00:57 engine.py:273] Added request cmpl-d2e66eb007f8440b8ade4dfd5d31ba99-0.
+INFO 04-18 00:00:59 engine.py:273] Added request cmpl-3612918e1bd34a61a24eaf72d3f44b96-0.
+INFO 04-18 00:00:59 engine.py:273] Added request cmpl-8e7b9ec440cb4811a77c791c740c2f5a-0.
+INFO 04-18 00:00:59 metrics.py:453] Avg prompt throughput: 1223.2 tokens/s, Avg generation throughput: 202.1 tokens/s, Running: 16 reqs, Swapped: 0 reqs, Pending: 20 reqs, GPU KV cache usage: 14.1%, CPU KV cache usage: 0.0%.
+INFO 04-18 00:01:00 engine.py:273] Added request cmpl-f2868dc850e54085ae92498b9b8a2fe7-0.
+INFO 04-18 00:01:01 engine.py:273] Added request cmpl-32adc4b5153a4f15b95976ae551e8b54-0.
+INFO 04-18 00:01:02 engine.py:273] Added request cmpl-bfee967d0b2143f4b96496e443a6887e-0.
+INFO 04-18 00:01:02 engine.py:273] Added request cmpl-21a24a84a497477b94b54e553387d901-0.
+INFO 04-18 00:01:04 engine.py:273] Added request cmpl-cc3153f3c13e41e88763cd2bbeec70e0-0.
+INFO 04-18 00:01:04 metrics.py:453] Avg prompt throughput: 1415.3 tokens/s, Avg generation throughput: 144.6 tokens/s, Running: 16 reqs, Swapped: 0 reqs, Pending: 20 reqs, GPU KV cache usage: 14.0%, CPU KV cache usage: 0.0%.
+INFO 04-18 00:01:04 engine.py:273] Added request cmpl-a4ff3445f5cf49ecb50323bf175f2b47-0.
+INFO 04-18 00:01:06 engine.py:273] Added request cmpl-5980944eeac94a3d86c8c2f2c9d139b9-0.
+INFO 04-18 00:01:07 engine.py:273] Added request cmpl-d8e914238827468c8923d6772ef87e91-0.
+INFO 04-18 00:01:08 engine.py:273] Added request cmpl-b01dd15c4381485ba0e94366509045ed-0.
+INFO 04-18 00:01:09 engine.py:273] Added request cmpl-3e4bacb0873c4aa59a6046a164eef35f-0.
+INFO 04-18 00:01:09 metrics.py:453] Avg prompt throughput: 1189.5 tokens/s, Avg generation throughput: 213.8 tokens/s, Running: 16 reqs, Swapped: 0 reqs, Pending: 20 reqs, GPU KV cache usage: 14.1%, CPU KV cache usage: 0.0%.
+INFO 04-18 00:01:10 engine.py:273] Added request cmpl-a8762176f55d42679cba22e8ccc6beef-0.
+INFO 04-18 00:01:10 engine.py:273] Added request cmpl-44486bea480c4114834dd74a8267b664-0.
+INFO 04-18 00:01:11 engine.py:273] Added request cmpl-f9ee575e8a1546a49372daa9a2cc3bbe-0.
+INFO 04-18 00:01:12 engine.py:273] Added request cmpl-9cace8a0e7914d9eb7d50fc0cdf6a086-0.
+INFO 04-18 00:01:13 engine.py:273] Added request cmpl-7b20a4e78b404e2db64d9ca8a3a54162-0.
+INFO 04-18 00:01:13 engine.py:273] Added request cmpl-a4573ec6dba7461f8a635fd68004f751-0.
+INFO 04-18 00:01:14 engine.py:273] Added request cmpl-b2bd22ac2339472e9c0044ea75c3c0ad-0.
+INFO 04-18 00:01:15 metrics.py:453] Avg prompt throughput: 1525.1 tokens/s, Avg generation throughput: 106.9 tokens/s, Running: 16 reqs, Swapped: 0 reqs, Pending: 20 reqs, GPU KV cache usage: 13.6%, CPU KV cache usage: 0.0%.
+INFO 04-18 00:01:15 engine.py:273] Added request cmpl-227f8d9a59ed413e874892ad204d18a9-0.
+INFO 04-18 00:01:17 engine.py:273] Added request cmpl-79ce9e4291774fb4abdeadfbc5885b4b-0.
+INFO 04-18 00:01:18 engine.py:273] Added request cmpl-8be5b2d669b14ca387323bfa304ecb33-0.
+INFO 04-18 00:01:18 engine.py:273] Added request cmpl-eae8a1eb49a94e6bbf80f01effbc4a46-0.
+INFO 04-18 00:01:19 engine.py:273] Added request cmpl-a1c70e369ee24d44a35f1b208ead8a2a-0.
+INFO 04-18 00:01:20 engine.py:273] Added request cmpl-1e8859a1be9e4f3a88de51b7264b3a19-0.
+INFO 04-18 00:01:20 metrics.py:453] Avg prompt throughput: 1144.5 tokens/s, Avg generation throughput: 223.1 tokens/s, Running: 16 reqs, Swapped: 0 reqs, Pending: 20 reqs, GPU KV cache usage: 13.6%, CPU KV cache usage: 0.0%.
+INFO 04-18 00:01:21 engine.py:273] Added request cmpl-5921afc73ab649499630d3ef8c3c05a0-0.
+INFO 04-18 00:01:22 engine.py:273] Added request cmpl-41524b2765504408bf1e2d58ded9050f-0.
+INFO 04-18 00:01:23 engine.py:273] Added request cmpl-9c89e91388404717b4703540b4af7e6a-0.
+INFO 04-18 00:01:24 engine.py:273] Added request cmpl-747c34c29afa4de4b4832760cbf03b72-0.
+INFO 04-18 00:01:24 engine.py:273] Added request cmpl-ea02a91bf6214d1b9f21d949129c16cf-0.
+INFO 04-18 00:01:25 metrics.py:453] Avg prompt throughput: 1394.2 tokens/s, Avg generation throughput: 150.8 tokens/s, Running: 16 reqs, Swapped: 0 reqs, Pending: 20 reqs, GPU KV cache usage: 13.4%, CPU KV cache usage: 0.0%.
+INFO 04-18 00:01:25 engine.py:273] Added request cmpl-16e87bb5fd7d44f7923db16c78768387-0.
+INFO 04-18 00:01:26 engine.py:273] Added request cmpl-c4d688b85e6a41d292034c937bb97c2c-0.
+INFO 04-18 00:01:26 engine.py:273] Added request cmpl-36b05598b6eb42728899dd175b9a71d2-0.
+INFO 04-18 00:01:28 engine.py:273] Added request cmpl-8cfe463b51bc4bc59ba4e6fa0e4e538b-0.
+INFO 04-18 00:01:28 engine.py:273] Added request cmpl-3ee08d88864340568320ea42bf794f3d-0.
+INFO 04-18 00:01:29 engine.py:273] Added request cmpl-d01fe6fb228f4adea6a4d247b333e7f3-0.
+INFO 04-18 00:01:29 engine.py:273] Added request cmpl-7bca47e66a6f4c8d87e772cc83289866-0.
+INFO 04-18 00:01:30 metrics.py:453] Avg prompt throughput: 1412.9 tokens/s, Avg generation throughput: 146.4 tokens/s, Running: 16 reqs, Swapped: 0 reqs, Pending: 20 reqs, GPU KV cache usage: 12.9%, CPU KV cache usage: 0.0%.
+INFO 04-18 00:01:31 engine.py:273] Added request cmpl-c3d49c9811304f0e9f77f2f39d1559d0-0.
+INFO 04-18 00:01:31 engine.py:273] Added request cmpl-3823dc2a809840cc9da69e94b2330e35-0.
+INFO 04-18 00:01:32 engine.py:273] Added request cmpl-6ed9409bd6644303bb3063bc40255ff1-0.
+INFO 04-18 00:01:33 engine.py:273] Added request cmpl-b7fad6f4227e438fb1f9be684769462d-0.
+INFO 04-18 00:01:34 engine.py:273] Added request cmpl-5bc2412a678e4c73b2c84a5acc3bc631-0.
+INFO 04-18 00:01:35 engine.py:273] Added request cmpl-56936b5cfefc4e2186f972c67a1d28cc-0.
+INFO 04-18 00:01:36 metrics.py:453] Avg prompt throughput: 1208.7 tokens/s, Avg generation throughput: 205.3 tokens/s, Running: 16 reqs, Swapped: 0 reqs, Pending: 20 reqs, GPU KV cache usage: 13.0%, CPU KV cache usage: 0.0%.
+INFO 04-18 00:01:36 engine.py:273] Added request cmpl-e1b9dc8ab028422a80b76afb0b61f128-0.
+INFO 04-18 00:01:37 engine.py:273] Added request cmpl-8373e4201af44efbb5b3fc5be66873a9-0.
+INFO 04-18 00:01:38 engine.py:273] Added request cmpl-c7ebfc0d0cb74d3b91411c489398271d-0.
+INFO 04-18 00:01:38 engine.py:273] Added request cmpl-75c80349fc29486c80129a83490b4cea-0.
+INFO 04-18 00:01:39 engine.py:273] Added request cmpl-fef2cef0ce5c41f0bd6c2e62dc95d0bc-0.
+INFO 04-18 00:01:40 engine.py:273] Added request cmpl-3faf2a5950c641939fbff0db4f16fd65-0.
+INFO 04-18 00:01:40 engine.py:273] Added request cmpl-b87a030a1f73482498caea92a946191a-0.
+INFO 04-18 00:01:41 metrics.py:453] Avg prompt throughput: 1563.0 tokens/s, Avg generation throughput: 95.7 tokens/s, Running: 16 reqs, Swapped: 0 reqs, Pending: 20 reqs, GPU KV cache usage: 12.5%, CPU KV cache usage: 0.0%.
+INFO 04-18 00:01:41 engine.py:273] Added request cmpl-2fd3c6c63cf64792aef163a41f1e32b2-0.
+INFO 04-18 00:01:43 engine.py:273] Added request cmpl-beeed329f5874b3ea5170a65029894ff-0.
+INFO 04-18 00:01:44 engine.py:273] Added request cmpl-ef3b36f4c4fb4e37a834e30f82104f28-0.
+INFO 04-18 00:01:44 engine.py:273] Added request cmpl-d6a3603b12ba470788b58906b1fdbf86-0.
+INFO 04-18 00:01:44 engine.py:273] Added request cmpl-1208e938a23d40dbb93dd7085559bcb7-0.
+INFO 04-18 00:01:46 engine.py:273] Added request cmpl-186a72d9a65840f18ae70588df26a1c4-0.
+INFO 04-18 00:01:46 metrics.py:453] Avg prompt throughput: 1265.3 tokens/s, Avg generation throughput: 192.1 tokens/s, Running: 16 reqs, Swapped: 0 reqs, Pending: 20 reqs, GPU KV cache usage: 12.7%, CPU KV cache usage: 0.0%.
+INFO 04-18 00:01:47 engine.py:273] Added request cmpl-b78c361fdad54e4d8a3af7bce5c21841-0.
+INFO 04-18 00:01:48 engine.py:273] Added request cmpl-0f7b1251fbb74f98a1cd9e4cfbaa9942-0.
+INFO 04-18 00:01:48 engine.py:273] Added request cmpl-a864f14528d9415c9812a914347bc6e4-0.
+INFO 04-18 00:01:49 engine.py:273] Added request cmpl-77afc87714ea48f89d1db0f69e211f6e-0.
+INFO 04-18 00:01:50 engine.py:273] Added request cmpl-15f94dea19aa4158bee71bb34ed4d597-0.
+INFO 04-18 00:01:51 engine.py:273] Added request cmpl-a7b322f3530944bc9437c9cf11aecbe4-0.
+INFO 04-18 00:01:51 metrics.py:453] Avg prompt throughput: 1345.5 tokens/s, Avg generation throughput: 162.5 tokens/s, Running: 16 reqs, Swapped: 0 reqs, Pending: 20 reqs, GPU KV cache usage: 12.9%, CPU KV cache usage: 0.0%.
+INFO 04-18 00:01:52 engine.py:273] Added request cmpl-f954b94d8d7247cda13626781e59755b-0.
+INFO 04-18 00:01:53 engine.py:273] Added request cmpl-79552da106644c2eb1319cee0be62de6-0.
+INFO 04-18 00:01:54 engine.py:273] Added request cmpl-2ab4a27c508d40ceacb9aed2167d00f1-0.
+INFO 04-18 00:01:54 engine.py:273] Added request cmpl-f99f1bfc77f3463892820fb952f90dc3-0.
+INFO 04-18 00:01:55 engine.py:273] Added request cmpl-59d0cb09fef041e8a4780c9462c191c6-0.
+INFO 04-18 00:01:55 engine.py:273] Added request cmpl-ea15e0baf3c443e4afd434943e26552f-0.
+INFO 04-18 00:01:56 metrics.py:453] Avg prompt throughput: 1311.6 tokens/s, Avg generation throughput: 173.0 tokens/s, Running: 16 reqs, Swapped: 0 reqs, Pending: 20 reqs, GPU KV cache usage: 12.9%, CPU KV cache usage: 0.0%.
+INFO 04-18 00:01:56 engine.py:273] Added request cmpl-bb9d1d0053a549748ba70263da3e8d76-0.
+INFO 04-18 00:01:57 engine.py:273] Added request cmpl-b2e2c7f9e27c407eb06e983b5601aeaf-0.
+INFO 04-18 00:01:58 engine.py:273] Added request cmpl-42218693309f4803ab061e5a45f41be8-0.
+INFO 04-18 00:01:59 engine.py:273] Added request cmpl-d4138b4fef684d7195013052546ac2ca-0.
+INFO 04-18 00:02:00 engine.py:273] Added request cmpl-b276330d01bc491f9f637a87ab9e5d41-0.
+INFO 04-18 00:02:01 engine.py:273] Added request cmpl-8f7c6b38874045439ded4566539b98f5-0.
+INFO 04-18 00:02:01 metrics.py:453] Avg prompt throughput: 1328.0 tokens/s, Avg generation throughput: 166.0 tokens/s, Running: 16 reqs, Swapped: 0 reqs, Pending: 20 reqs, GPU KV cache usage: 12.7%, CPU KV cache usage: 0.0%.
+INFO 04-18 00:02:02 engine.py:273] Added request cmpl-d17f8238c85a4ad5b4fc9a273f891161-0.
+INFO 04-18 00:02:02 engine.py:273] Added request cmpl-8f1e1c0539e241c99d97b2392d3dd1aa-0.
+INFO 04-18 00:02:02 engine.py:273] Added request cmpl-01cdb54cf4fe4d35a52d9f2162b8cf55-0.
+INFO 04-18 00:02:03 engine.py:273] Added request cmpl-5f786f2e07de4705b69a48a657dfb302-0.
+INFO 04-18 00:02:04 engine.py:273] Added request cmpl-1275ade1c5e74492af18d3024b5580bf-0.
+INFO 04-18 00:02:05 engine.py:273] Added request cmpl-be24b2cc67544102a8a64e549cabce73-0.
+INFO 04-18 00:02:06 engine.py:273] Added request cmpl-4403dccdf4924ba1a008d56c449241e0-0.
+INFO 04-18 00:02:06 metrics.py:453] Avg prompt throughput: 1480.4 tokens/s, Avg generation throughput: 121.5 tokens/s, Running: 16 reqs, Swapped: 0 reqs, Pending: 20 reqs, GPU KV cache usage: 12.1%, CPU KV cache usage: 0.0%.
+INFO 04-18 00:02:07 engine.py:273] Added request cmpl-e496897c25294a659d094d11718a9f5f-0.
+INFO 04-18 00:02:07 engine.py:273] Added request cmpl-5ddfef96622645a48eb739114cf01119-0.
+INFO 04-18 00:02:08 engine.py:273] Added request cmpl-8a208b371e764d6981a0835b449384cd-0.
+INFO 04-18 00:02:09 engine.py:273] Added request cmpl-9a2be20c940547f28719157d33792062-0.
+INFO 04-18 00:02:09 engine.py:273] Added request cmpl-ea3058bc557b4cd686e696ccbecd3e51-0.
+INFO 04-18 00:02:10 engine.py:273] Added request cmpl-56e6c1b966a84d7e98abd7e906a0a37a-0.
+INFO 04-18 00:02:11 engine.py:273] Added request cmpl-9a31364c3f294aebabe94680addc20ec-0.
+INFO 04-18 00:02:11 metrics.py:453] Avg prompt throughput: 1501.2 tokens/s, Avg generation throughput: 118.2 tokens/s, Running: 16 reqs, Swapped: 0 reqs, Pending: 20 reqs, GPU KV cache usage: 11.9%, CPU KV cache usage: 0.0%.
+INFO 04-18 00:02:12 engine.py:273] Added request cmpl-5afcfe1b1bf343dd9df8500066f43fe3-0.
+INFO 04-18 00:02:12 engine.py:273] Added request cmpl-8e1eded7106d48aeba49db86ca2f2c6b-0.
+INFO 04-18 00:02:13 engine.py:273] Added request cmpl-c4301540f1e649f999cf3e0e1f62d952-0.
+INFO 04-18 00:02:14 engine.py:273] Added request cmpl-7a5d748afc4e4269867ba903cd16d167-0.
+INFO 04-18 00:02:15 engine.py:273] Added request cmpl-106223dec44149ac9da067e9142a6b8b-0.
+INFO 04-18 00:02:16 engine.py:273] Added request cmpl-420ef83c60844f49b0cb836d54d24787-0.
+INFO 04-18 00:02:17 metrics.py:453] Avg prompt throughput: 1218.1 tokens/s, Avg generation throughput: 203.5 tokens/s, Running: 16 reqs, Swapped: 0 reqs, Pending: 20 reqs, GPU KV cache usage: 12.3%, CPU KV cache usage: 0.0%.
+INFO 04-18 00:02:17 engine.py:273] Added request cmpl-b43a5a50b00b4eff95a367430d30538d-0.
+INFO 04-18 00:02:18 engine.py:273] Added request cmpl-849efd1fd46946738337ec7fd31452ee-0.
+INFO 04-18 00:02:19 engine.py:273] Added request cmpl-2601702140fd44c782f37296aa8149f7-0.
+INFO 04-18 00:02:20 engine.py:273] Added request cmpl-7cc30c6566f24b35a2ee9bcd1c904bdc-0.
+INFO 04-18 00:02:20 engine.py:273] Added request cmpl-8f760e3d9e234c64b2b779d5b981c73c-0.
+INFO 04-18 00:02:21 engine.py:273] Added request cmpl-0b5c09f9c1f9457592d76d1045947f7a-0.
+INFO 04-18 00:02:22 metrics.py:453] Avg prompt throughput: 1257.8 tokens/s, Avg generation throughput: 191.2 tokens/s, Running: 15 reqs, Swapped: 0 reqs, Pending: 20 reqs, GPU KV cache usage: 11.5%, CPU KV cache usage: 0.0%.
+INFO 04-18 00:02:22 engine.py:273] Added request cmpl-8af6b2f49d5d49d097f723fcd6761978-0.
+INFO 04-18 00:02:22 engine.py:273] Added request cmpl-25241d87284d454a8d437ea54cf591d5-0.
+INFO 04-18 00:02:23 engine.py:273] Added request cmpl-1248b9e75b9244bebefb074f39b13f31-0.
+INFO 04-18 00:02:24 engine.py:273] Added request cmpl-2a73ade7a46b425f8900c5c32e9ee624-0.
+INFO 04-18 00:02:25 engine.py:273] Added request cmpl-9f2b6c48b5d9423a97178add02d74fc9-0.
+INFO 04-18 00:02:26 engine.py:273] Added request cmpl-4b67764af0aa4d09865552db2db2291f-0.
+INFO 04-18 00:02:26 engine.py:273] Added request cmpl-0959ca0b29ee4be8a8e058c480636f76-0.
+INFO 04-18 00:02:27 metrics.py:453] Avg prompt throughput: 1432.7 tokens/s, Avg generation throughput: 136.7 tokens/s, Running: 16 reqs, Swapped: 0 reqs, Pending: 20 reqs, GPU KV cache usage: 12.2%, CPU KV cache usage: 0.0%.
+INFO 04-18 00:02:27 engine.py:273] Added request cmpl-8ba23f181fd64abc800e081f717c4e35-0.
+INFO 04-18 00:02:28 engine.py:273] Added request cmpl-fdec7a4ad0d54702a594695ccf349af7-0.
+INFO 04-18 00:02:28 engine.py:273] Added request cmpl-4cdfe4203bb64dae82de2b3c161978b7-0.
+INFO 04-18 00:02:29 engine.py:273] Added request cmpl-477dcd8a35a645c5b95693a4c54f8926-0.
+INFO 04-18 00:02:30 engine.py:273] Added request cmpl-ecaeba20f5a645e3bafd448a17141ead-0.
+INFO 04-18 00:02:31 engine.py:273] Added request cmpl-9ac603122791454989473eb7cf64d80c-0.
+INFO 04-18 00:02:31 engine.py:273] Added request cmpl-83c39df001b84070833b64eb38723786-0.
+INFO 04-18 00:02:32 metrics.py:453] Avg prompt throughput: 1408.7 tokens/s, Avg generation throughput: 143.5 tokens/s, Running: 16 reqs, Swapped: 0 reqs, Pending: 20 reqs, GPU KV cache usage: 11.9%, CPU KV cache usage: 0.0%.
+INFO 04-18 00:02:32 engine.py:273] Added request cmpl-c9034d95a6d64cb2820779df63213a6a-0.
+INFO 04-18 00:02:33 engine.py:273] Added request cmpl-525745b80f5d4d4b929d008fc8b287c3-0.
+INFO 04-18 00:02:34 engine.py:273] Added request cmpl-df3cf0252b4448afaa83ed13321ae468-0.
+INFO 04-18 00:02:35 engine.py:273] Added request cmpl-ed78907662bd42ccb0e1a4e8c13c3e32-0.
+INFO 04-18 00:02:35 engine.py:273] Added request cmpl-af5698496cc2450596b9b4b9be4983a3-0.
+INFO 04-18 00:02:37 engine.py:273] Added request cmpl-0aec56b4a32d4aa1ae58f5b7a48d011d-0.
+INFO 04-18 00:02:37 metrics.py:453] Avg prompt throughput: 1126.5 tokens/s, Avg generation throughput: 235.8 tokens/s, Running: 16 reqs, Swapped: 0 reqs, Pending: 20 reqs, GPU KV cache usage: 12.1%, CPU KV cache usage: 0.0%.
+INFO 04-18 00:02:37 engine.py:273] Added request cmpl-884e5972548e4559b4751d97d5c552de-0.
+INFO 04-18 00:02:37 engine.py:273] Added request cmpl-779f64e150df4f648429ca8bb4ac90ec-0.
+INFO 04-18 00:02:39 engine.py:273] Added request cmpl-45eacad9a6924df58268bcbd00d091d6-0.
+INFO 04-18 00:02:40 engine.py:273] Added request cmpl-e80664e8e67f4b69a53194bcc98b5f1b-0.
+INFO 04-18 00:02:40 engine.py:273] Added request cmpl-3a5a7768863241e88c7948c13b91a82b-0.
+INFO 04-18 00:02:41 engine.py:273] Added request cmpl-3c02b39a2a4d448d8bee57a73a0466af-0.
+INFO 04-18 00:02:42 engine.py:273] Added request cmpl-89766e4a4c2b49c48440b64b3e4b6d42-0.
+INFO 04-18 00:02:42 metrics.py:453] Avg prompt throughput: 1394.4 tokens/s, Avg generation throughput: 150.1 tokens/s, Running: 16 reqs, Swapped: 0 reqs, Pending: 20 reqs, GPU KV cache usage: 11.8%, CPU KV cache usage: 0.0%.
+INFO 04-18 00:02:42 engine.py:273] Added request cmpl-a202a239f2874ed09d0f99ed4df58eaf-0.
+INFO 04-18 00:02:43 engine.py:273] Added request cmpl-d930c755de344abea14aa6f9294291f9-0.
+INFO 04-18 00:02:44 engine.py:273] Added request cmpl-d1a57a6cc6344123aab4f8a4efd9a3bf-0.
+INFO 04-18 00:02:45 engine.py:273] Added request cmpl-9b7e64c9914248c5bb72cfdae932e4d6-0.
+INFO 04-18 00:02:45 engine.py:273] Added request cmpl-7408f112cf1347c9ad82ab33a8e6a31a-0.
+INFO 04-18 00:02:46 engine.py:273] Added request cmpl-00181cfc85fb48a1be36fc20827c18d1-0.
+INFO 04-18 00:02:47 engine.py:273] Added request cmpl-9214da0f21b445899a49ce66eadf4acd-0.
+INFO 04-18 00:02:47 engine.py:273] Added request cmpl-a4b1c7739cd34cbfa92f7444b3bf02f9-0.
+INFO 04-18 00:02:48 metrics.py:453] Avg prompt throughput: 1484.4 tokens/s, Avg generation throughput: 122.9 tokens/s, Running: 16 reqs, Swapped: 0 reqs, Pending: 20 reqs, GPU KV cache usage: 11.2%, CPU KV cache usage: 0.0%.
+INFO 04-18 00:02:48 engine.py:273] Added request cmpl-dbc26f6fb6754f2b8b47170729e558ae-0.
+INFO 04-18 00:02:49 engine.py:273] Added request cmpl-cf9bce8fef2740f58b7a0ae6c4fbc581-0.
+INFO 04-18 00:02:49 engine.py:273] Added request cmpl-2a2b146115ee4302874ac0e048008db1-0.
+INFO 04-18 00:02:50 engine.py:273] Added request cmpl-1dfd5e87f82d4288aa253e431794b5e4-0.
+INFO 04-18 00:02:51 engine.py:273] Added request cmpl-2c5640bf182249bf9c689bbee913217a-0.
+INFO 04-18 00:02:52 engine.py:273] Added request cmpl-e1026e05f5cb49b99a1142d937f4e646-0.
+INFO 04-18 00:02:52 engine.py:273] Added request cmpl-97c9da538db4475c92e2cb0ef2158fa1-0.
+INFO 04-18 00:02:52 engine.py:273] Added request cmpl-d8126819c9cf4b9d8111b6b20f1ff621-0.
+INFO 04-18 00:02:53 metrics.py:453] Avg prompt throughput: 1363.9 tokens/s, Avg generation throughput: 161.4 tokens/s, Running: 16 reqs, Swapped: 0 reqs, Pending: 20 reqs, GPU KV cache usage: 11.2%, CPU KV cache usage: 0.0%.
+INFO 04-18 00:02:54 engine.py:273] Added request cmpl-921dacb7e0d0426f8b825af0a99971be-0.
+INFO 04-18 00:02:55 engine.py:273] Added request cmpl-131243cebee448469b1696b70968052f-0.
+INFO 04-18 00:02:56 engine.py:273] Added request cmpl-ea58354dbda04034aa7010213e8e0f7d-0.
+INFO 04-18 00:02:57 engine.py:273] Added request cmpl-8af2084816ef49d99a0f708ba8390249-0.
+INFO 04-18 00:02:57 engine.py:273] Added request cmpl-6d6a29ecb7eb4efd8178ae17a7a4a031-0.
+INFO 04-18 00:02:57 engine.py:273] Added request cmpl-6e165b91097b40cd93c9bdb724d612db-0.
+INFO 04-18 00:02:58 engine.py:273] Added request cmpl-5b4eeadf8b8d49db921f91cefa078c56-0.
+INFO 04-18 00:02:59 metrics.py:453] Avg prompt throughput: 1293.3 tokens/s, Avg generation throughput: 163.0 tokens/s, Running: 16 reqs, Swapped: 0 reqs, Pending: 20 reqs, GPU KV cache usage: 10.8%, CPU KV cache usage: 0.0%.
+INFO 04-18 00:02:59 engine.py:273] Added request cmpl-f35e365e903e47758e1714cd2cefef9b-0.
+INFO 04-18 00:03:00 engine.py:273] Added request cmpl-5f7d048dd71f49e681f1df2fc96b5466-0.
+INFO 04-18 00:03:01 engine.py:273] Added request cmpl-8321433b42be4ea38becb2e52478e8d3-0.
+INFO 04-18 00:03:01 engine.py:273] Added request cmpl-1c320f40b8464bfeaacce8289cc0d668-0.
+INFO 04-18 00:03:02 engine.py:273] Added request cmpl-f7c535224c1b4ea38dfe3578ec142768-0.
+INFO 04-18 00:03:03 engine.py:273] Added request cmpl-867cffeecb2942098c059006807fe07f-0.
+INFO 04-18 00:03:04 metrics.py:453] Avg prompt throughput: 1139.4 tokens/s, Avg generation throughput: 233.1 tokens/s, Running: 16 reqs, Swapped: 0 reqs, Pending: 20 reqs, GPU KV cache usage: 10.9%, CPU KV cache usage: 0.0%.
+INFO 04-18 00:03:04 engine.py:273] Added request cmpl-9e6ba9dd58f2420d937319e0493a378c-0.
+INFO 04-18 00:03:04 engine.py:273] Added request cmpl-7d8476a6a5d74759b27dfd284262f20a-0.
+INFO 04-18 00:03:05 engine.py:273] Added request cmpl-ff024771faff441998af53a25e813e0f-0.
+INFO 04-18 00:03:06 engine.py:273] Added request cmpl-53cc04cef72344219a3f651a60f67f84-0.
+INFO 04-18 00:03:06 engine.py:273] Added request cmpl-a76506ffaa1247e6ba78464bb34442a7-0.
+INFO 04-18 00:03:07 engine.py:273] Added request cmpl-05ad8efab5594874a154bca843b94234-0.
+INFO 04-18 00:03:07 engine.py:273] Added request cmpl-0fda704363b44e93b4af87f6455fcba9-0.
+INFO 04-18 00:03:08 engine.py:273] Added request cmpl-bab1f21d79dc45d7a0ec4cb56426e858-0.
+INFO 04-18 00:03:09 engine.py:273] Added request cmpl-068f56d60daf4854b1861b39b6642a8a-0.
+INFO 04-18 00:03:09 metrics.py:453] Avg prompt throughput: 1367.4 tokens/s, Avg generation throughput: 153.2 tokens/s, Running: 16 reqs, Swapped: 0 reqs, Pending: 20 reqs, GPU KV cache usage: 10.6%, CPU KV cache usage: 0.0%.
+INFO 04-18 00:03:10 engine.py:273] Added request cmpl-d15cab5a5b9e4da4a79c3d0ccda52266-0.
+INFO 04-18 00:03:10 engine.py:273] Added request cmpl-e59c6f9645a147feb4434b824a6ab098-0.
+INFO 04-18 00:03:10 engine.py:273] Added request cmpl-f0cb5de96a8942dbbdd915123a96b01c-0.
+INFO 04-18 00:03:12 engine.py:273] Added request cmpl-1652ec04dedb4424b2a1eacab421439b-0.
+INFO 04-18 00:03:12 engine.py:273] Added request cmpl-12406e135c0d4a649ae8dc49c887758c-0.
+INFO 04-18 00:03:13 engine.py:273] Added request cmpl-8a73dcea6ab94cb2bb6e8d24dcf78041-0.
+INFO 04-18 00:03:14 metrics.py:453] Avg prompt throughput: 1261.2 tokens/s, Avg generation throughput: 194.8 tokens/s, Running: 16 reqs, Swapped: 0 reqs, Pending: 20 reqs, GPU KV cache usage: 10.7%, CPU KV cache usage: 0.0%.
+INFO 04-18 00:03:14 engine.py:273] Added request cmpl-0fb52c113e1845f1833898f2bd4f3e4a-0.
+INFO 04-18 00:03:14 engine.py:273] Added request cmpl-9595b96b5fac46abbe4034f212364129-0.
+INFO 04-18 00:03:14 engine.py:273] Added request cmpl-35b890973ede4fc7ad7dcf874bce196a-0.
+INFO 04-18 00:03:14 engine.py:273] Added request cmpl-f194e59de7ef4d788cce1eaf08221d76-0.
+INFO 04-18 00:03:17 engine.py:273] Added request cmpl-6d22b52c3dad47fab1501792ba0a19e7-0.
+INFO 04-18 00:03:17 engine.py:273] Added request cmpl-62d3fcb773fc44c582ecfb40dd0b8880-0.
+INFO 04-18 00:03:18 engine.py:273] Added request cmpl-607837c3f21c4ee79e2234d3d5afbf31-0.
+INFO 04-18 00:03:18 engine.py:273] Added request cmpl-105ad1373fbf4cc3a10bb0ac31f773df-0.
+INFO 04-18 00:03:19 metrics.py:453] Avg prompt throughput: 1446.4 tokens/s, Avg generation throughput: 134.7 tokens/s, Running: 16 reqs, Swapped: 0 reqs, Pending: 19 reqs, GPU KV cache usage: 10.3%, CPU KV cache usage: 0.0%.
+INFO 04-18 00:03:24 metrics.py:453] Avg prompt throughput: 1189.8 tokens/s, Avg generation throughput: 217.2 tokens/s, Running: 16 reqs, Swapped: 0 reqs, Pending: 13 reqs, GPU KV cache usage: 10.3%, CPU KV cache usage: 0.0%.
+INFO 04-18 00:03:29 metrics.py:453] Avg prompt throughput: 1326.4 tokens/s, Avg generation throughput: 169.4 tokens/s, Running: 16 reqs, Swapped: 0 reqs, Pending: 5 reqs, GPU KV cache usage: 9.9%, CPU KV cache usage: 0.0%.
+INFO 04-18 00:03:34 metrics.py:453] Avg prompt throughput: 774.4 tokens/s, Avg generation throughput: 295.9 tokens/s, Running: 8 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 5.0%, CPU KV cache usage: 0.0%.
+INFO 04-18 00:03:47 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 29.9 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+Gracefully shutting down (signal=2)...
+Process is exiting...
+Num prefill batches: 0, Num decode batches: 0
+Num batches: 0
+Gracefully shutting down (signal=None)...
+Process is exiting...
+Num prefill batches: 0, Num decode batches: 0
+Num batches: 0
+{}
+Exception ignored in atexit callback: <function LLMEngine.__init__.<locals>._handle_exit_signal at 0x7f02f6c2e290>Exception ignored in sys.unraisablehook: <built-in function unraisablehook>

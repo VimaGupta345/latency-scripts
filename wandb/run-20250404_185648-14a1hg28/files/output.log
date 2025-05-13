@@ -1,0 +1,188 @@
+The MixtralLogitStore is created and prefill is set to true:  True
+The number of experts to keep is:  4
+The number of total experts is:  8
+The num experts to keep is:  4
+The num experts to drop is:  4
+The policy is:  simple
+The num total experts is:  8
+WARNING 04-04 18:56:48 multiproc_worker_utils.py:298] Reducing Torch parallelism from 12 threads to 1 to avoid unnecessary CPU contention. Set OMP_NUM_THREADS in the external environment to tune this value as needed.
+INFO 04-04 18:56:48 custom_cache_manager.py:17] Setting Triton cache manager to: vllm.triton_utils.custom_cache_manager:CustomCacheManager
+INFO 04-04 18:56:50 cuda.py:225] Using Flash Attention backend.
+INFO 04-04 18:56:51 utils.py:938] Found nccl from library libnccl.so.2
+INFO 04-04 18:56:51 pynccl.py:67] vLLM is using nccl==2.21.5
+INFO 04-04 18:56:51 custom_all_reduce_utils.py:242] reading GPU P2P access cache from /home/vimagupta123/.cache/vllm/gpu_p2p_access_cache_for_0,1.json
+INFO 04-04 18:56:51 shm_broadcast.py:256] vLLM message queue communication handle: Handle(connect_ip='127.0.0.1', local_reader_ranks=[1], buffer_handle=(1, 4194304, 6, 'psm_9ed7cee6'), local_subscribe_port=58251, remote_subscribe_port=None)
+INFO 04-04 18:56:51 model_runner.py:1114] Starting to load model /home/vimagupta123/models/mixtral-8x7b/...
+Loading safetensors checkpoint shards:   0% Completed | 0/19 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards:   5% Completed | 1/19 [00:01<00:18,  1.05s/it]
+Loading safetensors checkpoint shards:  11% Completed | 2/19 [00:02<00:18,  1.07s/it]
+Loading safetensors checkpoint shards:  16% Completed | 3/19 [00:03<00:17,  1.09s/it]
+Loading safetensors checkpoint shards:  21% Completed | 4/19 [00:04<00:16,  1.08s/it]
+Loading safetensors checkpoint shards:  26% Completed | 5/19 [00:05<00:15,  1.09s/it]
+Loading safetensors checkpoint shards:  32% Completed | 6/19 [00:06<00:14,  1.10s/it]
+Loading safetensors checkpoint shards:  37% Completed | 7/19 [00:07<00:13,  1.10s/it]
+Loading safetensors checkpoint shards:  42% Completed | 8/19 [00:08<00:12,  1.10s/it]
+Loading safetensors checkpoint shards:  47% Completed | 9/19 [00:09<00:11,  1.11s/it]
+Loading safetensors checkpoint shards:  53% Completed | 10/19 [00:10<00:09,  1.10s/it]
+Loading safetensors checkpoint shards:  58% Completed | 11/19 [00:12<00:08,  1.11s/it]
+Loading safetensors checkpoint shards:  63% Completed | 12/19 [00:13<00:07,  1.11s/it]
+Loading safetensors checkpoint shards:  68% Completed | 13/19 [00:14<00:06,  1.10s/it]
+Loading safetensors checkpoint shards:  74% Completed | 14/19 [00:15<00:05,  1.10s/it]
+Loading safetensors checkpoint shards:  79% Completed | 15/19 [00:16<00:04,  1.09s/it]
+Loading safetensors checkpoint shards:  84% Completed | 16/19 [00:17<00:03,  1.10s/it]
+Loading safetensors checkpoint shards:  89% Completed | 17/19 [00:18<00:02,  1.04s/it]
+Loading safetensors checkpoint shards:  95% Completed | 18/19 [00:19<00:01,  1.05s/it]
+Loading safetensors checkpoint shards: 100% Completed | 19/19 [00:20<00:00,  1.05s/it]
+Loading safetensors checkpoint shards: 100% Completed | 19/19 [00:20<00:00,  1.08s/it]
+INFO 04-04 18:57:12 model_runner.py:1119] Loading model weights took 43.5064 GB
+INFO 04-04 18:57:16 fused_moe.py:749] Using configuration from /home/vimagupta123/prowl/vllm/model_executor/layers/fused_moe/configs/E=8,N=7168,device_name=NVIDIA_A100-SXM4-80GB.json for MoE layer.
+INFO 04-04 18:57:20 worker.py:272] Memory profiling takes 7.37 seconds
+INFO 04-04 18:57:20 worker.py:272] the current vLLM instance can use total_gpu_memory (79.14GiB) x gpu_memory_utilization (0.80) = 63.31GiB
+INFO 04-04 18:57:20 worker.py:272] model weights take 43.51GiB; non_torch_memory takes 1.54GiB; PyTorch activation peak memory takes 0.49GiB; the rest of the memory reserved for KV Cache is 17.77GiB.
+INFO 04-04 18:57:20 executor_base.py:108] # CUDA blocks: 18197, # CPU blocks: 4096
+INFO 04-04 18:57:20 executor_base.py:113] Maximum concurrency for 4096 tokens per request: 71.08x
+INFO 04-04 18:57:23 model_runner.py:1434] Capturing cudagraphs for decoding. This may lead to unexpected consequences if the model is not static. To run the model in eager mode, set 'enforce_eager=True' or use '--enforce-eager' in the CLI. If out-of-memory error occurs during cudagraph capture, consider decreasing `gpu_memory_utilization` or switching to eager mode. You can also reduce the `max_num_seqs` as needed to decrease memory usage.
+
+Capturing CUDA graph shapes: 100%|██████████| 35/35 [00:35<00:00,  1.00s/it]
+INFO 04-04 18:57:58 custom_all_reduce.py:224] Registering 2275 cuda graph addresses
+INFO 04-04 18:57:58 model_runner.py:1569] Graph capturing finished in 35 secs, took 0.42 GiB
+The profiling is done and the flag is set for MixtralLogitStore
+Profiling done and flag is being set
+INFO 04-04 18:57:58 llm_engine.py:478] init engine (profile, create kv cache, warmup model) took 45.78 seconds
+INFO 04-04 18:59:54 engine.py:273] Added request cmpl-458e50b8080844ab8bbea304b9d81a70-0.
+INFO 04-04 18:59:55 engine.py:273] Added request cmpl-a69ab13c289641b3ac2b9f44d882299b-0.
+INFO 04-04 18:59:55 engine.py:273] Added request cmpl-e1d2f03d4e3d4b97b763f31a8ab4cec7-0.
+INFO 04-04 18:59:55 engine.py:273] Added request cmpl-7d4bbd5ec15e4f1689542740d3ce7eac-0.
+INFO 04-04 18:59:55 engine.py:273] Added request cmpl-de58a2b1ff34415ca5e22eaaed799367-0.
+INFO 04-04 18:59:55 engine.py:273] Added request cmpl-0a1532e9228f4f41a036826419c961bd-0.
+INFO 04-04 18:59:55 engine.py:273] Added request cmpl-a8751398588540c0a24d16363cdeb26f-0.
+INFO 04-04 18:59:55 engine.py:273] Added request cmpl-4300bac186064b8aa433610c4b7288a0-0.
+INFO 04-04 18:59:55 engine.py:273] Added request cmpl-0b1e758c968f4ebf9fda4f88aaed254b-0.
+INFO 04-04 18:59:55 engine.py:273] Added request cmpl-29a41ce0dd064635b480d3ca3c6c2ade-0.
+INFO 04-04 18:59:55 engine.py:273] Added request cmpl-a979bc57aee2418a9f491d83c40bf7c8-0.
+INFO 04-04 18:59:55 engine.py:273] Added request cmpl-615e341cfd724a95845398c430fe0187-0.
+INFO 04-04 18:59:55 engine.py:273] Added request cmpl-b16be41b3ee745aa87b81bcae0e473d0-0.
+INFO 04-04 18:59:55 engine.py:273] Added request cmpl-e864a7cd32734b989082344695ae115a-0.
+INFO 04-04 18:59:55 engine.py:273] Added request cmpl-6a0d554a729f445098bff988f238ab9a-0.
+INFO 04-04 18:59:55 engine.py:273] Added request cmpl-0d9b427b2cb94189a9141dc2fce4bbcf-0.
+INFO 04-04 18:59:55 metrics.py:453] Avg prompt throughput: 212.2 tokens/s, Avg generation throughput: 0.2 tokens/s, Running: 3 reqs, Swapped: 0 reqs, Pending: 13 reqs, GPU KV cache usage: 1.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 19:00:01 metrics.py:453] Avg prompt throughput: 2472.4 tokens/s, Avg generation throughput: 1.9 tokens/s, Running: 15 reqs, Swapped: 0 reqs, Pending: 1 reqs, GPU KV cache usage: 6.8%, CPU KV cache usage: 0.0%.
+INFO 04-04 19:00:04 engine.py:273] Added request cmpl-19a6fa5234fb4e0ea5ab06d4f4d2743d-0.
+INFO 04-04 19:00:05 engine.py:273] Added request cmpl-0c0d32db02df49b3b5437251c25edbee-0.
+INFO 04-04 19:00:06 engine.py:273] Added request cmpl-a951a03de8dc4a5d936d11647e07b3a4-0.
+INFO 04-04 19:00:06 metrics.py:453] Avg prompt throughput: 1621.9 tokens/s, Avg generation throughput: 251.2 tokens/s, Running: 16 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 7.6%, CPU KV cache usage: 0.0%.
+INFO 04-04 19:00:06 engine.py:273] Added request cmpl-253578d166d94a8191f97f2204cc0793-0.
+INFO 04-04 19:00:07 engine.py:273] Added request cmpl-97e13e4cd6f541aa9adcebc9140d5035-0.
+INFO 04-04 19:00:08 engine.py:273] Added request cmpl-909328efe8a64450abd023b8504ac644-0.
+INFO 04-04 19:00:08 engine.py:273] Added request cmpl-cb8b4996c5f64308a9486dd53151f806-0.
+INFO 04-04 19:00:09 engine.py:273] Added request cmpl-9c5af28069c744daa4ec7257785473b9-0.
+INFO 04-04 19:00:10 engine.py:273] Added request cmpl-2b732c2d225445a5bf12aa3562ddb64c-0.
+INFO 04-04 19:00:11 engine.py:273] Added request cmpl-71c5e947d8594b119f80fc31e086f56f-0.
+INFO 04-04 19:00:11 engine.py:273] Added request cmpl-bf54e333d2744847b6931a2b3a4d8ed8-0.
+INFO 04-04 19:00:12 metrics.py:453] Avg prompt throughput: 1782.2 tokens/s, Avg generation throughput: 187.1 tokens/s, Running: 16 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 7.2%, CPU KV cache usage: 0.0%.
+INFO 04-04 19:00:12 engine.py:273] Added request cmpl-281e92357a1d4c28b2d59d58e1414d46-0.
+INFO 04-04 19:00:13 engine.py:273] Added request cmpl-a8cecc895ca24b79a8e3523e1d2208b0-0.
+INFO 04-04 19:00:13 engine.py:273] Added request cmpl-3e34fb15476d46249f3c5eafdf3a41fc-0.
+INFO 04-04 19:00:14 engine.py:273] Added request cmpl-9c62e680e1f145d7a0ddc24e3518937a-0.
+INFO 04-04 19:00:14 engine.py:273] Added request cmpl-0e62d161440e4d3fbb50733d93cc9187-0.
+INFO 04-04 19:00:15 engine.py:273] Added request cmpl-53c8c4df72b444549f17f8422073cab2-0.
+INFO 04-04 19:00:16 engine.py:273] Added request cmpl-f492bab5ad124703aadf5d7860670cae-0.
+INFO 04-04 19:00:16 engine.py:273] Added request cmpl-1d8a588b945c4bfbb5bd9ddbbb1c8e20-0.
+INFO 04-04 19:00:17 metrics.py:453] Avg prompt throughput: 1840.7 tokens/s, Avg generation throughput: 169.5 tokens/s, Running: 16 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 7.0%, CPU KV cache usage: 0.0%.
+INFO 04-04 19:00:17 engine.py:273] Added request cmpl-629f12ce963b406283adecc3d095b2e2-0.
+INFO 04-04 19:00:18 engine.py:273] Added request cmpl-b1c75ce924b44a169adadf84834b712b-0.
+INFO 04-04 19:00:18 engine.py:273] Added request cmpl-f7023b4f59b04f3e81e7e785e8edc03a-0.
+INFO 04-04 19:00:19 engine.py:273] Added request cmpl-75e8317744b4471d82aadc31e5a11906-0.
+INFO 04-04 19:00:19 engine.py:273] Added request cmpl-2aa93b03b22148829d40fa62f95aa0a8-0.
+INFO 04-04 19:00:20 engine.py:273] Added request cmpl-3ac56f35778c446c8444051cc966a827-0.
+INFO 04-04 19:00:20 engine.py:273] Added request cmpl-806a4d47d4a44375a59473592994de2c-0.
+INFO 04-04 19:00:21 engine.py:273] Added request cmpl-6aadff73eae344c6b702cf2ca771dfe1-0.
+INFO 04-04 19:00:22 metrics.py:453] Avg prompt throughput: 1739.0 tokens/s, Avg generation throughput: 199.7 tokens/s, Running: 16 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 6.7%, CPU KV cache usage: 0.0%.
+INFO 04-04 19:00:22 engine.py:273] Added request cmpl-a71d1cd158b4472b895ce8a8eea74fd3-0.
+INFO 04-04 19:00:23 engine.py:273] Added request cmpl-e2d2ac0233db47ca9c80b3aa03e6bdfa-0.
+INFO 04-04 19:00:23 engine.py:273] Added request cmpl-bf54a1a88722480ab42f5c7c9c69a0aa-0.
+INFO 04-04 19:00:24 engine.py:273] Added request cmpl-6f051dd58879468aa9a6ec230587215b-0.
+INFO 04-04 19:00:25 engine.py:273] Added request cmpl-79747c9ea7fb4d96982fa27a4274f3d5-0.
+INFO 04-04 19:00:25 engine.py:273] Added request cmpl-6a4ee8091aed4984ae6a0c973277377c-0.
+INFO 04-04 19:00:26 engine.py:273] Added request cmpl-29340ecbb0bb4744b107b67fd6c17d14-0.
+INFO 04-04 19:00:26 engine.py:273] Added request cmpl-abcca041e18449e29b619c2b44317a16-0.
+INFO 04-04 19:00:27 metrics.py:453] Avg prompt throughput: 1759.7 tokens/s, Avg generation throughput: 194.7 tokens/s, Running: 16 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 6.6%, CPU KV cache usage: 0.0%.
+INFO 04-04 19:00:27 engine.py:273] Added request cmpl-d2d2ffd2e5df41fcaf29ffa4c487f23c-0.
+INFO 04-04 19:00:28 engine.py:273] Added request cmpl-76cab976cd0f458a8eb8c46cc7806aea-0.
+INFO 04-04 19:00:28 engine.py:273] Added request cmpl-d2eda69bb0d3463eb2b03fbb9d3e147a-0.
+INFO 04-04 19:00:29 engine.py:273] Added request cmpl-415d7bd0cb324b58b4e7dae1d53c95f5-0.
+INFO 04-04 19:00:30 engine.py:273] Added request cmpl-5970ecd4fc3d4a09836022063ef1433e-0.
+INFO 04-04 19:00:30 engine.py:273] Added request cmpl-8bd13071a4e6444d9bd893de39d205b7-0.
+INFO 04-04 19:00:31 engine.py:273] Added request cmpl-75bb28ee22f54da2840e2c976c392847-0.
+INFO 04-04 19:00:31 engine.py:273] Added request cmpl-d8588faa85a740a688f7b528f0be2705-0.
+INFO 04-04 19:00:32 metrics.py:453] Avg prompt throughput: 1717.2 tokens/s, Avg generation throughput: 208.0 tokens/s, Running: 15 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 5.9%, CPU KV cache usage: 0.0%.
+INFO 04-04 19:00:32 engine.py:273] Added request cmpl-ebfdb433eef648b08226cbf84594acaf-0.
+INFO 04-04 19:00:33 engine.py:273] Added request cmpl-409f53fccdd645be9d02605f9d0f8e3f-0.
+INFO 04-04 19:00:33 engine.py:273] Added request cmpl-58c0d0a1d659465e855b6698b43bf3d3-0.
+INFO 04-04 19:00:34 engine.py:273] Added request cmpl-75bda864d34c4a9086ccb2580e765dbd-0.
+INFO 04-04 19:00:35 engine.py:273] Added request cmpl-e95ab0dc3e274574912c096f34317d38-0.
+INFO 04-04 19:00:35 engine.py:273] Added request cmpl-ef7850ffff3a480582e684a6ad7c162c-0.
+INFO 04-04 19:00:36 engine.py:273] Added request cmpl-a261b822bdfe4f819029d73a1c87293e-0.
+INFO 04-04 19:00:36 engine.py:273] Added request cmpl-835becf58091459e8b064f16f47da4f1-0.
+INFO 04-04 19:00:37 metrics.py:453] Avg prompt throughput: 1666.5 tokens/s, Avg generation throughput: 224.1 tokens/s, Running: 16 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 6.2%, CPU KV cache usage: 0.0%.
+INFO 04-04 19:00:37 engine.py:273] Added request cmpl-8abed4e34e7949fd8876a444c21c3abb-0.
+INFO 04-04 19:00:38 engine.py:273] Added request cmpl-0c90af52478b4dcc9903f45659d655ba-0.
+INFO 04-04 19:00:38 engine.py:273] Added request cmpl-38d97add3e44476ab6a23adb06ade027-0.
+INFO 04-04 19:00:39 engine.py:273] Added request cmpl-5b4a342969ff400c8a9e329dc93e6e8a-0.
+INFO 04-04 19:00:39 engine.py:273] Added request cmpl-d986e8e51f40421d855ce85b778d7bbe-0.
+INFO 04-04 19:00:40 engine.py:273] Added request cmpl-ce03f0d37762447cb2d26193e7e7a9c5-0.
+INFO 04-04 19:00:41 engine.py:273] Added request cmpl-86e7e46141ff4d439504d6dd93d7c220-0.
+INFO 04-04 19:00:41 engine.py:273] Added request cmpl-537232aa2713486c85cc8b4796f151d3-0.
+INFO 04-04 19:00:42 engine.py:273] Added request cmpl-4f47aa26312a4c3399e1f084f35078b2-0.
+INFO 04-04 19:00:42 metrics.py:453] Avg prompt throughput: 1755.2 tokens/s, Avg generation throughput: 195.3 tokens/s, Running: 16 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 6.0%, CPU KV cache usage: 0.0%.
+INFO 04-04 19:00:42 engine.py:273] Added request cmpl-e2502de5098d422aa8c47a4b5906632a-0.
+INFO 04-04 19:00:43 engine.py:273] Added request cmpl-e1fbeee2cb2c4b52ae1392671a8a369f-0.
+INFO 04-04 19:00:44 engine.py:273] Added request cmpl-e39560e1a5ce4846ae8ebbc0b0b52e23-0.
+INFO 04-04 19:00:44 engine.py:273] Added request cmpl-98c4b2ffe1a74c68998724e0578cab13-0.
+INFO 04-04 19:00:45 engine.py:273] Added request cmpl-82546aeee78946c98d0585222d2ac6d3-0.
+INFO 04-04 19:00:45 engine.py:273] Added request cmpl-d84003632ebf4f13a55dd09b57b74668-0.
+INFO 04-04 19:00:46 engine.py:273] Added request cmpl-a9c74532cb7b4603b14512cb2ad7232c-0.
+INFO 04-04 19:00:46 engine.py:273] Added request cmpl-e1d6d4e9ec0645d69817cd9f96f43352-0.
+INFO 04-04 19:00:47 engine.py:273] Added request cmpl-53361348fa274bb3bf60b7e5ed79265b-0.
+INFO 04-04 19:00:47 engine.py:273] Added request cmpl-507884bd031047249dbe25110f3655dc-0.
+INFO 04-04 19:00:47 metrics.py:453] Avg prompt throughput: 1618.4 tokens/s, Avg generation throughput: 231.4 tokens/s, Running: 16 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 5.7%, CPU KV cache usage: 0.0%.
+INFO 04-04 19:00:48 engine.py:273] Added request cmpl-22f989a8224b429597d6f92c2b985e6c-0.
+INFO 04-04 19:00:48 engine.py:273] Added request cmpl-e63c563000e54e23b65ed9e5a00b1faf-0.
+INFO 04-04 19:00:49 engine.py:273] Added request cmpl-e45afe5a116a4a86b05d5b573cdab17c-0.
+INFO 04-04 19:00:49 engine.py:273] Added request cmpl-d12e9ed2c4c641748237e6a6a546bb3a-0.
+INFO 04-04 19:00:50 engine.py:273] Added request cmpl-b029052fd4c14fb6b64c9d10618b4bae-0.
+INFO 04-04 19:00:50 engine.py:273] Added request cmpl-d01307c3723c4d3da975ba5b70636325-0.
+INFO 04-04 19:00:51 engine.py:273] Added request cmpl-d340e4e9d6984b0cbf14d470ace0b9fd-0.
+INFO 04-04 19:00:51 engine.py:273] Added request cmpl-c4606b7004224976a5b8a4c59304aaa3-0.
+INFO 04-04 19:00:52 engine.py:273] Added request cmpl-d1319346cf3d41cc8cdff4c48c016d45-0.
+INFO 04-04 19:00:52 metrics.py:453] Avg prompt throughput: 1758.7 tokens/s, Avg generation throughput: 198.2 tokens/s, Running: 16 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 5.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 19:00:52 engine.py:273] Added request cmpl-b9d1384c95894b5797070b2c2127a9a0-0.
+INFO 04-04 19:00:53 engine.py:273] Added request cmpl-83706d75a588404bb65995d39cf691b9-0.
+INFO 04-04 19:00:53 engine.py:273] Added request cmpl-1b82721b365a437088c7b47eacd58700-0.
+INFO 04-04 19:00:54 engine.py:273] Added request cmpl-ee09ed81aba643e093218e0faba8a5cd-0.
+INFO 04-04 19:00:54 engine.py:273] Added request cmpl-8706fcf354ee455e9f5f2756d3374262-0.
+INFO 04-04 19:00:57 metrics.py:453] Avg prompt throughput: 850.5 tokens/s, Avg generation throughput: 281.4 tokens/s, Running: 2 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.7%, CPU KV cache usage: 0.0%.
+INFO 04-04 19:01:08 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 7.7 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+Gracefully shutting down (signal=2)...
+Process is exiting...
+ERROR 04-04 19:01:14 engine.py:387] 0
+ERROR Traceback (most recent call last):
+ERROR   File "/home/vimagupta123/prowl/vllm/engine/multiprocessing/engine.py", line 384, in run_mp_engine
+ERROR     engine.start()
+ERROR   File "/home/vimagupta123/prowl/vllm/engine/multiprocessing/engine.py", line 135, in start
+ERROR     self.run_engine_loop()
+ERROR   File "/home/vimagupta123/prowl/vllm/engine/multiprocessing/engine.py", line 187, in run_engine_loop
+ERROR     while self.input_socket.poll(timeout=POLLING_TIMEOUT_MS) == 0:
+ERROR   File "/home/vimagupta123/miniconda3/envs/vllm-env/lib/python3.10/site-packages/zmq/sugar/socket.py", line 1074, in poll
+ERROR     evts = dict(p.poll(timeout))
+ERROR   File "/home/vimagupta123/miniconda3/envs/vllm-env/lib/python3.10/site-packages/zmq/sugar/poll.py", line 106, in poll
+ERROR     return zmq_poll(self.sockets, timeout=timeout)
+ERROR   File "_zmq.py", line 1555, in zmq.backend.cython._zmq.zmq_poll
+ERROR   File "_zmq.py", line 160, in zmq.backend.cython._zmq._check_rc
+ERROR   File "/home/vimagupta123/prowl/vllm/engine/llm_engine.py", line 291, in _handle_exit_signal
+ERROR     sys.exit(0)
+ERROR   File "/home/vimagupta123/miniconda3/envs/vllm-env/lib/python3.10/site-packages/wandb/sdk/lib/exit_hooks.py", line 36, in exit
+ERROR     self._orig_exit(orig_code)  # type: ignore
+ERROR SystemExit: 0
+ERROR 04-04 19:01:15 multiproc_worker_utils.py:122] Worker VllmWorkerProcess pid 420379 died, exit code: 1
+INFO 04-04 19:01:15 multiproc_worker_utils.py:126] Killing local vLLM worker processes

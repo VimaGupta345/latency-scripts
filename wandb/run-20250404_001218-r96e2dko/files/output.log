@@ -1,0 +1,316 @@
+The MixtralLogitStore is created and prefill is set to true:  True
+The number of experts to keep is:  32
+The number of total experts is:  64
+The num experts to keep is:  32
+The num experts to drop is:  32
+The policy is:  do-nothing
+The num total experts is:  64
+WARNING 04-04 00:12:18 multiproc_worker_utils.py:298] Reducing Torch parallelism from 12 threads to 1 to avoid unnecessary CPU contention. Set OMP_NUM_THREADS in the external environment to tune this value as needed.
+INFO 04-04 00:12:18 custom_cache_manager.py:17] Setting Triton cache manager to: vllm.triton_utils.custom_cache_manager:CustomCacheManager
+INFO 04-04 00:12:20 cuda.py:225] Using Flash Attention backend.
+INFO 04-04 00:12:21 utils.py:938] Found nccl from library libnccl.so.2
+INFO 04-04 00:12:21 pynccl.py:67] vLLM is using nccl==2.21.5
+INFO 04-04 00:12:21 custom_all_reduce_utils.py:242] reading GPU P2P access cache from /home/vimagupta123/.cache/vllm/gpu_p2p_access_cache_for_0,1.json
+INFO 04-04 00:12:21 shm_broadcast.py:256] vLLM message queue communication handle: Handle(connect_ip='127.0.0.1', local_reader_ranks=[1], buffer_handle=(1, 4194304, 6, 'psm_2bbd1815'), local_subscribe_port=32815, remote_subscribe_port=None)
+INFO 04-04 00:12:21 model_runner.py:1114] Starting to load model /home/vimagupta123/.cache/huggingface/hub/models--deepseek-ai--DeepSeek-V2-Lite-Chat/snapshots/85864749cd611b4353ce1decdb286193298f64c7/...
+Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards:  25% Completed | 1/4 [00:01<00:05,  1.97s/it]
+Loading safetensors checkpoint shards:  50% Completed | 2/4 [00:04<00:04,  2.13s/it]
+Loading safetensors checkpoint shards:  75% Completed | 3/4 [00:05<00:01,  1.80s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:07<00:00,  1.92s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:07<00:00,  1.93s/it]
+INFO 04-04 00:12:30 model_runner.py:1119] Loading model weights took 14.7100 GB
+WARNING 04-04 00:12:33 fused_moe.py:496] Using default MoE config. Performance might be sub-optimal! Config file not found at /home/vimagupta123/prowl/vllm/model_executor/layers/fused_moe/configs/E=64,N=704,device_name=NVIDIA_A100-SXM4-80GB.json
+INFO 04-04 00:12:39 worker.py:270] Memory profiling takes 8.49 seconds
+INFO 04-04 00:12:39 worker.py:270] the current vLLM instance can use total_gpu_memory (79.14GiB) x gpu_memory_utilization (0.90) = 71.22GiB
+INFO 04-04 00:12:39 worker.py:270] model weights take 14.71GiB; non_torch_memory takes 1.54GiB; PyTorch activation peak memory takes 7.52GiB; the rest of the memory reserved for KV Cache is 47.45GiB.
+INFO 04-04 00:12:39 executor_base.py:108] # CUDA blocks: 19196, # CPU blocks: 1618
+INFO 04-04 00:12:39 executor_base.py:113] Maximum concurrency for 163840 tokens per request: 1.87x
+The profiling is done and the flag is set for MixtralLogitStore
+Profiling done and flag is being set
+INFO 04-04 00:12:43 llm_engine.py:478] init engine (profile, create kv cache, warmup model) took 13.45 seconds
+INFO 04-04 00:13:34 engine.py:273] Added request cmpl-055ae1ffbb2f4a9eb8aae5bc132174ff-0.
+INFO 04-04 00:13:35 metrics.py:453] Avg prompt throughput: 129.8 tokens/s, Avg generation throughput: 0.1 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.5%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:13:40 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 12.3 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.5%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:13:44 engine.py:273] Added request cmpl-68be495cce4f4dc08183dc9e10c2a958-0.
+INFO 04-04 00:13:45 metrics.py:453] Avg prompt throughput: 256.6 tokens/s, Avg generation throughput: 15.5 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:13:50 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 15.8 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.5%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:13:52 engine.py:273] Added request cmpl-48a9646e49094442bb8030e150b1a4dd-0.
+INFO 04-04 00:13:55 metrics.py:453] Avg prompt throughput: 254.3 tokens/s, Avg generation throughput: 17.0 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:14:00 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 16.3 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.5%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:14:01 engine.py:273] Added request cmpl-bf6cb16d92d64a17ac0f12a18d879b6e-0.
+INFO 04-04 00:14:05 metrics.py:453] Avg prompt throughput: 281.1 tokens/s, Avg generation throughput: 15.6 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.5%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:14:10 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 15.4 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.5%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:14:13 engine.py:273] Added request cmpl-172fbdae6d0b4530b36595e64d402748-0.
+INFO 04-04 00:14:15 metrics.py:453] Avg prompt throughput: 247.7 tokens/s, Avg generation throughput: 15.7 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:14:20 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 15.8 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:14:25 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 15.6 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.5%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:14:28 engine.py:273] Added request cmpl-d5175656c04148b6b1f5b5e7a1f87f7a-0.
+INFO 04-04 00:14:30 metrics.py:453] Avg prompt throughput: 252.2 tokens/s, Avg generation throughput: 15.5 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:14:35 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 15.5 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.5%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:14:38 engine.py:273] Added request cmpl-0d714797294148deb7ae2484d7cb91ed-0.
+INFO 04-04 00:14:40 metrics.py:453] Avg prompt throughput: 249.1 tokens/s, Avg generation throughput: 15.5 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:14:41 engine.py:273] Added request cmpl-01dc122181b34766905b90fe42ae924b-0.
+INFO 04-04 00:14:45 metrics.py:453] Avg prompt throughput: 283.1 tokens/s, Avg generation throughput: 15.8 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.5%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:14:50 engine.py:273] Added request cmpl-0fdf907ce41e46c98b40c48089ccecef-0.
+INFO 04-04 00:14:50 metrics.py:453] Avg prompt throughput: 245.9 tokens/s, Avg generation throughput: 15.8 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:14:55 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 15.5 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:15:00 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 15.5 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.5%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:15:02 engine.py:273] Added request cmpl-e172b896795c484f83aac62386155e62-0.
+INFO 04-04 00:15:05 metrics.py:453] Avg prompt throughput: 250.1 tokens/s, Avg generation throughput: 15.3 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:15:10 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 15.6 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.5%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:15:15 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 15.6 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.5%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:15:17 engine.py:273] Added request cmpl-be453445d35b48fab474fce009719b49-0.
+INFO 04-04 00:15:21 metrics.py:453] Avg prompt throughput: 234.5 tokens/s, Avg generation throughput: 15.5 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:15:23 engine.py:273] Added request cmpl-f563be1d7141448d9cf6ad8e44c81d11-0.
+INFO 04-04 00:15:26 metrics.py:453] Avg prompt throughput: 252.9 tokens/s, Avg generation throughput: 15.9 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:15:30 engine.py:273] Added request cmpl-9ba382e0b19545f6a966b008d26c2fbd-0.
+INFO 04-04 00:15:31 metrics.py:453] Avg prompt throughput: 239.9 tokens/s, Avg generation throughput: 15.8 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:15:36 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 16.0 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:15:41 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 15.6 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:15:46 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 16.1 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.5%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:15:46 engine.py:273] Added request cmpl-f14d4e417f064021bf525ea8955c8b66-0.
+INFO 04-04 00:15:51 metrics.py:453] Avg prompt throughput: 222.6 tokens/s, Avg generation throughput: 15.8 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:15:56 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 15.5 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:16:01 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 15.5 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:16:02 engine.py:273] Added request cmpl-1ba53045de034b69886d5dffa6400bf2-0.
+INFO 04-04 00:16:06 metrics.py:453] Avg prompt throughput: 267.9 tokens/s, Avg generation throughput: 15.3 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.5%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:16:11 engine.py:273] Added request cmpl-4e809f2881d3467bb80f261029d3b32b-0.
+INFO 04-04 00:16:11 metrics.py:453] Avg prompt throughput: 215.2 tokens/s, Avg generation throughput: 15.6 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:16:16 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 15.4 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:16:16 engine.py:273] Added request cmpl-91fdd0310e164266a4f5122629ea5712-0.
+INFO 04-04 00:16:21 metrics.py:453] Avg prompt throughput: 213.5 tokens/s, Avg generation throughput: 15.4 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:16:23 engine.py:273] Added request cmpl-d4d098b7aa6f426287275d81c2368cba-0.
+INFO 04-04 00:16:26 metrics.py:453] Avg prompt throughput: 221.4 tokens/s, Avg generation throughput: 15.4 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:16:31 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 15.5 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:16:31 engine.py:273] Added request cmpl-9e0598cd39dd4b0ab7c69ea16dc51cda-0.
+INFO 04-04 00:16:36 metrics.py:453] Avg prompt throughput: 212.4 tokens/s, Avg generation throughput: 15.7 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:16:41 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 15.5 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:16:41 engine.py:273] Added request cmpl-426bcfe33956416cb5b6d49841e6914f-0.
+INFO 04-04 00:16:46 metrics.py:453] Avg prompt throughput: 240.4 tokens/s, Avg generation throughput: 15.5 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:16:51 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 15.3 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:16:54 engine.py:273] Added request cmpl-00df2c237316447cb3ca3b910d82c4fc-0.
+INFO 04-04 00:16:56 metrics.py:453] Avg prompt throughput: 234.2 tokens/s, Avg generation throughput: 15.8 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:17:01 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 15.8 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:17:06 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 15.6 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:17:09 engine.py:273] Added request cmpl-2cfa3a61977f497d961ac1115ffb422b-0.
+INFO 04-04 00:17:11 metrics.py:453] Avg prompt throughput: 227.1 tokens/s, Avg generation throughput: 15.6 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:17:16 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 15.6 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:17:20 engine.py:273] Added request cmpl-930b60e364924eea9b787d363b474e93-0.
+INFO 04-04 00:17:21 metrics.py:453] Avg prompt throughput: 232.2 tokens/s, Avg generation throughput: 15.6 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:17:26 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 15.7 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:17:27 engine.py:273] Added request cmpl-50f555b6e80a44538d1a68cfcb659646-0.
+INFO 04-04 00:17:31 metrics.py:453] Avg prompt throughput: 218.4 tokens/s, Avg generation throughput: 15.5 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:17:36 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 15.7 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:17:37 engine.py:273] Added request cmpl-e9ac6f5716e947d8afc3038fd17d3a6a-0.
+INFO 04-04 00:17:41 metrics.py:453] Avg prompt throughput: 221.9 tokens/s, Avg generation throughput: 15.4 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:17:47 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 15.5 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:17:52 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 15.6 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:17:54 engine.py:273] Added request cmpl-9dc856e2be3046c2a5b14ea0174cf442-0.
+INFO 04-04 00:17:57 metrics.py:453] Avg prompt throughput: 213.0 tokens/s, Avg generation throughput: 15.5 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:17:58 engine.py:273] Added request cmpl-eda06ef058624d598bf9f1833a7f2168-0.
+INFO 04-04 00:18:02 metrics.py:453] Avg prompt throughput: 248.6 tokens/s, Avg generation throughput: 15.5 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:18:04 engine.py:273] Added request cmpl-ccab4065027f4eacaa26da4c97313297-0.
+INFO 04-04 00:18:07 metrics.py:453] Avg prompt throughput: 212.6 tokens/s, Avg generation throughput: 15.2 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:18:11 engine.py:273] Added request cmpl-ef15e921bbb341798bcd419e8dd2cd91-0.
+INFO 04-04 00:18:12 metrics.py:453] Avg prompt throughput: 210.1 tokens/s, Avg generation throughput: 15.8 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:18:17 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 15.6 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:18:18 engine.py:273] Added request cmpl-f3507495edba4019a92b8e1a5b42eef1-0.
+INFO 04-04 00:18:22 metrics.py:453] Avg prompt throughput: 249.2 tokens/s, Avg generation throughput: 15.5 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:18:23 engine.py:273] Added request cmpl-835ace05d03949d1b4f1f0f63d96613f-0.
+INFO 04-04 00:18:27 metrics.py:453] Avg prompt throughput: 226.7 tokens/s, Avg generation throughput: 15.7 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:18:32 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 15.3 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:18:37 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 15.6 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:18:38 engine.py:273] Added request cmpl-c99e0e0d2a814d068cd6e97ef0a16711-0.
+INFO 04-04 00:18:42 metrics.py:453] Avg prompt throughput: 216.9 tokens/s, Avg generation throughput: 15.2 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:18:47 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 16.6 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:18:48 engine.py:273] Added request cmpl-6d0a9d49f66845d78f26a2a0fc59b09b-0.
+INFO 04-04 00:18:52 metrics.py:453] Avg prompt throughput: 201.7 tokens/s, Avg generation throughput: 17.0 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:18:57 engine.py:273] Added request cmpl-35d75c9c6ab34c5e96c8f9dc9cbe96d3-0.
+INFO 04-04 00:18:57 metrics.py:453] Avg prompt throughput: 216.8 tokens/s, Avg generation throughput: 17.2 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:19:02 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 17.2 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:19:03 engine.py:273] Added request cmpl-354de83683bd43fbb06285bc8c9b36ff-0.
+INFO 04-04 00:19:07 metrics.py:453] Avg prompt throughput: 200.4 tokens/s, Avg generation throughput: 17.1 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:19:12 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 17.1 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:19:17 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 17.1 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:19:18 engine.py:273] Added request cmpl-954d421e8b8d4a7bbebff29aff0cd9b8-0.
+INFO 04-04 00:19:22 metrics.py:453] Avg prompt throughput: 201.7 tokens/s, Avg generation throughput: 16.9 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:19:23 engine.py:273] Added request cmpl-06dc8490c85f45a39fce2c3cecb50d05-0.
+INFO 04-04 00:19:27 metrics.py:453] Avg prompt throughput: 219.7 tokens/s, Avg generation throughput: 17.0 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:19:31 engine.py:273] Added request cmpl-ab7ed44397bb4b6193d8e0aab77a0677-0.
+INFO 04-04 00:19:32 metrics.py:453] Avg prompt throughput: 224.0 tokens/s, Avg generation throughput: 17.1 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:19:36 engine.py:273] Added request cmpl-5dfc06c59f2e40e09035d32612efa808-0.
+INFO 04-04 00:19:37 metrics.py:453] Avg prompt throughput: 211.9 tokens/s, Avg generation throughput: 17.0 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:19:42 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 17.1 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:19:43 engine.py:273] Added request cmpl-7b8a7328f4794087836748ad951e8b46-0.
+INFO 04-04 00:19:47 metrics.py:453] Avg prompt throughput: 202.6 tokens/s, Avg generation throughput: 17.2 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:19:49 engine.py:273] Added request cmpl-4d01cebe2a80413ca45783727e4c449a-0.
+INFO 04-04 00:19:52 metrics.py:453] Avg prompt throughput: 215.4 tokens/s, Avg generation throughput: 17.3 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:19:54 engine.py:273] Added request cmpl-68fdf94957904860b25a5fd03715db47-0.
+INFO 04-04 00:19:57 metrics.py:453] Avg prompt throughput: 232.8 tokens/s, Avg generation throughput: 17.2 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:20:03 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 17.3 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:20:06 engine.py:273] Added request cmpl-cc3bd6b1288b4836a71c33bb7d4a677e-0.
+INFO 04-04 00:20:08 metrics.py:453] Avg prompt throughput: 217.8 tokens/s, Avg generation throughput: 17.0 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:20:13 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 17.3 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:20:15 engine.py:273] Added request cmpl-651314849b4a48c9846ad6cc5c343682-0.
+INFO 04-04 00:20:18 metrics.py:453] Avg prompt throughput: 224.2 tokens/s, Avg generation throughput: 17.1 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:20:20 engine.py:273] Added request cmpl-e8d684d5f4b34989a01bef05b4902cd6-0.
+INFO 04-04 00:20:23 metrics.py:453] Avg prompt throughput: 223.4 tokens/s, Avg generation throughput: 17.2 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:20:27 engine.py:273] Added request cmpl-ab880d62ebb34452b5175cd3b9590f01-0.
+INFO 04-04 00:20:28 metrics.py:453] Avg prompt throughput: 210.9 tokens/s, Avg generation throughput: 17.1 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:20:33 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 17.2 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:20:35 engine.py:273] Added request cmpl-9e54beb355ef459e9066bc0ea0f0a47a-0.
+INFO 04-04 00:20:38 metrics.py:453] Avg prompt throughput: 200.5 tokens/s, Avg generation throughput: 17.1 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:20:43 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 17.2 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:20:43 engine.py:273] Added request cmpl-98789c1d892c407a8c9b37fc372666b2-0.
+INFO 04-04 00:20:48 metrics.py:453] Avg prompt throughput: 192.9 tokens/s, Avg generation throughput: 16.9 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:20:51 engine.py:273] Added request cmpl-e549b51de76843dbb8ff4f18347eb98e-0.
+INFO 04-04 00:20:53 metrics.py:453] Avg prompt throughput: 208.9 tokens/s, Avg generation throughput: 17.3 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:20:58 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 17.2 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:20:58 engine.py:273] Added request cmpl-dd2dfd0d8dc244b99eb3f585b27bf1d8-0.
+INFO 04-04 00:21:03 metrics.py:453] Avg prompt throughput: 213.0 tokens/s, Avg generation throughput: 17.3 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:21:04 engine.py:273] Added request cmpl-368ab1b90c094c16a481aeab9e2f71a4-0.
+INFO 04-04 00:21:08 metrics.py:453] Avg prompt throughput: 199.0 tokens/s, Avg generation throughput: 16.9 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:21:09 engine.py:273] Added request cmpl-95b6b52cb41546c4b8da8493793ee764-0.
+INFO 04-04 00:21:13 engine.py:273] Added request cmpl-97d71974ee514697a4d8377315e1401e-0.
+INFO 04-04 00:21:13 metrics.py:453] Avg prompt throughput: 408.9 tokens/s, Avg generation throughput: 16.8 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:21:18 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 17.1 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:21:20 engine.py:273] Added request cmpl-a14c166c177d4bfcbbcbb324eb475dbf-0.
+INFO 04-04 00:21:23 metrics.py:453] Avg prompt throughput: 191.0 tokens/s, Avg generation throughput: 17.2 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:21:23 engine.py:273] Added request cmpl-a58e53c4c7864383b8e8224e631b47a9-0.
+INFO 04-04 00:21:28 metrics.py:453] Avg prompt throughput: 199.6 tokens/s, Avg generation throughput: 17.1 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:21:30 engine.py:273] Added request cmpl-d4e87b427f414aaeab72fe12ddb3c451-0.
+INFO 04-04 00:21:33 metrics.py:453] Avg prompt throughput: 219.6 tokens/s, Avg generation throughput: 17.2 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:21:38 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 17.3 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:21:43 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 17.2 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:21:44 engine.py:273] Added request cmpl-ec224f6ddd674c1da39a08d410345f67-0.
+INFO 04-04 00:21:48 metrics.py:453] Avg prompt throughput: 197.8 tokens/s, Avg generation throughput: 17.5 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:21:51 engine.py:273] Added request cmpl-807236f18b074f30959c99108bec468b-0.
+INFO 04-04 00:21:53 metrics.py:453] Avg prompt throughput: 190.0 tokens/s, Avg generation throughput: 16.9 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:21:57 engine.py:273] Added request cmpl-8e0a2bef855e4783b71f9e683d63330a-0.
+INFO 04-04 00:21:58 metrics.py:453] Avg prompt throughput: 217.9 tokens/s, Avg generation throughput: 15.5 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:22:03 engine.py:273] Added request cmpl-85f631140f7c4e5aabad9e4c3665677f-0.
+INFO 04-04 00:22:03 metrics.py:453] Avg prompt throughput: 215.1 tokens/s, Avg generation throughput: 15.2 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:22:08 engine.py:273] Added request cmpl-d776b07809db498b82fa1a52b250fd6e-0.
+INFO 04-04 00:22:08 metrics.py:453] Avg prompt throughput: 184.7 tokens/s, Avg generation throughput: 15.7 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:22:13 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 16.9 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:22:15 engine.py:273] Added request cmpl-93d43cc00fe34f41a40418f889d29d4b-0.
+INFO 04-04 00:22:18 metrics.py:453] Avg prompt throughput: 205.2 tokens/s, Avg generation throughput: 17.2 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:22:23 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 17.3 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:22:24 engine.py:273] Added request cmpl-2209eebf269047558b393b5a01a443ee-0.
+INFO 04-04 00:22:29 metrics.py:453] Avg prompt throughput: 201.8 tokens/s, Avg generation throughput: 17.4 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:22:34 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 17.3 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:22:34 engine.py:273] Added request cmpl-ba01a8a1865848d0bee37d0cc5ace575-0.
+INFO 04-04 00:22:38 engine.py:273] Added request cmpl-c7ec4704160047bdaabfcfd7b796e3ae-0.
+INFO 04-04 00:22:39 metrics.py:453] Avg prompt throughput: 394.9 tokens/s, Avg generation throughput: 17.2 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:22:44 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 16.0 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:22:49 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 15.4 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:22:50 engine.py:273] Added request cmpl-6336f2bd40b3466eb9f8be3fe7318774-0.
+INFO 04-04 00:22:54 metrics.py:453] Avg prompt throughput: 186.0 tokens/s, Avg generation throughput: 15.5 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:22:59 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 15.6 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:23:00 engine.py:273] Added request cmpl-97e1733ec262410d81aeb6fd03d146e0-0.
+INFO 04-04 00:23:04 metrics.py:453] Avg prompt throughput: 185.6 tokens/s, Avg generation throughput: 15.2 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:23:09 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 15.5 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:23:09 engine.py:273] Added request cmpl-b282474227f34317b09f956905bc89bd-0.
+INFO 04-04 00:23:14 metrics.py:453] Avg prompt throughput: 195.0 tokens/s, Avg generation throughput: 15.5 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:23:14 engine.py:273] Added request cmpl-0d1f323138f3461fbe29e89d12c3df58-0.
+INFO 04-04 00:23:19 metrics.py:453] Avg prompt throughput: 179.6 tokens/s, Avg generation throughput: 16.0 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:23:22 engine.py:273] Added request cmpl-07b854ac911243048b4ea30d3dc5c069-0.
+INFO 04-04 00:23:24 metrics.py:453] Avg prompt throughput: 187.4 tokens/s, Avg generation throughput: 16.6 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:23:29 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 17.1 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:23:31 engine.py:273] Added request cmpl-62620d5bd5844acab8cfd721d8710d15-0.
+INFO 04-04 00:23:34 metrics.py:453] Avg prompt throughput: 192.2 tokens/s, Avg generation throughput: 17.1 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:23:39 engine.py:273] Added request cmpl-37c26b267c8141cab4a6d90b845d56c1-0.
+INFO 04-04 00:23:39 metrics.py:453] Avg prompt throughput: 184.9 tokens/s, Avg generation throughput: 16.6 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:23:44 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 15.8 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:23:45 engine.py:273] Added request cmpl-393a8220de3746f4aac098f7c19c0855-0.
+INFO 04-04 00:23:49 engine.py:273] Added request cmpl-f76956d538f94f7782a501c699f585a2-0.
+INFO 04-04 00:23:49 metrics.py:453] Avg prompt throughput: 397.0 tokens/s, Avg generation throughput: 15.3 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:23:54 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 15.4 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:23:54 engine.py:273] Added request cmpl-7b268677f1d2444d9fcfb8c669fdec11-0.
+INFO 04-04 00:23:59 metrics.py:453] Avg prompt throughput: 176.7 tokens/s, Avg generation throughput: 16.5 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:24:03 engine.py:273] Added request cmpl-ea3de335ae56481f8adf066428f42660-0.
+INFO 04-04 00:24:04 metrics.py:453] Avg prompt throughput: 190.0 tokens/s, Avg generation throughput: 17.0 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:24:08 engine.py:273] Added request cmpl-08ebcc352a944a6eb70129714c0c6420-0.
+INFO 04-04 00:24:09 metrics.py:453] Avg prompt throughput: 173.6 tokens/s, Avg generation throughput: 17.0 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:24:14 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 17.2 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:24:14 engine.py:273] Added request cmpl-72dc859d4c1b45049f3235f55afdf5c6-0.
+INFO 04-04 00:24:19 metrics.py:453] Avg prompt throughput: 185.1 tokens/s, Avg generation throughput: 17.1 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:24:22 engine.py:273] Added request cmpl-52e80c10532244f793e9529f9e63b813-0.
+INFO 04-04 00:24:24 metrics.py:453] Avg prompt throughput: 182.7 tokens/s, Avg generation throughput: 17.1 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:24:29 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 17.2 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:24:29 engine.py:273] Added request cmpl-7a2f3814bf6e40c7a5ada65233eb3c1d-0.
+INFO 04-04 00:24:34 metrics.py:453] Avg prompt throughput: 186.7 tokens/s, Avg generation throughput: 16.5 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:24:39 engine.py:273] Added request cmpl-3ad442c41b9349d7ab4829268ed1ac01-0.
+INFO 04-04 00:24:39 metrics.py:453] Avg prompt throughput: 171.4 tokens/s, Avg generation throughput: 15.6 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:24:43 engine.py:273] Added request cmpl-cba5bfd98fa2492fa7b8f00f7cccbc73-0.
+INFO 04-04 00:24:44 metrics.py:453] Avg prompt throughput: 165.6 tokens/s, Avg generation throughput: 15.7 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:24:49 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 15.8 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:24:54 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 15.7 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:24:57 engine.py:273] Added request cmpl-76069251a97340b28c9a8fd8c626bdad-0.
+INFO 04-04 00:24:59 metrics.py:453] Avg prompt throughput: 191.8 tokens/s, Avg generation throughput: 15.4 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:25:04 engine.py:273] Added request cmpl-6314658231d04aa6a112f58dc7afea60-0.
+INFO 04-04 00:25:04 metrics.py:453] Avg prompt throughput: 185.4 tokens/s, Avg generation throughput: 15.7 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:25:09 engine.py:273] Added request cmpl-3295d86d409149aabb6070bec034455f-0.
+INFO 04-04 00:25:09 metrics.py:453] Avg prompt throughput: 174.4 tokens/s, Avg generation throughput: 15.7 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:25:14 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 15.5 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:25:19 engine.py:273] Added request cmpl-4be2f30e8ef942b3945e8328633bf033-0.
+INFO 04-04 00:25:19 metrics.py:453] Avg prompt throughput: 165.2 tokens/s, Avg generation throughput: 15.3 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:25:24 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 15.5 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:25:28 engine.py:273] Added request cmpl-02cdf25cc348499ea2dc41e4c9213fd8-0.
+INFO 04-04 00:25:30 metrics.py:453] Avg prompt throughput: 176.7 tokens/s, Avg generation throughput: 15.8 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:25:30 engine.py:273] Added request cmpl-cc041b6c4b994558832bb75202c21e0f-0.
+INFO 04-04 00:25:35 metrics.py:453] Avg prompt throughput: 178.4 tokens/s, Avg generation throughput: 15.7 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:25:36 engine.py:273] Added request cmpl-1a3ddd7ea31a467d94518b79a568cb79-0.
+INFO 04-04 00:25:40 metrics.py:453] Avg prompt throughput: 170.6 tokens/s, Avg generation throughput: 15.2 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:25:45 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 15.1 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:25:47 engine.py:273] Added request cmpl-8967e62db88c4df7914e8c61fae55e0b-0.
+INFO 04-04 00:25:50 metrics.py:453] Avg prompt throughput: 167.2 tokens/s, Avg generation throughput: 15.5 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:25:55 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 15.4 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:25:57 engine.py:273] Added request cmpl-008cc03c92b749c5b50088e81c414418-0.
+INFO 04-04 00:26:00 metrics.py:453] Avg prompt throughput: 168.4 tokens/s, Avg generation throughput: 15.2 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:26:03 engine.py:273] Added request cmpl-569868abb2b245c5ba0034132d2f68db-0.
+INFO 04-04 00:26:05 metrics.py:453] Avg prompt throughput: 160.2 tokens/s, Avg generation throughput: 15.3 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:26:09 engine.py:273] Added request cmpl-b3e467f2926e4539860c7c4cf55a037f-0.
+INFO 04-04 00:26:10 metrics.py:453] Avg prompt throughput: 161.5 tokens/s, Avg generation throughput: 15.3 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:26:15 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 15.5 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:26:18 engine.py:273] Added request cmpl-b208a8bb335240f29b916f3b87d6a714-0.
+INFO 04-04 00:26:20 metrics.py:453] Avg prompt throughput: 163.8 tokens/s, Avg generation throughput: 15.3 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:26:22 engine.py:273] Added request cmpl-2ad68f41eb3748c3b6573c9b6cc935f4-0.
+INFO 04-04 00:26:25 metrics.py:453] Avg prompt throughput: 170.0 tokens/s, Avg generation throughput: 15.4 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:26:28 engine.py:273] Added request cmpl-f2262ac5f03442e697e9b7728bb1408a-0.
+INFO 04-04 00:26:30 metrics.py:453] Avg prompt throughput: 161.3 tokens/s, Avg generation throughput: 15.2 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:26:35 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 15.1 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:26:36 engine.py:273] Added request cmpl-590ccffb51a24796ad83feed6104666e-0.
+INFO 04-04 00:26:40 metrics.py:453] Avg prompt throughput: 160.2 tokens/s, Avg generation throughput: 15.2 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:26:45 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 15.6 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:26:47 engine.py:273] Added request cmpl-c9f596f4dd424373812132a5dca7f049-0.
+INFO 04-04 00:26:50 metrics.py:453] Avg prompt throughput: 165.7 tokens/s, Avg generation throughput: 16.5 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:26:52 engine.py:273] Added request cmpl-500d031e94f7463b9b4ef9d301c998e7-0.
+INFO 04-04 00:26:55 metrics.py:453] Avg prompt throughput: 170.1 tokens/s, Avg generation throughput: 17.0 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:27:00 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 17.1 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:27:04 engine.py:273] Added request cmpl-6b0a445e55fe4dc1b0e6c4911b3edce9-0.
+INFO 04-04 00:27:05 metrics.py:453] Avg prompt throughput: 154.5 tokens/s, Avg generation throughput: 17.1 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:27:10 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 17.2 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:27:21 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 1.2 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+Gracefully shutting down (signal=2)...
+Process is exiting...
+ERROR 04-04 00:27:27 engine.py:387] 0
+ERROR Traceback (most recent call last):
+ERROR   File "/home/vimagupta123/prowl/vllm/engine/multiprocessing/engine.py", line 384, in run_mp_engine
+ERROR     engine.start()
+ERROR   File "/home/vimagupta123/prowl/vllm/engine/multiprocessing/engine.py", line 135, in start
+ERROR     self.run_engine_loop()
+ERROR   File "/home/vimagupta123/prowl/vllm/engine/multiprocessing/engine.py", line 187, in run_engine_loop
+ERROR     while self.input_socket.poll(timeout=POLLING_TIMEOUT_MS) == 0:
+ERROR   File "/home/vimagupta123/miniconda3/envs/vllm-env/lib/python3.10/site-packages/zmq/sugar/socket.py", line 1074, in poll
+ERROR     evts = dict(p.poll(timeout))
+ERROR   File "/home/vimagupta123/miniconda3/envs/vllm-env/lib/python3.10/site-packages/zmq/sugar/poll.py", line 106, in poll
+ERROR     return zmq_poll(self.sockets, timeout=timeout)
+ERROR   File "_zmq.py", line 1555, in zmq.backend.cython._zmq.zmq_poll
+ERROR   File "_zmq.py", line 160, in zmq.backend.cython._zmq._check_rc
+ERROR   File "/home/vimagupta123/prowl/vllm/engine/llm_engine.py", line 291, in _handle_exit_signal
+ERROR     sys.exit(0)
+ERROR   File "/home/vimagupta123/miniconda3/envs/vllm-env/lib/python3.10/site-packages/wandb/sdk/lib/exit_hooks.py", line 36, in exit
+ERROR     self._orig_exit(orig_code)  # type: ignore
+ERROR SystemExit: 0

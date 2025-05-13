@@ -1,0 +1,49 @@
+The MixtralLogitStore is created and prefill is set to true:  True
+The number of experts to keep is:  32
+The number of total experts is:  64
+The num experts to keep is:  32
+The num experts to drop is:  32
+The policy is:  do-nothing
+The num total experts is:  64
+INFO 04-04 01:07:53 cuda.py:225] Using Flash Attention backend.
+INFO 04-04 01:07:53 model_runner.py:1114] Starting to load model /home/vimagupta123/.cache/huggingface/hub/models--deepseek-ai--DeepSeek-V2-Lite-Chat/snapshots/85864749cd611b4353ce1decdb286193298f64c7/...
+Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards:  25% Completed | 1/4 [00:02<00:08,  2.72s/it]
+Loading safetensors checkpoint shards:  50% Completed | 2/4 [00:05<00:05,  2.79s/it]
+Loading safetensors checkpoint shards:  75% Completed | 3/4 [00:07<00:02,  2.37s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:10<00:00,  2.53s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:10<00:00,  2.55s/it]
+INFO 04-04 01:08:04 model_runner.py:1119] Loading model weights took 29.3011 GB
+WARNING 04-04 01:08:05 fused_moe.py:496] Using default MoE config. Performance might be sub-optimal! Config file not found at /home/vimagupta123/prowl/vllm/model_executor/layers/fused_moe/configs/E=64,N=1408,device_name=NVIDIA_A100-SXM4-80GB.json
+INFO 04-04 01:08:07 worker.py:270] Memory profiling takes 2.18 seconds
+INFO 04-04 01:08:07 worker.py:270] the current vLLM instance can use total_gpu_memory (79.14GiB) x gpu_memory_utilization (0.90) = 71.22GiB
+INFO 04-04 01:08:07 worker.py:270] model weights take 29.30GiB; non_torch_memory takes 0.09GiB; PyTorch activation peak memory takes 0.95GiB; the rest of the memory reserved for KV Cache is 40.88GiB.
+INFO 04-04 01:08:07 executor_base.py:108] # CUDA blocks: 8268, # CPU blocks: 809
+INFO 04-04 01:08:07 executor_base.py:113] Maximum concurrency for 4096 tokens per request: 32.30x
+The profiling is done and the flag is set for MixtralLogitStore
+Profiling done and flag is being set
+INFO 04-04 01:08:10 llm_engine.py:478] init engine (profile, create kv cache, warmup model) took 6.00 seconds
+INFO 04-04 01:08:11 engine.py:273] Added request cmpl-b7276341facd4ead981c9156d728e468-0.
+INFO 04-04 01:08:15 metrics.py:453] Avg prompt throughput: 286.5 tokens/s, Avg generation throughput: 15.6 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 1.1%, CPU KV cache usage: 0.0%.
+INFO 04-04 01:08:18 engine.py:273] Added request cmpl-fd173133030840339ca047694bab0404-0.
+INFO 04-04 01:08:20 metrics.py:453] Avg prompt throughput: 256.8 tokens/s, Avg generation throughput: 19.1 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 1.0%, CPU KV cache usage: 0.0%.
+INFO 04-04 01:08:25 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 19.3 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 1.1%, CPU KV cache usage: 0.0%.
+INFO 04-04 01:08:30 engine.py:273] Added request cmpl-4b150487fe2f4ca6adad88bff04b3b92-0.
+INFO 04-04 01:08:30 metrics.py:453] Avg prompt throughput: 252.9 tokens/s, Avg generation throughput: 19.5 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 1.0%, CPU KV cache usage: 0.0%.
+INFO 04-04 01:08:35 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 19.8 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 1.1%, CPU KV cache usage: 0.0%.
+INFO 04-04 01:08:37 engine.py:273] Added request cmpl-63fd1d05d49d4b1abdf6a001458b6db8-0.
+INFO 04-04 01:08:40 metrics.py:453] Avg prompt throughput: 281.4 tokens/s, Avg generation throughput: 19.6 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 1.1%, CPU KV cache usage: 0.0%.
+INFO 04-04 01:08:46 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 19.7 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 1.2%, CPU KV cache usage: 0.0%.
+INFO 04-04 01:08:50 engine.py:273] Added request cmpl-75883370d37e4e71bdcc32542401c24f-0.
+INFO 04-04 01:08:51 metrics.py:453] Avg prompt throughput: 248.4 tokens/s, Avg generation throughput: 19.5 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 1.0%, CPU KV cache usage: 0.0%.
+INFO 04-04 01:08:56 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 19.5 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 1.0%, CPU KV cache usage: 0.0%.
+INFO 04-04 01:09:01 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 19.7 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 1.1%, CPU KV cache usage: 0.0%.
+INFO 04-04 01:09:02 engine.py:273] Added request cmpl-08d0ceed7831461e845d49414b6f802b-0.
+INFO 04-04 01:09:06 metrics.py:453] Avg prompt throughput: 253.4 tokens/s, Avg generation throughput: 19.6 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 1.0%, CPU KV cache usage: 0.0%.
+INFO 04-04 01:09:11 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 19.7 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 1.1%, CPU KV cache usage: 0.0%.
+INFO 04-04 01:09:12 engine.py:273] Added request cmpl-808e7ee9348a4069b12f2115aa5bff02-0.
+INFO 04-04 01:09:14 engine.py:273] Added request cmpl-1b3e105cfc8c4d5b8f2131332dd5e292-0.
+INFO 04-04 01:09:16 metrics.py:453] Avg prompt throughput: 530.1 tokens/s, Avg generation throughput: 19.2 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 1.1%, CPU KV cache usage: 0.0%.
+INFO 04-04 01:09:20 engine.py:291] Aborted request cmpl-1b3e105cfc8c4d5b8f2131332dd5e292-0.
+INFO 04-04 01:09:30 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 5.5 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 04-04 01:09:40 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.

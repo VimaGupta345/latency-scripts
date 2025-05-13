@@ -1,0 +1,100 @@
+The MixtralLogitStore is created and prefill is set to true:  True
+The number of experts to keep is:  32
+The number of total experts is:  64
+The num experts to keep is:  32
+The num experts to drop is:  32
+The policy is:  do-nothing
+The num total experts is:  64
+INFO 04-04 00:53:53 cuda.py:225] Using Flash Attention backend.
+INFO 04-04 00:53:54 model_runner.py:1114] Starting to load model /home/vimagupta123/models/deepseek_v2_lite/...
+Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards:  25% Completed | 1/4 [00:02<00:08,  2.70s/it]
+Loading safetensors checkpoint shards:  50% Completed | 2/4 [00:05<00:05,  2.80s/it]
+Loading safetensors checkpoint shards:  75% Completed | 3/4 [00:07<00:02,  2.42s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:10<00:00,  2.58s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:10<00:00,  2.59s/it]
+INFO 04-04 00:54:05 model_runner.py:1119] Loading model weights took 29.3011 GB
+WARNING 04-04 00:54:05 fused_moe.py:496] Using default MoE config. Performance might be sub-optimal! Config file not found at /home/vimagupta123/prowl/vllm/model_executor/layers/fused_moe/configs/E=64,N=1408,device_name=NVIDIA_A100-SXM4-80GB.json
+INFO 04-04 00:54:07 worker.py:270] Memory profiling takes 2.18 seconds
+INFO 04-04 00:54:07 worker.py:270] the current vLLM instance can use total_gpu_memory (79.14GiB) x gpu_memory_utilization (0.90) = 71.22GiB
+INFO 04-04 00:54:07 worker.py:270] model weights take 29.30GiB; non_torch_memory takes 0.09GiB; PyTorch activation peak memory takes 0.36GiB; the rest of the memory reserved for KV Cache is 41.47GiB.
+INFO 04-04 00:54:08 executor_base.py:108] # CUDA blocks: 8388, # CPU blocks: 809
+INFO 04-04 00:54:08 executor_base.py:113] Maximum concurrency for 4096 tokens per request: 32.77x
+The profiling is done and the flag is set for MixtralLogitStore
+Profiling done and flag is being set
+INFO 04-04 00:54:11 llm_engine.py:478] init engine (profile, create kv cache, warmup model) took 6.04 seconds
+INFO 04-04 00:55:47 engine.py:273] Added request cmpl-22fab21161b04f4e981c5af6e7da6e6d-0.
+INFO 04-04 00:55:47 metrics.py:453] Avg prompt throughput: 172.3 tokens/s, Avg generation throughput: 0.2 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.8%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:55:52 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 18.8 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.9%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:55:57 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 19.1 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 1.0%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:55:58 engine.py:273] Added request cmpl-1510f31638c447e8bf24d78f377cbd21-0.
+INFO 04-04 00:56:02 metrics.py:453] Avg prompt throughput: 222.7 tokens/s, Avg generation throughput: 18.9 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.9%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:56:07 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 19.2 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 1.0%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:56:11 engine.py:273] Added request cmpl-e7bb2153ef3d4a388f4437dc7c22efb5-0.
+INFO 04-04 00:56:12 metrics.py:453] Avg prompt throughput: 213.3 tokens/s, Avg generation throughput: 19.0 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.8%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:56:14 engine.py:273] Added request cmpl-f16fef3cc5694beba3156c5c436c594f-0.
+INFO 04-04 00:56:17 metrics.py:453] Avg prompt throughput: 218.0 tokens/s, Avg generation throughput: 19.1 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.9%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:56:23 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 19.3 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.9%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:56:24 engine.py:273] Added request cmpl-61ebeb2f500c4d64bedc057c29cc8510-0.
+INFO 04-04 00:56:28 metrics.py:453] Avg prompt throughput: 213.1 tokens/s, Avg generation throughput: 19.1 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.9%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:56:30 engine.py:273] Added request cmpl-0aa4ee7ed2044190bac4474b7bbe573a-0.
+INFO 04-04 00:56:33 metrics.py:453] Avg prompt throughput: 184.1 tokens/s, Avg generation throughput: 19.0 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.7%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:56:36 engine.py:273] Added request cmpl-1e496bebfc3a47efb2345ec11c716678-0.
+INFO 04-04 00:56:38 metrics.py:453] Avg prompt throughput: 204.6 tokens/s, Avg generation throughput: 18.9 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.8%, CPU KV cache usage: 0.0%.
+Gracefully shutting down (signal=2)...
+Process is exiting...
+ERROR 04-04 00:56:39 engine.py:387] 0
+ERROR Traceback (most recent call last):
+ERROR   File "/home/vimagupta123/prowl/vllm/engine/multiprocessing/engine.py", line 384, in run_mp_engine
+ERROR     engine.start()
+ERROR   File "/home/vimagupta123/prowl/vllm/engine/multiprocessing/engine.py", line 135, in start
+ERROR     self.run_engine_loop()
+ERROR   File "/home/vimagupta123/prowl/vllm/engine/multiprocessing/engine.py", line 198, in run_engine_loop
+ERROR     request_outputs = self.engine_step()
+ERROR   File "/home/vimagupta123/prowl/vllm/engine/multiprocessing/engine.py", line 207, in engine_step
+ERROR     return self.engine.step()
+ERROR   File "/home/vimagupta123/prowl/vllm/engine/llm_engine.py", line 1418, in step
+ERROR     outputs = self.model_executor.execute_model(
+ERROR   File "/home/vimagupta123/prowl/vllm/executor/executor_base.py", line 136, in execute_model
+ERROR     output = self.collective_rpc("execute_model",
+ERROR   File "/home/vimagupta123/prowl/vllm/executor/uniproc_executor.py", line 49, in collective_rpc
+ERROR     answer = run_method(self.driver_worker, method, args, kwargs)
+ERROR   File "/home/vimagupta123/prowl/vllm/utils.py", line 2208, in run_method
+ERROR     return func(*args, **kwargs)
+ERROR   File "/home/vimagupta123/prowl/vllm/worker/worker_base.py", line 410, in execute_model
+ERROR     output = self.model_runner.execute_model(
+ERROR   File "/home/vimagupta123/miniconda3/envs/vllm-env/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+ERROR     return func(*args, **kwargs)
+ERROR   File "/home/vimagupta123/prowl/vllm/worker/model_runner_base.py", line 116, in _wrapper
+ERROR     return func(*args, **kwargs)
+ERROR   File "/home/vimagupta123/prowl/vllm/worker/model_runner.py", line 1739, in execute_model
+ERROR     hidden_or_intermediate_states = model_executable(
+ERROR   File "/home/vimagupta123/miniconda3/envs/vllm-env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+ERROR     return self._call_impl(*args, **kwargs)
+ERROR   File "/home/vimagupta123/miniconda3/envs/vllm-env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+ERROR     return forward_call(*args, **kwargs)
+ERROR   File "/home/vimagupta123/prowl/vllm/model_executor/models/deepseek_v2.py", line 528, in forward
+ERROR     hidden_states = self.model(input_ids, positions, kv_caches,
+ERROR   File "/home/vimagupta123/prowl/vllm/compilation/decorators.py", line 170, in __call__
+ERROR     return self.forward(*args, **kwargs)
+ERROR   File "/home/vimagupta123/prowl/vllm/model_executor/models/deepseek_v2.py", line 484, in forward
+ERROR     hidden_states, residual = layer(positions, hidden_states,
+ERROR   File "/home/vimagupta123/miniconda3/envs/vllm-env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+ERROR     return self._call_impl(*args, **kwargs)
+ERROR   File "/home/vimagupta123/miniconda3/envs/vllm-env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+ERROR     return forward_call(*args, **kwargs)
+ERROR   File "/home/vimagupta123/prowl/vllm/model_executor/models/deepseek_v2.py", line 414, in forward
+ERROR     hidden_states = self.mlp(hidden_states)
+ERROR   File "/home/vimagupta123/miniconda3/envs/vllm-env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+ERROR     return self._call_impl(*args, **kwargs)
+ERROR   File "/home/vimagupta123/miniconda3/envs/vllm-env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+ERROR     return forward_call(*args, **kwargs)
+ERROR   File "/home/vimagupta123/prowl/vllm/model_executor/models/deepseek_v2.py", line 163, in forward
+ERROR     return final_hidden_states.view(num_tokens, hidden_dim)
+ERROR   File "/home/vimagupta123/prowl/vllm/engine/llm_engine.py", line 291, in _handle_exit_signal
+ERROR     sys.exit(0)
+ERROR   File "/home/vimagupta123/miniconda3/envs/vllm-env/lib/python3.10/site-packages/wandb/sdk/lib/exit_hooks.py", line 36, in exit
+ERROR     self._orig_exit(orig_code)  # type: ignore
+ERROR SystemExit: 0
+
+Exception ignored in atexit callback: <function _start_and_connect_service.<locals>.teardown_atexit at 0x7f428a157c70>Exception ignored in sys.unraisablehook: <built-in function unraisablehook>

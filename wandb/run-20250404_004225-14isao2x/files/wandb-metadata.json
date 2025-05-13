@@ -1,0 +1,57 @@
+{
+  "os": "Linux-5.10.0-34-cloud-amd64-x86_64-with-glibc2.31",
+  "python": "CPython 3.10.16",
+  "startedAt": "2025-04-04T00:42:25.961209Z",
+  "args": [
+    "--model",
+    "/home/vimagupta123/models/deepseek_v2_lite/",
+    "--tensor-parallel-size",
+    "1",
+    "--max-num-seqs",
+    "16",
+    "--max-model-len",
+    "4096",
+    "--enable-chunked-prefill=False",
+    "--gpu-memory-utilization",
+    "0.9",
+    "--enforce-eager",
+    "--trust-remote-code"
+  ],
+  "program": "-m vllm.entrypoints.openai.api_server",
+  "email": "vima.gupta@gatech.edu",
+  "root": "/home/vimagupta123/latency_scripts",
+  "host": "instance-20250403-004430",
+  "executable": "/home/vimagupta123/miniconda3/envs/vllm-env/bin/python",
+  "cpu_count": 12,
+  "cpu_count_logical": 24,
+  "gpu": "NVIDIA A100-SXM4-80GB",
+  "gpu_count": 2,
+  "disk": {
+    "/": {
+      "total": "1056618876928",
+      "used": "457420365824"
+    }
+  },
+  "memory": {
+    "total": "359059628032"
+  },
+  "cpu": {
+    "count": 12,
+    "countLogical": 24
+  },
+  "gpu_nvidia": [
+    {
+      "name": "NVIDIA A100-SXM4-80GB",
+      "memoryTotal": "85899345920",
+      "cudaCores": 6912,
+      "architecture": "Ampere"
+    },
+    {
+      "name": "NVIDIA A100-SXM4-80GB",
+      "memoryTotal": "85899345920",
+      "cudaCores": 6912,
+      "architecture": "Ampere"
+    }
+  ],
+  "cudaVersion": "12.4"
+}

@@ -1,0 +1,88 @@
+The MixtralLogitStore is created and prefill is set to true:  True
+The number of experts to keep is:  32
+The number of total experts is:  64
+The num experts to keep is:  32
+The num experts to drop is:  32
+The policy is:  do-nothing
+The num total experts is:  64
+INFO 04-04 00:57:36 cuda.py:225] Using Flash Attention backend.
+INFO 04-04 00:57:37 model_runner.py:1114] Starting to load model /home/vimagupta123/models/deepseek_v2_lite/...
+Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards:  25% Completed | 1/4 [00:02<00:08,  2.68s/it]
+Loading safetensors checkpoint shards:  50% Completed | 2/4 [00:05<00:05,  2.81s/it]
+Loading safetensors checkpoint shards:  75% Completed | 3/4 [00:07<00:02,  2.39s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:10<00:00,  2.54s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:10<00:00,  2.56s/it]
+INFO 04-04 00:57:48 model_runner.py:1119] Loading model weights took 29.3011 GB
+WARNING 04-04 00:57:48 fused_moe.py:496] Using default MoE config. Performance might be sub-optimal! Config file not found at /home/vimagupta123/prowl/vllm/model_executor/layers/fused_moe/configs/E=64,N=1408,device_name=NVIDIA_A100-SXM4-80GB.json
+INFO 04-04 00:57:50 worker.py:270] Memory profiling takes 2.17 seconds
+INFO 04-04 00:57:50 worker.py:270] the current vLLM instance can use total_gpu_memory (79.14GiB) x gpu_memory_utilization (0.90) = 71.22GiB
+INFO 04-04 00:57:50 worker.py:270] model weights take 29.30GiB; non_torch_memory takes 0.09GiB; PyTorch activation peak memory takes 0.95GiB; the rest of the memory reserved for KV Cache is 40.88GiB.
+INFO 04-04 00:57:50 executor_base.py:108] # CUDA blocks: 8268, # CPU blocks: 809
+INFO 04-04 00:57:50 executor_base.py:113] Maximum concurrency for 4096 tokens per request: 32.30x
+The profiling is done and the flag is set for MixtralLogitStore
+Profiling done and flag is being set
+INFO 04-04 00:57:54 llm_engine.py:478] init engine (profile, create kv cache, warmup model) took 6.06 seconds
+INFO 04-04 00:58:16 engine.py:273] Added request cmpl-d3e65167117c4010a1fbe9900591d96a-0.
+INFO 04-04 00:58:19 metrics.py:453] Avg prompt throughput: 218.0 tokens/s, Avg generation throughput: 9.7 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.9%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:58:24 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 19.1 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.9%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:58:27 engine.py:273] Added request cmpl-9541a0c9ec534b2e90ea15e0953f6fa1-0.
+INFO 04-04 00:58:29 metrics.py:453] Avg prompt throughput: 222.1 tokens/s, Avg generation throughput: 19.0 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.9%, CPU KV cache usage: 0.0%.
+INFO 04-04 00:58:34 metrics.py:453] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 19.1 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 1.0%, CPU KV cache usage: 0.0%.
+Gracefully shutting down (signal=2)...
+Process is exiting...
+ERROR 04-04 00:58:34 engine.py:387] 0
+ERROR Traceback (most recent call last):
+ERROR   File "/home/vimagupta123/prowl/vllm/engine/multiprocessing/engine.py", line 384, in run_mp_engine
+ERROR     engine.start()
+ERROR   File "/home/vimagupta123/prowl/vllm/engine/multiprocessing/engine.py", line 135, in start
+ERROR     self.run_engine_loop()
+ERROR   File "/home/vimagupta123/prowl/vllm/engine/multiprocessing/engine.py", line 198, in run_engine_loop
+ERROR     request_outputs = self.engine_step()
+ERROR   File "/home/vimagupta123/prowl/vllm/engine/multiprocessing/engine.py", line 207, in engine_step
+ERROR     return self.engine.step()
+ERROR   File "/home/vimagupta123/prowl/vllm/engine/llm_engine.py", line 1418, in step
+ERROR     outputs = self.model_executor.execute_model(
+ERROR   File "/home/vimagupta123/prowl/vllm/executor/executor_base.py", line 136, in execute_model
+ERROR     output = self.collective_rpc("execute_model",
+ERROR   File "/home/vimagupta123/prowl/vllm/executor/uniproc_executor.py", line 49, in collective_rpc
+ERROR     answer = run_method(self.driver_worker, method, args, kwargs)
+ERROR   File "/home/vimagupta123/prowl/vllm/utils.py", line 2208, in run_method
+ERROR     return func(*args, **kwargs)
+ERROR   File "/home/vimagupta123/prowl/vllm/worker/worker_base.py", line 410, in execute_model
+ERROR     output = self.model_runner.execute_model(
+ERROR   File "/home/vimagupta123/miniconda3/envs/vllm-env/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+ERROR     return func(*args, **kwargs)
+ERROR   File "/home/vimagupta123/prowl/vllm/worker/model_runner_base.py", line 116, in _wrapper
+ERROR     return func(*args, **kwargs)
+ERROR   File "/home/vimagupta123/prowl/vllm/worker/model_runner.py", line 1739, in execute_model
+ERROR     hidden_or_intermediate_states = model_executable(
+ERROR   File "/home/vimagupta123/miniconda3/envs/vllm-env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+ERROR     return self._call_impl(*args, **kwargs)
+ERROR   File "/home/vimagupta123/miniconda3/envs/vllm-env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+ERROR     return forward_call(*args, **kwargs)
+ERROR   File "/home/vimagupta123/prowl/vllm/model_executor/models/deepseek_v2.py", line 528, in forward
+ERROR     hidden_states = self.model(input_ids, positions, kv_caches,
+ERROR   File "/home/vimagupta123/prowl/vllm/compilation/decorators.py", line 170, in __call__
+ERROR     return self.forward(*args, **kwargs)
+ERROR   File "/home/vimagupta123/prowl/vllm/model_executor/models/deepseek_v2.py", line 484, in forward
+ERROR     hidden_states, residual = layer(positions, hidden_states,
+ERROR   File "/home/vimagupta123/miniconda3/envs/vllm-env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+ERROR     return self._call_impl(*args, **kwargs)
+ERROR   File "/home/vimagupta123/miniconda3/envs/vllm-env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+ERROR     return forward_call(*args, **kwargs)
+ERROR   File "/home/vimagupta123/prowl/vllm/model_executor/models/deepseek_v2.py", line 414, in forward
+ERROR     hidden_states = self.mlp(hidden_states)
+ERROR   File "/home/vimagupta123/miniconda3/envs/vllm-env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+ERROR     return self._call_impl(*args, **kwargs)
+ERROR   File "/home/vimagupta123/miniconda3/envs/vllm-env/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+ERROR     return forward_call(*args, **kwargs)
+ERROR   File "/home/vimagupta123/prowl/vllm/model_executor/models/deepseek_v2.py", line 159, in forward
+ERROR     if self.tp_size > 1:
+ERROR   File "/home/vimagupta123/prowl/vllm/engine/llm_engine.py", line 291, in _handle_exit_signal
+ERROR     sys.exit(0)
+ERROR   File "/home/vimagupta123/miniconda3/envs/vllm-env/lib/python3.10/site-packages/wandb/sdk/lib/exit_hooks.py", line 36, in exit
+ERROR     self._orig_exit(orig_code)  # type: ignore
+ERROR SystemExit: 0
+
+Exception ignored in atexit callback: <function _start_and_connect_service.<locals>.teardown_atexit at 0x7f99a9cfbc70>Exception ignored in sys.unraisablehook: <built-in function unraisablehook>
