@@ -1,0 +1,289 @@
+_wandb:
+    value:
+        cli_version: 0.21.1
+        e:
+            bjg9m8wqeyh4drlshfyb99mvp6l8lq9z:
+                args:
+                    - --model
+                    - /nethome/vgupta345/.cache/huggingface/hub/models--mistralai--Mixtral-8x7B-v0.1/snapshots/fc7ac94680e38d7348cfa806e51218e6273104b0/
+                    - --max-num-seqs
+                    - "16"
+                    - --tensor-parallel-size
+                    - "2"
+                    - --max-model-len
+                    - "4096"
+                    - --enable-chunked-prefill=False
+                    - --gpu-memory-utilization
+                    - "0.8"
+                    - --mixtral_config_file
+                    - /nethome/vgupta345/prowl/configs/mixtral/do_nothing.json
+                    - --trust-remote-code
+                cpu_count: 128
+                cpu_count_logical: 128
+                cudaVersion: "12.6"
+                disk:
+                    /:
+                        total: "932156268544"
+                        used: "70873247744"
+                email: vima.gupta@gatech.edu
+                executable: /nethome/vgupta345/prowl/.venv/bin/python
+                git:
+                    commit: 80a3d3d8d89d03f2a787fea09869ed5deb1101c5
+                    remote: https://github.com/VimaGupta345/latency-scripts.git
+                gpu: NVIDIA H200
+                gpu_count: 8
+                gpu_nvidia:
+                    - architecture: Hopper
+                      cudaCores: 16896
+                      memoryTotal: "150754820096"
+                      name: NVIDIA H200
+                      uuid: GPU-21737b05-ad3b-de37-5c27-f16f45b43f02
+                    - architecture: Hopper
+                      cudaCores: 16896
+                      memoryTotal: "150754820096"
+                      name: NVIDIA H200
+                      uuid: GPU-8a9f9bc1-c3e7-8996-16a9-e9ca09fbd4d3
+                    - architecture: Hopper
+                      cudaCores: 16896
+                      memoryTotal: "150754820096"
+                      name: NVIDIA H200
+                      uuid: GPU-1478b030-64c0-1758-6e77-8f8ed5091af2
+                    - architecture: Hopper
+                      cudaCores: 16896
+                      memoryTotal: "150754820096"
+                      name: NVIDIA H200
+                      uuid: GPU-8587488a-9387-8150-1e43-686d3ef4c7c4
+                    - architecture: Hopper
+                      cudaCores: 16896
+                      memoryTotal: "150754820096"
+                      name: NVIDIA H200
+                      uuid: GPU-d0803db2-5785-eb9e-f0ee-ccb622453da9
+                    - architecture: Hopper
+                      cudaCores: 16896
+                      memoryTotal: "150754820096"
+                      name: NVIDIA H200
+                      uuid: GPU-fa0bee22-16e4-7798-4dae-118da22ee801
+                    - architecture: Hopper
+                      cudaCores: 16896
+                      memoryTotal: "150754820096"
+                      name: NVIDIA H200
+                      uuid: GPU-8013c82d-d758-a995-5224-46b1397ee25d
+                    - architecture: Hopper
+                      cudaCores: 16896
+                      memoryTotal: "150754820096"
+                      name: NVIDIA H200
+                      uuid: GPU-c4416d4e-3d45-4763-5927-fb07b8cbd93f
+                host: mav
+                memory:
+                    total: "1623024975872"
+                os: Linux-6.8.0-71-generic-x86_64-with-glibc2.39
+                program: -m vllm.entrypoints.openai.api_server
+                python: CPython 3.12.3
+                root: /nethome/vgupta345/latency-scripts
+                startedAt: "2025-08-21T03:20:18.988973Z"
+                writerId: bjg9m8wqeyh4drlshfyb99mvp6l8lq9z
+        m: []
+        python_version: 3.12.3
+        t:
+            "1":
+                - 1
+                - 5
+                - 11
+                - 30
+                - 41
+                - 49
+                - 53
+                - 71
+                - 95
+            "2":
+                - 1
+                - 5
+                - 11
+                - 30
+                - 41
+                - 49
+                - 53
+                - 71
+                - 95
+            "3":
+                - 16
+            "4": 3.12.3
+            "5": 0.21.1
+            "6": 4.55.2
+            "12": 0.21.1
+            "13": linux-x86_64
+allowed_local_media_path:
+    value: null
+code_revision:
+    value: null
+disable_latency_logging:
+    value: false
+disable_logit_logging:
+    value: false
+disable_mm_preprocessor_cache:
+    value: false
+disable_sliding_window:
+    value: false
+dtype:
+    value: torch.bfloat16
+enable_sleep_mode:
+    value: false
+encoder_config:
+    value: null
+enforce_eager:
+    value: false
+generation_config:
+    value: null
+has_inner_state:
+    value: false
+hf_config:
+    value: |
+        MixtralConfig {
+          "alpha": 1,
+          "architectures": [
+            "MixtralForCausalLM"
+          ],
+          "attention_dropout": 0.0,
+          "beta": 0.5,
+          "bos_token_id": 1,
+          "confidence_proxy": "diff",
+          "count_of_topk": 6,
+          "eos_token_id": 2,
+          "grouping_mechanism": "threshold",
+          "head_dim": null,
+          "hidden_act": "silu",
+          "hidden_size": 4096,
+          "initializer_range": 0.02,
+          "intermediate_size": 14336,
+          "max_position_embeddings": 32768,
+          "min_experts": 8,
+          "model_type": "mixtral",
+          "num_attention_heads": 32,
+          "num_experts_per_tok": 2,
+          "num_experts_to_keep": 6,
+          "num_hidden_layers": 32,
+          "num_key_value_heads": 8,
+          "num_local_experts": 8,
+          "output_router_logits": false,
+          "policy": "do-nothing",
+          "ranking_policy": "high_confidence",
+          "rms_norm_eps": 1e-05,
+          "rope_theta": 1000000.0,
+          "router_aux_loss_coef": 0.02,
+          "router_jitter_noise": 0.0,
+          "sliding_window": null,
+          "threshold_percentile": 0.7,
+          "tie_word_embeddings": false,
+          "top_x": 2,
+          "torch_dtype": "bfloat16",
+          "transformers_version": "4.55.2",
+          "use_cache": true,
+          "vocab_size": 32000
+        }
+hf_text_config:
+    value: |
+        MixtralConfig {
+          "alpha": 1,
+          "architectures": [
+            "MixtralForCausalLM"
+          ],
+          "attention_dropout": 0.0,
+          "beta": 0.5,
+          "bos_token_id": 1,
+          "confidence_proxy": "diff",
+          "count_of_topk": 6,
+          "eos_token_id": 2,
+          "grouping_mechanism": "threshold",
+          "head_dim": null,
+          "hidden_act": "silu",
+          "hidden_size": 4096,
+          "initializer_range": 0.02,
+          "intermediate_size": 14336,
+          "max_position_embeddings": 32768,
+          "min_experts": 8,
+          "model_type": "mixtral",
+          "num_attention_heads": 32,
+          "num_experts_per_tok": 2,
+          "num_experts_to_keep": 6,
+          "num_hidden_layers": 32,
+          "num_key_value_heads": 8,
+          "num_local_experts": 8,
+          "output_router_logits": false,
+          "policy": "do-nothing",
+          "ranking_policy": "high_confidence",
+          "rms_norm_eps": 1e-05,
+          "rope_theta": 1000000.0,
+          "router_aux_loss_coef": 0.02,
+          "router_jitter_noise": 0.0,
+          "sliding_window": null,
+          "threshold_percentile": 0.7,
+          "tie_word_embeddings": false,
+          "top_x": 2,
+          "torch_dtype": "bfloat16",
+          "transformers_version": "4.55.2",
+          "use_cache": true,
+          "vocab_size": 32000
+        }
+is_attention_free:
+    value: false
+is_hybrid:
+    value: false
+logit_logging_frequency:
+    value: 100
+logits_processor_pattern:
+    value: null
+max_logprobs:
+    value: 20
+max_model_len:
+    value: 4096
+max_seq_len_to_capture:
+    value: 4096
+mixtral_config_file:
+    value: /nethome/vgupta345/prowl/configs/mixtral/do_nothing.json
+mm_processor_kwargs:
+    value: null
+model:
+    value: /nethome/vgupta345/.cache/huggingface/hub/models--mistralai--Mixtral-8x7B-v0.1/snapshots/fc7ac94680e38d7348cfa806e51218e6273104b0/
+multimodal_config:
+    value: null
+num_experts:
+    value: 64
+override_neuron_config:
+    value: null
+pooler_config:
+    value: null
+quantization:
+    value: null
+revision:
+    value: null
+rope_scaling:
+    value: null
+rope_theta:
+    value: null
+seed:
+    value: 0
+served_model_name:
+    value: /nethome/vgupta345/.cache/huggingface/hub/models--mistralai--Mixtral-8x7B-v0.1/snapshots/fc7ac94680e38d7348cfa806e51218e6273104b0/
+skip_tokenizer_init:
+    value: false
+supported_tasks:
+    value:
+        - generate
+        - reward
+        - score
+        - embed
+        - classify
+task:
+    value: generate
+tokenizer:
+    value: /nethome/vgupta345/.cache/huggingface/hub/models--mistralai--Mixtral-8x7B-v0.1/snapshots/fc7ac94680e38d7348cfa806e51218e6273104b0/
+tokenizer_mode:
+    value: auto
+tokenizer_revision:
+    value: null
+truncation_side:
+    value: left
+trust_remote_code:
+    value: true
+use_async_output_proc:
+    value: true

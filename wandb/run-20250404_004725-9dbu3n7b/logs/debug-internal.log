@@ -1,7 +1,0 @@
-{"time":"2025-04-04T00:47:25.057140308Z","level":"INFO","msg":"stream: starting","core version":"0.19.9","symlink path":"/home/vimagupta123/latency_scripts/wandb/run-20250404_004725-9dbu3n7b/logs/debug-core.log"}
-{"time":"2025-04-04T00:47:25.19356533Z","level":"INFO","msg":"created new stream","id":"9dbu3n7b"}
-{"time":"2025-04-04T00:47:25.193615754Z","level":"INFO","msg":"stream: started","id":"9dbu3n7b"}
-{"time":"2025-04-04T00:47:25.19364231Z","level":"INFO","msg":"writer: Do: started","stream_id":"9dbu3n7b"}
-{"time":"2025-04-04T00:47:25.1936582Z","level":"INFO","msg":"sender: started","stream_id":"9dbu3n7b"}
-{"time":"2025-04-04T00:47:25.193702719Z","level":"INFO","msg":"handler: started","stream_id":"9dbu3n7b"}
-{"time":"2025-04-04T00:47:25.281932379Z","level":"INFO","msg":"Starting system monitor"}

@@ -9,7 +9,7 @@ export CONFIG_FILE=${6}
 
 export MODELNAME=$( basename ${MODEL} )
 export CONFIGNAME=$( basename ${CONFIG_FILE} )
-export STATS_DIR="/home/vimagupta123/stats/perf/spec_decode/ngram/${MODELNAME}/"
+export STATS_DIR="~/stats/perf/spec_decode/ngram/${MODELNAME}/"
 mkdir -p ${STATS_DIR}
 export INF_TOKS=$((K+1))
 export STAT_FILE="${STATFILENAME}_${CONFIGNAME}.log"

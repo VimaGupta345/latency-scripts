@@ -1,0 +1,182 @@
+WARNING 08-20 23:57:36 multiproc_worker_utils.py:298] Reducing Torch parallelism from 128 threads to 1 to avoid unnecessary CPU contention. Set OMP_NUM_THREADS in the external environment to tune this value as needed.
+INFO 08-20 23:57:36 custom_cache_manager.py:17] Setting Triton cache manager to: vllm.triton_utils.custom_cache_manager:CustomCacheManager
+--- Logging error ---
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/logging/__init__.py", line 1160, in emit
+    msg = self.format(record)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/logging/__init__.py", line 999, in format
+    return fmt.format(record)
+           ^^^^^^^^^^^^^^^^^^
+  File "/nethome/vgupta345/prowl/vllm/logging_utils/formatter.py", line 11, in format
+    msg = logging.Formatter.format(self, record)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/logging/__init__.py", line 703, in format
+    record.message = record.getMessage()
+                     ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/logging/__init__.py", line 392, in getMessage
+    msg = msg % self.args
+          ~~~~^~~~~~~~~~~
+TypeError: %d format: a real number is required, not NoneType
+Call stack:
+  File "<string>", line 1, in <module>
+  File "/usr/lib/python3.12/multiprocessing/spawn.py", line 122, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "/usr/lib/python3.12/multiprocessing/spawn.py", line 135, in _main
+    return self._bootstrap(parent_sentinel)
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/nethome/vgupta345/prowl/vllm/engine/multiprocessing/engine.py", line 378, in run_mp_engine
+    engine = MQLLMEngine.from_engine_args(engine_args=engine_args,
+  File "/nethome/vgupta345/prowl/vllm/engine/multiprocessing/engine.py", line 121, in from_engine_args
+    return cls(ipc_path=ipc_path,
+  File "/nethome/vgupta345/prowl/vllm/engine/multiprocessing/engine.py", line 73, in __init__
+    self.engine = LLMEngine(*args, **kwargs)
+  File "/nethome/vgupta345/prowl/vllm/engine/llm_engine.py", line 320, in __init__
+    self.model_executor = executor_class(vllm_config=vllm_config, )
+  File "/nethome/vgupta345/prowl/vllm/executor/executor_base.py", line 260, in __init__
+    super().__init__(*args, **kwargs)
+  File "/nethome/vgupta345/prowl/vllm/executor/executor_base.py", line 49, in __init__
+    self._init_executor()
+  File "/nethome/vgupta345/prowl/vllm/executor/mp_distributed_executor.py", line 121, in _init_executor
+    self._run_workers("init_worker", all_kwargs)
+  File "/nethome/vgupta345/prowl/vllm/executor/mp_distributed_executor.py", line 183, in _run_workers
+    driver_worker_output = run_method(self.driver_worker, sent_method,
+  File "/nethome/vgupta345/prowl/vllm/utils.py", line 2208, in run_method
+    return func(*args, **kwargs)
+  File "/nethome/vgupta345/prowl/vllm/worker/worker_base.py", line 552, in init_worker
+    self.worker = worker_class(**kwargs)
+  File "/nethome/vgupta345/prowl/vllm/worker/worker.py", line 87, in __init__
+    self.model_runner: GPUModelRunnerBase = ModelRunnerClass(
+  File "/nethome/vgupta345/prowl/vllm/worker/model_runner.py", line 1067, in __init__
+    self.attn_backend = get_attn_backend(
+  File "/nethome/vgupta345/prowl/vllm/attention/selector.py", line 92, in get_attn_backend
+    return _cached_get_attn_backend(
+  File "/nethome/vgupta345/prowl/vllm/attention/selector.py", line 143, in _cached_get_attn_backend
+    attention_cls = current_platform.get_attn_backend_cls(
+  File "/nethome/vgupta345/prowl/vllm/platforms/cuda.py", line 209, in get_attn_backend_cls
+    logger.info(
+Message: 'Cannot use FlashAttention-2 backend for head size %d.'
+Arguments: (None,)
+INFO 08-20 23:57:37 cuda.py:222] Using XFormers backend.
+INFO 08-20 23:57:39 utils.py:938] Found nccl from library libnccl.so.2
+INFO 08-20 23:57:39 pynccl.py:67] vLLM is using nccl==2.21.5
+INFO 08-20 23:57:40 custom_all_reduce_utils.py:242] reading GPU P2P access cache from /nethome/vgupta345/.cache/vllm/gpu_p2p_access_cache_for_0,1.json
+INFO 08-20 23:57:40 shm_broadcast.py:256] vLLM message queue communication handle: Handle(connect_ip='127.0.0.1', local_reader_ranks=[1], buffer_handle=(1, 4194304, 6, 'psm_f8b47e56'), local_subscribe_port=48067, remote_subscribe_port=None)
+INFO 08-20 23:57:40 model_runner.py:1114] Starting to load model /nethome/vgupta345/.cache/huggingface/hub/models--mistralai--Mixtral-8x7B-v0.1/snapshots/fc7ac94680e38d7348cfa806e51218e6273104b0/...
+INFO 08-20 23:57:40 cuda.py:225] Using Flash Attention backend.
+ERROR 08-20 23:57:41 engine.py:387] Cannot find any model weights with `/nethome/vgupta345/.cache/huggingface/hub/models--mistralai--Mixtral-8x7B-v0.1/snapshots/fc7ac94680e38d7348cfa806e51218e6273104b0/`
+ERROR 08-20 23:57:41 engine.py:387] Traceback (most recent call last):
+ERROR 08-20 23:57:41 engine.py:387]   File "/nethome/vgupta345/prowl/vllm/engine/multiprocessing/engine.py", line 378, in run_mp_engine
+ERROR 08-20 23:57:41 engine.py:387]     engine = MQLLMEngine.from_engine_args(engine_args=engine_args,
+ERROR 08-20 23:57:41 engine.py:387]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ERROR 08-20 23:57:41 engine.py:387]   File "/nethome/vgupta345/prowl/vllm/engine/multiprocessing/engine.py", line 121, in from_engine_args
+ERROR 08-20 23:57:41 engine.py:387]     return cls(ipc_path=ipc_path,
+ERROR 08-20 23:57:41 engine.py:387]            ^^^^^^^^^^^^^^^^^^^^^^
+ERROR 08-20 23:57:41 engine.py:387]   File "/nethome/vgupta345/prowl/vllm/engine/multiprocessing/engine.py", line 73, in __init__
+ERROR 08-20 23:57:41 engine.py:387]     self.engine = LLMEngine(*args, **kwargs)
+ERROR 08-20 23:57:41 engine.py:387]                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+ERROR 08-20 23:57:41 engine.py:387]   File "/nethome/vgupta345/prowl/vllm/engine/llm_engine.py", line 320, in __init__
+ERROR 08-20 23:57:41 engine.py:387]     self.model_executor = executor_class(vllm_config=vllm_config, )
+ERROR 08-20 23:57:41 engine.py:387]                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ERROR 08-20 23:57:41 engine.py:387]   File "/nethome/vgupta345/prowl/vllm/executor/executor_base.py", line 260, in __init__
+ERROR 08-20 23:57:41 engine.py:387]     super().__init__(*args, **kwargs)
+ERROR 08-20 23:57:41 engine.py:387]   File "/nethome/vgupta345/prowl/vllm/executor/executor_base.py", line 49, in __init__
+ERROR 08-20 23:57:41 engine.py:387]     self._init_executor()
+ERROR 08-20 23:57:41 engine.py:387]   File "/nethome/vgupta345/prowl/vllm/executor/mp_distributed_executor.py", line 123, in _init_executor
+ERROR 08-20 23:57:41 engine.py:387]     self._run_workers("load_model",
+ERROR 08-20 23:57:41 engine.py:387]   File "/nethome/vgupta345/prowl/vllm/executor/mp_distributed_executor.py", line 183, in _run_workers
+ERROR 08-20 23:57:41 engine.py:387]     driver_worker_output = run_method(self.driver_worker, sent_method,
+ERROR 08-20 23:57:41 engine.py:387]                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ERROR 08-20 23:57:41 engine.py:387]   File "/nethome/vgupta345/prowl/vllm/utils.py", line 2208, in run_method
+ERROR 08-20 23:57:41 engine.py:387]     return func(*args, **kwargs)
+ERROR 08-20 23:57:41 engine.py:387]            ^^^^^^^^^^^^^^^^^^^^^
+ERROR 08-20 23:57:41 engine.py:387]   File "/nethome/vgupta345/prowl/vllm/worker/worker.py", line 188, in load_model
+ERROR 08-20 23:57:41 engine.py:387]     self.model_runner.load_model()
+ERROR 08-20 23:57:41 engine.py:387]   File "/nethome/vgupta345/prowl/vllm/worker/model_runner.py", line 1116, in load_model
+ERROR 08-20 23:57:41 engine.py:387]     self.model = get_model(vllm_config=self.vllm_config)
+ERROR 08-20 23:57:41 engine.py:387]                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ERROR 08-20 23:57:41 engine.py:387]   File "/nethome/vgupta345/prowl/vllm/model_executor/model_loader/__init__.py", line 12, in get_model
+ERROR 08-20 23:57:41 engine.py:387]     return loader.load_model(vllm_config=vllm_config)
+ERROR 08-20 23:57:41 engine.py:387]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ERROR 08-20 23:57:41 engine.py:387]   File "/nethome/vgupta345/prowl/vllm/model_executor/model_loader/loader.py", line 379, in load_model
+ERROR 08-20 23:57:41 engine.py:387]     loaded_weights = model.load_weights(
+ERROR 08-20 23:57:41 engine.py:387]                      ^^^^^^^^^^^^^^^^^^^
+ERROR 08-20 23:57:41 engine.py:387]   File "/nethome/vgupta345/prowl/vllm/model_executor/models/mixtral.py", line 520, in load_weights
+ERROR 08-20 23:57:41 engine.py:387]     for name, loaded_weight in weights:
+ERROR 08-20 23:57:41 engine.py:387]   File "/nethome/vgupta345/prowl/vllm/model_executor/model_loader/loader.py", line 354, in _get_all_weights
+ERROR 08-20 23:57:41 engine.py:387]     yield from self._get_weights_iterator(primary_weights)
+ERROR 08-20 23:57:41 engine.py:387]                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ERROR 08-20 23:57:41 engine.py:387]   File "/nethome/vgupta345/prowl/vllm/model_executor/model_loader/loader.py", line 307, in _get_weights_iterator
+ERROR 08-20 23:57:41 engine.py:387]     hf_folder, hf_weights_files, use_safetensors = self._prepare_weights(
+ERROR 08-20 23:57:41 engine.py:387]                                                    ^^^^^^^^^^^^^^^^^^^^^^
+ERROR 08-20 23:57:41 engine.py:387]   File "/nethome/vgupta345/prowl/vllm/model_executor/model_loader/loader.py", line 298, in _prepare_weights
+ERROR 08-20 23:57:41 engine.py:387]     raise RuntimeError(
+ERROR 08-20 23:57:41 engine.py:387] RuntimeError: Cannot find any model weights with `/nethome/vgupta345/.cache/huggingface/hub/models--mistralai--Mixtral-8x7B-v0.1/snapshots/fc7ac94680e38d7348cfa806e51218e6273104b0/`
+INFO 08-20 23:57:41 multiproc_worker_utils.py:126] Killing local vLLM worker processes
+Process SpawnProcess-1:
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/nethome/vgupta345/prowl/vllm/engine/multiprocessing/engine.py", line 389, in run_mp_engine
+    raise e
+  File "/nethome/vgupta345/prowl/vllm/engine/multiprocessing/engine.py", line 378, in run_mp_engine
+    engine = MQLLMEngine.from_engine_args(engine_args=engine_args,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nethome/vgupta345/prowl/vllm/engine/multiprocessing/engine.py", line 121, in from_engine_args
+    return cls(ipc_path=ipc_path,
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/nethome/vgupta345/prowl/vllm/engine/multiprocessing/engine.py", line 73, in __init__
+    self.engine = LLMEngine(*args, **kwargs)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nethome/vgupta345/prowl/vllm/engine/llm_engine.py", line 320, in __init__
+    self.model_executor = executor_class(vllm_config=vllm_config, )
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nethome/vgupta345/prowl/vllm/executor/executor_base.py", line 260, in __init__
+    super().__init__(*args, **kwargs)
+  File "/nethome/vgupta345/prowl/vllm/executor/executor_base.py", line 49, in __init__
+    self._init_executor()
+  File "/nethome/vgupta345/prowl/vllm/executor/mp_distributed_executor.py", line 123, in _init_executor
+    self._run_workers("load_model",
+  File "/nethome/vgupta345/prowl/vllm/executor/mp_distributed_executor.py", line 183, in _run_workers
+    driver_worker_output = run_method(self.driver_worker, sent_method,
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nethome/vgupta345/prowl/vllm/utils.py", line 2208, in run_method
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/nethome/vgupta345/prowl/vllm/worker/worker.py", line 188, in load_model
+    self.model_runner.load_model()
+  File "/nethome/vgupta345/prowl/vllm/worker/model_runner.py", line 1116, in load_model
+    self.model = get_model(vllm_config=self.vllm_config)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nethome/vgupta345/prowl/vllm/model_executor/model_loader/__init__.py", line 12, in get_model
+    return loader.load_model(vllm_config=vllm_config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nethome/vgupta345/prowl/vllm/model_executor/model_loader/loader.py", line 379, in load_model
+    loaded_weights = model.load_weights(
+                     ^^^^^^^^^^^^^^^^^^^
+  File "/nethome/vgupta345/prowl/vllm/model_executor/models/mixtral.py", line 520, in load_weights
+    for name, loaded_weight in weights:
+  File "/nethome/vgupta345/prowl/vllm/model_executor/model_loader/loader.py", line 354, in _get_all_weights
+    yield from self._get_weights_iterator(primary_weights)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nethome/vgupta345/prowl/vllm/model_executor/model_loader/loader.py", line 307, in _get_weights_iterator
+    hf_folder, hf_weights_files, use_safetensors = self._prepare_weights(
+                                                   ^^^^^^^^^^^^^^^^^^^^^^
+  File "/nethome/vgupta345/prowl/vllm/model_executor/model_loader/loader.py", line 298, in _prepare_weights
+    raise RuntimeError(
+RuntimeError: Cannot find any model weights with `/nethome/vgupta345/.cache/huggingface/hub/models--mistralai--Mixtral-8x7B-v0.1/snapshots/fc7ac94680e38d7348cfa806e51218e6273104b0/`
+Gracefully shutting down (signal=None)...
+Process is exiting...
+Exception ignored in atexit callback: <function LLMEngine.__init__.<locals>._handle_exit_signal at 0x7cf3fd3518a0>
+Traceback (most recent call last):
+  File "/nethome/vgupta345/prowl/vllm/engine/llm_engine.py", line 291, in _handle_exit_signal
+    sys.exit(0)
+  File "/nethome/vgupta345/prowl/.venv/lib/python3.12/site-packages/wandb/sdk/lib/exit_hooks.py", line 36, in exit
+    self._orig_exit(orig_code)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+SystemExit: 0

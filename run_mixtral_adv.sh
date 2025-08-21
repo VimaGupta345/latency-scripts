@@ -1,7 +1,7 @@
 #!/bin/bash
 
-export STATFILENAME="adv_sweep_fp8"
-export MODEL="/home/vimagupta123/.cache/huggingface/hub/models--RedHatAI--Mixtral-8x7B-Instruct-v0.1-FP8/snapshots/9a978d5cc7dabc37b3d13d6501426081c99c4cbd/"
+export STATFILENAME="adv_sweep_fp16"
+export MODEL="/scratch/vgupta345/.cache/huggingface/hub/models--mistralai--Mixtral-8x7B-v0.1/snapshots/fc7ac94680e38d7348cfa806e51218e6273104b0/"
 
 # List of benchmarks
 benchmarks=("humaneval" "gsm8k" "mbpp" "minerva_math_algebra")
@@ -9,13 +9,13 @@ benchmarks=("humaneval" "gsm8k" "mbpp" "minerva_math_algebra")
 
 # List of config files
 config_files=(
-    "/home/vimagupta123/prowl/configs/mixtral/do_nothing.json"
-    "/home/vimagupta123/prowl/configs/mixtral/advanced_alpha0_beta0.8.json"
-    "/home/vimagupta123/prowl/configs/mixtral/advanced_alpha0_beta1.1.json"
-    "/home/vimagupta123/prowl/configs/mixtral/advanced_alpha0_beta0.9.json"
-    "/home/vimagupta123/prowl/configs/mixtral/advanced_alpha0_beta1.json"
-    "/home/vimagupta123/prowl/configs/mixtral/advanced_alpha0_beta1.25.json"
-    "/home/vimagupta123/prowl/configs/mixtral/advanced_alpha0_beta0.7.json"
+    "/nethome/vgupta345/prowl/configs/mixtral/do_nothing.json"
+    "/nethome/vgupta345/prowl/configs/mixtral/advanced_alpha0_beta0.8.json"
+    "/nethome/vgupta345/prowl/configs/mixtral/advanced_alpha0_beta1.1.json"
+    "/nethome/vgupta345/prowl/configs/mixtral/advanced_alpha0_beta0.9.json"
+    "/nethome/vgupta345/prowl/configs/mixtral/advanced_alpha0_beta1.json"
+    "/nethome/vgupta345/prowl/configs/mixtral/advanced_alpha0_beta1.25.json"
+    "/nethome/vgupta345/prowl/configs/mixtral/advanced_alpha0_beta0.7.json"
 )
 
 for cf in "${config_files[@]}"; do
@@ -26,15 +26,15 @@ for cf in "${config_files[@]}"; do
 done
 
 export STATFILENAME="adv_sweep"
-export MODEL="/home/vimagupta123/.cache/huggingface/hub/models--mistralai--Mixtral-8x7B-Instruct-v0.1/snapshots/41bd4c9e7e4fb318ca40e721131d4933966c2cc1/"
+export MODEL="/scratch/vgupta345/.cache/huggingface/hub/models--mistralai--Mixtral-8x7B-v0.1/snapshots/fc7ac94680e38d7348cfa806e51218e6273104b0/"
 
 # List of benchmarks
 benchmarks=("humaneval" "gsm8k" "mbpp" "minerva_math_algebra")
 # benchmarks=("humaneval")
 
-List of config files
+# List of config files
 config_files=(
-    "/home/vimagupta123/prowl/configs/mixtral/do_nothing.json"
+    "/nethome/vgupta345/prowl/configs/mixtral/do_nothing.json"
 )
 
 for cf in "${config_files[@]}"; do

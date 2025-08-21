@@ -1,0 +1,57 @@
+WARNING 08-21 16:56:12 multiproc_worker_utils.py:298] Reducing Torch parallelism from 128 threads to 1 to avoid unnecessary CPU contention. Set OMP_NUM_THREADS in the external environment to tune this value as needed.
+INFO 08-21 16:56:12 custom_cache_manager.py:17] Setting Triton cache manager to: vllm.triton_utils.custom_cache_manager:CustomCacheManager
+INFO 08-21 16:56:13 cuda.py:225] Using Flash Attention backend.
+INFO 08-21 16:56:15 utils.py:938] Found nccl from library libnccl.so.2
+INFO 08-21 16:56:15 pynccl.py:67] vLLM is using nccl==2.21.5
+INFO 08-21 16:56:16 custom_all_reduce_utils.py:242] reading GPU P2P access cache from /nethome/vgupta345/.cache/vllm/gpu_p2p_access_cache_for_0,1.json
+INFO 08-21 16:56:16 shm_broadcast.py:256] vLLM message queue communication handle: Handle(connect_ip='127.0.0.1', local_reader_ranks=[1], buffer_handle=(1, 4194304, 6, 'psm_f307f60e'), local_subscribe_port=48011, remote_subscribe_port=None)
+INFO 08-21 16:56:16 model_runner.py:1114] Starting to load model /scratch/vgupta345/.cache/huggingface/hub/models--mistralai--Mixtral-8x7B-v0.1/snapshots/fc7ac94680e38d7348cfa806e51218e6273104b0/...
+Loading safetensors checkpoint shards:   0% Completed | 0/19 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards:   5% Completed | 1/19 [00:00<00:12,  1.45it/s]
+Loading safetensors checkpoint shards:  11% Completed | 2/19 [00:01<00:12,  1.31it/s]
+Loading safetensors checkpoint shards:  16% Completed | 3/19 [00:02<00:12,  1.30it/s]
+Loading safetensors checkpoint shards:  21% Completed | 4/19 [00:03<00:11,  1.31it/s]
+Loading safetensors checkpoint shards:  26% Completed | 5/19 [00:03<00:10,  1.32it/s]
+Loading safetensors checkpoint shards:  32% Completed | 6/19 [00:04<00:09,  1.38it/s]
+Loading safetensors checkpoint shards:  37% Completed | 7/19 [00:05<00:08,  1.36it/s]
+Loading safetensors checkpoint shards:  42% Completed | 8/19 [00:05<00:08,  1.33it/s]
+Loading safetensors checkpoint shards:  47% Completed | 9/19 [00:06<00:07,  1.32it/s]
+Loading safetensors checkpoint shards:  53% Completed | 10/19 [00:07<00:06,  1.29it/s]
+Loading safetensors checkpoint shards:  58% Completed | 11/19 [00:08<00:06,  1.28it/s]
+Loading safetensors checkpoint shards:  63% Completed | 12/19 [00:09<00:05,  1.29it/s]
+Loading safetensors checkpoint shards:  68% Completed | 13/19 [00:09<00:04,  1.28it/s]
+Loading safetensors checkpoint shards:  74% Completed | 14/19 [00:10<00:03,  1.27it/s]
+Loading safetensors checkpoint shards:  79% Completed | 15/19 [00:11<00:03,  1.27it/s]
+Loading safetensors checkpoint shards:  84% Completed | 16/19 [00:12<00:02,  1.26it/s]
+Loading safetensors checkpoint shards:  89% Completed | 17/19 [00:13<00:01,  1.26it/s]
+Loading safetensors checkpoint shards:  95% Completed | 18/19 [00:13<00:00,  1.25it/s]
+Loading safetensors checkpoint shards: 100% Completed | 19/19 [00:14<00:00,  1.25it/s]
+Loading safetensors checkpoint shards: 100% Completed | 19/19 [00:14<00:00,  1.29it/s]
+INFO 08-21 16:56:31 model_runner.py:1119] Loading model weights took 43.5064 GB
+WARNING 08-21 16:56:40 fused_moe.py:829] Using default MoE config. Performance might be sub-optimal! Config file not found at /nethome/vgupta345/prowl/vllm/model_executor/layers/fused_moe/configs/E=8,N=7168,device_name=NVIDIA_H200.json
+INFO 08-21 16:56:42 worker.py:272] Memory profiling takes 10.76 seconds
+INFO 08-21 16:56:42 worker.py:272] the current vLLM instance can use total_gpu_memory (139.83GiB) x gpu_memory_utilization (0.80) = 111.86GiB
+INFO 08-21 16:56:42 worker.py:272] model weights take 43.51GiB; non_torch_memory takes 1.82GiB; PyTorch activation peak memory takes 0.52GiB; the rest of the memory reserved for KV Cache is 66.02GiB.
+INFO 08-21 16:56:43 executor_base.py:108] # CUDA blocks: 67606, # CPU blocks: 4096
+INFO 08-21 16:56:43 executor_base.py:113] Maximum concurrency for 4096 tokens per request: 264.09x
+INFO 08-21 16:56:45 model_runner.py:1434] Capturing cudagraphs for decoding. This may lead to unexpected consequences if the model is not static. To run the model in eager mode, set 'enforce_eager=True' or use '--enforce-eager' in the CLI. If out-of-memory error occurs during cudagraph capture, consider decreasing `gpu_memory_utilization` or switching to eager mode. You can also reduce the `max_num_seqs` as needed to decrease memory usage.
+
+Capturing CUDA graph shapes: 100%|██████████| 5/5 [00:05<00:00,  1.11s/it]
+INFO 08-21 16:56:51 custom_all_reduce.py:224] Registering 325 cuda graph addresses
+INFO 08-21 16:56:51 model_runner.py:1569] Graph capturing finished in 6 secs, took 0.07 GiB
+The profiling is done and the flag is set for MixtralLogitStore
+Profiling done and flag is being set
+INFO 08-21 16:56:51 llm_engine.py:478] init engine (profile, create kv cache, warmup model) took 19.35 seconds
+Gracefully shutting down (signal=2)...
+Process is exiting...
+Num prefill batches: 0, Num decode batches: 0
+Num batches: 0
+[1;36m(VllmWorkerProcess pid=2443980)[0;0m {}
+ERROR 08-21 16:57:20 multiproc_worker_utils.py:122] Worker VllmWorkerProcess pid 2443980 died, exit code: 1
+Gracefully shutting down (signal=None)...
+Process is exiting...
+INFO 08-21 16:57:20 multiproc_worker_utils.py:126] Killing local vLLM worker processes
+Num prefill batches: 0, Num decode batches: 0
+Num batches: 0
+{}
+Exception ignored in atexit callback: <function LLMEngine.__init__.<locals>._handle_exit_signal at 0x7485c31ba660>Exception ignored in sys.unraisablehook: <built-in function unraisablehook>
