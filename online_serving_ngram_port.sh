@@ -6,23 +6,32 @@ export K=${3}
 export MAXEXP=${4:-8}
 export CONF_THRES=${5:-1.0}
 export CONFIG_FILE=${6}
+export PORT=${7:-8000}  # New port parameter, default to 8000
 
 export MODELNAME=$( basename ${MODEL} )
 export CONFIGNAME=$( basename ${CONFIG_FILE} )
-export STATS_DIR="~/stats/perf/spec_decode/ngram/${MODELNAME}/"
+export STATS_DIR="${HOME}/stats/perf/spec_decode/ngram/${MODELNAME}/"
 mkdir -p ${STATS_DIR}
 export INF_TOKS=$((K+1))
-export STAT_FILE="${STATFILENAME}_${CONFIGNAME}.log"
+export STAT_FILE="${STATFILENAME}_${CONFIGNAME}_port${PORT}.log"
 
-export TP_SIZE=1
-if [[ $MODEL == *"Mixtral"* ]]
-then
+# Use TP_SIZE from environment if set, otherwise determine based on model
+if [ -z "$TP_SIZE" ]; then
     export TP_SIZE=1
+    if [[ $MODEL == *"Mixtral"* ]]
+    then
+        export TP_SIZE=1
+    fi
+    if [[ $MODEL == *"FP8"* ]]
+    then
+        export TP_SIZE=1
+    fi
 fi
-if [[ $MODEL == *"FP8"* ]]
-then
-    export TP_SIZE=1
-fi
+
+echo "Using TP_SIZE=${TP_SIZE} for model ${MODEL}"
+
+echo "Starting vLLM server on port ${PORT}"
+
 # if value of K is 0, then don't use speculative model 
 if [ $K -eq 0 ]
 then
@@ -30,6 +39,8 @@ then
     echo "midas disabled"
     export MIDAS_ENABLE=false
     python -m vllm.entrypoints.openai.api_server --model ${MODEL} \
+    --host localhost \
+    --port ${PORT} \
     --max-num-seqs 16 \
     --tensor-parallel-size ${TP_SIZE} \
     --max-model-len 4096 \
@@ -62,11 +73,12 @@ else
     echo MIDAS_ENABLE=${MIDAS_ENABLE}, MIDAS_INFLIGHT_TOKS=${MIDAS_INFLIGHT_TOKS}
     echo MIDAS_MAX_EXPERTS=${MIDAS_MAX_EXPERTS}, MIDAS_CONF_THRES=${MIDAS_CONF_THRES}
     python -m vllm.entrypoints.openai.api_server --model ${MODEL} \
-    --tensor-parallel-size 1 \
+    --host localhost \
+    --port ${PORT} \
+    --tensor-parallel-size ${TP_SIZE} \
     --max-num-seqs 1 --max-num-batched-tokens 4096 --max-model-len 4096 \
     --gpu-memory-utilization 0.99 --enforce-eager \
     --speculative-model [ngram] --speculative-draft-tensor-parallel-size 1 \
     --num-speculative-tokens ${K} --ngram-prompt-lookup-max $((K*2)) \
     --trust-remote-code 2>&1 | tee ${STATS_DIR}/${STAT_FILE}
 fi
-
