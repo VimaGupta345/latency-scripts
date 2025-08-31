@@ -11,9 +11,9 @@ GPUS="0,1"
 
 # Config files for Mixtral
 configs=(
-    "/nethome/vgupta345/prowl/configs/mixtral/do_nothing.json"
-    "/nethome/vgupta345/prowl/configs/mixtral/advanced_alpha0_beta0.7.json"
-    "/nethome/vgupta345/prowl/configs/mixtral/advanced_alpha0_beta1.25.json"
+    "${TMP_HOME}/prowl/configs/mixtral/do_nothing.json"
+    "${TMP_HOME}/prowl/configs/mixtral/advanced_alpha0_beta0.7.json"
+    "${TMP_HOME}/prowl/configs/mixtral/advanced_alpha0_beta1.25.json"
 )
 
 # Use 99% completion for all benchmarks

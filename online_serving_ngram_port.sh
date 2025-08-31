@@ -10,7 +10,7 @@ export PORT=${7:-8000}  # New port parameter, default to 8000
 
 export MODELNAME=$( basename ${MODEL} )
 export CONFIGNAME=$( basename ${CONFIG_FILE} )
-export STATS_DIR="${HOME}/stats/perf/spec_decode/ngram/${MODELNAME}/"
+export STATS_DIR="/var/tmp/jae/stats/perf/spec_decode/ngram/${MODELNAME}/"
 mkdir -p ${STATS_DIR}
 export INF_TOKS=$((K+1))
 export STAT_FILE="${STATFILENAME}_${CONFIGNAME}_port${PORT}.log"
@@ -44,7 +44,6 @@ then
     --max-num-seqs 16 \
     --tensor-parallel-size ${TP_SIZE} \
     --max-model-len 4096 \
-    --compilation-config '{"full_cuda_graph": true}' \
     --gpu-memory-utilization 0.8  \
     --mixtral_config_file ${CONFIG_FILE} \
     --trust-remote-code 2>&1 | tee ${STATS_DIR}/${STAT_FILE}

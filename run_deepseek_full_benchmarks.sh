@@ -3,17 +3,17 @@
 # DeepSeek Full Benchmarks - 99% completion
 # Runs on GPU 4 with TP=1 on port 8002
 
-MODEL_PATH="/scratch/vgupta345/models_dir/DeepSeek-V2-Lite-Chat"
+MODEL_PATH="deepseek-ai/DeepSeek-V2-Lite-Chat"
 MODEL_NAME="deepseek"
 PORT=8002
 TP_SIZE=1
-GPUS="4"
+GPUS="0"
 
 # Config files for DeepSeek
 configs=(
-    "/nethome/vgupta345/prowl/configs/deepseek/config_do_nothing.json"
-    "/nethome/vgupta345/prowl/configs/deepseek/deepseek_configs/config_alpha2_beta0.json"
-    "/nethome/vgupta345/prowl/configs/deepseek/deepseek_alpha1_betasweep/config_alpha1_beta0.5.json"
+    "${TMP_HOME}/prowl/configs/deepseek/config_do_nothing.json"
+    "${TMP_HOME}/prowl/configs/deepseek/deepseek_configs/config_alpha2_beta0.json"
+    "${TMP_HOME}/prowl/configs/deepseek/deepseek_alpha1_betasweep/config_alpha1_beta0.5.json"
 )
 
 # Use 99% completion for all benchmarks
