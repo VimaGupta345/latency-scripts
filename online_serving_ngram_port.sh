@@ -31,7 +31,7 @@ fi
 echo "Using TP_SIZE=${TP_SIZE} for model ${MODEL}"
 
 echo "Starting vLLM server on port ${PORT}"
-
+#--compilation-config '{"full_cuda_graph": true}' \
 # if value of K is 0, then don't use speculative model 
 if [ $K -eq 0 ]
 then
@@ -44,8 +44,8 @@ then
     --max-num-seqs 16 \
     --tensor-parallel-size ${TP_SIZE} \
     --max-model-len 4096 \
-    --enable-chunked-prefill=False \
-    --gpu-memory-utilization 0.8   \
+    --compilation-config '{"full_cuda_graph": true}' \
+    --gpu-memory-utilization 0.8  \
     --mixtral_config_file ${CONFIG_FILE} \
     --trust-remote-code 2>&1 | tee ${STATS_DIR}/${STAT_FILE}
     exit 0

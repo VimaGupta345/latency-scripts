@@ -12,8 +12,8 @@ GPUS="4"
 # Config files for DeepSeek
 configs=(
     "/nethome/vgupta345/prowl/configs/deepseek/config_do_nothing.json"
-    "/nethome/vgupta345/prowl/configs/deepseek/config_simple.json"
-    "/nethome/vgupta345/prowl/configs/deepseek/config_advanced.json"
+    "/nethome/vgupta345/prowl/configs/deepseek/deepseek_configs/config_alpha2_beta0.json"
+    "/nethome/vgupta345/prowl/configs/deepseek/deepseek_alpha1_betasweep/config_alpha1_beta0.5.json"
 )
 
 # Use 99% completion for all benchmarks
