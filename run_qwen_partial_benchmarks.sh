@@ -7,12 +7,12 @@ MODEL_PATH="Qwen/Qwen2-57B-A14B-Instruct"
 MODEL_NAME="qwen"
 PORT=8001
 TP_SIZE=2
-GPUS="2,3"
+GPUS="0,1"
 
 # Config files for Qwen
 configs=(
     "${TMP_HOME}/prowl/configs/qwen/qwen_do-nothing.json"
-    "${TMP_HOME}/prowl/configs/qwen/alpha0.5_beta1.25.json"
+    #"${TMP_HOME}/prowl/configs/qwen/alpha0.5_beta1.25.json"
     "${TMP_HOME}/prowl/configs/qwen/alpha0.5_beta2.json"
 )
 
@@ -21,7 +21,7 @@ LIMIT_PERCENT=0.99
 
 # List of benchmarks to run
 # Using default limits from lm_eval_online_serve.py
-benchmarks=("humaneval" "gsm8k" "mbpp" "minerva_math_algebra")
+benchmarks=("humaneval")
 
 echo "Starting Qwen full benchmark suite on GPUs ${GPUS}"
 echo "Using default limits from lm_eval_online_serve.py"
