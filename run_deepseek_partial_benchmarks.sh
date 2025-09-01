@@ -1,19 +1,19 @@
 #!/bin/bash
 
-# Qwen Full Benchmarks - 99% completion
-# Runs on GPUs 2,3 with TP=2 on port 8001
+# DeepSeek Full Benchmarks - 99% completion
+# Runs on GPU 4 with TP=1 on port 8002
 
-MODEL_PATH="Qwen/Qwen2-57B-A14B-Instruct"
-MODEL_NAME="qwen"
-PORT=8001
-TP_SIZE=2
-GPUS="2,3"
+MODEL_PATH="deepseek-ai/DeepSeek-V2-Lite-Chat"
+MODEL_NAME="deepseek"
+PORT=8002
+TP_SIZE=1
+GPUS="0"
 
-# Config files for Qwen
+# Config files for DeepSeek
 configs=(
-    "${TMP_HOME}/prowl/configs/qwen/qwen_do-nothing.json"
-    "${TMP_HOME}/prowl/configs/qwen/alpha0.5_beta1.25.json"
-    "${TMP_HOME}/prowl/configs/qwen/alpha0.5_beta2.json"
+    "${TMP_HOME}/prowl/configs/deepseek/config_do_nothing.json"
+    "${TMP_HOME}/prowl/configs/deepseek/deepseek_configs/config_alpha2_beta0.json"
+    "${TMP_HOME}/prowl/configs/deepseek/deepseek_alpha1_betasweep/config_alpha1_beta0.5.json"
 )
 
 # Use 99% completion for all benchmarks
@@ -23,7 +23,7 @@ LIMIT_PERCENT=0.99
 # Using default limits from lm_eval_online_serve.py
 benchmarks=("humaneval" "gsm8k" "mbpp" "minerva_math_algebra")
 
-echo "Starting Qwen full benchmark suite on GPUs ${GPUS}"
+echo "Starting DeepSeek full benchmark suite on GPU ${GPUS}"
 echo "Using default limits from lm_eval_online_serve.py"
 echo "========================================="
 
@@ -36,7 +36,7 @@ for config in "${configs[@]}"; do
         
         echo "Running $benchmark with $config_name"
         
-        # Note: run_mixtral_adv_configurable.sh is a generic runner that works for both Mixtral and Qwen
+        # Note: run_mixtral_adv_configurable.sh is a generic runner that works for all models
         # Pass empty string for limit to use defaults
         CUDA_VISIBLE_DEVICES=${GPUS} ./run_mixtral_adv_configurable.sh \
             ${PORT} \
@@ -53,4 +53,4 @@ for config in "${configs[@]}"; do
     echo "========================================="
 done
 
-echo "All Qwen benchmarks completed!"
+echo "All DeepSeek benchmarks completed!"
