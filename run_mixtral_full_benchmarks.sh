@@ -12,7 +12,7 @@ GPUS="0,1"
 # Config files for Mixtral
 configs=(
     "${TMP_HOME}/prowl/configs/mixtral/do_nothing.json"
-    "${TMP_HOME}/prowl/configs/mixtral/advanced_alpha0_beta0.7.json"
+    "${TMP_HOME}/prowl/configs/mixtral/advanced_alpha0_beta1.json"
     "${TMP_HOME}/prowl/configs/mixtral/advanced_alpha0_beta1.25.json"
 )
 
@@ -21,7 +21,7 @@ LIMIT_PERCENT=0.99
 
 # List of benchmarks to run
 # Using default limits from lm_eval_online_serve.py
-benchmarks=("humaneval" "gsm8k" "mbpp" "minerva_math_algebra")
+benchmarks=("humaneval" "mbpp" "minerva_math_algebra" "gsm8k")
 
 echo "Starting Mixtral full benchmark suite on GPUs ${GPUS}"
 echo "Using default limits from lm_eval_online_serve.py"
