@@ -44,6 +44,7 @@ then
     --max-num-seqs 16 \
     --tensor-parallel-size ${TP_SIZE} \
     --max-model-len 4096 \
+    --compilation-config '{"full_cuda_graph": true}' \
     --gpu-memory-utilization 0.8  \
     --mixtral_config_file ${CONFIG_FILE} \
     --trust-remote-code 2>&1 | tee ${STATS_DIR}/${STAT_FILE}

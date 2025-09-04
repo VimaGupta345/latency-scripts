@@ -18,7 +18,7 @@ def main():
               enable_chunked_prefill=False,
               max_model_len=max_model_len,
               tensor_parallel_size=tp_size,
-              mixtral_config_file="/var/tmp/jae/prowl/configs/qwen/qwen_do_nothing.json")
+              mixtral_config_file="/var/tmp/jae/prowl/configs/qwen/qwen_do-nothing.json")
 
     prompts = [f"{i}.once upon a time, there were {i} " for i in range(2*batch_size)]
 
