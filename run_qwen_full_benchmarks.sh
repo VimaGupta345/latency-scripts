@@ -11,9 +11,7 @@ GPUS="2,3"
 
 # Config files for Qwen
 configs=(
-    "${TMP_HOME}/prowl/configs/qwen/qwen_do-nothing.json"
-    "${TMP_HOME}/prowl/configs/qwen/alpha0.5_beta1.25.json"
-    "${TMP_HOME}/prowl/configs/qwen/alpha0.5_beta2.json"
+    "${TMP_HOME}/prowl/configs/qwen/quant_alpha2.json"
 )
 
 # Use 99% completion for all benchmarks
