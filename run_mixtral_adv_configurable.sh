@@ -17,7 +17,7 @@ MODEL_NAME=$2
 MODEL_PATH=$3
 BENCHMARK=$4
 LIMIT=$5
-CONFIG_FILE=${6:-"/nethome/vgupta345/prowl/configs/mixtral/do_nothing.json"}  # Optional config, default to do_nothing
+CONFIG_FILE=${6:-"/var/tmp/jae/prowl/configs/mixtral/do_nothing.json"}  # Optional config, default to do_nothing
 TP_SIZE=${7:-1}  # Optional TP size, default to 1
 
 SERVER_ADDRESS="localhost:${PORT}"
