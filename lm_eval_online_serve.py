@@ -147,7 +147,7 @@ def run_spec_decode_eval(
     stats_dir = os.path.expanduser(f"/var/tmp/jae/stats/quality/{benchmark}/{spec_decode}/{model_name}/")
     os.makedirs(stats_dir, exist_ok=True)
 
-    stat_file = f"{stat_filename}_n{limit}_conf_{conf_name}"
+    stat_file = f"{stat_filename}_nALL_conf_{conf_name}"
 
     if benchmark != "mt_bench":
         # 3. Build lm-eval command
@@ -165,7 +165,7 @@ def run_spec_decode_eval(
             f"lm-eval --model local-completions "
             f"--tasks {cfg['tasks']} "
             f"--model_args model={model},{model_args} "
-            f"--limit {limit} --log_samples {extra_args} {extra_args} "
+            f"--log_samples {extra_args} {extra_args} "
             f"--output_path {stats_dir}/{stat_file}.jsonl "
             f"2>&1 | tee {stats_dir}/{stat_file}.log"
         )
