@@ -7,11 +7,11 @@ MODEL_PATH="Qwen/Qwen2-57B-A14B-Instruct"
 MODEL_NAME="qwen"
 PORT=8001
 TP_SIZE=2
-GPUS="2,3"
+GPUS="0,1"
 
 # Config files for Qwen
 configs=(
-    "${TMP_HOME}/prowl/configs/qwen/quant_alpha2.json"
+    "/nethome/vgupta345/new-vllm/vllm/configs/qwen/quant_alpha1.json"
 )
 
 # Use 99% completion for all benchmarks

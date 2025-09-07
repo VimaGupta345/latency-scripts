@@ -10,7 +10,7 @@ export PORT=${7:-8000}  # New port parameter, default to 8000
 
 export MODELNAME=$( basename ${MODEL} )
 export CONFIGNAME=$( basename ${CONFIG_FILE} )
-export STATS_DIR="/var/tmp/jae/stats/perf/spec_decode/ngram/${MODELNAME}/"
+export STATS_DIR="/nethome/vgupta345/stats/perf/spec_decode/ngram/${MODELNAME}/"
 mkdir -p ${STATS_DIR}
 export INF_TOKS=$((K+1))
 export STAT_FILE="${STATFILENAME}_${CONFIGNAME}_port${PORT}.log"
