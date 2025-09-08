@@ -156,7 +156,7 @@ def run_spec_decode_eval(
             "add_bos_token=True,"
             "max_model_len=4096,"
             "max_length=4096,"
-            "num_concurrent=36,"
+            "num_concurrent=20,"
         )
 
         os.environ["HF_ALLOW_CODE_EVAL"] = "1"
@@ -167,6 +167,7 @@ def run_spec_decode_eval(
             f"--model_args model={model},{model_args} "
             f"--limit {limit} --log_samples {extra_args} {extra_args} "
             f"--output_path {stats_dir}/{stat_file}.jsonl "
+            f"--verbosity DEBUG "
             f"2>&1 | tee {stats_dir}/{stat_file}.log"
         )
         # subprocess.run(lm_eval_cmd, shell=True, check=True)
@@ -240,7 +241,7 @@ def run_spec_decode_eval(
             os.killpg(os.getpgid(process.pid), signal.SIGKILL)
 
     print(f"collecting metrics for {stat_file}")
-    time.sleep(3)
+    time.sleep(30)
     # 4. Grab metrics from server
     metrics_cmd = f"curl http://{server_address}/metrics > {stats_dir}/{stat_file}.metrics"
     subprocess.run(metrics_cmd, shell=True, check=True)
@@ -412,12 +413,12 @@ def main():
         # 3. Gracefully terminate vLLM if it was started
         # ---------------------------------------------------
         if bg_pid is not None:
-            time.sleep(3)
+            time.sleep(30)
             try:
                 bg_pgid = os.getpgid(bg_pid)
                 print(f"Killing process group {bg_pgid} with SIGINT...")
                 os.killpg(bg_pgid, signal.SIGINT)
-                time.sleep(3)
+                time.sleep(120)
                 os.killpg(bg_pgid, signal.SIGKILL)
             except ProcessLookupError:
                 pass
