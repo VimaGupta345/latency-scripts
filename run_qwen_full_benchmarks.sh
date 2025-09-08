@@ -11,7 +11,8 @@ GPUS="0,1"
 
 # Config files for Qwen
 configs=(
-    "/nethome/vgupta345/new-vllm/vllm/configs/qwen/quant_alpha1.json"
+    "${TMP_HOME}/prowl/configs/qwen/qwen_do-nothing.json"
+    "${TMP_HOME}/prowl/configs/qwen/quant_alpha1.json"
 )
 
 # Use 99% completion for all benchmarks
