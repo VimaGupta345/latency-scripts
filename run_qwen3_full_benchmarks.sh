@@ -3,16 +3,16 @@
 # Qwen Full Benchmarks - 99% completion
 # Runs on GPUs 2,3 with TP=2 on port 8001
 
-MODEL_PATH="Qwen/Qwen2-57B-A14B-Instruct"
-MODEL_NAME="qwen"
+MODEL_PATH="Qwen/Qwen3-235B-A22B-Instruct-2507"
+MODEL_NAME="qwen3"
 PORT=8009
-TP_SIZE=2
-GPUS="2,3"
+TP_SIZE=4
+GPUS="2,3,4,5"
 
 # Config files for Qwen
 configs=(
-    "${TMP_HOME}/prowl/configs/qwen/quant_alpha1.25_optimized.json"
-    "${TMP_HOME}/prowl/configs/qwen/qwen_do-nothing.json"
+    "${TMP_HOME}/prowl/configs/qwen3/quant_alpha1_beta1_optimized.json"
+    "${TMP_HOME}/prowl/configs/qwen3/qwen_do-nothing.json"
 )
 
 # Use 99% completion for all benchmarks
@@ -20,8 +20,7 @@ LIMIT_PERCENT=0.99
 
 # List of benchmarks to run
 # Using default limits from lm_eval_online_serve.py
-benchmarks=("humaneval" "gsm8k" "minerva_math_algebra")
-#("gsm8k" "mbpp" "minerva_math_algebra" "humaneval" "hotpotqa" "xsum")
+benchmarks=("humaneval" "minerva_math_algebra")
 
 echo "Starting Qwen full benchmark suite on GPUs ${GPUS}"
 echo "Using default limits from lm_eval_online_serve.py"

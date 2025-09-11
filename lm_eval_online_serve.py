@@ -18,7 +18,7 @@ bmk_defaults = {
         "extra_args": " --trust_remote_code --confirm_run_unsafe_code",
     },
     "gsm8k": {
-        "limit": 250,  # Reduced from full dataset to avoid problematic samples
+        "limit": 900,  # Reduced from full dataset to avoid problematic samples
         "k": 0,
         "maxexp": 8,
         "conf_thres": 1.0,
@@ -26,7 +26,7 @@ bmk_defaults = {
         "extra_args": "--num_fewshot 5",
     },
     "minerva_math_algebra": {
-        "limit": 500,
+        "limit": 900,
         "k": 0,
         "maxexp": 8,
         "conf_thres": 1.0,
@@ -58,12 +58,28 @@ bmk_defaults = {
         "extra_args": "",
     },
     "mbpp": {
-        "limit": 500,
+        "limit": 900,
         "k": 0,
         "maxexp": 8,
         "conf_thres": 1.0,
         "tasks": "mbpp",
         "extra_args": " --trust_remote_code --confirm_run_unsafe_code --num_fewshot 3",
+    },
+    "hotpotqa": {
+        "limit": 900,
+        "k": 0,
+        "maxexp": 8,
+        "conf_thres": 1.0,
+        "tasks": "hotpotqa",
+        "extra_args": "--num_fewshot 0",
+    },
+    "xsum": {
+        "limit": 900,
+        "k": 0,
+        "maxexp": 8,
+        "conf_thres": 1.0,
+        "tasks": "xsum",
+        "extra_args": "--num_fewshot 0",
     },
     # Add more benchmarks here if needed
 }
@@ -167,7 +183,6 @@ def run_spec_decode_eval(
             f"--model_args model={model},{model_args} "
             f"--limit {limit} --log_samples {extra_args} {extra_args} "
             f"--output_path {stats_dir}/{stat_file}.jsonl "
-            f"--verbosity DEBUG "
             f"2>&1 | tee {stats_dir}/{stat_file}.log"
         )
         # subprocess.run(lm_eval_cmd, shell=True, check=True)

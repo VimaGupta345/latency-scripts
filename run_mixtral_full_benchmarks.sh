@@ -5,15 +5,16 @@
 
 MODEL_PATH="mistralai/Mixtral-8x7B-Instruct-v0.1"
 MODEL_NAME="mixtral"
-PORT=8000
+PORT=8009
 TP_SIZE=2
-GPUS="0,1"
+GPUS="2,3"
 
 # Config files for Mixtral
 configs=(
+    "${TMP_HOME}/prowl/configs/mixtral/quant_sq_alpha0.5_beta1_optimized.json"
     "${TMP_HOME}/prowl/configs/mixtral/do_nothing.json"
-    "${TMP_HOME}/prowl/configs/mixtral/advanced_alpha0_beta0.7.json"
-    "${TMP_HOME}/prowl/configs/mixtral/advanced_alpha0_beta1.25.json"
+    # "${TMP_HOME}/prowl/configs/mixtral/advanced_alpha0_beta0.7.json"
+    # "${TMP_HOME}/prowl/configs/mixtral/advanced_alpha0_beta1.25.json"
 )
 
 # Use 99% completion for all benchmarks
@@ -21,7 +22,8 @@ LIMIT_PERCENT=0.99
 
 # List of benchmarks to run
 # Using default limits from lm_eval_online_serve.py
-benchmarks=("humaneval" "gsm8k" "mbpp" "minerva_math_algebra")
+benchmarks=("gsm8k" "minerva_math_algebra" "humaneval")
+# "hotpotqa" "xsum")
 
 echo "Starting Mixtral full benchmark suite on GPUs ${GPUS}"
 echo "Using default limits from lm_eval_online_serve.py"

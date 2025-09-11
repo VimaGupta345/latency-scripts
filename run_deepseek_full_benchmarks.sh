@@ -5,15 +5,15 @@
 
 MODEL_PATH="deepseek-ai/DeepSeek-V2-Lite-Chat"
 MODEL_NAME="deepseek"
-PORT=8002
+PORT=8007
 TP_SIZE=1
-GPUS="0"
+GPUS="4"
 
 # Config files for DeepSeek
 configs=(
-    "${TMP_HOME}/prowl/configs/deepseek/config_do_nothing.json"
-    "${TMP_HOME}/prowl/configs/deepseek/deepseek_configs/config_alpha2_beta0.json"
-    "${TMP_HOME}/prowl/configs/deepseek/deepseek_alpha1_betasweep/config_alpha1_beta0.5.json"
+#    "${TMP_HOME}/prowl/configs/deepseek/config_do_nothing.json"
+    "${TMP_HOME}/prowl/configs/deepseek/deepseek_configs/config_quant_alpha1_beta1_optimized.json"
+    # "${TMP_HOME}/prowl/configs/deepseek/deepseek_alpha1_betasweep/config_alpha1_beta0.5.json"
 )
 
 # Use 99% completion for all benchmarks
@@ -21,7 +21,7 @@ LIMIT_PERCENT=0.99
 
 # List of benchmarks to run
 # Using default limits from lm_eval_online_serve.py
-benchmarks=("humaneval" "gsm8k" "mbpp" "minerva_math_algebra")
+benchmarks=("gsm8k" "minerva_math_algebra" "humaneval")
 
 echo "Starting DeepSeek full benchmark suite on GPU ${GPUS}"
 echo "Using default limits from lm_eval_online_serve.py"
