@@ -74,6 +74,11 @@ def compute_metrics(file_path):
     decode_time = metrics.get("vllm:request_decode_time_seconds_sum", 1)
     prefill_time = metrics.get("vllm:request_prefill_time_seconds_sum", 1)
     total_time = metrics.get("vllm:e2e_request_latency_seconds_sum", 1)
+
+    tpot_seconds_sum = metrics.get("vllm:time_per_output_token_seconds_sum", 0)
+    total_output_tokens_sum = metrics.get("vllm:time_per_output_token_seconds_count", 1)
+
+    print(f"  TPOT: {tpot_seconds_sum/total_output_tokens_sum*1000:.2f} ms")
     
     gen_throughput = gen_tokens / decode_time if decode_time > 0 else 0
     prefill_throughput = prompt_tokens / prefill_time if prefill_time > 0 else 0
