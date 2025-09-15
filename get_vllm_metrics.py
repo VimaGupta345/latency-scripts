@@ -78,7 +78,8 @@ def compute_metrics(file_path):
     tpot_seconds_sum = metrics.get("vllm:time_per_output_token_seconds_sum", 0)
     total_output_tokens_sum = metrics.get("vllm:time_per_output_token_seconds_count", 1)
 
-    print(f"  TPOT: {tpot_seconds_sum/total_output_tokens_sum*1000:.2f} ms")
+    if tpot_seconds_sum > 0:
+        print(f"  TPOT: {1000*tpot_seconds_sum/total_output_tokens_sum:.2f} [ms]")
     
     gen_throughput = gen_tokens / decode_time if decode_time > 0 else 0
     prefill_throughput = prompt_tokens / prefill_time if prefill_time > 0 else 0
@@ -119,10 +120,13 @@ def compute_metrics(file_path):
     avg_prompt_tokens = prompt_tokens / total_requests if total_requests > 0 else 0
     avg_gen_tokens = gen_tokens / total_requests if total_requests > 0 else 0
     
-    print(f"  Total Prompt Tokens:     {int(prompt_tokens)}")
-    print(f"  Total Generated Tokens:  {int(gen_tokens)}")
-    print(f"  Avg Prompt Tokens/Req:   {avg_prompt_tokens:.1f}")
-    print(f"  Avg Generated Tokens/Req: {avg_gen_tokens:.1f}")
+    print(f"  Total Prompt Tokens:     {int(prompt_tokens)}", end=" ")
+    print(f"  Total Generated Tokens:  {int(gen_tokens)}", end=" ")
+    print(f"  Avg Prompt Tokens/Req:   {avg_prompt_tokens:.1f}", end=" ")
+    print(f"  Avg Generated Tokens/Req: {avg_gen_tokens:.1f}", end=" ")
+    if int(gen_tokens) > 0:
+        print(f"  Average Input/Output Ratio: {int(prompt_tokens)/int(gen_tokens):.1f}", end=" ")
+    print(f"  Total Requests: {int(total_requests)}")
     
     # 4. Latency Percentiles
     print("\n⏱️  LATENCY PERCENTILES:")

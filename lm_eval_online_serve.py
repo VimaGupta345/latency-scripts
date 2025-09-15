@@ -6,6 +6,7 @@ import signal
 import argparse
 import subprocess
 import threading
+from datetime import datetime
 
 # Default settings per benchmark
 bmk_defaults = {
@@ -18,7 +19,7 @@ bmk_defaults = {
         "extra_args": " --trust_remote_code --confirm_run_unsafe_code",
     },
     "gsm8k": {
-        "limit": 900,  # Reduced from full dataset to avoid problematic samples
+        "limit": 250,  # Reduced from full dataset to avoid problematic samples
         "k": 0,
         "maxexp": 8,
         "conf_thres": 1.0,
@@ -26,14 +27,14 @@ bmk_defaults = {
         "extra_args": "--num_fewshot 5",
     },
     "minerva_math_algebra": {
-        "limit": 900,
+        "limit": 250,
         "k": 0,
         "maxexp": 8,
         "conf_thres": 1.0,
         "tasks": "minerva_math_algebra",
         "extra_args": "--num_fewshot 4",
     },
-    "truthfulqa_gen": {
+    "truthfulqa": {
         "limit": 500,
         "k": 0,
         "maxexp": 8,
@@ -49,6 +50,14 @@ bmk_defaults = {
         "tasks": "truthfulqa_mc2",
         "extra_args": "--num_fewshot 0",
     },
+    "triviaqa": {
+        "limit": 500,
+        "k": 0,
+        "maxexp": 8,
+        "conf_thres": 1.0,
+        "tasks": "longbench_triviaqa",
+        "extra_args": "--num_fewshot 0 --trust_remote_code --confirm_run_unsafe_code",
+    },
     "mt_bench": {
         "limit": 1,
         "k": 0,
@@ -58,7 +67,7 @@ bmk_defaults = {
         "extra_args": "",
     },
     "mbpp": {
-        "limit": 900,
+        "limit": 250,
         "k": 0,
         "maxexp": 8,
         "conf_thres": 1.0,
@@ -66,19 +75,59 @@ bmk_defaults = {
         "extra_args": " --trust_remote_code --confirm_run_unsafe_code --num_fewshot 3",
     },
     "hotpotqa": {
-        "limit": 900,
+        "limit": 500,
         "k": 0,
         "maxexp": 8,
         "conf_thres": 1.0,
-        "tasks": "hotpotqa",
-        "extra_args": "--num_fewshot 0",
+        "tasks": "longbench_hotpotqa",
+        "extra_args": "--num_fewshot 0 --trust_remote_code --confirm_run_unsafe_code",
     },
     "xsum": {
-        "limit": 900,
+        "limit": 250,
         "k": 0,
         "maxexp": 8,
         "conf_thres": 1.0,
         "tasks": "xsum",
+        "extra_args": "--num_fewshot 0",
+    },
+    "cnn_dailymail": {
+        "limit": 250,
+        "k": 0,
+        "maxexp": 8,
+        "conf_thres": 1.0,
+        "tasks": "cnn_dailymail",
+        "extra_args": "--num_fewshot 0",
+    },
+    "coqa": {
+        "limit": 250,
+        "k": 0,
+        "maxexp": 8,
+        "conf_thres": 1.0,
+        "tasks": "coqa",
+        "extra_args": "--num_fewshot 0",
+    },
+    "longbench_narrativeqa": {
+        "limit": 250,
+        "k": 0,
+        "maxexp": 8,
+        "conf_thres": 1.0,
+        "tasks": "longbench_narrativeqa",
+        "extra_args": "--num_fewshot 0",
+    },
+    "squad_completion": {
+        "limit": 250,
+        "k": 0,
+        "maxexp": 8,
+        "conf_thres": 1.0,
+        "tasks": "squad_completion",
+        "extra_args": "--num_fewshot 0",
+    },
+    "squadv2": {
+        "limit": 250,
+        "k": 0,
+        "maxexp": 8,
+        "conf_thres": 1.0,
+        "tasks": "squadv2",
         "extra_args": "--num_fewshot 0",
     },
     # Add more benchmarks here if needed
@@ -258,7 +307,8 @@ def run_spec_decode_eval(
     print(f"collecting metrics for {stat_file}")
     time.sleep(30)
     # 4. Grab metrics from server
-    metrics_cmd = f"curl http://{server_address}/metrics > {stats_dir}/{stat_file}.metrics"
+    timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
+    metrics_cmd = f"curl http://{server_address}/metrics > {stats_dir}/{stat_file}_{timestamp}.metrics"
     subprocess.run(metrics_cmd, shell=True, check=True)
 
 def run_benchmark_for_duration(args, model, stat_filename, 
@@ -361,6 +411,8 @@ def main():
     parser.add_argument("-sa", "--server_address", 
                         default="localhost:8000",
                         help="Server address in format host:port (default: localhost:8000)")
+    parser.add_argument("-mb", "--max_batch_size", type=int, default=16,
+                        help="Max batch size for vLLM.")
     args = parser.parse_args()
 
     # If user didn't provide a --serving_script, build one dynamically
@@ -378,6 +430,8 @@ def main():
         else:
             bmkname = f"{args.benchmark[0]}_n{args.limit or 'def'}"  # might use the limit or 'def'
         vllm_statfilename = f"{bmkname}_{args.stat_filename}"
+        if args.max_batch_size != 16:
+            vllm_statfilename = f"{vllm_statfilename}_batch{args.max_batch_size}"
         print(f"vLLM statfile {vllm_statfilename}...")
         if args.spec_decode != "ngram" and args.draft_model is None:
             raise ValueError("Draft model path is required for non-ngram spec_decode variants.")
@@ -392,6 +446,7 @@ def main():
             f"{args.conf_thres if args.conf_thres is not None else 1.0} "
             f"{args.config_file} "
             f"{port} "
+            f"{args.max_batch_size} "
             f"> /dev/null 2>&1'"
         )
         print(f"serving_cmd: {serving_cmd}")
@@ -406,7 +461,7 @@ def main():
         if len(args.benchmark) == 1:
             run_spec_decode_eval(
                 model=args.model,
-                stat_filename=args.stat_filename,
+                stat_filename=args.stat_filename + (f"_batch{args.max_batch_size}" if args.max_batch_size != 16 else ""),
                 spec_decode=args.spec_decode,
                 benchmark=args.benchmark[0],
                 limit=args.limit,

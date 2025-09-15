@@ -19,6 +19,7 @@ BENCHMARK=$4
 LIMIT=$5
 CONFIG_FILE=${6:-"/var/tmp/jae/prowl/configs/mixtral/do_nothing.json"}  # Optional config, default to do_nothing
 TP_SIZE=${7:-1}  # Optional TP size, default to 1
+MAX_BATCH_SIZE=${8:-16}
 
 SERVER_ADDRESS="localhost:${PORT}"
 
@@ -48,7 +49,7 @@ if [ -n "${LIMIT}" ]; then
 fi
 
 # Add remaining flags
-CMD="${CMD} -k 0 -t 100 -cf \"${CONFIG_FILE}\" -sa \"${SERVER_ADDRESS}\" -s \"./online_serving_ngram_port.sh\""
+CMD="${CMD} -k 0 -t 150 -cf \"${CONFIG_FILE}\" -sa \"${SERVER_ADDRESS}\" -mb ${MAX_BATCH_SIZE} -s \"./online_serving_ngram_port.sh\""
 
 # Execute the command
 eval ${CMD}

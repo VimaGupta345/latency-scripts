@@ -7,6 +7,7 @@ export MAXEXP=${4:-8}
 export CONF_THRES=${5:-1.0}
 export CONFIG_FILE=${6}
 export PORT=${7:-8000}  # New port parameter, default to 8000
+export MAX_BATCH_SIZE=${8:-16}
 
 export MODELNAME=$( basename ${MODEL} )
 export CONFIGNAME=$( basename ${CONFIG_FILE} )
@@ -41,7 +42,7 @@ then
     python -m vllm.entrypoints.openai.api_server --model ${MODEL} \
     --host localhost \
     --port ${PORT} \
-    --max-num-seqs 16 \
+    --max-num-seqs ${MAX_BATCH_SIZE} \
     --tensor-parallel-size ${TP_SIZE} \
     --max-model-len 4096 \
     --compilation-config '{"full_cuda_graph": true}' \
