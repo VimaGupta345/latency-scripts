@@ -1,196 +1,233 @@
 #!/usr/bin/env python3
 """
-metrics_to_csv.py
+Parse metrics scan output into a CSV.
 
-Parses blocks like either:
+Usage:
+  # Read from stdin, write to stdout
+  cat metrics_dump.txt | python metrics_to_csv.py
 
-==> <path>.metrics
-modified: <timestamp>
-  Total Prompt Tokens: ... Total Generated Tokens: ... Avg Prompt Tokens/Req: ... Avg Generated Tokens/Req: ... Average Input/Output Ratio: ... Total Requests: ...
-
-or:
-
-==> <path>.metrics
-modified: <timestamp>
-  TPOT: 14.97 [ms]
-
-…and emits a CSV with unioned columns.
-
-Usage examples:
-  # Full token metrics (e.g., humaneval)
-  your_command | python metrics_to_csv.py > out.csv
-
-  # TPOT-only metrics (e.g., gsm8k)
-  your_other_command | python metrics_to_csv.py > out.csv
-
-  # From a file:
-  python metrics_to_csv.py -i sample.txt -o out.csv
+  # Read from a file, write to a CSV file
+  python metrics_to_csv.py metrics_dump.txt -o runs.csv
 """
 
-import re
-import os
 import sys
+import os
+import re
 import csv
 import argparse
-from typing import Optional, Dict, Any
+from datetime import datetime
 
-METRICS_RE = re.compile(
-    r"Total Prompt Tokens:\s*(?P<tpt>\d+)\s+"
-    r"Total Generated Tokens:\s*(?P<tgt>\d+)\s+"
-    r"Avg Prompt Tokens/Req:\s*(?P<aptr>[\d.]+)\s+"
-    r"Avg Generated Tokens/Req:\s*(?P<agtr>[\d.]+)\s+"
-    r"Average Input/Output Ratio:\s*(?P<ratio>[\d.]+)\s+"
-    r"Total Requests:\s*(?P<trq>\d+)"
-)
+# --- Regexes for pieces we care about ---
+RE_PATH_LINE = re.compile(r"^==>\s*(.+)$")
+RE_MODIFIED  = re.compile(r"^modified:\s*(.+)$")
+RE_TPOT      = re.compile(r"TPOT:\s*([0-9.]+)\s*\[ms\]", re.IGNORECASE)
 
-TPOT_RE = re.compile(r"\bTPOT:\s*(?P<tpot>[\d.]+)\s*\[ms\]", re.IGNORECASE)
+# Things pulled from filename stem
+RE_N         = re.compile(r"_n(?P<n>\d+)")
+RE_PORT      = re.compile(r"_port(?P<port>\d+)")
+RE_CONF      = re.compile(r"_conf_(?P<conf>[^_]+)")
+RE_ALPHA     = re.compile(r"_alpha(?P<alpha>[0-9.]+)")
+RE_BETA      = re.compile(r"_beta(?P<beta>[0-9.]+)")
+RE_OPTIMIZED = re.compile(r"_optimized(?=_|$)")
+RE_QUANT     = re.compile(r"_quant(?=_|$)")
+RE_RUNID     = re.compile(r"_(?P<runid>\d{8}-\d{6})$")
 
-# Optional fields we try to extract from the file path/name
-DATE_TIME_IN_NAME_RE = re.compile(r"_(?P<date>\d{8})-(?P<time>\d{6})\.metrics$")
-PORT_RE  = re.compile(r"port(?P<port>\d+)")
-BATCH_RE = re.compile(r"batch(?P<batch>\d+)")
-N_RE     = re.compile(r"\bn(?P<n>\d+)\b")
-ALPHA_RE = re.compile(r"alpha(?P<alpha>\d+)")
-BETA_RE  = re.compile(r"beta(?P<beta>\d+)")
-CONF_RE  = re.compile(r"\bconf_(?P<conf>[^_]+)\b")
-OPTIMIZED_RE = re.compile(r"\boptimized\b")
+def parse_runid_iso(runid: str) -> str:
+    """Convert run id like 20250915-031642 to ISO 'YYYY-MM-DD HH:MM:SS'."""
+    try:
+        dt = datetime.strptime(runid, "%Y%m%d-%H%M%S")
+        return dt.strftime("%Y-%m-%d %H:%M:%S")
+    except Exception:
+        return ""
 
-def parse_from_path(full_path: str) -> Dict[str, Any]:
-    """Best-effort extraction of useful bits from the path."""
-    out: Dict[str, Any] = {}
-    norm = os.path.normpath(full_path)
+def parse_block(block_lines):
+    """
+    Parse one block of lines (path, modified, optional TPOT).
+    Returns a dict of fields.
+    """
+    rec = {}
+    path = None
+    modified = None
+    tpot = None
+
+    for ln in block_lines:
+        ln = ln.rstrip("\n")
+        m = RE_PATH_LINE.match(ln)
+        if m:
+            path = m.group(1).strip()
+            continue
+        m = RE_MODIFIED.match(ln)
+        if m:
+            modified = m.group(1).strip()
+            continue
+        m = RE_TPOT.search(ln)
+        if m:
+            tpot = m.group(1).strip()
+            continue
+
+    if not path:
+        return None  # not a valid block
+
+    rec["file_path"] = path
+    rec["modified_time"] = modified or ""
+    rec["tpot_ms"] = tpot or ""
+
+    # Break the path up
+    norm = os.path.normpath(path)
     parts = norm.split(os.sep)
 
-    # Expect .../quality/<dataset>/<eval>/<model>/<filename>
+    # Try to infer dataset, eval_type (e.g., ngram), model_name from path structure:
+    # ../stats/quality/<dataset>/<eval_type>/<ModelName>/<filename>.metrics
     try:
-        q_idx = parts.index('quality')
-        out['dataset'] = parts[q_idx + 1] if len(parts) > q_idx + 1 else ''
-        out['eval_kind'] = parts[q_idx + 2] if len(parts) > q_idx + 2 else ''
-        out['model'] = parts[q_idx + 3] if len(parts) > q_idx + 3 else ''
+        q_idx = parts.index("quality")
+        rec["dataset"]   = parts[q_idx + 1] if len(parts) > q_idx + 1 else ""
+        rec["eval_type"] = parts[q_idx + 2] if len(parts) > q_idx + 2 else ""
+        rec["model_name"] = parts[q_idx + 3] if len(parts) > q_idx + 3 else ""
     except ValueError:
-        out['dataset'] = ''
-        out['eval_kind'] = ''
-        out['model'] = ''
+        # 'quality' not found; fall back to best-effort
+        rec["dataset"] = rec.get("dataset","")
+        rec["eval_type"] = rec.get("eval_type","")
+        rec["model_name"] = rec.get("model_name","")
 
-    base = os.path.basename(full_path)
-    base_no_ext = base.rsplit('.metrics', 1)[0]
+    filename = parts[-1] if parts else ""
+    rec["file_name"] = filename
+    stem = filename[:-8] if filename.endswith(".metrics") else os.path.splitext(filename)[0]
+    rec["file_stem"] = stem
 
-    # Default batch to 16 unless overridden by filename
-    out['batch'] = '16'
+    # Pull standard tokens from the stem
+    # n (examples)
+    m = RE_N.search(stem)
+    rec["n_examples"] = m.group("n") if m else ""
 
-    # Run/date embedded in filename
-    m = DATE_TIME_IN_NAME_RE.search(base)
-    if m:
-        out['run_date'] = m.group('date')   # e.g., 20250914
-        out['run_time'] = m.group('time')   # e.g., 161708
+    # port
+    m = RE_PORT.search(stem)
+    rec["port"] = m.group("port") if m else ""
+
+    # config name (the token immediately after 'conf_')
+    m = RE_CONF.search(stem)
+    rec["config_name"] = m.group("conf") if m else ""
+
+    # alpha, beta
+    m = RE_ALPHA.search(stem)
+    rec["alpha"] = m.group("alpha") if m else ""
+    m = RE_BETA.search(stem)
+    rec["beta"] = m.group("beta") if m else ""
+
+    # quant/optimized flags
+    rec["quant_flag"] = "true" if RE_QUANT.search(stem) else "false"
+    rec["optimized_flag"] = "true" if RE_OPTIMIZED.search(stem) else "false"
+
+    # Run-id timestamp embedded at the end of the stem
+    m = RE_RUNID.search(stem)
+    runid = m.group("runid") if m else ""
+    rec["run_id_ts"] = runid
+    rec["run_id_iso"] = parse_runid_iso(runid) if runid else ""
+
+    # Try to parse early tokens for exec mode / precision (e.g., adv_fp16_*)
+    # This is best-effort and won't break if absent.
+    # e.g., 'adv_fp16_deepseek_squadv2_port...'
+    tokens = stem.split("_")
+    if len(tokens) >= 2:
+        rec["exec_mode"] = tokens[0]
+        # precision is often like fp16/fp8/etc
+        rec["precision"] = tokens[1] if tokens[1].startswith("fp") else ""
     else:
-        out['run_date'] = ''
-        out['run_time'] = ''
+        rec["exec_mode"] = ""
+        rec["precision"] = ""
 
-    # Misc fields (optional)
-    def grab(rx, key):
-        mm = rx.search(base_no_ext)
-        if mm:
-            out[key] = mm.group(key)
-    grab(PORT_RE, 'port')
-    grab(BATCH_RE, 'batch')   # overrides default if present
-    grab(N_RE, 'n')
-    grab(ALPHA_RE, 'alpha')
-    grab(BETA_RE, 'beta')
+    return rec
 
-    mconf = CONF_RE.search(base_no_ext)
-    out['conf'] = mconf.group('conf') if mconf else ''
+def parse_stream(text: str):
+    """
+    Split the input into logical blocks. A block begins with a line that starts with '==>'
+    and continues until a blank line or the start of the next block.
+    """
+    records = []
+    cur = []
 
-    out['optimized'] = 'yes' if OPTIMIZED_RE.search(base_no_ext) else 'no'
-    out['file_name'] = base
-    return out
+    lines = text.splitlines()
+    for i, ln in enumerate(lines):
+        if RE_PATH_LINE.match(ln):
+            # flush previous block
+            if cur:
+                rec = parse_block(cur)
+                if rec:
+                    records.append(rec)
+                cur = []
+            cur.append(ln)
+        else:
+            # add to current until blank line signifies end
+            cur.append(ln)
+            if ln.strip() == "":
+                rec = parse_block(cur)
+                if rec:
+                    records.append(rec)
+                cur = []
+
+    # flush last
+    if cur:
+        rec = parse_block(cur)
+        if rec:
+            records.append(rec)
+
+    return records
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('-i', '--input', help='Input text file (defaults to stdin)')
-    ap.add_argument('-o', '--output', help='Output CSV file (defaults to stdout)')
+    ap.add_argument("input", nargs="?", help="Input file (defaults to stdin)")
+    ap.add_argument("-o", "--output", help="Output CSV file (defaults to stdout)")
     args = ap.parse_args()
 
-    if args.input:
-        fin = open(args.input, 'r', encoding='utf-8')
+    # Read input
+    if args.input and args.input != "-":
+        with open(args.input, "r", encoding="utf-8") as f:
+            text = f.read()
     else:
-        fin = sys.stdin
+        text = sys.stdin.read()
 
-    rows = []
-    current: Optional[Dict[str, Any]] = None
+    records = parse_stream(text)
 
-    def flush_current():
-        if current is None:
-            return
-        # Write only if we captured any metrics line
-        if ('total_prompt_tokens' in current) or ('tpot_ms' in current):
-            rows.append(current.copy())
+    if not records:
+        # Still write headers so the pipeline doesn't break
+        records = [dict()]
 
-    for raw in fin:
-        line = raw.rstrip('\n')
-
-        if line.startswith('==> '):
-            # New block
-            flush_current()
-            path = line[4:].strip()
-            current = {'path': path}
-            current.update(parse_from_path(path))
-
-        elif line.startswith('modified: '):
-            if current is not None:
-                current['modified'] = line.split('modified:', 1)[1].strip()
-
-        elif 'Total Prompt Tokens:' in line:
-            m = METRICS_RE.search(line)
-            if m and current is not None:
-                current['total_prompt_tokens'] = int(m.group('tpt'))
-                current['total_generated_tokens'] = int(m.group('tgt'))
-                current['avg_prompt_tokens_per_req'] = float(m.group('aptr'))
-                current['avg_generated_tokens_per_req'] = float(m.group('agtr'))
-                current['avg_io_ratio'] = float(m.group('ratio'))
-                current['total_requests'] = int(m.group('trq'))
-
-        elif 'TPOT:' in line:
-            m = TPOT_RE.search(line)
-            if m and current is not None:
-                current['tpot_ms'] = float(m.group('tpot'))
-
-        else:
-            # ignore separators like "--" and blank lines
-            pass
-
-    # Final one
-    flush_current()
-
-    # Column order (union of all known fields)
-    fieldnames = [
-        'dataset', 'eval_kind', 'model',
-        'port', 'batch', 'n', 'alpha', 'beta', 'conf', 'optimized',
-        'run_date', 'run_time',
-        'modified',
-        'tpot_ms',  # present for TPOT runs
-        'total_prompt_tokens', 'total_generated_tokens',
-        'avg_prompt_tokens_per_req', 'avg_generated_tokens_per_req',
-        'avg_io_ratio', 'total_requests',
-        'file_name', 'path'
+    # Priority columns first
+    priority = [
+        "model_name",
+        "n_examples",
+        "config_name",
+        "alpha",
+        "beta",
+        "tpot_ms",
+        "modified_time",
     ]
 
-    # Write CSV
+    # Gather all keys seen
+    all_keys = set()
+    for r in records:
+        all_keys.update(r.keys())
+
+    # Remove priority ones, then append the rest in a stable order
+    rest = [k for k in sorted(all_keys) if k not in priority]
+
+    fieldnames = priority + rest
+
+    # Output
     if args.output:
-        fout = open(args.output, 'w', newline='', encoding='utf-8')
+        outfh = open(args.output, "w", newline="", encoding="utf-8")
+        close_out = True
     else:
-        fout = sys.stdout
+        outfh = sys.stdout
+        close_out = False
 
-    writer = csv.DictWriter(fout, fieldnames=fieldnames)
+    writer = csv.DictWriter(outfh, fieldnames=fieldnames)
     writer.writeheader()
-    for r in rows:
-        writer.writerow({k: r.get(k, '') for k in fieldnames})
+    for r in records:
+        writer.writerow(r)
 
-    if args.input:
-        fin.close()
-    if args.output and fout is not sys.stdout:
-        fout.close()
+    if close_out:
+        outfh.close()
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
 
