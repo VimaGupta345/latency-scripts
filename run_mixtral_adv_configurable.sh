@@ -17,7 +17,7 @@ MODEL_NAME=$2
 MODEL_PATH=$3
 BENCHMARK=$4
 LIMIT=$5
-CONFIG_FILE=${6:-"/var/tmp/jae/prowl/configs/mixtral/do_nothing.json"}  # Optional config, default to do_nothing
+CONFIG_FILE=${6:-"${TMP_HOME}/prowl/configs/mixtral/do_nothing.json"}  # Optional config, default to do_nothing
 TP_SIZE=${7:-1}  # Optional TP size, default to 1
 MAX_BATCH_SIZE=${8:-16}
 
@@ -41,7 +41,7 @@ export TP_SIZE="${TP_SIZE}"
 
 # Run the single benchmark with specified limit and config
 # Build command with optional limit flag
-CMD="python lm_eval_online_serve.py -m \"${MODEL}\" -o \"${STATFILENAME}\" -b \"${BENCHMARK}\""
+CMD="TMP_HOME=${TMP_HOME} python lm_eval_online_serve.py -m \"${MODEL}\" -o \"${STATFILENAME}\" -b \"${BENCHMARK}\""
 
 # Add limit flag only if LIMIT is not empty
 if [ -n "${LIMIT}" ]; then

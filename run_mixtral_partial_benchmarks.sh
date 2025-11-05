@@ -21,7 +21,7 @@ LIMIT_PERCENT=0.99
 
 # List of benchmarks to run
 # Using default limits from lm_eval_online_serve.py
-benchmarks=("humaneval" "gsm8k" "mbpp" "minerva_math_algebra")
+benchmarks=("gsm8k")
 
 echo "Starting Mixtral full benchmark suite on GPUs ${GPUS}"
 echo "Using default limits from lm_eval_online_serve.py"
@@ -37,7 +37,7 @@ for config in "${configs[@]}"; do
         echo "Running $benchmark with $config_name"
         
         # Pass empty string for limit to use defaults
-        CUDA_VISIBLE_DEVICES=${GPUS} ./run_mixtral_adv_configurable.sh \
+        TMP_HOME=${TMP_HOME} CUDA_VISIBLE_DEVICES=${GPUS} ./run_mixtral_adv_configurable.sh \
             ${PORT} \
             ${MODEL_NAME} \
             ${MODEL_PATH} \
