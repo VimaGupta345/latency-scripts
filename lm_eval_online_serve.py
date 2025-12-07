@@ -6,6 +6,8 @@ import signal
 import argparse
 import subprocess
 import threading
+import urllib.request
+import urllib.error
 from datetime import datetime
 
 # Default settings per benchmark
@@ -404,6 +406,8 @@ def main():
                         help="Script that launches the vLLM server (default is 'online_serving_<spec_decode>.sh').")
     parser.add_argument("-t", "--sleep_time", type=int, default=30,
                         help="Seconds to wait for vLLM to start before running the benchmark.")
+    parser.add_argument("--startup-timeout", type=int, default=600,
+                        help="Additional seconds to wait (via health checks) for vLLM to become ready.")
     parser.add_argument("-mt", "--mt_bmk", default=None, help="Select bmk for MT-Bench.")
     parser.add_argument("-cf", "--config_file", 
                         default=f"/var/tmp/jae/prowl/configs/qwen/qwen_do-nothing.json", 
@@ -453,7 +457,25 @@ def main():
         processA = subprocess.Popen(serving_cmd, shell=True, start_new_session=True)
         bg_pid = processA.pid
 
-        time.sleep(args.sleep_time)
+        if args.sleep_time > 0:
+            time.sleep(args.sleep_time)
+
+        def wait_for_server_ready(address: str, timeout: int = 600, interval: int = 5):
+            """Poll the /health endpoint until it responds or timeout expires."""
+            deadline = time.time() + timeout
+            health_url = f"http://{address}/health"
+            while time.time() < deadline and not terminate_flag.is_set():
+                try:
+                    with urllib.request.urlopen(health_url, timeout=10) as resp:
+                        if resp.status == 200:
+                            print(f"vLLM server at {address} is healthy.")
+                            return
+                except urllib.error.URLError as exc:
+                    print(f"Waiting for vLLM server at {address} to become ready: {exc}")
+                time.sleep(interval)
+            raise TimeoutError(f"Timed out waiting for vLLM server at {address} to become ready.")
+
+        wait_for_server_ready(args.server_address, timeout=args.startup_timeout)
 
         # ---------------------------------------------------
         # 2. Run the Python benchmark in the foreground

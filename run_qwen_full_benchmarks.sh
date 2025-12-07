@@ -11,7 +11,7 @@ GPUS="0, 1"
 
 # Config files for Qwen
 configs=(
-    "${TMP_HOME}/prowl/configs/qwen/quant_alpha1.5_optimized.json"
+    "${TMP_HOME}/prowl/configs/qwen/quant_alpha1_optimized.json"
     "${TMP_HOME}/prowl/configs/qwen/qwen_do-nothing.json"
 )
 
