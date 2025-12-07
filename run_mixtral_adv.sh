@@ -9,8 +9,8 @@ benchmarks=("humaneval" "gsm8k" "mbpp" "minerva_math_algebra")
 
 # List of config files
 config_files=(
-    "/nethome/vgupta345/prowl/configs/mixtral/do_nothing.json"
-    "/nethome/vgupta345/prowl/configs/mixtral/advanced_alpha0_beta1.25.json"
+    "/var/tmp/jae/prowl/configs/mixtral/do_nothing.json"
+    "/var/tmp/jae/prowl/configs/mixtral/advanced_alpha0_beta1.25.json"
 )
 
 for cf in "${config_files[@]}"; do
@@ -29,7 +29,7 @@ done
 
 # # List of config files
 # config_files=(
-#     "/nethome/vgupta345/prowl/configs/mixtral/do_nothing.json"
+#     "/var/tmp/jae/prowl/configs/mixtral/do_nothing.json"
 # )
 
 # for cf in "${config_files[@]}"; do

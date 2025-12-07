@@ -18,7 +18,7 @@ BENCHMARK="gsm8k"
 LIMIT=250  # Only 100 examples for debugging
 
 # Using beta 0.7 configuration
-CONFIG_FILE="/nethome/vgupta345/prowl/configs/mixtral/advanced_alpha0_beta0.7.json"
+CONFIG_FILE="/var/tmp/jae/prowl/configs/mixtral/advanced_alpha0_beta0.7.json"
 
 # Extract config name for logging
 CONFIG_NAME=$(basename "$CONFIG_FILE" .json)
@@ -27,8 +27,8 @@ CONFIG_NAME=$(basename "$CONFIG_FILE" .json)
 ACTUAL_STATFILENAME="adv_fp16_${MODEL_NAME}_${BENCHMARK}_port${PORT}"
 
 # Absolute paths for logs and metrics
-LOG_DIR="/nethome/vgupta345/stats/perf/spec_decode/ngram/Mixtral-8x7B-Instruct-v0.1"
-METRICS_DIR="/nethome/vgupta345/stats/quality/${BENCHMARK}/ngram/Mixtral-8x7B-Instruct-v0.1"
+LOG_DIR="/var/tmp/jae/latency-scripts/stats/perf/spec_decode/ngram/Mixtral-8x7B-Instruct-v0.1"
+METRICS_DIR="/var/tmp/jae/latency-scripts/stats/quality/${BENCHMARK}/ngram/Mixtral-8x7B-Instruct-v0.1"
 
 # The actual log file names that will be created
 PERF_LOG_FILE="${LOG_DIR}/${BENCHMARK}_n${LIMIT}_${ACTUAL_STATFILENAME}_${CONFIG_NAME}.json_port${PORT}.log"
