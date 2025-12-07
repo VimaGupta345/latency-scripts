@@ -8,6 +8,7 @@ export CONF_THRES=${5:-1.0}
 export CONFIG_FILE=${6}
 export PORT=${7:-8000}  # New port parameter, default to 8000
 export MAX_BATCH_SIZE=${8:-16}
+export ENABLE_EXPERT_PARALLEL=${9:-false}
 
 export MODELNAME=$( basename ${MODEL} )
 export CONFIGNAME=$( basename ${CONFIG_FILE} )
@@ -32,6 +33,13 @@ fi
 echo "Using TP_SIZE=${TP_SIZE} for model ${MODEL}"
 
 echo "Starting vLLM server on port ${PORT}"
+if [ "${ENABLE_EXPERT_PARALLEL}" = "true" ]; then
+    echo "Expert parallelism ENABLED"
+    EP_FLAGS="--enable-expert-parallel"
+else
+    echo "Expert parallelism DISABLED"
+    EP_FLAGS=""
+fi
 #--compilation-config '{"full_cuda_graph": true}' \
 # if value of K is 0, then don't use speculative model 
 if [ $K -eq 0 ]
@@ -48,7 +56,9 @@ then
     --compilation-config '{"full_cuda_graph": true}' \
     --gpu-memory-utilization 0.9  \
     --mixtral_config_file ${CONFIG_FILE} \
-    --trust-remote-code 2>&1 | tee ${STATS_DIR}/${STAT_FILE}
+    --trust-remote-code \
+    ${EP_FLAGS} \
+    2>&1 | tee ${STATS_DIR}/${STAT_FILE}
     exit 0
 else
     echo "speculative ngram run"
@@ -81,5 +91,7 @@ else
     --gpu-memory-utilization 0.99 --enforce-eager \
     --speculative-model [ngram] --speculative-draft-tensor-parallel-size 1 \
     --num-speculative-tokens ${K} --ngram-prompt-lookup-max $((K*2)) \
-    --trust-remote-code 2>&1 | tee ${STATS_DIR}/${STAT_FILE}
+    --trust-remote-code \
+    ${EP_FLAGS} \
+    2>&1 | tee ${STATS_DIR}/${STAT_FILE}
 fi

@@ -417,6 +417,8 @@ def main():
                         help="Server address in format host:port (default: localhost:8000)")
     parser.add_argument("-mb", "--max_batch_size", type=int, default=16,
                         help="Max batch size for vLLM.")
+    parser.add_argument("--enable-expert-parallel", action="store_true",
+                        help="Enable vLLM expert parallel mode when launching the server.")
     args = parser.parse_args()
 
     # If user didn't provide a --serving_script, build one dynamically
@@ -443,6 +445,7 @@ def main():
         print(f"config_file: {args.config_file}")
         # Extract port from server_address (e.g., "localhost:8000" -> "8000")
         port = args.server_address.split(':')[-1] if ':' in args.server_address else '8000'
+        ep_token = "true" if args.enable_expert_parallel else "false"
         serving_cmd = (
             f"bash -c '{args.serving_script} {args.model} {vllm_statfilename} "
             f"{args.k if args.k is not None else 0} "
@@ -451,6 +454,7 @@ def main():
             f"{args.config_file} "
             f"{port} "
             f"{args.max_batch_size} "
+            f"{ep_token} "
             f"> /dev/null 2>&1'"
         )
         print(f"serving_cmd: {serving_cmd}")

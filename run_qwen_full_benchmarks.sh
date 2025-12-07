@@ -8,6 +8,7 @@ MODEL_NAME="qwen"
 PORT=8009
 TP_SIZE=2
 GPUS="0, 1"
+ENABLE_EXPERT_PARALLEL=${ENABLE_EXPERT_PARALLEL:-false}
 
 # Config files for Qwen
 configs=(
@@ -25,6 +26,7 @@ benchmarks=("gsm8k")
 
 echo "Starting Qwen full benchmark suite on GPUs ${GPUS}"
 echo "Using default limits from lm_eval_online_serve.py"
+echo "Expert parallelism: ${ENABLE_EXPERT_PARALLEL}"
 echo "========================================="
 
 for config in "${configs[@]}"; do
@@ -45,7 +47,9 @@ for config in "${configs[@]}"; do
             ${benchmark} \
             "" \
             ${config} \
-            ${TP_SIZE}
+            ${TP_SIZE} \
+            16 \
+            ${ENABLE_EXPERT_PARALLEL}
         
         echo "Completed: $benchmark with $config_name"
         echo ""
