@@ -154,7 +154,8 @@ def curl_metrics(
     benchmarks=["gsm8k"],
     duration=60,
     k=None,
-    server_address="localhost:8000"
+    server_address="localhost:8000",
+    metrics_address=None
 ):
     # 1. Resolve default settings
     k = k if k is not None else 0
@@ -171,7 +172,8 @@ def curl_metrics(
     os.makedirs(stats_dir, exist_ok=True)
 
     stat_file = f"{stat_filename}_n{duration}_k{k}_maxexp{maxexp}_thres{conf_thres}"
-    metrics_cmd = f"curl http://{server_address}/metrics > {stats_dir}/{stat_file}.metrics"
+    metrics_target = metrics_address or server_address
+    metrics_cmd = f"curl http://{metrics_target}/metrics > {stats_dir}/{stat_file}.metrics"
     subprocess.run(metrics_cmd, shell=True, check=True)
 
 def run_spec_decode_eval(
@@ -187,7 +189,8 @@ def run_spec_decode_eval(
     conf_file=None,
     extra_args=None,
     thread_name=None,
-    server_address="localhost:8000"
+    server_address="localhost:8000",
+    metrics_address=None
 ):
     """
     Runs the chosen benchmark using 'lm-eval'. The directories, file names,
@@ -267,7 +270,7 @@ def run_spec_decode_eval(
             cd /home/asaxena317/moe-llm-restricted-sets/fastchat/fastchat/llm_judge && \
             python gen_api_answer.py \
                 --model {model} \
-                --openai-api-base http://{args.server_address}/v1 \
+                --openai-api-base http://{server_address}/v1 \
                 --question-begin {begin_idx} --question-end {end_idx} \
                 --force-temperature 0.0 \
                 --answer-file {stats_dir}/{stat_file}.jsonl \
@@ -310,7 +313,8 @@ def run_spec_decode_eval(
     time.sleep(30)
     # 4. Grab metrics from server
     timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
-    metrics_cmd = f"curl http://{server_address}/metrics > {stats_dir}/{stat_file}_{timestamp}.metrics"
+    metrics_target = metrics_address or server_address
+    metrics_cmd = f"curl http://{metrics_target}/metrics > {stats_dir}/{stat_file}_{timestamp}.metrics"
     subprocess.run(metrics_cmd, shell=True, check=True)
 
 def run_benchmark_for_duration(args, model, stat_filename, 
@@ -333,7 +337,8 @@ def run_benchmark_for_duration(args, model, stat_filename,
             conf_file=args.config_file,
             extra_args=None,
             thread_name=thread_name,
-            server_address=args.server_address
+            server_address=args.server_address,
+            metrics_address=getattr(args, "metrics_address", None)
         )
 
 def run_mixed_benchmarks(args, model, stat_filename, benchmarks, global_duration):
@@ -376,7 +381,9 @@ def run_mixed_benchmarks(args, model, stat_filename, benchmarks, global_duration
         spec_decode=args.spec_decode,
         benchmarks=benchmarks,
         duration=global_duration,
-        k=args.k
+        k=args.k,
+        server_address=args.server_address,
+        metrics_address=getattr(args, "metrics_address", None)
         )
 
 def main():
@@ -415,6 +422,28 @@ def main():
     parser.add_argument("-sa", "--server_address", 
                         default="localhost:8000",
                         help="Server address in format host:port (default: localhost:8000)")
+    parser.add_argument("--metrics-address", 
+                        default=None,
+                        help="Address to scrape /metrics; defaults to server_address.")
+    parser.add_argument("--health-address", 
+                        default=None,
+                        help="Address used for readiness checks; defaults to server_address.")
+    parser.add_argument("--enable-disagg-serving", action="store_true",
+                        help="Enable disaggregated prefill/decode serving.")
+    parser.add_argument("--disagg-prefill-port", type=int, default=None,
+                        help="Prefill server port when disaggregated serving is enabled.")
+    parser.add_argument("--disagg-decode-port", type=int, default=None,
+                        help="Decode server port when disaggregated serving is enabled.")
+    parser.add_argument("--disagg-proxy-port", type=int, default=None,
+                        help="Proxy port when disaggregated serving is enabled (defaults to server port).")
+    parser.add_argument("--disagg-prefill-gpus", default=None,
+                        help="Comma-separated GPU ids for the prefill server.")
+    parser.add_argument("--disagg-decode-gpus", default=None,
+                        help="Comma-separated GPU ids for the decode server.")
+    parser.add_argument("--disagg-kv-connector", default=None,
+                        help="KV connector to use for disaggregated serving (default: PyNcclConnector).")
+    parser.add_argument("--disagg-kv-port", type=int, default=None,
+                        help="KV connector port shared between prefill and decode.")
     parser.add_argument("-mb", "--max_batch_size", type=int, default=16,
                         help="Max batch size for vLLM.")
     parser.add_argument("--enable-expert-parallel", action="store_true",
@@ -425,6 +454,35 @@ def main():
     # based on the spec_decode name:
     if not args.serving_script:
         args.serving_script = f"./online_serving_{args.spec_decode}.sh"
+
+    # Derive default ports/addresses for disaggregated mode and metrics
+    server_host = args.server_address.split(":")[0] if ":" in args.server_address else args.server_address
+    server_port = args.server_address.split(":")[-1] if ":" in args.server_address else None
+
+    proxy_port = args.disagg_proxy_port or server_port
+    prefill_port = args.disagg_prefill_port
+    decode_port = args.disagg_decode_port
+    if args.enable_disagg_serving and server_port and server_port.isdigit():
+        base_port = int(server_port)
+        if prefill_port is None:
+            prefill_port = base_port + 1
+        if decode_port is None:
+            decode_port = base_port + 2
+        if proxy_port is None:
+            proxy_port = server_port
+
+    metrics_address = args.metrics_address or args.server_address
+    health_address = args.health_address or args.server_address
+    if args.enable_disagg_serving:
+        metrics_address = args.metrics_address or (f"{server_host}:{decode_port}" if decode_port else args.server_address)
+        health_address = args.health_address or metrics_address
+
+    # Persist derived values back onto args for downstream functions
+    args.disagg_proxy_port = proxy_port
+    args.disagg_prefill_port = prefill_port
+    args.disagg_decode_port = decode_port
+    args.metrics_address = metrics_address
+    args.health_address = health_address
 
     bg_pid = None
     try:
@@ -443,11 +501,33 @@ def main():
             raise ValueError("Draft model path is required for non-ngram spec_decode variants.")
         print(f"Starting vLLM serving with script: {args.serving_script}")
         print(f"config_file: {args.config_file}")
+        print(f"client address: {args.server_address}, metrics address: {metrics_address}, health address: {health_address}")
+        if args.enable_disagg_serving:
+            print(f"disagg ports -> proxy:{proxy_port} prefill:{prefill_port} decode:{decode_port} kv_port:{args.disagg_kv_port or 'default'}")
+            print(f"disagg gpus -> prefill:{args.disagg_prefill_gpus or '<inherit>'} decode:{args.disagg_decode_gpus or '<inherit>'} connector:{args.disagg_kv_connector or 'PyNcclConnector'}")
         # Extract port from server_address (e.g., "localhost:8000" -> "8000")
         port = args.server_address.split(':')[-1] if ':' in args.server_address else '8000'
         ep_token = "true" if args.enable_expert_parallel else "false"
+        disagg_env = ""
+        if args.enable_disagg_serving:
+            disagg_env = "ENABLE_DISAGG_SERVING=true "
+            if proxy_port:
+                disagg_env += f"DISAGG_PROXY_PORT={proxy_port} "
+            if prefill_port:
+                disagg_env += f"DISAGG_PREFILL_PORT={prefill_port} "
+            if decode_port:
+                disagg_env += f"DISAGG_DECODE_PORT={decode_port} "
+            if args.disagg_kv_port:
+                disagg_env += f"DISAGG_KV_PORT={args.disagg_kv_port} "
+            if args.disagg_kv_connector:
+                disagg_env += f"DISAGG_KV_CONNECTOR={args.disagg_kv_connector} "
+            if args.disagg_prefill_gpus:
+                disagg_env += f"DISAGG_PREFILL_GPUS={args.disagg_prefill_gpus} "
+            if args.disagg_decode_gpus:
+                disagg_env += f"DISAGG_DECODE_GPUS={args.disagg_decode_gpus} "
+
         serving_cmd = (
-            f"bash -c '{args.serving_script} {args.model} {vllm_statfilename} "
+            f"bash -c '{disagg_env}{args.serving_script} {args.model} {vllm_statfilename} "
             f"{args.k if args.k is not None else 0} "
             f"{args.maxexp if args.maxexp is not None else 8} "
             f"{args.conf_thres if args.conf_thres is not None else 1.0} "
@@ -479,7 +559,7 @@ def main():
                 time.sleep(interval)
             raise TimeoutError(f"Timed out waiting for vLLM server at {address} to become ready.")
 
-        wait_for_server_ready(args.server_address, timeout=args.startup_timeout)
+        wait_for_server_ready(health_address, timeout=args.startup_timeout)
 
         # ---------------------------------------------------
         # 2. Run the Python benchmark in the foreground
@@ -496,7 +576,8 @@ def main():
                 conf_thres=args.conf_thres,
                 mt_bmk=args.mt_bmk,
                 conf_file=args.config_file,
-                server_address=args.server_address
+                server_address=args.server_address,
+                metrics_address=args.metrics_address
             )
         else:
             print(f"Running mixed benchmarks: {args.benchmark} for {args.duration} seconds")
