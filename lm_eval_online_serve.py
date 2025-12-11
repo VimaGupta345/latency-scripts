@@ -130,6 +130,22 @@ bmk_defaults = {
         "tasks": "squadv2",
         "extra_args": "--num_fewshot 0",
     },
+    "mmmu": {
+        "limit": 250,
+        "k": 0,
+        "maxexp": 8,
+        "conf_thres": 1.0,
+        "tasks": "mmmu_val",
+        "extra_args": "--trust_remote_code",
+    },
+    "mathvista": {
+        "limit": 250,
+        "k": 0,
+        "maxexp": 8,
+        "conf_thres": 1.0,
+        "tasks": "mathvista_testmini",
+        "extra_args": "--trust_remote_code",
+    },
     # Add more benchmarks here if needed
 }
 

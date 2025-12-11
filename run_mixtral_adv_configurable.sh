@@ -49,7 +49,7 @@ if [ -n "${LIMIT}" ]; then
 fi
 
 # Add remaining flags
-CMD="${CMD} -k 0 -t 150 -cf \"${CONFIG_FILE}\" -sa \"${SERVER_ADDRESS}\" -mb ${MAX_BATCH_SIZE} -s \"./online_serving_ngram_port.sh\""
+CMD="${CMD} -k 0 -t 300 -cf \"${CONFIG_FILE}\" -sa \"${SERVER_ADDRESS}\" -mb ${MAX_BATCH_SIZE} -s \"./online_serving_ngram_port.sh\""
 
 # Execute the command
 eval ${CMD}
