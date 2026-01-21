@@ -1,0 +1,35 @@
+# ---- build artifacts ----
+a.out
+*.o
+*.so
+*.a
+*.out
+*.exe
+
+# ---- logs / metrics / tmp ----
+*.log
+*.metrics
+*.txt
+*.tmp
+
+# ---- data outputs ----
+*.csv
+*.json
+
+# ---- plots / images ----
+*.png
+*.pdf
+*.svg
+
+# ---- scratch / temp dirs ----
+wandb/
+profiling_output/
+torch_compile_debug/
+visualizing_experts/
+query_data/
+breakdown_baseline/
+breakdown_prowl/
+old_compiler/
+recent_compiler/
+~/
+tmp*/
