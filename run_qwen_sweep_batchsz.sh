@@ -12,7 +12,7 @@ BATCH_SIZES=(4)
 
 # Config files for Qwen
 configs=(
-    "/var/tmp/jae/prowl/configs/qwen/qwen_do-nothing.json"
+    "/nethome/rdudala3/prowl/configs/qwen/qwen_do-nothing.json"
     # "${TMP_HOME}/prowl/configs/qwen/quant_alpha3_beta4_optimized.json"
     # "${TMP_HOME}/prowl/configs/qwen/quant_alpha0.5_optimized.json"
     # "${TMP_HOME}/prowl/configs/qwen/quant_alpha1_optimized.json"

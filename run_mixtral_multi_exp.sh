@@ -3,7 +3,7 @@
 # Check if required parameters are provided
 if [ $# -lt 3 ]; then
     echo "Usage: $0 <port> <model_name> <model_path>"
-    echo "Example: $0 8000 mixtral /scratch/vgupta345/models_dir/Mixtral-8x7B-Instruct-v0.1/"
+    echo "Example: $0 8000 mixtral /scratch/shared_dir/models_dir/Mixtral-8x7B-Instruct-v0.1/"
     echo ""
     echo "This script will run multiple benchmarks with different limits and configs"
     exit 1
@@ -26,8 +26,8 @@ echo "Using server at: $SERVER_ADDRESS"
 
 # Define configs to test
 config_files=(
-    "/var/tmp/jae/prowl/configs/mixtral/do_nothing.json"
-    "/var/tmp/jae/prowl/configs/mixtral/advanced_alpha0_beta1.25.json"
+    "/nethome/rdudala3/prowl/configs/mixtral/do_nothing.json"
+    "/nethome/rdudala3/prowl/configs/mixtral/advanced_alpha0_beta1.25.json"
 )
 
 # Define benchmarks with their limits

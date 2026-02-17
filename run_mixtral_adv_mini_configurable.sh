@@ -3,7 +3,7 @@
 # Check if required parameters are provided
 if [ $# -lt 3 ]; then
     echo "Usage: $0 <port> <model_name> <model_path>"
-    echo "Example: $0 8000 mixtral /scratch/vgupta345/models_dir/Mixtral-8x7B-Instruct-v0.1/"
+    echo "Example: $0 8000 mixtral /scratch/shared_dir/models_dir/Mixtral-8x7B-Instruct-v0.1/"
     echo "Example: $0 8001 llama /path/to/llama/model/"
     exit 1
 fi
@@ -28,9 +28,9 @@ benchmarks=("gsm8k")
 
 # List of config files
 config_files=(
-    "/var/tmp/jae/prowl/configs/mixtral/do_nothing.json"
-    "/var/tmp/jae/prowl/configs/mixtral/advanced_alpha0_beta0.7.json"
-    "/var/tmp/jae/prowl/configs/mixtral/advanced_alpha0_beta1.25.json"
+    "/nethome/rdudala3/prowl/configs/mixtral/do_nothing.json"
+    "/nethome/rdudala3/prowl/configs/mixtral/advanced_alpha0_beta0.7.json"
+    "/nethome/rdudala3/prowl/configs/mixtral/advanced_alpha0_beta1.25.json"
 )
 
 for cf in "${config_files[@]}"; do

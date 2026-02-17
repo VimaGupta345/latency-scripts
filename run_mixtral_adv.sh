@@ -1,7 +1,7 @@
 #!/bin/bash
 
 export STATFILENAME="adv_fp16_mixtral_instruct"
-export MODEL="/scratch/vgupta345/models_dir/Mixtral-8x7B-Instruct-v0.1/"
+export MODEL="/scratch/shared_dir/models_dir/Mixtral-8x7B-Instruct-v0.1/"
 
 # List of benchmarks
 benchmarks=("humaneval" "gsm8k" "mbpp" "minerva_math_algebra")
@@ -9,8 +9,8 @@ benchmarks=("humaneval" "gsm8k" "mbpp" "minerva_math_algebra")
 
 # List of config files
 config_files=(
-    "/var/tmp/jae/prowl/configs/mixtral/do_nothing.json"
-    "/var/tmp/jae/prowl/configs/mixtral/advanced_alpha0_beta1.25.json"
+    "/nethome/rdudala3/prowl/configs/mixtral/do_nothing.json"
+    "/nethome/rdudala3/prowl/configs/mixtral/advanced_alpha0_beta1.25.json"
 )
 
 for cf in "${config_files[@]}"; do
@@ -29,7 +29,7 @@ done
 
 # # List of config files
 # config_files=(
-#     "/var/tmp/jae/prowl/configs/mixtral/do_nothing.json"
+#     "/nethome/rdudala3/prowl/configs/mixtral/do_nothing.json"
 # )
 
 # for cf in "${config_files[@]}"; do

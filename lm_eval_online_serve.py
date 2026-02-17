@@ -10,6 +10,10 @@ import urllib.request
 import urllib.error
 from datetime import datetime
 
+DEFAULT_QUALITY_STATS_ROOT = "/nethome/rdudala3/latency-scripts/stats/quality"
+QUALITY_STATS_ROOT = os.path.expanduser(
+    os.environ.get("QUALITY_STATS_ROOT", DEFAULT_QUALITY_STATS_ROOT))
+
 # Default settings per benchmark
 bmk_defaults = {
     "humaneval": {
@@ -138,6 +142,9 @@ bmk_defaults = {
 terminate_flag = threading.Event()
 thread_processes = {}
 
+def is_multimodal_benchmark(benchmark: str) -> bool:
+    return benchmark in {"chartqa"} or benchmark.startswith("mmmu")
+
 def get_mixed_bmk_name(benchmarks):
     bmkname = ""
     for bmk in benchmarks:
@@ -168,7 +175,8 @@ def curl_metrics(
 
     bmkname = get_mixed_bmk_name(benchmarks)
 
-    stats_dir = os.path.expanduser(f"/var/tmp/jae/latency-scripts/stats/quality/{bmkname}/{spec_decode}/{model_name}/")
+    stats_dir = os.path.join(QUALITY_STATS_ROOT, bmkname, spec_decode,
+                             model_name)
     os.makedirs(stats_dir, exist_ok=True)
 
     stat_file = f"{stat_filename}_n{duration}_k{k}_maxexp{maxexp}_thres{conf_thres}"
@@ -199,14 +207,25 @@ def run_spec_decode_eval(
     if terminate_flag.is_set():
         return
     # 1. Resolve default settings
-    cfg = bmk_defaults.get(benchmark, bmk_defaults["humaneval"])
+    cfg = bmk_defaults.get(benchmark)
+    if cfg is None:
+        cfg = {
+            "limit": 250,
+            "k": 0,
+            "maxexp": 8,
+            "conf_thres": 1.0,
+            "tasks": benchmark,
+            "extra_args": "",
+        }
+        print(
+            f"Benchmark '{benchmark}' not found in defaults; using task name "
+            f"'{benchmark}' directly.")
     limit = limit if limit is not None else cfg["limit"]
     k = k if k is not None else cfg["k"]
     maxexp = maxexp if maxexp is not None else cfg["maxexp"]
     conf_thres = conf_thres if conf_thres is not None else cfg["conf_thres"]
-    extra_args = cfg["extra_args"] if cfg["extra_args"] else ""
     if extra_args is None:
-        extra_args = ""
+        extra_args = cfg.get("extra_args", "") or ""
 
     # 2. Build paths and filenames
     model_path = model.rstrip("/") if model.endswith("/") else model
@@ -214,28 +233,98 @@ def run_spec_decode_eval(
     conf_name = os.path.basename(conf_file) if conf_file else "default"
     conf_name = conf_name.replace(".json", "")
 
-    stats_dir = os.path.expanduser(f"/var/tmp/jae/latency-scripts/stats/quality/{benchmark}/{spec_decode}/{model_name}/")
+    stats_dir = os.path.join(QUALITY_STATS_ROOT, benchmark, spec_decode,
+                             model_name)
     os.makedirs(stats_dir, exist_ok=True)
 
     stat_file = f"{stat_filename}_n{limit}_conf_{conf_name}"
 
-    if benchmark != "mt_bench":
+    if benchmark.startswith("imo_answerbench"):
+        dataset_name = os.environ.get("IMO_ANSWERBENCH_DATASET",
+                                      "OpenEvals/IMO-AnswerBench")
+        split = os.environ.get("IMO_ANSWERBENCH_SPLIT", "train")
+        max_tokens = os.environ.get("IMO_ANSWERBENCH_MAX_TOKENS", "128")
+        max_model_len = os.environ.get("IMO_ANSWERBENCH_MAX_MODEL_LEN",
+                                       "4096")
+        results_file = f"{stats_dir}/{stat_file}.results.jsonl"
+        summary_file = f"{stats_dir}/{stat_file}.summary.json"
+        imo_cmd = (
+            f"python imo_answerbench_online.py "
+            f"--server-address {server_address} "
+            f"--model {model} "
+            f"--dataset-name {dataset_name} "
+            f"--split {split} "
+            f"--max-tokens {max_tokens} "
+            f"--max-model-len {max_model_len} "
+            f"--output-file {results_file} "
+            f"--summary-file {summary_file} "
+            f"--limit {limit} "
+            f"2>&1 | tee {stats_dir}/{stat_file}.log"
+        )
+        print(f"eval_cmd: {imo_cmd}")
+        process = subprocess.Popen(imo_cmd, shell=True,
+                                   stdout=subprocess.PIPE,
+                                   stderr=subprocess.PIPE,
+                                   preexec_fn=os.setsid)
+        if thread_name:
+            thread_processes[thread_name] = process
+    elif benchmark.startswith("swebench"):
+        swebench_dataset_map = {
+            "swebench": "SWE-bench/SWE-bench",
+            "swebench_lite": "SWE-bench/SWE-bench_Lite",
+            "swebench_verified": "SWE-bench/SWE-bench_Verified",
+        }
+        dataset_name = swebench_dataset_map.get(benchmark, "SWE-bench/SWE-bench")
+        max_model_len = os.environ.get("MAX_MODEL_LEN", "4096")
+        max_tokens = os.environ.get("SWE_BENCH_MAX_TOKENS", "4096")
+        predictions_file = f"{stats_dir}/{stat_file}.predictions.jsonl"
+        run_id = f"{stat_file}_run"
+        swebench_cmd = (
+            f"python swebench_harness_online.py "
+            f"--server-address {server_address} "
+            f"--model {model} "
+            f"--dataset-name {dataset_name} "
+            f"--split test "
+            f"--predictions-file {predictions_file} "
+            f"--run-id {run_id} "
+            f"--max-model-len {max_model_len} "
+            f"--max-tokens {max_tokens} "
+            f"--limit {limit} "
+            f"2>&1 | tee {stats_dir}/{stat_file}.log"
+        )
+        print(f"eval_cmd: {swebench_cmd}")
+        process = subprocess.Popen(swebench_cmd, shell=True,
+                                   stdout=subprocess.PIPE,
+                                   stderr=subprocess.PIPE,
+                                   preexec_fn=os.setsid)
+        if thread_name:
+            thread_processes[thread_name] = process
+    elif benchmark != "mt_bench":
         # 3. Build lm-eval command
+        max_model_len = os.environ.get("MAX_MODEL_LEN", "4096")
+        is_multimodal = is_multimodal_benchmark(benchmark)
+        lm_eval_model = "local-chat-completions" if is_multimodal else "local-completions"
+        base_url_path = "/v1/chat/completions" if is_multimodal else "/v1/completions"
+        tokenizer_args = ",tokenizer_backend=None,tokenized_requests=False" if is_multimodal else ""
         model_args = (
-            f"base_url=http://{server_address}/v1/completions,"
+            f"base_url=http://{server_address}{base_url_path},"
             "add_bos_token=True,"
-            "max_model_len=4096,"
-            "max_length=4096,"
+            f"max_model_len={max_model_len},"
+            f"max_length={max_model_len},"
             "num_concurrent=20"
+            f"{tokenizer_args}"
         )
 
         os.environ["HF_ALLOW_CODE_EVAL"] = "1"
 
+        if is_multimodal and "--apply_chat_template" not in extra_args:
+            extra_args = f"{extra_args} --apply_chat_template".strip()
+
         lm_eval_cmd = (
-            f"lm-eval --model local-completions "
+            f"lm-eval --model {lm_eval_model} "
             f"--tasks {cfg['tasks']} "
             f"--model_args model={model},{model_args} "
-            f"--limit {limit} --log_samples {extra_args} {extra_args} "
+            f"--limit {limit} --log_samples {extra_args} "
             f"--output_path {stats_dir}/{stat_file}.jsonl "
             f"2>&1 | tee {stats_dir}/{stat_file}.log"
         )
@@ -413,11 +502,11 @@ def main():
                         help="Script that launches the vLLM server (default is 'online_serving_<spec_decode>.sh').")
     parser.add_argument("-t", "--sleep_time", type=int, default=30,
                         help="Seconds to wait for vLLM to start before running the benchmark.")
-    parser.add_argument("--startup-timeout", type=int, default=600,
+    parser.add_argument("--startup-timeout", type=int, default=1800,
                         help="Additional seconds to wait (via health checks) for vLLM to become ready.")
     parser.add_argument("-mt", "--mt_bmk", default=None, help="Select bmk for MT-Bench.")
     parser.add_argument("-cf", "--config_file", 
-                        default=f"/var/tmp/jae/prowl/configs/qwen/qwen_do-nothing.json", 
+                        default=f"/nethome/rdudala3/prowl/configs/qwen/qwen_do-nothing.json", 
                         help="Lynx config file.")
     parser.add_argument("-sa", "--server_address", 
                         default="localhost:8000",
@@ -428,22 +517,6 @@ def main():
     parser.add_argument("--health-address", 
                         default=None,
                         help="Address used for readiness checks; defaults to server_address.")
-    parser.add_argument("--enable-disagg-serving", action="store_true",
-                        help="Enable disaggregated prefill/decode serving.")
-    parser.add_argument("--disagg-prefill-port", type=int, default=None,
-                        help="Prefill server port when disaggregated serving is enabled.")
-    parser.add_argument("--disagg-decode-port", type=int, default=None,
-                        help="Decode server port when disaggregated serving is enabled.")
-    parser.add_argument("--disagg-proxy-port", type=int, default=None,
-                        help="Proxy port when disaggregated serving is enabled (defaults to server port).")
-    parser.add_argument("--disagg-prefill-gpus", default=None,
-                        help="Comma-separated GPU ids for the prefill server.")
-    parser.add_argument("--disagg-decode-gpus", default=None,
-                        help="Comma-separated GPU ids for the decode server.")
-    parser.add_argument("--disagg-kv-connector", default=None,
-                        help="KV connector to use for disaggregated serving (default: PyNcclConnector).")
-    parser.add_argument("--disagg-kv-port", type=int, default=None,
-                        help="KV connector port shared between prefill and decode.")
     parser.add_argument("-mb", "--max_batch_size", type=int, default=16,
                         help="Max batch size for vLLM.")
     parser.add_argument("--enable-expert-parallel", action="store_true",
@@ -455,32 +528,11 @@ def main():
     if not args.serving_script:
         args.serving_script = f"./online_serving_{args.spec_decode}.sh"
 
-    # Derive default ports/addresses for disaggregated mode and metrics
-    server_host = args.server_address.split(":")[0] if ":" in args.server_address else args.server_address
-    server_port = args.server_address.split(":")[-1] if ":" in args.server_address else None
-
-    proxy_port = args.disagg_proxy_port or server_port
-    prefill_port = args.disagg_prefill_port
-    decode_port = args.disagg_decode_port
-    if args.enable_disagg_serving and server_port and server_port.isdigit():
-        base_port = int(server_port)
-        if prefill_port is None:
-            prefill_port = base_port + 1
-        if decode_port is None:
-            decode_port = base_port + 2
-        if proxy_port is None:
-            proxy_port = server_port
-
+    # Derive default ports/addresses for metrics/readiness checks
     metrics_address = args.metrics_address or args.server_address
     health_address = args.health_address or args.server_address
-    if args.enable_disagg_serving:
-        metrics_address = args.metrics_address or (f"{server_host}:{decode_port}" if decode_port else args.server_address)
-        health_address = args.health_address or metrics_address
 
     # Persist derived values back onto args for downstream functions
-    args.disagg_proxy_port = proxy_port
-    args.disagg_prefill_port = prefill_port
-    args.disagg_decode_port = decode_port
     args.metrics_address = metrics_address
     args.health_address = health_address
 
@@ -502,32 +554,12 @@ def main():
         print(f"Starting vLLM serving with script: {args.serving_script}")
         print(f"config_file: {args.config_file}")
         print(f"client address: {args.server_address}, metrics address: {metrics_address}, health address: {health_address}")
-        if args.enable_disagg_serving:
-            print(f"disagg ports -> proxy:{proxy_port} prefill:{prefill_port} decode:{decode_port} kv_port:{args.disagg_kv_port or 'default'}")
-            print(f"disagg gpus -> prefill:{args.disagg_prefill_gpus or '<inherit>'} decode:{args.disagg_decode_gpus or '<inherit>'} connector:{args.disagg_kv_connector or 'PyNcclConnector'}")
         # Extract port from server_address (e.g., "localhost:8000" -> "8000")
         port = args.server_address.split(':')[-1] if ':' in args.server_address else '8000'
         ep_token = "true" if args.enable_expert_parallel else "false"
-        disagg_env = ""
-        if args.enable_disagg_serving:
-            disagg_env = "ENABLE_DISAGG_SERVING=true "
-            if proxy_port:
-                disagg_env += f"DISAGG_PROXY_PORT={proxy_port} "
-            if prefill_port:
-                disagg_env += f"DISAGG_PREFILL_PORT={prefill_port} "
-            if decode_port:
-                disagg_env += f"DISAGG_DECODE_PORT={decode_port} "
-            if args.disagg_kv_port:
-                disagg_env += f"DISAGG_KV_PORT={args.disagg_kv_port} "
-            if args.disagg_kv_connector:
-                disagg_env += f"DISAGG_KV_CONNECTOR={args.disagg_kv_connector} "
-            if args.disagg_prefill_gpus:
-                disagg_env += f"DISAGG_PREFILL_GPUS={args.disagg_prefill_gpus} "
-            if args.disagg_decode_gpus:
-                disagg_env += f"DISAGG_DECODE_GPUS={args.disagg_decode_gpus} "
 
         serving_cmd = (
-            f"bash -c '{disagg_env}{args.serving_script} {args.model} {vllm_statfilename} "
+            f"bash -c '{args.serving_script} {args.model} {vllm_statfilename} "
             f"{args.k if args.k is not None else 0} "
             f"{args.maxexp if args.maxexp is not None else 8} "
             f"{args.conf_thres if args.conf_thres is not None else 1.0} "
