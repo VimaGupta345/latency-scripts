@@ -11,7 +11,7 @@ export MAX_BATCH_SIZE=${8:-16}
 
 export MODELNAME=$( basename ${MODEL} )
 export CONFIGNAME=$( basename ${CONFIG_FILE} )
-export STATS_DIR="/nethome/vgupta345/stats/perf/spec_decode/ngram/${MODELNAME}/"
+export STATS_DIR="/nethome/vgupta345/j_prown_opensource/results/server_logs/${MODELNAME}"
 mkdir -p ${STATS_DIR}
 export INF_TOKS=$((K+1))
 export STAT_FILE="${STATFILENAME}_${CONFIGNAME}_port${PORT}.log"

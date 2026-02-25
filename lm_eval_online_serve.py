@@ -165,7 +165,7 @@ def curl_metrics(
 
     bmkname = get_mixed_bmk_name(benchmarks)
 
-    stats_dir = os.path.expanduser(f"/nethome/vgupta345/stats/quality/{bmkname}/{spec_decode}/{model_name}/")
+    stats_dir = os.path.expanduser(f"/nethome/vgupta345/j_prown_opensource/results/{model_name}/{bmkname}/")
     os.makedirs(stats_dir, exist_ok=True)
 
     stat_file = f"{stat_filename}_n{duration}_k{k}_maxexp{maxexp}_thres{conf_thres}"
@@ -209,7 +209,7 @@ def run_spec_decode_eval(
     conf_name = os.path.basename(conf_file) if conf_file else "default"
     conf_name = conf_name.replace(".json", "")
 
-    stats_dir = os.path.expanduser(f"/nethome/vgupta345/stats/quality/{benchmark}/{spec_decode}/{model_name}/")
+    stats_dir = os.path.expanduser(f"/nethome/vgupta345/j_prown_opensource/results/{model_name}/{benchmark}/")
     os.makedirs(stats_dir, exist_ok=True)
 
     stat_file = f"{stat_filename}_n{limit}_conf_{conf_name}"
@@ -483,12 +483,12 @@ def main():
         # 3. Gracefully terminate vLLM if it was started
         # ---------------------------------------------------
         if bg_pid is not None:
-            time.sleep(30)
+            time.sleep(5)
             try:
                 bg_pgid = os.getpgid(bg_pid)
                 print(f"Killing process group {bg_pgid} with SIGINT...")
                 os.killpg(bg_pgid, signal.SIGINT)
-                time.sleep(120)
+                time.sleep(5)
                 os.killpg(bg_pgid, signal.SIGKILL)
             except ProcessLookupError:
                 pass

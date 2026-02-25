@@ -3,16 +3,17 @@
 # Qwen Full Benchmarks - 99% completion
 # Runs on GPUs 2,3 with TP=2 on port 8001
 TMP_HOME=/nethome/vgupta345/j_prown_opensource
-MODEL_PATH="Qwen/Qwen2-57B-A14B-Instruct"
-MODEL_NAME="qwen"
-PORT=8017
-TP_SIZE=2
-GPUS="2,3"
+MODEL_PATH="Qwen/Qwen3-30B-A3B-Instruct-2507"
+MODEL_NAME="qwen3"
+PORT=8020
+TP_SIZE=1
+GPUS="3"
 
 # Config files for Qwen
 configs=(
-    "${TMP_HOME}/prowl/configs/qwen/qwen_do-nothing.json"
-    "${TMP_HOME}/prowl/configs/qwen/quant_alpha3_beta4_optimized.json"
+    "${TMP_HOME}/prowl/configs/qwen3_30b/quant_alpha3_beta2_optimized.json"
+    #"${TMP_HOME}/prowl/configs/qwen3_30b/quant_alpha1_beta1_optimized.json"
+    #"${TMP_HOME}/prowl/configs/qwen3_30b/qwen_do-nothing.json"
 )
 
 # Use 99% completion for all benchmarks
@@ -20,10 +21,8 @@ LIMIT_PERCENT=0.99
 
 # List of benchmarks to run
 # Using default limits from lm_eval_online_serve.py
-benchmarks=("gsm8k")
-#("gsm8k" "mbpp" "minerva_math_algebra" "humaneval" "hotpotqa" "xsum")
-
-# "humaneval": "pass@1,", "mbpp": "pass_at_1,", "minerva_math_algebra": "exact_match,n", "gsm8k": "exact_match,s", "truthfulqa": "rougeL_acc,n", "sqaud_completion": "contains,n", "longbench_narrativeqa": "qa_f1_score,n", "coqa": "em,n", "cnn_dailymail": "rouge,n"
+benchmarks=("truthfulqa" "squad_completion" "longbench_narrativeqa" "coqa" "cnn_dailymail")
+#("humaneval" "mbpp" "minerva_math_algebra" "gsm8k" "truthfulqa" "squad_completion" "longbench_narrativeqa" "coqa" "cnn_dailymail")
 
 echo "Starting Qwen full benchmark suite on GPUs ${GPUS}"
 echo "Using default limits from lm_eval_online_serve.py"
