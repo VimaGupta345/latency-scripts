@@ -1,0 +1,231 @@
+/nethome/rdudala3/update-vllm/testEnv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:19:13 [utils.py:325] 
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:19:13 [utils.py:325]        █     █     █▄   ▄█
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:19:13 [utils.py:325]  ▄▄ ▄█ █     █     █ ▀▄▀ █  version 0.15.2.dev3+g83092ff45.d20260211
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:19:13 [utils.py:325]   █▄█▀ █     █     █     █  model   Qwen/Qwen3-Omni-30B-A3B-Thinking
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:19:13 [utils.py:325]    ▀▀  ▀▀▀▀▀ ▀▀▀▀▀ ▀     ▀
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:19:13 [utils.py:325] 
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:19:13 [utils.py:261] non-default args: {'host': 'localhost', 'port': 8017, 'model': 'Qwen/Qwen3-Omni-30B-A3B-Thinking', 'trust_remote_code': True, 'max_model_len': 65536, 'reasoning_parser': 'qwen3', 'mm_encoder_tp_mode': 'data', 'max_num_seqs': 16, 'compilation_config': {'level': None, 'mode': None, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': [], 'splitting_ops': None, 'compile_mm_encoder': False, 'compile_sizes': None, 'compile_ranges_split_points': None, 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.FULL: 2>, 'cudagraph_num_of_warmups': 0, 'cudagraph_capture_sizes': None, 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': None, 'pass_config': {}, 'max_cudagraph_capture_size': None, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': True}, 'local_cache_dir': None, 'static_all_moe_layers': []}, 'mixtral_config_file': '/nethome/rdudala3/update-vllm/configs/qwen3/quant_alpha1_optimized.json'}
+[0;36m(APIServer pid=2277108)[0;0m The argument `trust_remote_code` is to be used with Auto classes. It has no effect here and is ignored.
+[0;36m(APIServer pid=2277108)[0;0m The argument `trust_remote_code` is to be used with Auto classes. It has no effect here and is ignored.
+[0;36m(APIServer pid=2277108)[0;0m Unrecognized keys in `rope_scaling` for 'rope_type'='default': {'interleaved', 'mrope_section', 'mrope_interleaved'}
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:19:13 [model.py:406] Loading Mixtral config from: /nethome/rdudala3/update-vllm/configs/qwen3/quant_alpha1_optimized.json
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:19:13 [model.py:591] Resolved architecture: Qwen3OmniMoeForConditionalGeneration
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:19:13 [model.py:1611] Using max model len 65536
+[0;36m(APIServer pid=2277108)[0;0m WARNING 02-25 01:19:13 [model.py:633] This model does not support `--mm-encoder-tp-mode data`. Falling back to `--mm-encoder-tp-mode weights`.
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:19:13 [scheduler.py:226] Chunked prefill is enabled with max_num_batched_tokens=8192.
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:19:13 [vllm.py:624] Asynchronous scheduling is enabled.
+[0;36m(APIServer pid=2277108)[0;0m WARNING 02-25 01:19:13 [vllm.py:905] No piecewise cudagraph for executing cascade attention. Will fall back to eager execution if a batch runs into cascade attentions.
+[0;36m(APIServer pid=2277108)[0;0m The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+/nethome/rdudala3/update-vllm/testEnv/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m INFO 02-25 01:19:27 [core.py:96] Initializing a V1 LLM engine (v0.15.2.dev3+g83092ff45.d20260211) with config: model='Qwen/Qwen3-Omni-30B-A3B-Thinking', speculative_config=None, tokenizer='Qwen/Qwen3-Omni-30B-A3B-Thinking', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=65536, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_fallback=False, disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='qwen3', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False), seed=0, served_model_name=Qwen/Qwen3-Omni-30B-A3B-Thinking, enable_prefix_caching=True, enable_chunked_prefill=True, pooler_config=None, compilation_config={'level': None, 'mode': <CompilationMode.VLLM_COMPILE: 3>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['none'], 'splitting_ops': ['vllm::unified_attention', 'vllm::unified_attention_with_output', 'vllm::unified_mla_attention', 'vllm::unified_mla_attention_with_output', 'vllm::mamba_mixer2', 'vllm::mamba_mixer', 'vllm::short_conv', 'vllm::linear_attention', 'vllm::plamo2_mamba_mixer', 'vllm::gdn_attention_core', 'vllm::kda_attention', 'vllm::sparse_attn_indexer', 'vllm::rocm_aiter_sparse_attn_indexer', 'vllm::unified_kv_cache_update'], 'compile_mm_encoder': False, 'compile_sizes': [], 'compile_ranges_split_points': [8192], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.FULL: 2>, 'cudagraph_num_of_warmups': 1, 'cudagraph_capture_sizes': [1, 2, 4, 8, 16, 24, 32], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': False, 'fuse_act_quant': False, 'fuse_attn_quant': False, 'eliminate_noops': True, 'enable_sp': False, 'fuse_gemm_comms': False, 'fuse_allreduce_rms': False}, 'max_cudagraph_capture_size': 32, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': True}, 'local_cache_dir': None, 'static_all_moe_layers': []}
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m INFO 02-25 01:19:32 [parallel_state.py:1212] world_size=1 rank=0 local_rank=0 distributed_init_method=tcp://130.207.125.39:48539 backend=nccl
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m INFO 02-25 01:19:32 [parallel_state.py:1423] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 0, EP rank 0
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m The image processor of type `Qwen2VLImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. Note that this behavior will be extended to all models in a future release.
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m INFO 02-25 01:19:38 [gpu_model_runner.py:4081] Starting to load model Qwen/Qwen3-Omni-30B-A3B-Thinking...
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m INFO 02-25 01:19:38 [mm_encoder_attention.py:77] Using AttentionBackendEnum.FLASH_ATTN for MMEncoderAttention.
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m INFO 02-25 01:19:38 [vllm.py:624] Asynchronous scheduling is enabled.
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m WARNING 02-25 01:19:38 [vllm.py:905] No piecewise cudagraph for executing cascade attention. Will fall back to eager execution if a batch runs into cascade attentions.
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m INFO 02-25 01:19:39 [cuda.py:364] Using FLASH_ATTN attention backend out of potential backends: ('FLASH_ATTN', 'FLASHINFER', 'TRITON_ATTN', 'FLEX_ATTENTION')
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m INFO 02-25 01:19:39 [unquantized.py:103] Using TRITON backend for Unquantized MoE
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m Loading safetensors checkpoint shards:   0% Completed | 0/16 [00:00<?, ?it/s]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m Loading safetensors checkpoint shards:   6% Completed | 1/16 [00:04<01:00,  4.06s/it]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m Loading safetensors checkpoint shards:  12% Completed | 2/16 [00:08<00:57,  4.11s/it]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m Loading safetensors checkpoint shards:  19% Completed | 3/16 [00:12<00:53,  4.11s/it]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m Loading safetensors checkpoint shards:  25% Completed | 4/16 [00:16<00:49,  4.10s/it]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m Loading safetensors checkpoint shards:  31% Completed | 5/16 [00:20<00:45,  4.11s/it]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m Loading safetensors checkpoint shards:  38% Completed | 6/16 [00:24<00:41,  4.11s/it]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m Loading safetensors checkpoint shards:  44% Completed | 7/16 [00:28<00:36,  4.09s/it]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m Loading safetensors checkpoint shards:  50% Completed | 8/16 [00:32<00:32,  4.09s/it]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m Loading safetensors checkpoint shards:  56% Completed | 9/16 [00:36<00:28,  4.09s/it]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m Loading safetensors checkpoint shards:  62% Completed | 10/16 [00:40<00:24,  4.10s/it]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m Loading safetensors checkpoint shards:  69% Completed | 11/16 [00:44<00:19,  3.93s/it]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m Loading safetensors checkpoint shards:  75% Completed | 12/16 [00:48<00:15,  3.97s/it]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m Loading safetensors checkpoint shards:  81% Completed | 13/16 [00:52<00:12,  4.01s/it]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m Loading safetensors checkpoint shards:  88% Completed | 14/16 [00:56<00:08,  4.04s/it]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m Loading safetensors checkpoint shards:  94% Completed | 15/16 [01:00<00:04,  4.06s/it]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m Loading safetensors checkpoint shards: 100% Completed | 16/16 [01:04<00:00,  4.07s/it]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m Loading safetensors checkpoint shards: 100% Completed | 16/16 [01:04<00:00,  4.06s/it]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m 
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m INFO 02-25 01:20:45 [default_loader.py:291] Loading weights took 65.09 seconds
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m INFO 02-25 01:20:45 [gpu_model_runner.py:4178] Model loading took 59.26 GiB memory and 66.317415 seconds
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m INFO 02-25 01:20:46 [gpu_model_runner.py:5009] Encoder cache will be initialized with a budget of 62720 tokens, and profiled with 1 video items of the maximum feature size.
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m INFO 02-25 01:20:57 [backends.py:812] Using cache directory: /nethome/rdudala3/.cache/vllm/torch_compile_cache/abebc4c58b/rank_0_0/backbone for vLLM's torch.compile
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m INFO 02-25 01:20:57 [backends.py:872] Dynamo bytecode transform time: 9.50 s
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 0 stage raw policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 0 stage final policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m INFO 02-25 01:21:02 [fused_moe.py:1076] Using configuration from /nethome/rdudala3/update-vllm/vllm/model_executor/layers/fused_moe/configs/E=128,N=768,device_name=NVIDIA_H200.json for MoE layer.
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 1 stage raw policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 1 stage final policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 2 stage raw policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 2 stage final policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 3 stage raw policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 3 stage final policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 4 stage raw policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 4 stage final policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 5 stage raw policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 5 stage final policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 6 stage raw policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 6 stage final policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 7 stage raw policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 7 stage final policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 8 stage raw policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 8 stage final policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 9 stage raw policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 9 stage final policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 10 stage raw policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 10 stage final policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 11 stage raw policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 11 stage final policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 12 stage raw policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 12 stage final policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 13 stage raw policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 13 stage final policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 14 stage raw policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 14 stage final policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 15 stage raw policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 15 stage final policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 16 stage raw policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 16 stage final policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 17 stage raw policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 17 stage final policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 18 stage raw policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 18 stage final policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 19 stage raw policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 19 stage final policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 20 stage raw policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 20 stage final policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 21 stage raw policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 21 stage final policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 22 stage raw policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 22 stage final policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 23 stage raw policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 23 stage final policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 24 stage raw policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 24 stage final policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 25 stage raw policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 25 stage final policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 26 stage raw policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 26 stage final policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 27 stage raw policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 27 stage final policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 28 stage raw policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 28 stage final policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 29 stage raw policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 29 stage final policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 30 stage raw policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 30 stage final policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 31 stage raw policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 31 stage final policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 32 stage raw policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 32 stage final policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 33 stage raw policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 33 stage final policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 34 stage raw policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 34 stage final policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 35 stage raw policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 35 stage final policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 36 stage raw policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 36 stage final policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 37 stage raw policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 37 stage final policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 38 stage raw policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 38 stage final policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 39 stage raw policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 39 stage final policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 40 stage raw policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 40 stage final policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 41 stage raw policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 41 stage final policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 42 stage raw policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 42 stage final policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 43 stage raw policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 43 stage final policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 44 stage raw policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 44 stage final policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 45 stage raw policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 45 stage final policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 46 stage raw policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 46 stage final policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m INFO 02-25 01:21:03 [backends.py:267] Directly load the compiled graph(s) for compile range (1, 8192) from the cache, took 1.307 s
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m INFO 02-25 01:21:03 [monitor.py:34] torch.compile takes 10.81 s in total
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 47 stage raw policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX ROUTING] Layer 47 stage final policy quant_alpha1_optimized selected 8/128 unique experts (topk=8) | unplaced=[0, 1, 2, 3, 4, 5, 6, 7]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m INFO 02-25 01:21:04 [gpu_worker.py:362] Available KV cache memory: 65.49 GiB
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m INFO 02-25 01:21:04 [kv_cache_utils.py:1307] GPU KV cache size: 715,312 tokens
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m INFO 02-25 01:21:04 [kv_cache_utils.py:1312] Maximum concurrency for 65,536 tokens per request: 10.91x
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m 2026-02-25 01:21:04,259 - INFO - autotuner.py:256 - flashinfer.jit: [Autotuner]: Autotuning process starts ...
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m 2026-02-25 01:21:04,303 - INFO - autotuner.py:262 - flashinfer.jit: [Autotuner]: Autotuning process ends
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m Capturing CUDA graphs (mixed prefill-decode, FULL):   0%|          | 0/7 [00:00<?, ?it/s]Capturing CUDA graphs (mixed prefill-decode, FULL):  14%|█▍        | 1/7 [00:00<00:00,  8.12it/s]Capturing CUDA graphs (mixed prefill-decode, FULL):  29%|██▊       | 2/7 [00:00<00:00,  8.00it/s]Capturing CUDA graphs (mixed prefill-decode, FULL):  43%|████▎     | 3/7 [00:00<00:00,  8.62it/s]Capturing CUDA graphs (mixed prefill-decode, FULL):  57%|█████▋    | 4/7 [00:00<00:00,  8.95it/s]Capturing CUDA graphs (mixed prefill-decode, FULL):  86%|████████▌ | 6/7 [00:00<00:00,  9.84it/s]Capturing CUDA graphs (mixed prefill-decode, FULL): 100%|██████████| 7/7 [00:00<00:00,  9.25it/s]Capturing CUDA graphs (mixed prefill-decode, FULL): 100%|██████████| 7/7 [00:00<00:00,  9.08it/s]
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m INFO 02-25 01:21:06 [gpu_model_runner.py:5114] Graph capturing finished in 2 secs, took -0.30 GiB
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [LYNX PROFILE] Profiling marked as complete - expert reduction will now be active
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [MetricStore] Profiling complete, ready for expert dropping
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m [V1 Worker] Profiling done and flags set for Lynx metrics
+[0;36m(EngineCore_DP0 pid=2277541)[0;0m INFO 02-25 01:21:06 [core.py:272] init engine (profile, create kv cache, warmup model) took 20.19 seconds
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:21:07 [api_server.py:665] Supported tasks: ['generate']
+[0;36m(APIServer pid=2277108)[0;0m WARNING 02-25 01:21:07 [model.py:1421] Default vLLM sampling parameters have been overridden by the model's `generation_config.json`: `{'temperature': 0.6, 'top_k': 20, 'top_p': 0.95, 'max_tokens': 32768}`. If this is not intended, please relaunch vLLM instance with `--generation-config vllm`.
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:21:07 [serving.py:177] Warming up chat template processing...
+[0;36m(APIServer pid=2277108)[0;0m The image processor of type `Qwen2VLImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. Note that this behavior will be extended to all models in a future release.
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:21:08 [hf.py:310] Detected the chat template content format to be 'openai'. You can set `--chat-template-content-format` to override this.
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:21:08 [serving.py:212] Chat template warmup completed in 1547.3ms
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:21:08 [api_server.py:946] Starting vLLM API server 0 on http://localhost:8017
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:21:08 [launcher.py:38] Available routes are:
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:21:08 [launcher.py:46] Route: /openapi.json, Methods: GET, HEAD
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:21:08 [launcher.py:46] Route: /docs, Methods: GET, HEAD
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:21:08 [launcher.py:46] Route: /docs/oauth2-redirect, Methods: GET, HEAD
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:21:08 [launcher.py:46] Route: /redoc, Methods: GET, HEAD
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:21:08 [launcher.py:46] Route: /scale_elastic_ep, Methods: POST
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:21:08 [launcher.py:46] Route: /is_scaling_elastic_ep, Methods: POST
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:21:08 [launcher.py:46] Route: /tokenize, Methods: POST
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:21:08 [launcher.py:46] Route: /detokenize, Methods: POST
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:21:08 [launcher.py:46] Route: /inference/v1/generate, Methods: POST
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:21:08 [launcher.py:46] Route: /pause, Methods: POST
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:21:08 [launcher.py:46] Route: /resume, Methods: POST
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:21:08 [launcher.py:46] Route: /is_paused, Methods: GET
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:21:08 [launcher.py:46] Route: /metrics, Methods: GET
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:21:08 [launcher.py:46] Route: /health, Methods: GET
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:21:08 [launcher.py:46] Route: /v1/chat/completions, Methods: POST
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:21:08 [launcher.py:46] Route: /v1/chat/completions/render, Methods: POST
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:21:08 [launcher.py:46] Route: /v1/responses, Methods: POST
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:21:08 [launcher.py:46] Route: /v1/responses/{response_id}, Methods: GET
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:21:08 [launcher.py:46] Route: /v1/responses/{response_id}/cancel, Methods: POST
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:21:08 [launcher.py:46] Route: /v1/audio/transcriptions, Methods: POST
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:21:08 [launcher.py:46] Route: /v1/audio/translations, Methods: POST
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:21:08 [launcher.py:46] Route: /v1/completions, Methods: POST
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:21:08 [launcher.py:46] Route: /v1/completions/render, Methods: POST
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:21:08 [launcher.py:46] Route: /v1/messages, Methods: POST
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:21:08 [launcher.py:46] Route: /v1/models, Methods: GET
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:21:08 [launcher.py:46] Route: /load, Methods: GET
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:21:08 [launcher.py:46] Route: /version, Methods: GET
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:21:08 [launcher.py:46] Route: /ping, Methods: GET
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:21:08 [launcher.py:46] Route: /ping, Methods: POST
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:21:08 [launcher.py:46] Route: /invocations, Methods: POST
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:21:08 [launcher.py:46] Route: /classify, Methods: POST
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:21:08 [launcher.py:46] Route: /v1/embeddings, Methods: POST
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:21:08 [launcher.py:46] Route: /score, Methods: POST
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:21:08 [launcher.py:46] Route: /v1/score, Methods: POST
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:21:08 [launcher.py:46] Route: /rerank, Methods: POST
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:21:08 [launcher.py:46] Route: /v1/rerank, Methods: POST
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:21:08 [launcher.py:46] Route: /v2/rerank, Methods: POST
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:21:08 [launcher.py:46] Route: /pooling, Methods: POST
+[0;36m(APIServer pid=2277108)[0;0m INFO:     Started server process [2277108]
+[0;36m(APIServer pid=2277108)[0;0m INFO:     Waiting for application startup.
+[0;36m(APIServer pid=2277108)[0;0m INFO:     Application startup complete.
+[0;36m(APIServer pid=2277108)[0;0m INFO:     127.0.0.1:44162 - "GET /health HTTP/1.1" 200 OK
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:21:59 [loggers.py:257] Engine 000: Avg prompt throughput: 290.5 tokens/s, Avg generation throughput: 1051.3 tokens/s, Running: 16 reqs, Waiting: 0 reqs, GPU KV cache usage: 1.9%, Prefix cache hit rate: 0.0%, MM cache hit rate: 0.0%
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:22:09 [loggers.py:257] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 1497.5 tokens/s, Running: 16 reqs, Waiting: 0 reqs, GPU KV cache usage: 4.0%, Prefix cache hit rate: 0.0%, MM cache hit rate: 0.0%
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:22:19 [loggers.py:257] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 1446.2 tokens/s, Running: 16 reqs, Waiting: 0 reqs, GPU KV cache usage: 6.0%, Prefix cache hit rate: 0.0%, MM cache hit rate: 0.0%
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:22:29 [loggers.py:257] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 1409.4 tokens/s, Running: 16 reqs, Waiting: 0 reqs, GPU KV cache usage: 8.0%, Prefix cache hit rate: 0.0%, MM cache hit rate: 0.0%
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:22:39 [loggers.py:257] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 1383.9 tokens/s, Running: 16 reqs, Waiting: 0 reqs, GPU KV cache usage: 9.9%, Prefix cache hit rate: 0.0%, MM cache hit rate: 0.0%
+[0;36m(APIServer pid=2277108)[0;0m INFO:     127.0.0.1:35440 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:22:49 [loggers.py:257] Engine 000: Avg prompt throughput: 4.8 tokens/s, Avg generation throughput: 1348.2 tokens/s, Running: 16 reqs, Waiting: 0 reqs, GPU KV cache usage: 11.2%, Prefix cache hit rate: 0.0%, MM cache hit rate: 0.0%
+[0;36m(APIServer pid=2277108)[0;0m INFO:     127.0.0.1:35492 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[0;36m(APIServer pid=2277108)[0;0m INFO:     127.0.0.1:35488 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:22:59 [loggers.py:257] Engine 000: Avg prompt throughput: 44.2 tokens/s, Avg generation throughput: 1277.5 tokens/s, Running: 16 reqs, Waiting: 0 reqs, GPU KV cache usage: 11.5%, Prefix cache hit rate: 0.0%, MM cache hit rate: 0.0%
+[0;36m(APIServer pid=2277108)[0;0m INFO:     127.0.0.1:35508 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:23:09 [loggers.py:257] Engine 000: Avg prompt throughput: 50.0 tokens/s, Avg generation throughput: 1222.0 tokens/s, Running: 16 reqs, Waiting: 0 reqs, GPU KV cache usage: 12.4%, Prefix cache hit rate: 0.0%, MM cache hit rate: 0.0%
+[0;36m(APIServer pid=2277108)[0;0m INFO:     127.0.0.1:35458 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:23:19 [loggers.py:257] Engine 000: Avg prompt throughput: 59.1 tokens/s, Avg generation throughput: 1183.6 tokens/s, Running: 16 reqs, Waiting: 0 reqs, GPU KV cache usage: 13.1%, Prefix cache hit rate: 0.0%, MM cache hit rate: 0.0%
+[0;36m(APIServer pid=2277108)[0;0m INFO 02-25 01:23:29 [loggers.py:257] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 1171.1 tokens/s, Running: 16 reqs, Waiting: 0 reqs, GPU KV cache usage: 14.8%, Prefix cache hit rate: 0.0%, MM cache hit rate: 0.0%

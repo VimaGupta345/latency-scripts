@@ -6,6 +6,7 @@ import signal
 import argparse
 import subprocess
 import threading
+import shlex
 import urllib.request
 import urllib.error
 from datetime import datetime
@@ -142,6 +143,13 @@ bmk_defaults = {
 terminate_flag = threading.Event()
 thread_processes = {}
 
+
+def env_flag(name: str, default: bool = False) -> bool:
+    value = os.environ.get(name)
+    if value is None:
+        return default
+    return value.strip().lower() in {"1", "true", "yes", "on"}
+
 def is_multimodal_benchmark(benchmark: str) -> bool:
     return benchmark in {"chartqa"} or benchmark.startswith("mmmu")
 
@@ -262,10 +270,11 @@ def run_spec_decode_eval(
             f"2>&1 | tee {stats_dir}/{stat_file}.log"
         )
         print(f"eval_cmd: {imo_cmd}")
-        process = subprocess.Popen(imo_cmd, shell=True,
-                                   stdout=subprocess.PIPE,
-                                   stderr=subprocess.PIPE,
-                                   preexec_fn=os.setsid)
+        process = subprocess.Popen(
+            imo_cmd,
+            shell=True,
+            preexec_fn=os.setsid,
+        )
         if thread_name:
             thread_processes[thread_name] = process
     elif benchmark.startswith("swebench"):
@@ -293,47 +302,72 @@ def run_spec_decode_eval(
             f"2>&1 | tee {stats_dir}/{stat_file}.log"
         )
         print(f"eval_cmd: {swebench_cmd}")
-        process = subprocess.Popen(swebench_cmd, shell=True,
-                                   stdout=subprocess.PIPE,
-                                   stderr=subprocess.PIPE,
-                                   preexec_fn=os.setsid)
+        process = subprocess.Popen(
+            swebench_cmd,
+            shell=True,
+            preexec_fn=os.setsid,
+        )
         if thread_name:
             thread_processes[thread_name] = process
     elif benchmark != "mt_bench":
         # 3. Build lm-eval command
         max_model_len = os.environ.get("MAX_MODEL_LEN", "4096")
-        is_multimodal = is_multimodal_benchmark(benchmark)
-        lm_eval_model = "local-chat-completions" if is_multimodal else "local-completions"
-        base_url_path = "/v1/chat/completions" if is_multimodal else "/v1/completions"
-        tokenizer_args = ",tokenizer_backend=None,tokenized_requests=False" if is_multimodal else ""
+        force_chat = env_flag("LM_EVAL_FORCE_CHAT_COMPLETIONS") or (
+            "omni" in model.lower()
+        )
+        use_chat_completions = is_multimodal_benchmark(benchmark) or force_chat
+        force_apply_chat_template = env_flag(
+            "LM_EVAL_FORCE_APPLY_CHAT_TEMPLATE", default=force_chat)
+        lm_eval_num_concurrent = os.environ.get("LM_EVAL_NUM_CONCURRENT", "16")
+        lm_eval_timeout = os.environ.get("LM_EVAL_TIMEOUT")
+        lm_eval_max_retries = os.environ.get("LM_EVAL_MAX_RETRIES")
+        lm_eval_gen_kwargs = os.environ.get("LM_EVAL_GEN_KWARGS", "").strip()
+
+        lm_eval_model = ("local-chat-completions"
+                         if use_chat_completions else "local-completions")
+        base_url_path = ("/v1/chat/completions"
+                         if use_chat_completions else "/v1/completions")
+        tokenizer_args = (
+            ",tokenizer_backend=None,tokenized_requests=False"
+            if use_chat_completions else "")
         model_args = (
             f"base_url=http://{server_address}{base_url_path},"
             "add_bos_token=True,"
             f"max_model_len={max_model_len},"
             f"max_length={max_model_len},"
-            "num_concurrent=20"
+            f"num_concurrent={lm_eval_num_concurrent}"
             f"{tokenizer_args}"
         )
+        if lm_eval_timeout:
+            model_args += f",timeout={lm_eval_timeout}"
+        if lm_eval_max_retries:
+            model_args += f",max_retries={lm_eval_max_retries}"
 
         os.environ["HF_ALLOW_CODE_EVAL"] = "1"
 
-        if is_multimodal and "--apply_chat_template" not in extra_args:
+        if (use_chat_completions or force_apply_chat_template) and (
+                "--apply_chat_template" not in extra_args):
             extra_args = f"{extra_args} --apply_chat_template".strip()
+
+        gen_kwargs_arg = ""
+        if lm_eval_gen_kwargs:
+            gen_kwargs_arg = f"--gen_kwargs {shlex.quote(lm_eval_gen_kwargs)} "
 
         lm_eval_cmd = (
             f"lm-eval --model {lm_eval_model} "
             f"--tasks {cfg['tasks']} "
             f"--model_args model={model},{model_args} "
-            f"--limit {limit} --log_samples {extra_args} "
+            f"--limit {limit} --log_samples {gen_kwargs_arg}{extra_args} "
             f"--output_path {stats_dir}/{stat_file}.jsonl "
             f"2>&1 | tee {stats_dir}/{stat_file}.log"
         )
         # subprocess.run(lm_eval_cmd, shell=True, check=True)
         print(f"eval_cmd: {lm_eval_cmd}")
-        process = subprocess.Popen(lm_eval_cmd, shell=True, 
-                                   stdout=subprocess.PIPE, 
-                                   stderr=subprocess.PIPE, 
-                                   preexec_fn=os.setsid)
+        process = subprocess.Popen(
+            lm_eval_cmd,
+            shell=True,
+            preexec_fn=os.setsid,
+        )
 
         # Save the process associated with this thread
         if thread_name:
@@ -368,11 +402,12 @@ def run_spec_decode_eval(
         )
         # subprocess.run(fastchat_cmd, shell=True, executable="/bin/bash", check=True)
 
-        process = subprocess.Popen(fastchat_cmd, shell=True, 
-                                   executable="/bin/bash",
-                                   stdout=subprocess.PIPE, 
-                                   stderr=subprocess.PIPE, 
-                                   preexec_fn=os.setsid)
+        process = subprocess.Popen(
+            fastchat_cmd,
+            shell=True,
+            executable="/bin/bash",
+            preexec_fn=os.setsid,
+        )
 
         # Save the process associated with this thread
         if thread_name:

@@ -1,0 +1,2397 @@
+{
+  "results": {
+    "mmmu_val": {
+      "acc,none": 0.5566666666666666,
+      "acc_stderr,none": 0.015863133212488514,
+      "alias": "mmmu_val"
+    },
+    "mmmu_val_art_and_design": {
+      "acc,none": 0.6666666666666666,
+      "acc_stderr,none": 0.04070734728037881,
+      "alias": " - Art and Design"
+    },
+    "mmmu_val_art": {
+      "alias": "  - Art",
+      "acc,none": 0.7666666666666667,
+      "acc_stderr,none": 0.07854032324531729
+    },
+    "mmmu_val_art_theory": {
+      "alias": "  - Art Theory",
+      "acc,none": 0.7666666666666667,
+      "acc_stderr,none": 0.07854032324531729
+    },
+    "mmmu_val_design": {
+      "alias": "  - Design",
+      "acc,none": 0.7666666666666667,
+      "acc_stderr,none": 0.07854032324531729
+    },
+    "mmmu_val_music": {
+      "alias": "  - Music",
+      "acc,none": 0.36666666666666664,
+      "acc_stderr,none": 0.08948554539839963
+    },
+    "mmmu_val_business": {
+      "acc,none": 0.6066666666666667,
+      "acc_stderr,none": 0.040324355417622526,
+      "alias": " - Business"
+    },
+    "mmmu_val_accounting": {
+      "alias": "  - Accounting",
+      "acc,none": 0.6333333333333333,
+      "acc_stderr,none": 0.08948554539839963
+    },
+    "mmmu_val_economics": {
+      "alias": "  - Economics",
+      "acc,none": 0.6333333333333333,
+      "acc_stderr,none": 0.08948554539839963
+    },
+    "mmmu_val_finance": {
+      "alias": "  - Finance",
+      "acc,none": 0.5,
+      "acc_stderr,none": 0.09284766908852593
+    },
+    "mmmu_val_manage": {
+      "alias": "  - Manage",
+      "acc,none": 0.6333333333333333,
+      "acc_stderr,none": 0.08948554539839963
+    },
+    "mmmu_val_marketing": {
+      "alias": "  - Marketing",
+      "acc,none": 0.6333333333333333,
+      "acc_stderr,none": 0.08948554539839963
+    },
+    "mmmu_val_health_and_medicine": {
+      "acc,none": 0.58,
+      "acc_stderr,none": 0.04028633150023872,
+      "alias": " - Health and Medicine"
+    },
+    "mmmu_val_basic_medical_science": {
+      "alias": "  - Basic Medical Science",
+      "acc,none": 0.5666666666666667,
+      "acc_stderr,none": 0.09201865544655373
+    },
+    "mmmu_val_clinical_medicine": {
+      "alias": "  - Clinical Medicine",
+      "acc,none": 0.5,
+      "acc_stderr,none": 0.09284766908852593
+    },
+    "mmmu_val_diagnostics_and_laboratory_medicine": {
+      "alias": "  - Diagnostics and Laboratory Medicine",
+      "acc,none": 0.4666666666666667,
+      "acc_stderr,none": 0.09264111117062016
+    },
+    "mmmu_val_pharmacy": {
+      "alias": "  - Pharmacy",
+      "acc,none": 0.6666666666666666,
+      "acc_stderr,none": 0.0875376219064817
+    },
+    "mmmu_val_public_health": {
+      "alias": "  - Public Health",
+      "acc,none": 0.7,
+      "acc_stderr,none": 0.08509629433967632
+    },
+    "mmmu_val_humanities_and_social_science": {
+      "acc,none": 0.725,
+      "acc_stderr,none": 0.040795490322477326,
+      "alias": " - Humanities and Social Science"
+    },
+    "mmmu_val_history": {
+      "alias": "  - History",
+      "acc,none": 0.7666666666666667,
+      "acc_stderr,none": 0.07854032324531729
+    },
+    "mmmu_val_literature": {
+      "alias": "  - Literature",
+      "acc,none": 0.8333333333333334,
+      "acc_stderr,none": 0.06920456654478331
+    },
+    "mmmu_val_psychology": {
+      "alias": "  - Psychology",
+      "acc,none": 0.6333333333333333,
+      "acc_stderr,none": 0.08948554539839963
+    },
+    "mmmu_val_sociology": {
+      "alias": "  - Sociology",
+      "acc,none": 0.6666666666666666,
+      "acc_stderr,none": 0.0875376219064817
+    },
+    "mmmu_val_science": {
+      "acc,none": 0.54,
+      "acc_stderr,none": 0.040400295890574575,
+      "alias": " - Science"
+    },
+    "mmmu_val_biology": {
+      "alias": "  - Biology",
+      "acc,none": 0.6333333333333333,
+      "acc_stderr,none": 0.08948554539839963
+    },
+    "mmmu_val_chemistry": {
+      "alias": "  - Chemistry",
+      "acc,none": 0.3333333333333333,
+      "acc_stderr,none": 0.0875376219064817
+    },
+    "mmmu_val_geography": {
+      "alias": "  - Geography",
+      "acc,none": 0.6,
+      "acc_stderr,none": 0.0909717652294684
+    },
+    "mmmu_val_math": {
+      "alias": "  - Math",
+      "acc,none": 0.5333333333333333,
+      "acc_stderr,none": 0.09264111117062016
+    },
+    "mmmu_val_physics": {
+      "alias": "  - Physics",
+      "acc,none": 0.6,
+      "acc_stderr,none": 0.0909717652294684
+    },
+    "mmmu_val_tech_and_engineering": {
+      "acc,none": 0.35714285714285715,
+      "acc_stderr,none": 0.032357279089065834,
+      "alias": " - Tech and Engineering"
+    },
+    "mmmu_val_agriculture": {
+      "alias": "  - Agriculture",
+      "acc,none": 0.5666666666666667,
+      "acc_stderr,none": 0.09201865544655373
+    },
+    "mmmu_val_architecture_and_engineering": {
+      "alias": "  - Architecture and Engineering",
+      "acc,none": 0.2,
+      "acc_stderr,none": 0.07427813527082075
+    },
+    "mmmu_val_computer_science": {
+      "alias": "  - Computer Science",
+      "acc,none": 0.5,
+      "acc_stderr,none": 0.09284766908852593
+    },
+    "mmmu_val_electronics": {
+      "alias": "  - Electronics",
+      "acc,none": 0.4,
+      "acc_stderr,none": 0.0909717652294684
+    },
+    "mmmu_val_energy_and_power": {
+      "alias": "  - Energy and Power",
+      "acc,none": 0.3333333333333333,
+      "acc_stderr,none": 0.0875376219064817
+    },
+    "mmmu_val_materials": {
+      "alias": "  - Materials",
+      "acc,none": 0.3,
+      "acc_stderr,none": 0.08509629433967632
+    },
+    "mmmu_val_mechanical_engineering": {
+      "alias": "  - Mechanical Engineering",
+      "acc,none": 0.2,
+      "acc_stderr,none": 0.07427813527082075
+    }
+  },
+  "groups": {
+    "mmmu_val": {
+      "acc,none": 0.5566666666666666,
+      "acc_stderr,none": 0.015863133212488514,
+      "alias": "mmmu_val"
+    },
+    "mmmu_val_art_and_design": {
+      "acc,none": 0.6666666666666666,
+      "acc_stderr,none": 0.04070734728037881,
+      "alias": " - Art and Design"
+    },
+    "mmmu_val_business": {
+      "acc,none": 0.6066666666666667,
+      "acc_stderr,none": 0.040324355417622526,
+      "alias": " - Business"
+    },
+    "mmmu_val_health_and_medicine": {
+      "acc,none": 0.58,
+      "acc_stderr,none": 0.04028633150023872,
+      "alias": " - Health and Medicine"
+    },
+    "mmmu_val_humanities_and_social_science": {
+      "acc,none": 0.725,
+      "acc_stderr,none": 0.040795490322477326,
+      "alias": " - Humanities and Social Science"
+    },
+    "mmmu_val_science": {
+      "acc,none": 0.54,
+      "acc_stderr,none": 0.040400295890574575,
+      "alias": " - Science"
+    },
+    "mmmu_val_tech_and_engineering": {
+      "acc,none": 0.35714285714285715,
+      "acc_stderr,none": 0.032357279089065834,
+      "alias": " - Tech and Engineering"
+    }
+  },
+  "group_subtasks": {
+    "mmmu_val_tech_and_engineering": [
+      "mmmu_val_agriculture",
+      "mmmu_val_architecture_and_engineering",
+      "mmmu_val_computer_science",
+      "mmmu_val_electronics",
+      "mmmu_val_energy_and_power",
+      "mmmu_val_materials",
+      "mmmu_val_mechanical_engineering"
+    ],
+    "mmmu_val_science": [
+      "mmmu_val_biology",
+      "mmmu_val_chemistry",
+      "mmmu_val_geography",
+      "mmmu_val_math",
+      "mmmu_val_physics"
+    ],
+    "mmmu_val_humanities_and_social_science": [
+      "mmmu_val_history",
+      "mmmu_val_literature",
+      "mmmu_val_sociology",
+      "mmmu_val_psychology"
+    ],
+    "mmmu_val_health_and_medicine": [
+      "mmmu_val_basic_medical_science",
+      "mmmu_val_clinical_medicine",
+      "mmmu_val_diagnostics_and_laboratory_medicine",
+      "mmmu_val_pharmacy",
+      "mmmu_val_public_health"
+    ],
+    "mmmu_val_business": [
+      "mmmu_val_accounting",
+      "mmmu_val_economics",
+      "mmmu_val_finance",
+      "mmmu_val_manage",
+      "mmmu_val_marketing"
+    ],
+    "mmmu_val_art_and_design": [
+      "mmmu_val_art",
+      "mmmu_val_art_theory",
+      "mmmu_val_design",
+      "mmmu_val_music"
+    ],
+    "mmmu_val": [
+      "mmmu_val_art_and_design",
+      "mmmu_val_business",
+      "mmmu_val_health_and_medicine",
+      "mmmu_val_humanities_and_social_science",
+      "mmmu_val_science",
+      "mmmu_val_tech_and_engineering"
+    ]
+  },
+  "configs": {
+    "mmmu_val_accounting": {
+      "task": "mmmu_val_accounting",
+      "task_alias": "Accounting",
+      "dataset_path": "MMMU/MMMU",
+      "dataset_name": "Accounting",
+      "validation_split": "validation",
+      "doc_to_text": "def doc_to_text(doc):\n    \"\"\"Get the prompt for a given document.\"\"\"\n\n    prompt = _doc_to_text(doc)\n\n    for i in range(1, 8):\n        # replace <image {i}> with <image>. TODO: check this is always the right decision incl. for non-HF models\n        prompt = prompt.replace(f\"<image {i}>\", \"<image>\")\n\n    return prompt\n",
+      "doc_to_target": "answer",
+      "doc_to_image": "def doc_to_image(doc):\n    # get formatted prompt (incl. multi-choice options) pre-<image {i}> reformatting\n    input_text = _doc_to_text(doc)\n    # locate <image {i}> instances in input\n    image_placeholders = [\n        img.replace(\" \", \"_\").replace(\"<\", \"\").replace(\">\", \"\")\n        for img in re.findall(\"<image [1-7]>\", input_text)\n    ]\n\n    # collect visuals (can have dupes of a given image or be out of order)\n    # E.g. validation_Math_19 contains <image 1> and <image 2> but seen as [<image 1>, <image 2>, <image 1>, <image 1>, <image 2>]\n    visuals = [doc[img] for img in image_placeholders]\n\n    return visuals\n",
+      "unsafe_code": false,
+      "process_results": "def process_results(doc, results):\n    if doc[\"question_type\"] == \"multiple-choice\":\n        # multichoice logic\n        option_strs = ast.literal_eval(doc[\"options\"])\n        option_letters = [\"A\", \"B\", \"C\", \"D\", \"E\", \"F\", \"G\", \"H\", \"I\"]\n\n        all_choices = option_letters[: len(option_strs)]\n        index2ans = {index: ans for index, ans in zip(option_letters, option_strs)}\n\n        pred = parse_multi_choice_response(results[0], all_choices, index2ans)\n        # print(pred, all_choices, index2ans)\n        is_correct = eval_multi_choice(doc[\"answer\"], pred)\n    else:\n        # freeform response handling\n        pred = parse_open_response(results[0])\n        is_correct = eval_open(doc[\"answer\"], pred)\n\n    return {\"acc\": float(is_correct)}\n\n    # TODO: it would be better if we could use a Filter for this logic.\n",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "default",
+        "split": null,
+        "process_docs": null,
+        "fewshot_indices": null,
+        "samples": null,
+        "doc_to_text": "<function doc_to_text at 0x799f8a5b5a80>",
+        "doc_to_choice": null,
+        "doc_to_target": "answer",
+        "gen_prefix": null,
+        "fewshot_delimiter": "\n\n",
+        "target_delimiter": " "
+      },
+      "num_fewshot": 0,
+      "metric_list": [
+        {
+          "metric": "acc",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "generate_until",
+      "generation_kwargs": {
+        "until": [
+          "<|endoftext|>"
+        ],
+        "temperature": 0.0,
+        "do_sample": false,
+        "max_gen_toks": 512
+      },
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 0.0,
+        "model": "meta-llama/Llama-4-Scout-17B-16E-Instruct",
+        "base_url": "http://localhost:8011/v1/chat/completions",
+        "add_bos_token": true,
+        "max_model_len": 4096,
+        "max_length": 4096,
+        "num_concurrent": 16,
+        "tokenizer_backend": null,
+        "tokenized_requests": false
+      }
+    },
+    "mmmu_val_agriculture": {
+      "task": "mmmu_val_agriculture",
+      "task_alias": "Agriculture",
+      "dataset_path": "MMMU/MMMU",
+      "dataset_name": "Agriculture",
+      "validation_split": "validation",
+      "doc_to_text": "def doc_to_text(doc):\n    \"\"\"Get the prompt for a given document.\"\"\"\n\n    prompt = _doc_to_text(doc)\n\n    for i in range(1, 8):\n        # replace <image {i}> with <image>. TODO: check this is always the right decision incl. for non-HF models\n        prompt = prompt.replace(f\"<image {i}>\", \"<image>\")\n\n    return prompt\n",
+      "doc_to_target": "answer",
+      "doc_to_image": "def doc_to_image(doc):\n    # get formatted prompt (incl. multi-choice options) pre-<image {i}> reformatting\n    input_text = _doc_to_text(doc)\n    # locate <image {i}> instances in input\n    image_placeholders = [\n        img.replace(\" \", \"_\").replace(\"<\", \"\").replace(\">\", \"\")\n        for img in re.findall(\"<image [1-7]>\", input_text)\n    ]\n\n    # collect visuals (can have dupes of a given image or be out of order)\n    # E.g. validation_Math_19 contains <image 1> and <image 2> but seen as [<image 1>, <image 2>, <image 1>, <image 1>, <image 2>]\n    visuals = [doc[img] for img in image_placeholders]\n\n    return visuals\n",
+      "unsafe_code": false,
+      "process_results": "def process_results(doc, results):\n    if doc[\"question_type\"] == \"multiple-choice\":\n        # multichoice logic\n        option_strs = ast.literal_eval(doc[\"options\"])\n        option_letters = [\"A\", \"B\", \"C\", \"D\", \"E\", \"F\", \"G\", \"H\", \"I\"]\n\n        all_choices = option_letters[: len(option_strs)]\n        index2ans = {index: ans for index, ans in zip(option_letters, option_strs)}\n\n        pred = parse_multi_choice_response(results[0], all_choices, index2ans)\n        # print(pred, all_choices, index2ans)\n        is_correct = eval_multi_choice(doc[\"answer\"], pred)\n    else:\n        # freeform response handling\n        pred = parse_open_response(results[0])\n        is_correct = eval_open(doc[\"answer\"], pred)\n\n    return {\"acc\": float(is_correct)}\n\n    # TODO: it would be better if we could use a Filter for this logic.\n",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "default",
+        "split": null,
+        "process_docs": null,
+        "fewshot_indices": null,
+        "samples": null,
+        "doc_to_text": "<function doc_to_text at 0x799fc811e700>",
+        "doc_to_choice": null,
+        "doc_to_target": "answer",
+        "gen_prefix": null,
+        "fewshot_delimiter": "\n\n",
+        "target_delimiter": " "
+      },
+      "num_fewshot": 0,
+      "metric_list": [
+        {
+          "metric": "acc",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "generate_until",
+      "generation_kwargs": {
+        "until": [
+          "<|endoftext|>"
+        ],
+        "temperature": 0.0,
+        "do_sample": false,
+        "max_gen_toks": 512
+      },
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 0.0,
+        "model": "meta-llama/Llama-4-Scout-17B-16E-Instruct",
+        "base_url": "http://localhost:8011/v1/chat/completions",
+        "add_bos_token": true,
+        "max_model_len": 4096,
+        "max_length": 4096,
+        "num_concurrent": 16,
+        "tokenizer_backend": null,
+        "tokenized_requests": false
+      }
+    },
+    "mmmu_val_architecture_and_engineering": {
+      "task": "mmmu_val_architecture_and_engineering",
+      "task_alias": "Architecture and Engineering",
+      "dataset_path": "MMMU/MMMU",
+      "dataset_name": "Architecture_and_Engineering",
+      "validation_split": "validation",
+      "doc_to_text": "def doc_to_text(doc):\n    \"\"\"Get the prompt for a given document.\"\"\"\n\n    prompt = _doc_to_text(doc)\n\n    for i in range(1, 8):\n        # replace <image {i}> with <image>. TODO: check this is always the right decision incl. for non-HF models\n        prompt = prompt.replace(f\"<image {i}>\", \"<image>\")\n\n    return prompt\n",
+      "doc_to_target": "answer",
+      "doc_to_image": "def doc_to_image(doc):\n    # get formatted prompt (incl. multi-choice options) pre-<image {i}> reformatting\n    input_text = _doc_to_text(doc)\n    # locate <image {i}> instances in input\n    image_placeholders = [\n        img.replace(\" \", \"_\").replace(\"<\", \"\").replace(\">\", \"\")\n        for img in re.findall(\"<image [1-7]>\", input_text)\n    ]\n\n    # collect visuals (can have dupes of a given image or be out of order)\n    # E.g. validation_Math_19 contains <image 1> and <image 2> but seen as [<image 1>, <image 2>, <image 1>, <image 1>, <image 2>]\n    visuals = [doc[img] for img in image_placeholders]\n\n    return visuals\n",
+      "unsafe_code": false,
+      "process_results": "def process_results(doc, results):\n    if doc[\"question_type\"] == \"multiple-choice\":\n        # multichoice logic\n        option_strs = ast.literal_eval(doc[\"options\"])\n        option_letters = [\"A\", \"B\", \"C\", \"D\", \"E\", \"F\", \"G\", \"H\", \"I\"]\n\n        all_choices = option_letters[: len(option_strs)]\n        index2ans = {index: ans for index, ans in zip(option_letters, option_strs)}\n\n        pred = parse_multi_choice_response(results[0], all_choices, index2ans)\n        # print(pred, all_choices, index2ans)\n        is_correct = eval_multi_choice(doc[\"answer\"], pred)\n    else:\n        # freeform response handling\n        pred = parse_open_response(results[0])\n        is_correct = eval_open(doc[\"answer\"], pred)\n\n    return {\"acc\": float(is_correct)}\n\n    # TODO: it would be better if we could use a Filter for this logic.\n",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "default",
+        "split": null,
+        "process_docs": null,
+        "fewshot_indices": null,
+        "samples": null,
+        "doc_to_text": "<function doc_to_text at 0x799fc811d9e0>",
+        "doc_to_choice": null,
+        "doc_to_target": "answer",
+        "gen_prefix": null,
+        "fewshot_delimiter": "\n\n",
+        "target_delimiter": " "
+      },
+      "num_fewshot": 0,
+      "metric_list": [
+        {
+          "metric": "acc",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "generate_until",
+      "generation_kwargs": {
+        "until": [
+          "<|endoftext|>"
+        ],
+        "temperature": 0.0,
+        "do_sample": false,
+        "max_gen_toks": 512
+      },
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 0.0,
+        "model": "meta-llama/Llama-4-Scout-17B-16E-Instruct",
+        "base_url": "http://localhost:8011/v1/chat/completions",
+        "add_bos_token": true,
+        "max_model_len": 4096,
+        "max_length": 4096,
+        "num_concurrent": 16,
+        "tokenizer_backend": null,
+        "tokenized_requests": false
+      }
+    },
+    "mmmu_val_art": {
+      "task": "mmmu_val_art",
+      "task_alias": "Art",
+      "dataset_path": "MMMU/MMMU",
+      "dataset_name": "Art",
+      "validation_split": "validation",
+      "doc_to_text": "def doc_to_text(doc):\n    \"\"\"Get the prompt for a given document.\"\"\"\n\n    prompt = _doc_to_text(doc)\n\n    for i in range(1, 8):\n        # replace <image {i}> with <image>. TODO: check this is always the right decision incl. for non-HF models\n        prompt = prompt.replace(f\"<image {i}>\", \"<image>\")\n\n    return prompt\n",
+      "doc_to_target": "answer",
+      "doc_to_image": "def doc_to_image(doc):\n    # get formatted prompt (incl. multi-choice options) pre-<image {i}> reformatting\n    input_text = _doc_to_text(doc)\n    # locate <image {i}> instances in input\n    image_placeholders = [\n        img.replace(\" \", \"_\").replace(\"<\", \"\").replace(\">\", \"\")\n        for img in re.findall(\"<image [1-7]>\", input_text)\n    ]\n\n    # collect visuals (can have dupes of a given image or be out of order)\n    # E.g. validation_Math_19 contains <image 1> and <image 2> but seen as [<image 1>, <image 2>, <image 1>, <image 1>, <image 2>]\n    visuals = [doc[img] for img in image_placeholders]\n\n    return visuals\n",
+      "unsafe_code": false,
+      "process_results": "def process_results(doc, results):\n    if doc[\"question_type\"] == \"multiple-choice\":\n        # multichoice logic\n        option_strs = ast.literal_eval(doc[\"options\"])\n        option_letters = [\"A\", \"B\", \"C\", \"D\", \"E\", \"F\", \"G\", \"H\", \"I\"]\n\n        all_choices = option_letters[: len(option_strs)]\n        index2ans = {index: ans for index, ans in zip(option_letters, option_strs)}\n\n        pred = parse_multi_choice_response(results[0], all_choices, index2ans)\n        # print(pred, all_choices, index2ans)\n        is_correct = eval_multi_choice(doc[\"answer\"], pred)\n    else:\n        # freeform response handling\n        pred = parse_open_response(results[0])\n        is_correct = eval_open(doc[\"answer\"], pred)\n\n    return {\"acc\": float(is_correct)}\n\n    # TODO: it would be better if we could use a Filter for this logic.\n",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "default",
+        "split": null,
+        "process_docs": null,
+        "fewshot_indices": null,
+        "samples": null,
+        "doc_to_text": "<function doc_to_text at 0x799f83fbd800>",
+        "doc_to_choice": null,
+        "doc_to_target": "answer",
+        "gen_prefix": null,
+        "fewshot_delimiter": "\n\n",
+        "target_delimiter": " "
+      },
+      "num_fewshot": 0,
+      "metric_list": [
+        {
+          "metric": "acc",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "generate_until",
+      "generation_kwargs": {
+        "until": [
+          "<|endoftext|>"
+        ],
+        "temperature": 0.0,
+        "do_sample": false,
+        "max_gen_toks": 512
+      },
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 0.0,
+        "model": "meta-llama/Llama-4-Scout-17B-16E-Instruct",
+        "base_url": "http://localhost:8011/v1/chat/completions",
+        "add_bos_token": true,
+        "max_model_len": 4096,
+        "max_length": 4096,
+        "num_concurrent": 16,
+        "tokenizer_backend": null,
+        "tokenized_requests": false
+      }
+    },
+    "mmmu_val_art_theory": {
+      "task": "mmmu_val_art_theory",
+      "task_alias": "Art Theory",
+      "dataset_path": "MMMU/MMMU",
+      "dataset_name": "Art_Theory",
+      "validation_split": "validation",
+      "doc_to_text": "def doc_to_text(doc):\n    \"\"\"Get the prompt for a given document.\"\"\"\n\n    prompt = _doc_to_text(doc)\n\n    for i in range(1, 8):\n        # replace <image {i}> with <image>. TODO: check this is always the right decision incl. for non-HF models\n        prompt = prompt.replace(f\"<image {i}>\", \"<image>\")\n\n    return prompt\n",
+      "doc_to_target": "answer",
+      "doc_to_image": "def doc_to_image(doc):\n    # get formatted prompt (incl. multi-choice options) pre-<image {i}> reformatting\n    input_text = _doc_to_text(doc)\n    # locate <image {i}> instances in input\n    image_placeholders = [\n        img.replace(\" \", \"_\").replace(\"<\", \"\").replace(\">\", \"\")\n        for img in re.findall(\"<image [1-7]>\", input_text)\n    ]\n\n    # collect visuals (can have dupes of a given image or be out of order)\n    # E.g. validation_Math_19 contains <image 1> and <image 2> but seen as [<image 1>, <image 2>, <image 1>, <image 1>, <image 2>]\n    visuals = [doc[img] for img in image_placeholders]\n\n    return visuals\n",
+      "unsafe_code": false,
+      "process_results": "def process_results(doc, results):\n    if doc[\"question_type\"] == \"multiple-choice\":\n        # multichoice logic\n        option_strs = ast.literal_eval(doc[\"options\"])\n        option_letters = [\"A\", \"B\", \"C\", \"D\", \"E\", \"F\", \"G\", \"H\", \"I\"]\n\n        all_choices = option_letters[: len(option_strs)]\n        index2ans = {index: ans for index, ans in zip(option_letters, option_strs)}\n\n        pred = parse_multi_choice_response(results[0], all_choices, index2ans)\n        # print(pred, all_choices, index2ans)\n        is_correct = eval_multi_choice(doc[\"answer\"], pred)\n    else:\n        # freeform response handling\n        pred = parse_open_response(results[0])\n        is_correct = eval_open(doc[\"answer\"], pred)\n\n    return {\"acc\": float(is_correct)}\n\n    # TODO: it would be better if we could use a Filter for this logic.\n",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "default",
+        "split": null,
+        "process_docs": null,
+        "fewshot_indices": null,
+        "samples": null,
+        "doc_to_text": "<function doc_to_text at 0x799f8a4fad40>",
+        "doc_to_choice": null,
+        "doc_to_target": "answer",
+        "gen_prefix": null,
+        "fewshot_delimiter": "\n\n",
+        "target_delimiter": " "
+      },
+      "num_fewshot": 0,
+      "metric_list": [
+        {
+          "metric": "acc",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "generate_until",
+      "generation_kwargs": {
+        "until": [
+          "<|endoftext|>"
+        ],
+        "temperature": 0.0,
+        "do_sample": false,
+        "max_gen_toks": 512
+      },
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 0.0,
+        "model": "meta-llama/Llama-4-Scout-17B-16E-Instruct",
+        "base_url": "http://localhost:8011/v1/chat/completions",
+        "add_bos_token": true,
+        "max_model_len": 4096,
+        "max_length": 4096,
+        "num_concurrent": 16,
+        "tokenizer_backend": null,
+        "tokenized_requests": false
+      }
+    },
+    "mmmu_val_basic_medical_science": {
+      "task": "mmmu_val_basic_medical_science",
+      "task_alias": "Basic Medical Science",
+      "dataset_path": "MMMU/MMMU",
+      "dataset_name": "Basic_Medical_Science",
+      "validation_split": "validation",
+      "doc_to_text": "def doc_to_text(doc):\n    \"\"\"Get the prompt for a given document.\"\"\"\n\n    prompt = _doc_to_text(doc)\n\n    for i in range(1, 8):\n        # replace <image {i}> with <image>. TODO: check this is always the right decision incl. for non-HF models\n        prompt = prompt.replace(f\"<image {i}>\", \"<image>\")\n\n    return prompt\n",
+      "doc_to_target": "answer",
+      "doc_to_image": "def doc_to_image(doc):\n    # get formatted prompt (incl. multi-choice options) pre-<image {i}> reformatting\n    input_text = _doc_to_text(doc)\n    # locate <image {i}> instances in input\n    image_placeholders = [\n        img.replace(\" \", \"_\").replace(\"<\", \"\").replace(\">\", \"\")\n        for img in re.findall(\"<image [1-7]>\", input_text)\n    ]\n\n    # collect visuals (can have dupes of a given image or be out of order)\n    # E.g. validation_Math_19 contains <image 1> and <image 2> but seen as [<image 1>, <image 2>, <image 1>, <image 1>, <image 2>]\n    visuals = [doc[img] for img in image_placeholders]\n\n    return visuals\n",
+      "unsafe_code": false,
+      "process_results": "def process_results(doc, results):\n    if doc[\"question_type\"] == \"multiple-choice\":\n        # multichoice logic\n        option_strs = ast.literal_eval(doc[\"options\"])\n        option_letters = [\"A\", \"B\", \"C\", \"D\", \"E\", \"F\", \"G\", \"H\", \"I\"]\n\n        all_choices = option_letters[: len(option_strs)]\n        index2ans = {index: ans for index, ans in zip(option_letters, option_strs)}\n\n        pred = parse_multi_choice_response(results[0], all_choices, index2ans)\n        # print(pred, all_choices, index2ans)\n        is_correct = eval_multi_choice(doc[\"answer\"], pred)\n    else:\n        # freeform response handling\n        pred = parse_open_response(results[0])\n        is_correct = eval_open(doc[\"answer\"], pred)\n\n    return {\"acc\": float(is_correct)}\n\n    # TODO: it would be better if we could use a Filter for this logic.\n",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "default",
+        "split": null,
+        "process_docs": null,
+        "fewshot_indices": null,
+        "samples": null,
+        "doc_to_text": "<function doc_to_text at 0x799f8a662de0>",
+        "doc_to_choice": null,
+        "doc_to_target": "answer",
+        "gen_prefix": null,
+        "fewshot_delimiter": "\n\n",
+        "target_delimiter": " "
+      },
+      "num_fewshot": 0,
+      "metric_list": [
+        {
+          "metric": "acc",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "generate_until",
+      "generation_kwargs": {
+        "until": [
+          "<|endoftext|>"
+        ],
+        "temperature": 0.0,
+        "do_sample": false,
+        "max_gen_toks": 512
+      },
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 0.0,
+        "model": "meta-llama/Llama-4-Scout-17B-16E-Instruct",
+        "base_url": "http://localhost:8011/v1/chat/completions",
+        "add_bos_token": true,
+        "max_model_len": 4096,
+        "max_length": 4096,
+        "num_concurrent": 16,
+        "tokenizer_backend": null,
+        "tokenized_requests": false
+      }
+    },
+    "mmmu_val_biology": {
+      "task": "mmmu_val_biology",
+      "task_alias": "Biology",
+      "dataset_path": "MMMU/MMMU",
+      "dataset_name": "Biology",
+      "validation_split": "validation",
+      "doc_to_text": "def doc_to_text(doc):\n    \"\"\"Get the prompt for a given document.\"\"\"\n\n    prompt = _doc_to_text(doc)\n\n    for i in range(1, 8):\n        # replace <image {i}> with <image>. TODO: check this is always the right decision incl. for non-HF models\n        prompt = prompt.replace(f\"<image {i}>\", \"<image>\")\n\n    return prompt\n",
+      "doc_to_target": "answer",
+      "doc_to_image": "def doc_to_image(doc):\n    # get formatted prompt (incl. multi-choice options) pre-<image {i}> reformatting\n    input_text = _doc_to_text(doc)\n    # locate <image {i}> instances in input\n    image_placeholders = [\n        img.replace(\" \", \"_\").replace(\"<\", \"\").replace(\">\", \"\")\n        for img in re.findall(\"<image [1-7]>\", input_text)\n    ]\n\n    # collect visuals (can have dupes of a given image or be out of order)\n    # E.g. validation_Math_19 contains <image 1> and <image 2> but seen as [<image 1>, <image 2>, <image 1>, <image 1>, <image 2>]\n    visuals = [doc[img] for img in image_placeholders]\n\n    return visuals\n",
+      "unsafe_code": false,
+      "process_results": "def process_results(doc, results):\n    if doc[\"question_type\"] == \"multiple-choice\":\n        # multichoice logic\n        option_strs = ast.literal_eval(doc[\"options\"])\n        option_letters = [\"A\", \"B\", \"C\", \"D\", \"E\", \"F\", \"G\", \"H\", \"I\"]\n\n        all_choices = option_letters[: len(option_strs)]\n        index2ans = {index: ans for index, ans in zip(option_letters, option_strs)}\n\n        pred = parse_multi_choice_response(results[0], all_choices, index2ans)\n        # print(pred, all_choices, index2ans)\n        is_correct = eval_multi_choice(doc[\"answer\"], pred)\n    else:\n        # freeform response handling\n        pred = parse_open_response(results[0])\n        is_correct = eval_open(doc[\"answer\"], pred)\n\n    return {\"acc\": float(is_correct)}\n\n    # TODO: it would be better if we could use a Filter for this logic.\n",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "default",
+        "split": null,
+        "process_docs": null,
+        "fewshot_indices": null,
+        "samples": null,
+        "doc_to_text": "<function doc_to_text at 0x799fc32d0a40>",
+        "doc_to_choice": null,
+        "doc_to_target": "answer",
+        "gen_prefix": null,
+        "fewshot_delimiter": "\n\n",
+        "target_delimiter": " "
+      },
+      "num_fewshot": 0,
+      "metric_list": [
+        {
+          "metric": "acc",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "generate_until",
+      "generation_kwargs": {
+        "until": [
+          "<|endoftext|>"
+        ],
+        "temperature": 0.0,
+        "do_sample": false,
+        "max_gen_toks": 512
+      },
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 0.0,
+        "model": "meta-llama/Llama-4-Scout-17B-16E-Instruct",
+        "base_url": "http://localhost:8011/v1/chat/completions",
+        "add_bos_token": true,
+        "max_model_len": 4096,
+        "max_length": 4096,
+        "num_concurrent": 16,
+        "tokenizer_backend": null,
+        "tokenized_requests": false
+      }
+    },
+    "mmmu_val_chemistry": {
+      "task": "mmmu_val_chemistry",
+      "task_alias": "Chemistry",
+      "dataset_path": "MMMU/MMMU",
+      "dataset_name": "Chemistry",
+      "validation_split": "validation",
+      "doc_to_text": "def doc_to_text(doc):\n    \"\"\"Get the prompt for a given document.\"\"\"\n\n    prompt = _doc_to_text(doc)\n\n    for i in range(1, 8):\n        # replace <image {i}> with <image>. TODO: check this is always the right decision incl. for non-HF models\n        prompt = prompt.replace(f\"<image {i}>\", \"<image>\")\n\n    return prompt\n",
+      "doc_to_target": "answer",
+      "doc_to_image": "def doc_to_image(doc):\n    # get formatted prompt (incl. multi-choice options) pre-<image {i}> reformatting\n    input_text = _doc_to_text(doc)\n    # locate <image {i}> instances in input\n    image_placeholders = [\n        img.replace(\" \", \"_\").replace(\"<\", \"\").replace(\">\", \"\")\n        for img in re.findall(\"<image [1-7]>\", input_text)\n    ]\n\n    # collect visuals (can have dupes of a given image or be out of order)\n    # E.g. validation_Math_19 contains <image 1> and <image 2> but seen as [<image 1>, <image 2>, <image 1>, <image 1>, <image 2>]\n    visuals = [doc[img] for img in image_placeholders]\n\n    return visuals\n",
+      "unsafe_code": false,
+      "process_results": "def process_results(doc, results):\n    if doc[\"question_type\"] == \"multiple-choice\":\n        # multichoice logic\n        option_strs = ast.literal_eval(doc[\"options\"])\n        option_letters = [\"A\", \"B\", \"C\", \"D\", \"E\", \"F\", \"G\", \"H\", \"I\"]\n\n        all_choices = option_letters[: len(option_strs)]\n        index2ans = {index: ans for index, ans in zip(option_letters, option_strs)}\n\n        pred = parse_multi_choice_response(results[0], all_choices, index2ans)\n        # print(pred, all_choices, index2ans)\n        is_correct = eval_multi_choice(doc[\"answer\"], pred)\n    else:\n        # freeform response handling\n        pred = parse_open_response(results[0])\n        is_correct = eval_open(doc[\"answer\"], pred)\n\n    return {\"acc\": float(is_correct)}\n\n    # TODO: it would be better if we could use a Filter for this logic.\n",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "default",
+        "split": null,
+        "process_docs": null,
+        "fewshot_indices": null,
+        "samples": null,
+        "doc_to_text": "<function doc_to_text at 0x799fc3333560>",
+        "doc_to_choice": null,
+        "doc_to_target": "answer",
+        "gen_prefix": null,
+        "fewshot_delimiter": "\n\n",
+        "target_delimiter": " "
+      },
+      "num_fewshot": 0,
+      "metric_list": [
+        {
+          "metric": "acc",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "generate_until",
+      "generation_kwargs": {
+        "until": [
+          "<|endoftext|>"
+        ],
+        "temperature": 0.0,
+        "do_sample": false,
+        "max_gen_toks": 512
+      },
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 0.0,
+        "model": "meta-llama/Llama-4-Scout-17B-16E-Instruct",
+        "base_url": "http://localhost:8011/v1/chat/completions",
+        "add_bos_token": true,
+        "max_model_len": 4096,
+        "max_length": 4096,
+        "num_concurrent": 16,
+        "tokenizer_backend": null,
+        "tokenized_requests": false
+      }
+    },
+    "mmmu_val_clinical_medicine": {
+      "task": "mmmu_val_clinical_medicine",
+      "task_alias": "Clinical Medicine",
+      "dataset_path": "MMMU/MMMU",
+      "dataset_name": "Clinical_Medicine",
+      "validation_split": "validation",
+      "doc_to_text": "def doc_to_text(doc):\n    \"\"\"Get the prompt for a given document.\"\"\"\n\n    prompt = _doc_to_text(doc)\n\n    for i in range(1, 8):\n        # replace <image {i}> with <image>. TODO: check this is always the right decision incl. for non-HF models\n        prompt = prompt.replace(f\"<image {i}>\", \"<image>\")\n\n    return prompt\n",
+      "doc_to_target": "answer",
+      "doc_to_image": "def doc_to_image(doc):\n    # get formatted prompt (incl. multi-choice options) pre-<image {i}> reformatting\n    input_text = _doc_to_text(doc)\n    # locate <image {i}> instances in input\n    image_placeholders = [\n        img.replace(\" \", \"_\").replace(\"<\", \"\").replace(\">\", \"\")\n        for img in re.findall(\"<image [1-7]>\", input_text)\n    ]\n\n    # collect visuals (can have dupes of a given image or be out of order)\n    # E.g. validation_Math_19 contains <image 1> and <image 2> but seen as [<image 1>, <image 2>, <image 1>, <image 1>, <image 2>]\n    visuals = [doc[img] for img in image_placeholders]\n\n    return visuals\n",
+      "unsafe_code": false,
+      "process_results": "def process_results(doc, results):\n    if doc[\"question_type\"] == \"multiple-choice\":\n        # multichoice logic\n        option_strs = ast.literal_eval(doc[\"options\"])\n        option_letters = [\"A\", \"B\", \"C\", \"D\", \"E\", \"F\", \"G\", \"H\", \"I\"]\n\n        all_choices = option_letters[: len(option_strs)]\n        index2ans = {index: ans for index, ans in zip(option_letters, option_strs)}\n\n        pred = parse_multi_choice_response(results[0], all_choices, index2ans)\n        # print(pred, all_choices, index2ans)\n        is_correct = eval_multi_choice(doc[\"answer\"], pred)\n    else:\n        # freeform response handling\n        pred = parse_open_response(results[0])\n        is_correct = eval_open(doc[\"answer\"], pred)\n\n    return {\"acc\": float(is_correct)}\n\n    # TODO: it would be better if we could use a Filter for this logic.\n",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "default",
+        "split": null,
+        "process_docs": null,
+        "fewshot_indices": null,
+        "samples": null,
+        "doc_to_text": "<function doc_to_text at 0x799f8a660e00>",
+        "doc_to_choice": null,
+        "doc_to_target": "answer",
+        "gen_prefix": null,
+        "fewshot_delimiter": "\n\n",
+        "target_delimiter": " "
+      },
+      "num_fewshot": 0,
+      "metric_list": [
+        {
+          "metric": "acc",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "generate_until",
+      "generation_kwargs": {
+        "until": [
+          "<|endoftext|>"
+        ],
+        "temperature": 0.0,
+        "do_sample": false,
+        "max_gen_toks": 512
+      },
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 0.0,
+        "model": "meta-llama/Llama-4-Scout-17B-16E-Instruct",
+        "base_url": "http://localhost:8011/v1/chat/completions",
+        "add_bos_token": true,
+        "max_model_len": 4096,
+        "max_length": 4096,
+        "num_concurrent": 16,
+        "tokenizer_backend": null,
+        "tokenized_requests": false
+      }
+    },
+    "mmmu_val_computer_science": {
+      "task": "mmmu_val_computer_science",
+      "task_alias": "Computer Science",
+      "dataset_path": "MMMU/MMMU",
+      "dataset_name": "Computer_Science",
+      "validation_split": "validation",
+      "doc_to_text": "def doc_to_text(doc):\n    \"\"\"Get the prompt for a given document.\"\"\"\n\n    prompt = _doc_to_text(doc)\n\n    for i in range(1, 8):\n        # replace <image {i}> with <image>. TODO: check this is always the right decision incl. for non-HF models\n        prompt = prompt.replace(f\"<image {i}>\", \"<image>\")\n\n    return prompt\n",
+      "doc_to_target": "answer",
+      "doc_to_image": "def doc_to_image(doc):\n    # get formatted prompt (incl. multi-choice options) pre-<image {i}> reformatting\n    input_text = _doc_to_text(doc)\n    # locate <image {i}> instances in input\n    image_placeholders = [\n        img.replace(\" \", \"_\").replace(\"<\", \"\").replace(\">\", \"\")\n        for img in re.findall(\"<image [1-7]>\", input_text)\n    ]\n\n    # collect visuals (can have dupes of a given image or be out of order)\n    # E.g. validation_Math_19 contains <image 1> and <image 2> but seen as [<image 1>, <image 2>, <image 1>, <image 1>, <image 2>]\n    visuals = [doc[img] for img in image_placeholders]\n\n    return visuals\n",
+      "unsafe_code": false,
+      "process_results": "def process_results(doc, results):\n    if doc[\"question_type\"] == \"multiple-choice\":\n        # multichoice logic\n        option_strs = ast.literal_eval(doc[\"options\"])\n        option_letters = [\"A\", \"B\", \"C\", \"D\", \"E\", \"F\", \"G\", \"H\", \"I\"]\n\n        all_choices = option_letters[: len(option_strs)]\n        index2ans = {index: ans for index, ans in zip(option_letters, option_strs)}\n\n        pred = parse_multi_choice_response(results[0], all_choices, index2ans)\n        # print(pred, all_choices, index2ans)\n        is_correct = eval_multi_choice(doc[\"answer\"], pred)\n    else:\n        # freeform response handling\n        pred = parse_open_response(results[0])\n        is_correct = eval_open(doc[\"answer\"], pred)\n\n    return {\"acc\": float(is_correct)}\n\n    # TODO: it would be better if we could use a Filter for this logic.\n",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "default",
+        "split": null,
+        "process_docs": null,
+        "fewshot_indices": null,
+        "samples": null,
+        "doc_to_text": "<function doc_to_text at 0x799fc80dad40>",
+        "doc_to_choice": null,
+        "doc_to_target": "answer",
+        "gen_prefix": null,
+        "fewshot_delimiter": "\n\n",
+        "target_delimiter": " "
+      },
+      "num_fewshot": 0,
+      "metric_list": [
+        {
+          "metric": "acc",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "generate_until",
+      "generation_kwargs": {
+        "until": [
+          "<|endoftext|>"
+        ],
+        "temperature": 0.0,
+        "do_sample": false,
+        "max_gen_toks": 512
+      },
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 0.0,
+        "model": "meta-llama/Llama-4-Scout-17B-16E-Instruct",
+        "base_url": "http://localhost:8011/v1/chat/completions",
+        "add_bos_token": true,
+        "max_model_len": 4096,
+        "max_length": 4096,
+        "num_concurrent": 16,
+        "tokenizer_backend": null,
+        "tokenized_requests": false
+      }
+    },
+    "mmmu_val_design": {
+      "task": "mmmu_val_design",
+      "task_alias": "Design",
+      "dataset_path": "MMMU/MMMU",
+      "dataset_name": "Design",
+      "validation_split": "validation",
+      "doc_to_text": "def doc_to_text(doc):\n    \"\"\"Get the prompt for a given document.\"\"\"\n\n    prompt = _doc_to_text(doc)\n\n    for i in range(1, 8):\n        # replace <image {i}> with <image>. TODO: check this is always the right decision incl. for non-HF models\n        prompt = prompt.replace(f\"<image {i}>\", \"<image>\")\n\n    return prompt\n",
+      "doc_to_target": "answer",
+      "doc_to_image": "def doc_to_image(doc):\n    # get formatted prompt (incl. multi-choice options) pre-<image {i}> reformatting\n    input_text = _doc_to_text(doc)\n    # locate <image {i}> instances in input\n    image_placeholders = [\n        img.replace(\" \", \"_\").replace(\"<\", \"\").replace(\">\", \"\")\n        for img in re.findall(\"<image [1-7]>\", input_text)\n    ]\n\n    # collect visuals (can have dupes of a given image or be out of order)\n    # E.g. validation_Math_19 contains <image 1> and <image 2> but seen as [<image 1>, <image 2>, <image 1>, <image 1>, <image 2>]\n    visuals = [doc[img] for img in image_placeholders]\n\n    return visuals\n",
+      "unsafe_code": false,
+      "process_results": "def process_results(doc, results):\n    if doc[\"question_type\"] == \"multiple-choice\":\n        # multichoice logic\n        option_strs = ast.literal_eval(doc[\"options\"])\n        option_letters = [\"A\", \"B\", \"C\", \"D\", \"E\", \"F\", \"G\", \"H\", \"I\"]\n\n        all_choices = option_letters[: len(option_strs)]\n        index2ans = {index: ans for index, ans in zip(option_letters, option_strs)}\n\n        pred = parse_multi_choice_response(results[0], all_choices, index2ans)\n        # print(pred, all_choices, index2ans)\n        is_correct = eval_multi_choice(doc[\"answer\"], pred)\n    else:\n        # freeform response handling\n        pred = parse_open_response(results[0])\n        is_correct = eval_open(doc[\"answer\"], pred)\n\n    return {\"acc\": float(is_correct)}\n\n    # TODO: it would be better if we could use a Filter for this logic.\n",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "default",
+        "split": null,
+        "process_docs": null,
+        "fewshot_indices": null,
+        "samples": null,
+        "doc_to_text": "<function doc_to_text at 0x799f8a4fa2a0>",
+        "doc_to_choice": null,
+        "doc_to_target": "answer",
+        "gen_prefix": null,
+        "fewshot_delimiter": "\n\n",
+        "target_delimiter": " "
+      },
+      "num_fewshot": 0,
+      "metric_list": [
+        {
+          "metric": "acc",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "generate_until",
+      "generation_kwargs": {
+        "until": [
+          "<|endoftext|>"
+        ],
+        "temperature": 0.0,
+        "do_sample": false,
+        "max_gen_toks": 512
+      },
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 0.0,
+        "model": "meta-llama/Llama-4-Scout-17B-16E-Instruct",
+        "base_url": "http://localhost:8011/v1/chat/completions",
+        "add_bos_token": true,
+        "max_model_len": 4096,
+        "max_length": 4096,
+        "num_concurrent": 16,
+        "tokenizer_backend": null,
+        "tokenized_requests": false
+      }
+    },
+    "mmmu_val_diagnostics_and_laboratory_medicine": {
+      "task": "mmmu_val_diagnostics_and_laboratory_medicine",
+      "task_alias": "Diagnostics and Laboratory Medicine",
+      "dataset_path": "MMMU/MMMU",
+      "dataset_name": "Diagnostics_and_Laboratory_Medicine",
+      "validation_split": "validation",
+      "doc_to_text": "def doc_to_text(doc):\n    \"\"\"Get the prompt for a given document.\"\"\"\n\n    prompt = _doc_to_text(doc)\n\n    for i in range(1, 8):\n        # replace <image {i}> with <image>. TODO: check this is always the right decision incl. for non-HF models\n        prompt = prompt.replace(f\"<image {i}>\", \"<image>\")\n\n    return prompt\n",
+      "doc_to_target": "answer",
+      "doc_to_image": "def doc_to_image(doc):\n    # get formatted prompt (incl. multi-choice options) pre-<image {i}> reformatting\n    input_text = _doc_to_text(doc)\n    # locate <image {i}> instances in input\n    image_placeholders = [\n        img.replace(\" \", \"_\").replace(\"<\", \"\").replace(\">\", \"\")\n        for img in re.findall(\"<image [1-7]>\", input_text)\n    ]\n\n    # collect visuals (can have dupes of a given image or be out of order)\n    # E.g. validation_Math_19 contains <image 1> and <image 2> but seen as [<image 1>, <image 2>, <image 1>, <image 1>, <image 2>]\n    visuals = [doc[img] for img in image_placeholders]\n\n    return visuals\n",
+      "unsafe_code": false,
+      "process_results": "def process_results(doc, results):\n    if doc[\"question_type\"] == \"multiple-choice\":\n        # multichoice logic\n        option_strs = ast.literal_eval(doc[\"options\"])\n        option_letters = [\"A\", \"B\", \"C\", \"D\", \"E\", \"F\", \"G\", \"H\", \"I\"]\n\n        all_choices = option_letters[: len(option_strs)]\n        index2ans = {index: ans for index, ans in zip(option_letters, option_strs)}\n\n        pred = parse_multi_choice_response(results[0], all_choices, index2ans)\n        # print(pred, all_choices, index2ans)\n        is_correct = eval_multi_choice(doc[\"answer\"], pred)\n    else:\n        # freeform response handling\n        pred = parse_open_response(results[0])\n        is_correct = eval_open(doc[\"answer\"], pred)\n\n    return {\"acc\": float(is_correct)}\n\n    # TODO: it would be better if we could use a Filter for this logic.\n",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "default",
+        "split": null,
+        "process_docs": null,
+        "fewshot_indices": null,
+        "samples": null,
+        "doc_to_text": "<function doc_to_text at 0x799f8aa823e0>",
+        "doc_to_choice": null,
+        "doc_to_target": "answer",
+        "gen_prefix": null,
+        "fewshot_delimiter": "\n\n",
+        "target_delimiter": " "
+      },
+      "num_fewshot": 0,
+      "metric_list": [
+        {
+          "metric": "acc",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "generate_until",
+      "generation_kwargs": {
+        "until": [
+          "<|endoftext|>"
+        ],
+        "temperature": 0.0,
+        "do_sample": false,
+        "max_gen_toks": 512
+      },
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 0.0,
+        "model": "meta-llama/Llama-4-Scout-17B-16E-Instruct",
+        "base_url": "http://localhost:8011/v1/chat/completions",
+        "add_bos_token": true,
+        "max_model_len": 4096,
+        "max_length": 4096,
+        "num_concurrent": 16,
+        "tokenizer_backend": null,
+        "tokenized_requests": false
+      }
+    },
+    "mmmu_val_economics": {
+      "task": "mmmu_val_economics",
+      "task_alias": "Economics",
+      "dataset_path": "MMMU/MMMU",
+      "dataset_name": "Economics",
+      "validation_split": "validation",
+      "doc_to_text": "def doc_to_text(doc):\n    \"\"\"Get the prompt for a given document.\"\"\"\n\n    prompt = _doc_to_text(doc)\n\n    for i in range(1, 8):\n        # replace <image {i}> with <image>. TODO: check this is always the right decision incl. for non-HF models\n        prompt = prompt.replace(f\"<image {i}>\", \"<image>\")\n\n    return prompt\n",
+      "doc_to_target": "answer",
+      "doc_to_image": "def doc_to_image(doc):\n    # get formatted prompt (incl. multi-choice options) pre-<image {i}> reformatting\n    input_text = _doc_to_text(doc)\n    # locate <image {i}> instances in input\n    image_placeholders = [\n        img.replace(\" \", \"_\").replace(\"<\", \"\").replace(\">\", \"\")\n        for img in re.findall(\"<image [1-7]>\", input_text)\n    ]\n\n    # collect visuals (can have dupes of a given image or be out of order)\n    # E.g. validation_Math_19 contains <image 1> and <image 2> but seen as [<image 1>, <image 2>, <image 1>, <image 1>, <image 2>]\n    visuals = [doc[img] for img in image_placeholders]\n\n    return visuals\n",
+      "unsafe_code": false,
+      "process_results": "def process_results(doc, results):\n    if doc[\"question_type\"] == \"multiple-choice\":\n        # multichoice logic\n        option_strs = ast.literal_eval(doc[\"options\"])\n        option_letters = [\"A\", \"B\", \"C\", \"D\", \"E\", \"F\", \"G\", \"H\", \"I\"]\n\n        all_choices = option_letters[: len(option_strs)]\n        index2ans = {index: ans for index, ans in zip(option_letters, option_strs)}\n\n        pred = parse_multi_choice_response(results[0], all_choices, index2ans)\n        # print(pred, all_choices, index2ans)\n        is_correct = eval_multi_choice(doc[\"answer\"], pred)\n    else:\n        # freeform response handling\n        pred = parse_open_response(results[0])\n        is_correct = eval_open(doc[\"answer\"], pred)\n\n    return {\"acc\": float(is_correct)}\n\n    # TODO: it would be better if we could use a Filter for this logic.\n",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "default",
+        "split": null,
+        "process_docs": null,
+        "fewshot_indices": null,
+        "samples": null,
+        "doc_to_text": "<function doc_to_text at 0x799f8a5b49a0>",
+        "doc_to_choice": null,
+        "doc_to_target": "answer",
+        "gen_prefix": null,
+        "fewshot_delimiter": "\n\n",
+        "target_delimiter": " "
+      },
+      "num_fewshot": 0,
+      "metric_list": [
+        {
+          "metric": "acc",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "generate_until",
+      "generation_kwargs": {
+        "until": [
+          "<|endoftext|>"
+        ],
+        "temperature": 0.0,
+        "do_sample": false,
+        "max_gen_toks": 512
+      },
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 0.0,
+        "model": "meta-llama/Llama-4-Scout-17B-16E-Instruct",
+        "base_url": "http://localhost:8011/v1/chat/completions",
+        "add_bos_token": true,
+        "max_model_len": 4096,
+        "max_length": 4096,
+        "num_concurrent": 16,
+        "tokenizer_backend": null,
+        "tokenized_requests": false
+      }
+    },
+    "mmmu_val_electronics": {
+      "task": "mmmu_val_electronics",
+      "task_alias": "Electronics",
+      "dataset_path": "MMMU/MMMU",
+      "dataset_name": "Electronics",
+      "validation_split": "validation",
+      "doc_to_text": "def doc_to_text(doc):\n    \"\"\"Get the prompt for a given document.\"\"\"\n\n    prompt = _doc_to_text(doc)\n\n    for i in range(1, 8):\n        # replace <image {i}> with <image>. TODO: check this is always the right decision incl. for non-HF models\n        prompt = prompt.replace(f\"<image {i}>\", \"<image>\")\n\n    return prompt\n",
+      "doc_to_target": "answer",
+      "doc_to_image": "def doc_to_image(doc):\n    # get formatted prompt (incl. multi-choice options) pre-<image {i}> reformatting\n    input_text = _doc_to_text(doc)\n    # locate <image {i}> instances in input\n    image_placeholders = [\n        img.replace(\" \", \"_\").replace(\"<\", \"\").replace(\">\", \"\")\n        for img in re.findall(\"<image [1-7]>\", input_text)\n    ]\n\n    # collect visuals (can have dupes of a given image or be out of order)\n    # E.g. validation_Math_19 contains <image 1> and <image 2> but seen as [<image 1>, <image 2>, <image 1>, <image 1>, <image 2>]\n    visuals = [doc[img] for img in image_placeholders]\n\n    return visuals\n",
+      "unsafe_code": false,
+      "process_results": "def process_results(doc, results):\n    if doc[\"question_type\"] == \"multiple-choice\":\n        # multichoice logic\n        option_strs = ast.literal_eval(doc[\"options\"])\n        option_letters = [\"A\", \"B\", \"C\", \"D\", \"E\", \"F\", \"G\", \"H\", \"I\"]\n\n        all_choices = option_letters[: len(option_strs)]\n        index2ans = {index: ans for index, ans in zip(option_letters, option_strs)}\n\n        pred = parse_multi_choice_response(results[0], all_choices, index2ans)\n        # print(pred, all_choices, index2ans)\n        is_correct = eval_multi_choice(doc[\"answer\"], pred)\n    else:\n        # freeform response handling\n        pred = parse_open_response(results[0])\n        is_correct = eval_open(doc[\"answer\"], pred)\n\n    return {\"acc\": float(is_correct)}\n\n    # TODO: it would be better if we could use a Filter for this logic.\n",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "default",
+        "split": null,
+        "process_docs": null,
+        "fewshot_indices": null,
+        "samples": null,
+        "doc_to_text": "<function doc_to_text at 0x799fc80d8c20>",
+        "doc_to_choice": null,
+        "doc_to_target": "answer",
+        "gen_prefix": null,
+        "fewshot_delimiter": "\n\n",
+        "target_delimiter": " "
+      },
+      "num_fewshot": 0,
+      "metric_list": [
+        {
+          "metric": "acc",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "generate_until",
+      "generation_kwargs": {
+        "until": [
+          "<|endoftext|>"
+        ],
+        "temperature": 0.0,
+        "do_sample": false,
+        "max_gen_toks": 512
+      },
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 0.0,
+        "model": "meta-llama/Llama-4-Scout-17B-16E-Instruct",
+        "base_url": "http://localhost:8011/v1/chat/completions",
+        "add_bos_token": true,
+        "max_model_len": 4096,
+        "max_length": 4096,
+        "num_concurrent": 16,
+        "tokenizer_backend": null,
+        "tokenized_requests": false
+      }
+    },
+    "mmmu_val_energy_and_power": {
+      "task": "mmmu_val_energy_and_power",
+      "task_alias": "Energy and Power",
+      "dataset_path": "MMMU/MMMU",
+      "dataset_name": "Energy_and_Power",
+      "validation_split": "validation",
+      "doc_to_text": "def doc_to_text(doc):\n    \"\"\"Get the prompt for a given document.\"\"\"\n\n    prompt = _doc_to_text(doc)\n\n    for i in range(1, 8):\n        # replace <image {i}> with <image>. TODO: check this is always the right decision incl. for non-HF models\n        prompt = prompt.replace(f\"<image {i}>\", \"<image>\")\n\n    return prompt\n",
+      "doc_to_target": "answer",
+      "doc_to_image": "def doc_to_image(doc):\n    # get formatted prompt (incl. multi-choice options) pre-<image {i}> reformatting\n    input_text = _doc_to_text(doc)\n    # locate <image {i}> instances in input\n    image_placeholders = [\n        img.replace(\" \", \"_\").replace(\"<\", \"\").replace(\">\", \"\")\n        for img in re.findall(\"<image [1-7]>\", input_text)\n    ]\n\n    # collect visuals (can have dupes of a given image or be out of order)\n    # E.g. validation_Math_19 contains <image 1> and <image 2> but seen as [<image 1>, <image 2>, <image 1>, <image 1>, <image 2>]\n    visuals = [doc[img] for img in image_placeholders]\n\n    return visuals\n",
+      "unsafe_code": false,
+      "process_results": "def process_results(doc, results):\n    if doc[\"question_type\"] == \"multiple-choice\":\n        # multichoice logic\n        option_strs = ast.literal_eval(doc[\"options\"])\n        option_letters = [\"A\", \"B\", \"C\", \"D\", \"E\", \"F\", \"G\", \"H\", \"I\"]\n\n        all_choices = option_letters[: len(option_strs)]\n        index2ans = {index: ans for index, ans in zip(option_letters, option_strs)}\n\n        pred = parse_multi_choice_response(results[0], all_choices, index2ans)\n        # print(pred, all_choices, index2ans)\n        is_correct = eval_multi_choice(doc[\"answer\"], pred)\n    else:\n        # freeform response handling\n        pred = parse_open_response(results[0])\n        is_correct = eval_open(doc[\"answer\"], pred)\n\n    return {\"acc\": float(is_correct)}\n\n    # TODO: it would be better if we could use a Filter for this logic.\n",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "default",
+        "split": null,
+        "process_docs": null,
+        "fewshot_indices": null,
+        "samples": null,
+        "doc_to_text": "<function doc_to_text at 0x799fc808e5c0>",
+        "doc_to_choice": null,
+        "doc_to_target": "answer",
+        "gen_prefix": null,
+        "fewshot_delimiter": "\n\n",
+        "target_delimiter": " "
+      },
+      "num_fewshot": 0,
+      "metric_list": [
+        {
+          "metric": "acc",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "generate_until",
+      "generation_kwargs": {
+        "until": [
+          "<|endoftext|>"
+        ],
+        "temperature": 0.0,
+        "do_sample": false,
+        "max_gen_toks": 512
+      },
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 0.0,
+        "model": "meta-llama/Llama-4-Scout-17B-16E-Instruct",
+        "base_url": "http://localhost:8011/v1/chat/completions",
+        "add_bos_token": true,
+        "max_model_len": 4096,
+        "max_length": 4096,
+        "num_concurrent": 16,
+        "tokenizer_backend": null,
+        "tokenized_requests": false
+      }
+    },
+    "mmmu_val_finance": {
+      "task": "mmmu_val_finance",
+      "task_alias": "Finance",
+      "dataset_path": "MMMU/MMMU",
+      "dataset_name": "Finance",
+      "validation_split": "validation",
+      "doc_to_text": "def doc_to_text(doc):\n    \"\"\"Get the prompt for a given document.\"\"\"\n\n    prompt = _doc_to_text(doc)\n\n    for i in range(1, 8):\n        # replace <image {i}> with <image>. TODO: check this is always the right decision incl. for non-HF models\n        prompt = prompt.replace(f\"<image {i}>\", \"<image>\")\n\n    return prompt\n",
+      "doc_to_target": "answer",
+      "doc_to_image": "def doc_to_image(doc):\n    # get formatted prompt (incl. multi-choice options) pre-<image {i}> reformatting\n    input_text = _doc_to_text(doc)\n    # locate <image {i}> instances in input\n    image_placeholders = [\n        img.replace(\" \", \"_\").replace(\"<\", \"\").replace(\">\", \"\")\n        for img in re.findall(\"<image [1-7]>\", input_text)\n    ]\n\n    # collect visuals (can have dupes of a given image or be out of order)\n    # E.g. validation_Math_19 contains <image 1> and <image 2> but seen as [<image 1>, <image 2>, <image 1>, <image 1>, <image 2>]\n    visuals = [doc[img] for img in image_placeholders]\n\n    return visuals\n",
+      "unsafe_code": false,
+      "process_results": "def process_results(doc, results):\n    if doc[\"question_type\"] == \"multiple-choice\":\n        # multichoice logic\n        option_strs = ast.literal_eval(doc[\"options\"])\n        option_letters = [\"A\", \"B\", \"C\", \"D\", \"E\", \"F\", \"G\", \"H\", \"I\"]\n\n        all_choices = option_letters[: len(option_strs)]\n        index2ans = {index: ans for index, ans in zip(option_letters, option_strs)}\n\n        pred = parse_multi_choice_response(results[0], all_choices, index2ans)\n        # print(pred, all_choices, index2ans)\n        is_correct = eval_multi_choice(doc[\"answer\"], pred)\n    else:\n        # freeform response handling\n        pred = parse_open_response(results[0])\n        is_correct = eval_open(doc[\"answer\"], pred)\n\n    return {\"acc\": float(is_correct)}\n\n    # TODO: it would be better if we could use a Filter for this logic.\n",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "default",
+        "split": null,
+        "process_docs": null,
+        "fewshot_indices": null,
+        "samples": null,
+        "doc_to_text": "<function doc_to_text at 0x799f8a68c7c0>",
+        "doc_to_choice": null,
+        "doc_to_target": "answer",
+        "gen_prefix": null,
+        "fewshot_delimiter": "\n\n",
+        "target_delimiter": " "
+      },
+      "num_fewshot": 0,
+      "metric_list": [
+        {
+          "metric": "acc",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "generate_until",
+      "generation_kwargs": {
+        "until": [
+          "<|endoftext|>"
+        ],
+        "temperature": 0.0,
+        "do_sample": false,
+        "max_gen_toks": 512
+      },
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 0.0,
+        "model": "meta-llama/Llama-4-Scout-17B-16E-Instruct",
+        "base_url": "http://localhost:8011/v1/chat/completions",
+        "add_bos_token": true,
+        "max_model_len": 4096,
+        "max_length": 4096,
+        "num_concurrent": 16,
+        "tokenizer_backend": null,
+        "tokenized_requests": false
+      }
+    },
+    "mmmu_val_geography": {
+      "task": "mmmu_val_geography",
+      "task_alias": "Geography",
+      "dataset_path": "MMMU/MMMU",
+      "dataset_name": "Geography",
+      "validation_split": "validation",
+      "doc_to_text": "def doc_to_text(doc):\n    \"\"\"Get the prompt for a given document.\"\"\"\n\n    prompt = _doc_to_text(doc)\n\n    for i in range(1, 8):\n        # replace <image {i}> with <image>. TODO: check this is always the right decision incl. for non-HF models\n        prompt = prompt.replace(f\"<image {i}>\", \"<image>\")\n\n    return prompt\n",
+      "doc_to_target": "answer",
+      "doc_to_image": "def doc_to_image(doc):\n    # get formatted prompt (incl. multi-choice options) pre-<image {i}> reformatting\n    input_text = _doc_to_text(doc)\n    # locate <image {i}> instances in input\n    image_placeholders = [\n        img.replace(\" \", \"_\").replace(\"<\", \"\").replace(\">\", \"\")\n        for img in re.findall(\"<image [1-7]>\", input_text)\n    ]\n\n    # collect visuals (can have dupes of a given image or be out of order)\n    # E.g. validation_Math_19 contains <image 1> and <image 2> but seen as [<image 1>, <image 2>, <image 1>, <image 1>, <image 2>]\n    visuals = [doc[img] for img in image_placeholders]\n\n    return visuals\n",
+      "unsafe_code": false,
+      "process_results": "def process_results(doc, results):\n    if doc[\"question_type\"] == \"multiple-choice\":\n        # multichoice logic\n        option_strs = ast.literal_eval(doc[\"options\"])\n        option_letters = [\"A\", \"B\", \"C\", \"D\", \"E\", \"F\", \"G\", \"H\", \"I\"]\n\n        all_choices = option_letters[: len(option_strs)]\n        index2ans = {index: ans for index, ans in zip(option_letters, option_strs)}\n\n        pred = parse_multi_choice_response(results[0], all_choices, index2ans)\n        # print(pred, all_choices, index2ans)\n        is_correct = eval_multi_choice(doc[\"answer\"], pred)\n    else:\n        # freeform response handling\n        pred = parse_open_response(results[0])\n        is_correct = eval_open(doc[\"answer\"], pred)\n\n    return {\"acc\": float(is_correct)}\n\n    # TODO: it would be better if we could use a Filter for this logic.\n",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "default",
+        "split": null,
+        "process_docs": null,
+        "fewshot_indices": null,
+        "samples": null,
+        "doc_to_text": "<function doc_to_text at 0x799fc3331a80>",
+        "doc_to_choice": null,
+        "doc_to_target": "answer",
+        "gen_prefix": null,
+        "fewshot_delimiter": "\n\n",
+        "target_delimiter": " "
+      },
+      "num_fewshot": 0,
+      "metric_list": [
+        {
+          "metric": "acc",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "generate_until",
+      "generation_kwargs": {
+        "until": [
+          "<|endoftext|>"
+        ],
+        "temperature": 0.0,
+        "do_sample": false,
+        "max_gen_toks": 512
+      },
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 0.0,
+        "model": "meta-llama/Llama-4-Scout-17B-16E-Instruct",
+        "base_url": "http://localhost:8011/v1/chat/completions",
+        "add_bos_token": true,
+        "max_model_len": 4096,
+        "max_length": 4096,
+        "num_concurrent": 16,
+        "tokenizer_backend": null,
+        "tokenized_requests": false
+      }
+    },
+    "mmmu_val_history": {
+      "task": "mmmu_val_history",
+      "task_alias": "History",
+      "dataset_path": "MMMU/MMMU",
+      "dataset_name": "History",
+      "validation_split": "validation",
+      "doc_to_text": "def doc_to_text(doc):\n    \"\"\"Get the prompt for a given document.\"\"\"\n\n    prompt = _doc_to_text(doc)\n\n    for i in range(1, 8):\n        # replace <image {i}> with <image>. TODO: check this is always the right decision incl. for non-HF models\n        prompt = prompt.replace(f\"<image {i}>\", \"<image>\")\n\n    return prompt\n",
+      "doc_to_target": "answer",
+      "doc_to_image": "def doc_to_image(doc):\n    # get formatted prompt (incl. multi-choice options) pre-<image {i}> reformatting\n    input_text = _doc_to_text(doc)\n    # locate <image {i}> instances in input\n    image_placeholders = [\n        img.replace(\" \", \"_\").replace(\"<\", \"\").replace(\">\", \"\")\n        for img in re.findall(\"<image [1-7]>\", input_text)\n    ]\n\n    # collect visuals (can have dupes of a given image or be out of order)\n    # E.g. validation_Math_19 contains <image 1> and <image 2> but seen as [<image 1>, <image 2>, <image 1>, <image 1>, <image 2>]\n    visuals = [doc[img] for img in image_placeholders]\n\n    return visuals\n",
+      "unsafe_code": false,
+      "process_results": "def process_results(doc, results):\n    if doc[\"question_type\"] == \"multiple-choice\":\n        # multichoice logic\n        option_strs = ast.literal_eval(doc[\"options\"])\n        option_letters = [\"A\", \"B\", \"C\", \"D\", \"E\", \"F\", \"G\", \"H\", \"I\"]\n\n        all_choices = option_letters[: len(option_strs)]\n        index2ans = {index: ans for index, ans in zip(option_letters, option_strs)}\n\n        pred = parse_multi_choice_response(results[0], all_choices, index2ans)\n        # print(pred, all_choices, index2ans)\n        is_correct = eval_multi_choice(doc[\"answer\"], pred)\n    else:\n        # freeform response handling\n        pred = parse_open_response(results[0])\n        is_correct = eval_open(doc[\"answer\"], pred)\n\n    return {\"acc\": float(is_correct)}\n\n    # TODO: it would be better if we could use a Filter for this logic.\n",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "default",
+        "split": null,
+        "process_docs": null,
+        "fewshot_indices": null,
+        "samples": null,
+        "doc_to_text": "<function doc_to_text at 0x799fc3191440>",
+        "doc_to_choice": null,
+        "doc_to_target": "answer",
+        "gen_prefix": null,
+        "fewshot_delimiter": "\n\n",
+        "target_delimiter": " "
+      },
+      "num_fewshot": 0,
+      "metric_list": [
+        {
+          "metric": "acc",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "generate_until",
+      "generation_kwargs": {
+        "until": [
+          "<|endoftext|>"
+        ],
+        "temperature": 0.0,
+        "do_sample": false,
+        "max_gen_toks": 512
+      },
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 0.0,
+        "model": "meta-llama/Llama-4-Scout-17B-16E-Instruct",
+        "base_url": "http://localhost:8011/v1/chat/completions",
+        "add_bos_token": true,
+        "max_model_len": 4096,
+        "max_length": 4096,
+        "num_concurrent": 16,
+        "tokenizer_backend": null,
+        "tokenized_requests": false
+      }
+    },
+    "mmmu_val_literature": {
+      "task": "mmmu_val_literature",
+      "task_alias": "Literature",
+      "dataset_path": "MMMU/MMMU",
+      "dataset_name": "Literature",
+      "validation_split": "validation",
+      "doc_to_text": "def doc_to_text(doc):\n    \"\"\"Get the prompt for a given document.\"\"\"\n\n    prompt = _doc_to_text(doc)\n\n    for i in range(1, 8):\n        # replace <image {i}> with <image>. TODO: check this is always the right decision incl. for non-HF models\n        prompt = prompt.replace(f\"<image {i}>\", \"<image>\")\n\n    return prompt\n",
+      "doc_to_target": "answer",
+      "doc_to_image": "def doc_to_image(doc):\n    # get formatted prompt (incl. multi-choice options) pre-<image {i}> reformatting\n    input_text = _doc_to_text(doc)\n    # locate <image {i}> instances in input\n    image_placeholders = [\n        img.replace(\" \", \"_\").replace(\"<\", \"\").replace(\">\", \"\")\n        for img in re.findall(\"<image [1-7]>\", input_text)\n    ]\n\n    # collect visuals (can have dupes of a given image or be out of order)\n    # E.g. validation_Math_19 contains <image 1> and <image 2> but seen as [<image 1>, <image 2>, <image 1>, <image 1>, <image 2>]\n    visuals = [doc[img] for img in image_placeholders]\n\n    return visuals\n",
+      "unsafe_code": false,
+      "process_results": "def process_results(doc, results):\n    if doc[\"question_type\"] == \"multiple-choice\":\n        # multichoice logic\n        option_strs = ast.literal_eval(doc[\"options\"])\n        option_letters = [\"A\", \"B\", \"C\", \"D\", \"E\", \"F\", \"G\", \"H\", \"I\"]\n\n        all_choices = option_letters[: len(option_strs)]\n        index2ans = {index: ans for index, ans in zip(option_letters, option_strs)}\n\n        pred = parse_multi_choice_response(results[0], all_choices, index2ans)\n        # print(pred, all_choices, index2ans)\n        is_correct = eval_multi_choice(doc[\"answer\"], pred)\n    else:\n        # freeform response handling\n        pred = parse_open_response(results[0])\n        is_correct = eval_open(doc[\"answer\"], pred)\n\n    return {\"acc\": float(is_correct)}\n\n    # TODO: it would be better if we could use a Filter for this logic.\n",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "default",
+        "split": null,
+        "process_docs": null,
+        "fewshot_indices": null,
+        "samples": null,
+        "doc_to_text": "<function doc_to_text at 0x799fc315aa20>",
+        "doc_to_choice": null,
+        "doc_to_target": "answer",
+        "gen_prefix": null,
+        "fewshot_delimiter": "\n\n",
+        "target_delimiter": " "
+      },
+      "num_fewshot": 0,
+      "metric_list": [
+        {
+          "metric": "acc",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "generate_until",
+      "generation_kwargs": {
+        "until": [
+          "<|endoftext|>"
+        ],
+        "temperature": 0.0,
+        "do_sample": false,
+        "max_gen_toks": 512
+      },
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 0.0,
+        "model": "meta-llama/Llama-4-Scout-17B-16E-Instruct",
+        "base_url": "http://localhost:8011/v1/chat/completions",
+        "add_bos_token": true,
+        "max_model_len": 4096,
+        "max_length": 4096,
+        "num_concurrent": 16,
+        "tokenizer_backend": null,
+        "tokenized_requests": false
+      }
+    },
+    "mmmu_val_manage": {
+      "task": "mmmu_val_manage",
+      "task_alias": "Manage",
+      "dataset_path": "MMMU/MMMU",
+      "dataset_name": "Manage",
+      "validation_split": "validation",
+      "doc_to_text": "def doc_to_text(doc):\n    \"\"\"Get the prompt for a given document.\"\"\"\n\n    prompt = _doc_to_text(doc)\n\n    for i in range(1, 8):\n        # replace <image {i}> with <image>. TODO: check this is always the right decision incl. for non-HF models\n        prompt = prompt.replace(f\"<image {i}>\", \"<image>\")\n\n    return prompt\n",
+      "doc_to_target": "answer",
+      "doc_to_image": "def doc_to_image(doc):\n    # get formatted prompt (incl. multi-choice options) pre-<image {i}> reformatting\n    input_text = _doc_to_text(doc)\n    # locate <image {i}> instances in input\n    image_placeholders = [\n        img.replace(\" \", \"_\").replace(\"<\", \"\").replace(\">\", \"\")\n        for img in re.findall(\"<image [1-7]>\", input_text)\n    ]\n\n    # collect visuals (can have dupes of a given image or be out of order)\n    # E.g. validation_Math_19 contains <image 1> and <image 2> but seen as [<image 1>, <image 2>, <image 1>, <image 1>, <image 2>]\n    visuals = [doc[img] for img in image_placeholders]\n\n    return visuals\n",
+      "unsafe_code": false,
+      "process_results": "def process_results(doc, results):\n    if doc[\"question_type\"] == \"multiple-choice\":\n        # multichoice logic\n        option_strs = ast.literal_eval(doc[\"options\"])\n        option_letters = [\"A\", \"B\", \"C\", \"D\", \"E\", \"F\", \"G\", \"H\", \"I\"]\n\n        all_choices = option_letters[: len(option_strs)]\n        index2ans = {index: ans for index, ans in zip(option_letters, option_strs)}\n\n        pred = parse_multi_choice_response(results[0], all_choices, index2ans)\n        # print(pred, all_choices, index2ans)\n        is_correct = eval_multi_choice(doc[\"answer\"], pred)\n    else:\n        # freeform response handling\n        pred = parse_open_response(results[0])\n        is_correct = eval_open(doc[\"answer\"], pred)\n\n    return {\"acc\": float(is_correct)}\n\n    # TODO: it would be better if we could use a Filter for this logic.\n",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "default",
+        "split": null,
+        "process_docs": null,
+        "fewshot_indices": null,
+        "samples": null,
+        "doc_to_text": "<function doc_to_text at 0x799f8a647ec0>",
+        "doc_to_choice": null,
+        "doc_to_target": "answer",
+        "gen_prefix": null,
+        "fewshot_delimiter": "\n\n",
+        "target_delimiter": " "
+      },
+      "num_fewshot": 0,
+      "metric_list": [
+        {
+          "metric": "acc",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "generate_until",
+      "generation_kwargs": {
+        "until": [
+          "<|endoftext|>"
+        ],
+        "temperature": 0.0,
+        "do_sample": false,
+        "max_gen_toks": 512
+      },
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 0.0,
+        "model": "meta-llama/Llama-4-Scout-17B-16E-Instruct",
+        "base_url": "http://localhost:8011/v1/chat/completions",
+        "add_bos_token": true,
+        "max_model_len": 4096,
+        "max_length": 4096,
+        "num_concurrent": 16,
+        "tokenizer_backend": null,
+        "tokenized_requests": false
+      }
+    },
+    "mmmu_val_marketing": {
+      "task": "mmmu_val_marketing",
+      "task_alias": "Marketing",
+      "dataset_path": "MMMU/MMMU",
+      "dataset_name": "Marketing",
+      "validation_split": "validation",
+      "doc_to_text": "def doc_to_text(doc):\n    \"\"\"Get the prompt for a given document.\"\"\"\n\n    prompt = _doc_to_text(doc)\n\n    for i in range(1, 8):\n        # replace <image {i}> with <image>. TODO: check this is always the right decision incl. for non-HF models\n        prompt = prompt.replace(f\"<image {i}>\", \"<image>\")\n\n    return prompt\n",
+      "doc_to_target": "answer",
+      "doc_to_image": "def doc_to_image(doc):\n    # get formatted prompt (incl. multi-choice options) pre-<image {i}> reformatting\n    input_text = _doc_to_text(doc)\n    # locate <image {i}> instances in input\n    image_placeholders = [\n        img.replace(\" \", \"_\").replace(\"<\", \"\").replace(\">\", \"\")\n        for img in re.findall(\"<image [1-7]>\", input_text)\n    ]\n\n    # collect visuals (can have dupes of a given image or be out of order)\n    # E.g. validation_Math_19 contains <image 1> and <image 2> but seen as [<image 1>, <image 2>, <image 1>, <image 1>, <image 2>]\n    visuals = [doc[img] for img in image_placeholders]\n\n    return visuals\n",
+      "unsafe_code": false,
+      "process_results": "def process_results(doc, results):\n    if doc[\"question_type\"] == \"multiple-choice\":\n        # multichoice logic\n        option_strs = ast.literal_eval(doc[\"options\"])\n        option_letters = [\"A\", \"B\", \"C\", \"D\", \"E\", \"F\", \"G\", \"H\", \"I\"]\n\n        all_choices = option_letters[: len(option_strs)]\n        index2ans = {index: ans for index, ans in zip(option_letters, option_strs)}\n\n        pred = parse_multi_choice_response(results[0], all_choices, index2ans)\n        # print(pred, all_choices, index2ans)\n        is_correct = eval_multi_choice(doc[\"answer\"], pred)\n    else:\n        # freeform response handling\n        pred = parse_open_response(results[0])\n        is_correct = eval_open(doc[\"answer\"], pred)\n\n    return {\"acc\": float(is_correct)}\n\n    # TODO: it would be better if we could use a Filter for this logic.\n",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "default",
+        "split": null,
+        "process_docs": null,
+        "fewshot_indices": null,
+        "samples": null,
+        "doc_to_text": "<function doc_to_text at 0x799f8a6442c0>",
+        "doc_to_choice": null,
+        "doc_to_target": "answer",
+        "gen_prefix": null,
+        "fewshot_delimiter": "\n\n",
+        "target_delimiter": " "
+      },
+      "num_fewshot": 0,
+      "metric_list": [
+        {
+          "metric": "acc",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "generate_until",
+      "generation_kwargs": {
+        "until": [
+          "<|endoftext|>"
+        ],
+        "temperature": 0.0,
+        "do_sample": false,
+        "max_gen_toks": 512
+      },
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 0.0,
+        "model": "meta-llama/Llama-4-Scout-17B-16E-Instruct",
+        "base_url": "http://localhost:8011/v1/chat/completions",
+        "add_bos_token": true,
+        "max_model_len": 4096,
+        "max_length": 4096,
+        "num_concurrent": 16,
+        "tokenizer_backend": null,
+        "tokenized_requests": false
+      }
+    },
+    "mmmu_val_materials": {
+      "task": "mmmu_val_materials",
+      "task_alias": "Materials",
+      "dataset_path": "MMMU/MMMU",
+      "dataset_name": "Materials",
+      "validation_split": "validation",
+      "doc_to_text": "def doc_to_text(doc):\n    \"\"\"Get the prompt for a given document.\"\"\"\n\n    prompt = _doc_to_text(doc)\n\n    for i in range(1, 8):\n        # replace <image {i}> with <image>. TODO: check this is always the right decision incl. for non-HF models\n        prompt = prompt.replace(f\"<image {i}>\", \"<image>\")\n\n    return prompt\n",
+      "doc_to_target": "answer",
+      "doc_to_image": "def doc_to_image(doc):\n    # get formatted prompt (incl. multi-choice options) pre-<image {i}> reformatting\n    input_text = _doc_to_text(doc)\n    # locate <image {i}> instances in input\n    image_placeholders = [\n        img.replace(\" \", \"_\").replace(\"<\", \"\").replace(\">\", \"\")\n        for img in re.findall(\"<image [1-7]>\", input_text)\n    ]\n\n    # collect visuals (can have dupes of a given image or be out of order)\n    # E.g. validation_Math_19 contains <image 1> and <image 2> but seen as [<image 1>, <image 2>, <image 1>, <image 1>, <image 2>]\n    visuals = [doc[img] for img in image_placeholders]\n\n    return visuals\n",
+      "unsafe_code": false,
+      "process_results": "def process_results(doc, results):\n    if doc[\"question_type\"] == \"multiple-choice\":\n        # multichoice logic\n        option_strs = ast.literal_eval(doc[\"options\"])\n        option_letters = [\"A\", \"B\", \"C\", \"D\", \"E\", \"F\", \"G\", \"H\", \"I\"]\n\n        all_choices = option_letters[: len(option_strs)]\n        index2ans = {index: ans for index, ans in zip(option_letters, option_strs)}\n\n        pred = parse_multi_choice_response(results[0], all_choices, index2ans)\n        # print(pred, all_choices, index2ans)\n        is_correct = eval_multi_choice(doc[\"answer\"], pred)\n    else:\n        # freeform response handling\n        pred = parse_open_response(results[0])\n        is_correct = eval_open(doc[\"answer\"], pred)\n\n    return {\"acc\": float(is_correct)}\n\n    # TODO: it would be better if we could use a Filter for this logic.\n",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "default",
+        "split": null,
+        "process_docs": null,
+        "fewshot_indices": null,
+        "samples": null,
+        "doc_to_text": "<function doc_to_text at 0x799fc808cae0>",
+        "doc_to_choice": null,
+        "doc_to_target": "answer",
+        "gen_prefix": null,
+        "fewshot_delimiter": "\n\n",
+        "target_delimiter": " "
+      },
+      "num_fewshot": 0,
+      "metric_list": [
+        {
+          "metric": "acc",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "generate_until",
+      "generation_kwargs": {
+        "until": [
+          "<|endoftext|>"
+        ],
+        "temperature": 0.0,
+        "do_sample": false,
+        "max_gen_toks": 512
+      },
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 0.0,
+        "model": "meta-llama/Llama-4-Scout-17B-16E-Instruct",
+        "base_url": "http://localhost:8011/v1/chat/completions",
+        "add_bos_token": true,
+        "max_model_len": 4096,
+        "max_length": 4096,
+        "num_concurrent": 16,
+        "tokenizer_backend": null,
+        "tokenized_requests": false
+      }
+    },
+    "mmmu_val_math": {
+      "task": "mmmu_val_math",
+      "task_alias": "Math",
+      "dataset_path": "MMMU/MMMU",
+      "dataset_name": "Math",
+      "validation_split": "validation",
+      "doc_to_text": "def doc_to_text(doc):\n    \"\"\"Get the prompt for a given document.\"\"\"\n\n    prompt = _doc_to_text(doc)\n\n    for i in range(1, 8):\n        # replace <image {i}> with <image>. TODO: check this is always the right decision incl. for non-HF models\n        prompt = prompt.replace(f\"<image {i}>\", \"<image>\")\n\n    return prompt\n",
+      "doc_to_target": "answer",
+      "doc_to_image": "def doc_to_image(doc):\n    # get formatted prompt (incl. multi-choice options) pre-<image {i}> reformatting\n    input_text = _doc_to_text(doc)\n    # locate <image {i}> instances in input\n    image_placeholders = [\n        img.replace(\" \", \"_\").replace(\"<\", \"\").replace(\">\", \"\")\n        for img in re.findall(\"<image [1-7]>\", input_text)\n    ]\n\n    # collect visuals (can have dupes of a given image or be out of order)\n    # E.g. validation_Math_19 contains <image 1> and <image 2> but seen as [<image 1>, <image 2>, <image 1>, <image 1>, <image 2>]\n    visuals = [doc[img] for img in image_placeholders]\n\n    return visuals\n",
+      "unsafe_code": false,
+      "process_results": "def process_results(doc, results):\n    if doc[\"question_type\"] == \"multiple-choice\":\n        # multichoice logic\n        option_strs = ast.literal_eval(doc[\"options\"])\n        option_letters = [\"A\", \"B\", \"C\", \"D\", \"E\", \"F\", \"G\", \"H\", \"I\"]\n\n        all_choices = option_letters[: len(option_strs)]\n        index2ans = {index: ans for index, ans in zip(option_letters, option_strs)}\n\n        pred = parse_multi_choice_response(results[0], all_choices, index2ans)\n        # print(pred, all_choices, index2ans)\n        is_correct = eval_multi_choice(doc[\"answer\"], pred)\n    else:\n        # freeform response handling\n        pred = parse_open_response(results[0])\n        is_correct = eval_open(doc[\"answer\"], pred)\n\n    return {\"acc\": float(is_correct)}\n\n    # TODO: it would be better if we could use a Filter for this logic.\n",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "default",
+        "split": null,
+        "process_docs": null,
+        "fewshot_indices": null,
+        "samples": null,
+        "doc_to_text": "<function doc_to_text at 0x799fc30ef560>",
+        "doc_to_choice": null,
+        "doc_to_target": "answer",
+        "gen_prefix": null,
+        "fewshot_delimiter": "\n\n",
+        "target_delimiter": " "
+      },
+      "num_fewshot": 0,
+      "metric_list": [
+        {
+          "metric": "acc",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "generate_until",
+      "generation_kwargs": {
+        "until": [
+          "<|endoftext|>"
+        ],
+        "temperature": 0.0,
+        "do_sample": false,
+        "max_gen_toks": 512
+      },
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 0.0,
+        "model": "meta-llama/Llama-4-Scout-17B-16E-Instruct",
+        "base_url": "http://localhost:8011/v1/chat/completions",
+        "add_bos_token": true,
+        "max_model_len": 4096,
+        "max_length": 4096,
+        "num_concurrent": 16,
+        "tokenizer_backend": null,
+        "tokenized_requests": false
+      }
+    },
+    "mmmu_val_mechanical_engineering": {
+      "task": "mmmu_val_mechanical_engineering",
+      "task_alias": "Mechanical Engineering",
+      "dataset_path": "MMMU/MMMU",
+      "dataset_name": "Mechanical_Engineering",
+      "validation_split": "validation",
+      "doc_to_text": "def doc_to_text(doc):\n    \"\"\"Get the prompt for a given document.\"\"\"\n\n    prompt = _doc_to_text(doc)\n\n    for i in range(1, 8):\n        # replace <image {i}> with <image>. TODO: check this is always the right decision incl. for non-HF models\n        prompt = prompt.replace(f\"<image {i}>\", \"<image>\")\n\n    return prompt\n",
+      "doc_to_target": "answer",
+      "doc_to_image": "def doc_to_image(doc):\n    # get formatted prompt (incl. multi-choice options) pre-<image {i}> reformatting\n    input_text = _doc_to_text(doc)\n    # locate <image {i}> instances in input\n    image_placeholders = [\n        img.replace(\" \", \"_\").replace(\"<\", \"\").replace(\">\", \"\")\n        for img in re.findall(\"<image [1-7]>\", input_text)\n    ]\n\n    # collect visuals (can have dupes of a given image or be out of order)\n    # E.g. validation_Math_19 contains <image 1> and <image 2> but seen as [<image 1>, <image 2>, <image 1>, <image 1>, <image 2>]\n    visuals = [doc[img] for img in image_placeholders]\n\n    return visuals\n",
+      "unsafe_code": false,
+      "process_results": "def process_results(doc, results):\n    if doc[\"question_type\"] == \"multiple-choice\":\n        # multichoice logic\n        option_strs = ast.literal_eval(doc[\"options\"])\n        option_letters = [\"A\", \"B\", \"C\", \"D\", \"E\", \"F\", \"G\", \"H\", \"I\"]\n\n        all_choices = option_letters[: len(option_strs)]\n        index2ans = {index: ans for index, ans in zip(option_letters, option_strs)}\n\n        pred = parse_multi_choice_response(results[0], all_choices, index2ans)\n        # print(pred, all_choices, index2ans)\n        is_correct = eval_multi_choice(doc[\"answer\"], pred)\n    else:\n        # freeform response handling\n        pred = parse_open_response(results[0])\n        is_correct = eval_open(doc[\"answer\"], pred)\n\n    return {\"acc\": float(is_correct)}\n\n    # TODO: it would be better if we could use a Filter for this logic.\n",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "default",
+        "split": null,
+        "process_docs": null,
+        "fewshot_indices": null,
+        "samples": null,
+        "doc_to_text": "<function doc_to_text at 0x799fcad179c0>",
+        "doc_to_choice": null,
+        "doc_to_target": "answer",
+        "gen_prefix": null,
+        "fewshot_delimiter": "\n\n",
+        "target_delimiter": " "
+      },
+      "num_fewshot": 0,
+      "metric_list": [
+        {
+          "metric": "acc",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "generate_until",
+      "generation_kwargs": {
+        "until": [
+          "<|endoftext|>"
+        ],
+        "temperature": 0.0,
+        "do_sample": false,
+        "max_gen_toks": 512
+      },
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 0.0,
+        "model": "meta-llama/Llama-4-Scout-17B-16E-Instruct",
+        "base_url": "http://localhost:8011/v1/chat/completions",
+        "add_bos_token": true,
+        "max_model_len": 4096,
+        "max_length": 4096,
+        "num_concurrent": 16,
+        "tokenizer_backend": null,
+        "tokenized_requests": false
+      }
+    },
+    "mmmu_val_music": {
+      "task": "mmmu_val_music",
+      "task_alias": "Music",
+      "dataset_path": "MMMU/MMMU",
+      "dataset_name": "Music",
+      "validation_split": "validation",
+      "doc_to_text": "def doc_to_text(doc):\n    \"\"\"Get the prompt for a given document.\"\"\"\n\n    prompt = _doc_to_text(doc)\n\n    for i in range(1, 8):\n        # replace <image {i}> with <image>. TODO: check this is always the right decision incl. for non-HF models\n        prompt = prompt.replace(f\"<image {i}>\", \"<image>\")\n\n    return prompt\n",
+      "doc_to_target": "answer",
+      "doc_to_image": "def doc_to_image(doc):\n    # get formatted prompt (incl. multi-choice options) pre-<image {i}> reformatting\n    input_text = _doc_to_text(doc)\n    # locate <image {i}> instances in input\n    image_placeholders = [\n        img.replace(\" \", \"_\").replace(\"<\", \"\").replace(\">\", \"\")\n        for img in re.findall(\"<image [1-7]>\", input_text)\n    ]\n\n    # collect visuals (can have dupes of a given image or be out of order)\n    # E.g. validation_Math_19 contains <image 1> and <image 2> but seen as [<image 1>, <image 2>, <image 1>, <image 1>, <image 2>]\n    visuals = [doc[img] for img in image_placeholders]\n\n    return visuals\n",
+      "unsafe_code": false,
+      "process_results": "def process_results(doc, results):\n    if doc[\"question_type\"] == \"multiple-choice\":\n        # multichoice logic\n        option_strs = ast.literal_eval(doc[\"options\"])\n        option_letters = [\"A\", \"B\", \"C\", \"D\", \"E\", \"F\", \"G\", \"H\", \"I\"]\n\n        all_choices = option_letters[: len(option_strs)]\n        index2ans = {index: ans for index, ans in zip(option_letters, option_strs)}\n\n        pred = parse_multi_choice_response(results[0], all_choices, index2ans)\n        # print(pred, all_choices, index2ans)\n        is_correct = eval_multi_choice(doc[\"answer\"], pred)\n    else:\n        # freeform response handling\n        pred = parse_open_response(results[0])\n        is_correct = eval_open(doc[\"answer\"], pred)\n\n    return {\"acc\": float(is_correct)}\n\n    # TODO: it would be better if we could use a Filter for this logic.\n",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "default",
+        "split": null,
+        "process_docs": null,
+        "fewshot_indices": null,
+        "samples": null,
+        "doc_to_text": "<function doc_to_text at 0x799f8a5b7600>",
+        "doc_to_choice": null,
+        "doc_to_target": "answer",
+        "gen_prefix": null,
+        "fewshot_delimiter": "\n\n",
+        "target_delimiter": " "
+      },
+      "num_fewshot": 0,
+      "metric_list": [
+        {
+          "metric": "acc",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "generate_until",
+      "generation_kwargs": {
+        "until": [
+          "<|endoftext|>"
+        ],
+        "temperature": 0.0,
+        "do_sample": false,
+        "max_gen_toks": 512
+      },
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 0.0,
+        "model": "meta-llama/Llama-4-Scout-17B-16E-Instruct",
+        "base_url": "http://localhost:8011/v1/chat/completions",
+        "add_bos_token": true,
+        "max_model_len": 4096,
+        "max_length": 4096,
+        "num_concurrent": 16,
+        "tokenizer_backend": null,
+        "tokenized_requests": false
+      }
+    },
+    "mmmu_val_pharmacy": {
+      "task": "mmmu_val_pharmacy",
+      "task_alias": "Pharmacy",
+      "dataset_path": "MMMU/MMMU",
+      "dataset_name": "Pharmacy",
+      "validation_split": "validation",
+      "doc_to_text": "def doc_to_text(doc):\n    \"\"\"Get the prompt for a given document.\"\"\"\n\n    prompt = _doc_to_text(doc)\n\n    for i in range(1, 8):\n        # replace <image {i}> with <image>. TODO: check this is always the right decision incl. for non-HF models\n        prompt = prompt.replace(f\"<image {i}>\", \"<image>\")\n\n    return prompt\n",
+      "doc_to_target": "answer",
+      "doc_to_image": "def doc_to_image(doc):\n    # get formatted prompt (incl. multi-choice options) pre-<image {i}> reformatting\n    input_text = _doc_to_text(doc)\n    # locate <image {i}> instances in input\n    image_placeholders = [\n        img.replace(\" \", \"_\").replace(\"<\", \"\").replace(\">\", \"\")\n        for img in re.findall(\"<image [1-7]>\", input_text)\n    ]\n\n    # collect visuals (can have dupes of a given image or be out of order)\n    # E.g. validation_Math_19 contains <image 1> and <image 2> but seen as [<image 1>, <image 2>, <image 1>, <image 1>, <image 2>]\n    visuals = [doc[img] for img in image_placeholders]\n\n    return visuals\n",
+      "unsafe_code": false,
+      "process_results": "def process_results(doc, results):\n    if doc[\"question_type\"] == \"multiple-choice\":\n        # multichoice logic\n        option_strs = ast.literal_eval(doc[\"options\"])\n        option_letters = [\"A\", \"B\", \"C\", \"D\", \"E\", \"F\", \"G\", \"H\", \"I\"]\n\n        all_choices = option_letters[: len(option_strs)]\n        index2ans = {index: ans for index, ans in zip(option_letters, option_strs)}\n\n        pred = parse_multi_choice_response(results[0], all_choices, index2ans)\n        # print(pred, all_choices, index2ans)\n        is_correct = eval_multi_choice(doc[\"answer\"], pred)\n    else:\n        # freeform response handling\n        pred = parse_open_response(results[0])\n        is_correct = eval_open(doc[\"answer\"], pred)\n\n    return {\"acc\": float(is_correct)}\n\n    # TODO: it would be better if we could use a Filter for this logic.\n",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "default",
+        "split": null,
+        "process_docs": null,
+        "fewshot_indices": null,
+        "samples": null,
+        "doc_to_text": "<function doc_to_text at 0x799f8aa80f40>",
+        "doc_to_choice": null,
+        "doc_to_target": "answer",
+        "gen_prefix": null,
+        "fewshot_delimiter": "\n\n",
+        "target_delimiter": " "
+      },
+      "num_fewshot": 0,
+      "metric_list": [
+        {
+          "metric": "acc",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "generate_until",
+      "generation_kwargs": {
+        "until": [
+          "<|endoftext|>"
+        ],
+        "temperature": 0.0,
+        "do_sample": false,
+        "max_gen_toks": 512
+      },
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 0.0,
+        "model": "meta-llama/Llama-4-Scout-17B-16E-Instruct",
+        "base_url": "http://localhost:8011/v1/chat/completions",
+        "add_bos_token": true,
+        "max_model_len": 4096,
+        "max_length": 4096,
+        "num_concurrent": 16,
+        "tokenizer_backend": null,
+        "tokenized_requests": false
+      }
+    },
+    "mmmu_val_physics": {
+      "task": "mmmu_val_physics",
+      "task_alias": "Physics",
+      "dataset_path": "MMMU/MMMU",
+      "dataset_name": "Physics",
+      "validation_split": "validation",
+      "doc_to_text": "def doc_to_text(doc):\n    \"\"\"Get the prompt for a given document.\"\"\"\n\n    prompt = _doc_to_text(doc)\n\n    for i in range(1, 8):\n        # replace <image {i}> with <image>. TODO: check this is always the right decision incl. for non-HF models\n        prompt = prompt.replace(f\"<image {i}>\", \"<image>\")\n\n    return prompt\n",
+      "doc_to_target": "answer",
+      "doc_to_image": "def doc_to_image(doc):\n    # get formatted prompt (incl. multi-choice options) pre-<image {i}> reformatting\n    input_text = _doc_to_text(doc)\n    # locate <image {i}> instances in input\n    image_placeholders = [\n        img.replace(\" \", \"_\").replace(\"<\", \"\").replace(\">\", \"\")\n        for img in re.findall(\"<image [1-7]>\", input_text)\n    ]\n\n    # collect visuals (can have dupes of a given image or be out of order)\n    # E.g. validation_Math_19 contains <image 1> and <image 2> but seen as [<image 1>, <image 2>, <image 1>, <image 1>, <image 2>]\n    visuals = [doc[img] for img in image_placeholders]\n\n    return visuals\n",
+      "unsafe_code": false,
+      "process_results": "def process_results(doc, results):\n    if doc[\"question_type\"] == \"multiple-choice\":\n        # multichoice logic\n        option_strs = ast.literal_eval(doc[\"options\"])\n        option_letters = [\"A\", \"B\", \"C\", \"D\", \"E\", \"F\", \"G\", \"H\", \"I\"]\n\n        all_choices = option_letters[: len(option_strs)]\n        index2ans = {index: ans for index, ans in zip(option_letters, option_strs)}\n\n        pred = parse_multi_choice_response(results[0], all_choices, index2ans)\n        # print(pred, all_choices, index2ans)\n        is_correct = eval_multi_choice(doc[\"answer\"], pred)\n    else:\n        # freeform response handling\n        pred = parse_open_response(results[0])\n        is_correct = eval_open(doc[\"answer\"], pred)\n\n    return {\"acc\": float(is_correct)}\n\n    # TODO: it would be better if we could use a Filter for this logic.\n",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "default",
+        "split": null,
+        "process_docs": null,
+        "fewshot_indices": null,
+        "samples": null,
+        "doc_to_text": "<function doc_to_text at 0x799fc30ed080>",
+        "doc_to_choice": null,
+        "doc_to_target": "answer",
+        "gen_prefix": null,
+        "fewshot_delimiter": "\n\n",
+        "target_delimiter": " "
+      },
+      "num_fewshot": 0,
+      "metric_list": [
+        {
+          "metric": "acc",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "generate_until",
+      "generation_kwargs": {
+        "until": [
+          "<|endoftext|>"
+        ],
+        "temperature": 0.0,
+        "do_sample": false,
+        "max_gen_toks": 512
+      },
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 0.0,
+        "model": "meta-llama/Llama-4-Scout-17B-16E-Instruct",
+        "base_url": "http://localhost:8011/v1/chat/completions",
+        "add_bos_token": true,
+        "max_model_len": 4096,
+        "max_length": 4096,
+        "num_concurrent": 16,
+        "tokenizer_backend": null,
+        "tokenized_requests": false
+      }
+    },
+    "mmmu_val_psychology": {
+      "task": "mmmu_val_psychology",
+      "task_alias": "Psychology",
+      "dataset_path": "MMMU/MMMU",
+      "dataset_name": "Psychology",
+      "validation_split": "validation",
+      "doc_to_text": "def doc_to_text(doc):\n    \"\"\"Get the prompt for a given document.\"\"\"\n\n    prompt = _doc_to_text(doc)\n\n    for i in range(1, 8):\n        # replace <image {i}> with <image>. TODO: check this is always the right decision incl. for non-HF models\n        prompt = prompt.replace(f\"<image {i}>\", \"<image>\")\n\n    return prompt\n",
+      "doc_to_target": "answer",
+      "doc_to_image": "def doc_to_image(doc):\n    # get formatted prompt (incl. multi-choice options) pre-<image {i}> reformatting\n    input_text = _doc_to_text(doc)\n    # locate <image {i}> instances in input\n    image_placeholders = [\n        img.replace(\" \", \"_\").replace(\"<\", \"\").replace(\">\", \"\")\n        for img in re.findall(\"<image [1-7]>\", input_text)\n    ]\n\n    # collect visuals (can have dupes of a given image or be out of order)\n    # E.g. validation_Math_19 contains <image 1> and <image 2> but seen as [<image 1>, <image 2>, <image 1>, <image 1>, <image 2>]\n    visuals = [doc[img] for img in image_placeholders]\n\n    return visuals\n",
+      "unsafe_code": false,
+      "process_results": "def process_results(doc, results):\n    if doc[\"question_type\"] == \"multiple-choice\":\n        # multichoice logic\n        option_strs = ast.literal_eval(doc[\"options\"])\n        option_letters = [\"A\", \"B\", \"C\", \"D\", \"E\", \"F\", \"G\", \"H\", \"I\"]\n\n        all_choices = option_letters[: len(option_strs)]\n        index2ans = {index: ans for index, ans in zip(option_letters, option_strs)}\n\n        pred = parse_multi_choice_response(results[0], all_choices, index2ans)\n        # print(pred, all_choices, index2ans)\n        is_correct = eval_multi_choice(doc[\"answer\"], pred)\n    else:\n        # freeform response handling\n        pred = parse_open_response(results[0])\n        is_correct = eval_open(doc[\"answer\"], pred)\n\n    return {\"acc\": float(is_correct)}\n\n    # TODO: it would be better if we could use a Filter for this logic.\n",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "default",
+        "split": null,
+        "process_docs": null,
+        "fewshot_indices": null,
+        "samples": null,
+        "doc_to_text": "<function doc_to_text at 0x799fc32d2340>",
+        "doc_to_choice": null,
+        "doc_to_target": "answer",
+        "gen_prefix": null,
+        "fewshot_delimiter": "\n\n",
+        "target_delimiter": " "
+      },
+      "num_fewshot": 0,
+      "metric_list": [
+        {
+          "metric": "acc",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "generate_until",
+      "generation_kwargs": {
+        "until": [
+          "<|endoftext|>"
+        ],
+        "temperature": 0.0,
+        "do_sample": false,
+        "max_gen_toks": 512
+      },
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 0.0,
+        "model": "meta-llama/Llama-4-Scout-17B-16E-Instruct",
+        "base_url": "http://localhost:8011/v1/chat/completions",
+        "add_bos_token": true,
+        "max_model_len": 4096,
+        "max_length": 4096,
+        "num_concurrent": 16,
+        "tokenizer_backend": null,
+        "tokenized_requests": false
+      }
+    },
+    "mmmu_val_public_health": {
+      "task": "mmmu_val_public_health",
+      "task_alias": "Public Health",
+      "dataset_path": "MMMU/MMMU",
+      "dataset_name": "Public_Health",
+      "validation_split": "validation",
+      "doc_to_text": "def doc_to_text(doc):\n    \"\"\"Get the prompt for a given document.\"\"\"\n\n    prompt = _doc_to_text(doc)\n\n    for i in range(1, 8):\n        # replace <image {i}> with <image>. TODO: check this is always the right decision incl. for non-HF models\n        prompt = prompt.replace(f\"<image {i}>\", \"<image>\")\n\n    return prompt\n",
+      "doc_to_target": "answer",
+      "doc_to_image": "def doc_to_image(doc):\n    # get formatted prompt (incl. multi-choice options) pre-<image {i}> reformatting\n    input_text = _doc_to_text(doc)\n    # locate <image {i}> instances in input\n    image_placeholders = [\n        img.replace(\" \", \"_\").replace(\"<\", \"\").replace(\">\", \"\")\n        for img in re.findall(\"<image [1-7]>\", input_text)\n    ]\n\n    # collect visuals (can have dupes of a given image or be out of order)\n    # E.g. validation_Math_19 contains <image 1> and <image 2> but seen as [<image 1>, <image 2>, <image 1>, <image 1>, <image 2>]\n    visuals = [doc[img] for img in image_placeholders]\n\n    return visuals\n",
+      "unsafe_code": false,
+      "process_results": "def process_results(doc, results):\n    if doc[\"question_type\"] == \"multiple-choice\":\n        # multichoice logic\n        option_strs = ast.literal_eval(doc[\"options\"])\n        option_letters = [\"A\", \"B\", \"C\", \"D\", \"E\", \"F\", \"G\", \"H\", \"I\"]\n\n        all_choices = option_letters[: len(option_strs)]\n        index2ans = {index: ans for index, ans in zip(option_letters, option_strs)}\n\n        pred = parse_multi_choice_response(results[0], all_choices, index2ans)\n        # print(pred, all_choices, index2ans)\n        is_correct = eval_multi_choice(doc[\"answer\"], pred)\n    else:\n        # freeform response handling\n        pred = parse_open_response(results[0])\n        is_correct = eval_open(doc[\"answer\"], pred)\n\n    return {\"acc\": float(is_correct)}\n\n    # TODO: it would be better if we could use a Filter for this logic.\n",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "default",
+        "split": null,
+        "process_docs": null,
+        "fewshot_indices": null,
+        "samples": null,
+        "doc_to_text": "<function doc_to_text at 0x799fc3192f20>",
+        "doc_to_choice": null,
+        "doc_to_target": "answer",
+        "gen_prefix": null,
+        "fewshot_delimiter": "\n\n",
+        "target_delimiter": " "
+      },
+      "num_fewshot": 0,
+      "metric_list": [
+        {
+          "metric": "acc",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "generate_until",
+      "generation_kwargs": {
+        "until": [
+          "<|endoftext|>"
+        ],
+        "temperature": 0.0,
+        "do_sample": false,
+        "max_gen_toks": 512
+      },
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 0.0,
+        "model": "meta-llama/Llama-4-Scout-17B-16E-Instruct",
+        "base_url": "http://localhost:8011/v1/chat/completions",
+        "add_bos_token": true,
+        "max_model_len": 4096,
+        "max_length": 4096,
+        "num_concurrent": 16,
+        "tokenizer_backend": null,
+        "tokenized_requests": false
+      }
+    },
+    "mmmu_val_sociology": {
+      "task": "mmmu_val_sociology",
+      "task_alias": "Sociology",
+      "dataset_path": "MMMU/MMMU",
+      "dataset_name": "Sociology",
+      "validation_split": "validation",
+      "doc_to_text": "def doc_to_text(doc):\n    \"\"\"Get the prompt for a given document.\"\"\"\n\n    prompt = _doc_to_text(doc)\n\n    for i in range(1, 8):\n        # replace <image {i}> with <image>. TODO: check this is always the right decision incl. for non-HF models\n        prompt = prompt.replace(f\"<image {i}>\", \"<image>\")\n\n    return prompt\n",
+      "doc_to_target": "answer",
+      "doc_to_image": "def doc_to_image(doc):\n    # get formatted prompt (incl. multi-choice options) pre-<image {i}> reformatting\n    input_text = _doc_to_text(doc)\n    # locate <image {i}> instances in input\n    image_placeholders = [\n        img.replace(\" \", \"_\").replace(\"<\", \"\").replace(\">\", \"\")\n        for img in re.findall(\"<image [1-7]>\", input_text)\n    ]\n\n    # collect visuals (can have dupes of a given image or be out of order)\n    # E.g. validation_Math_19 contains <image 1> and <image 2> but seen as [<image 1>, <image 2>, <image 1>, <image 1>, <image 2>]\n    visuals = [doc[img] for img in image_placeholders]\n\n    return visuals\n",
+      "unsafe_code": false,
+      "process_results": "def process_results(doc, results):\n    if doc[\"question_type\"] == \"multiple-choice\":\n        # multichoice logic\n        option_strs = ast.literal_eval(doc[\"options\"])\n        option_letters = [\"A\", \"B\", \"C\", \"D\", \"E\", \"F\", \"G\", \"H\", \"I\"]\n\n        all_choices = option_letters[: len(option_strs)]\n        index2ans = {index: ans for index, ans in zip(option_letters, option_strs)}\n\n        pred = parse_multi_choice_response(results[0], all_choices, index2ans)\n        # print(pred, all_choices, index2ans)\n        is_correct = eval_multi_choice(doc[\"answer\"], pred)\n    else:\n        # freeform response handling\n        pred = parse_open_response(results[0])\n        is_correct = eval_open(doc[\"answer\"], pred)\n\n    return {\"acc\": float(is_correct)}\n\n    # TODO: it would be better if we could use a Filter for this logic.\n",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "default",
+        "split": null,
+        "process_docs": null,
+        "fewshot_indices": null,
+        "samples": null,
+        "doc_to_text": "<function doc_to_text at 0x799fc31587c0>",
+        "doc_to_choice": null,
+        "doc_to_target": "answer",
+        "gen_prefix": null,
+        "fewshot_delimiter": "\n\n",
+        "target_delimiter": " "
+      },
+      "num_fewshot": 0,
+      "metric_list": [
+        {
+          "metric": "acc",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "generate_until",
+      "generation_kwargs": {
+        "until": [
+          "<|endoftext|>"
+        ],
+        "temperature": 0.0,
+        "do_sample": false,
+        "max_gen_toks": 512
+      },
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 0.0,
+        "model": "meta-llama/Llama-4-Scout-17B-16E-Instruct",
+        "base_url": "http://localhost:8011/v1/chat/completions",
+        "add_bos_token": true,
+        "max_model_len": 4096,
+        "max_length": 4096,
+        "num_concurrent": 16,
+        "tokenizer_backend": null,
+        "tokenized_requests": false
+      }
+    }
+  },
+  "versions": {
+    "mmmu_val": 0.0,
+    "mmmu_val_accounting": 0.0,
+    "mmmu_val_agriculture": 0.0,
+    "mmmu_val_architecture_and_engineering": 0.0,
+    "mmmu_val_art": 0.0,
+    "mmmu_val_art_and_design": 0.0,
+    "mmmu_val_art_theory": 0.0,
+    "mmmu_val_basic_medical_science": 0.0,
+    "mmmu_val_biology": 0.0,
+    "mmmu_val_business": 0.0,
+    "mmmu_val_chemistry": 0.0,
+    "mmmu_val_clinical_medicine": 0.0,
+    "mmmu_val_computer_science": 0.0,
+    "mmmu_val_design": 0.0,
+    "mmmu_val_diagnostics_and_laboratory_medicine": 0.0,
+    "mmmu_val_economics": 0.0,
+    "mmmu_val_electronics": 0.0,
+    "mmmu_val_energy_and_power": 0.0,
+    "mmmu_val_finance": 0.0,
+    "mmmu_val_geography": 0.0,
+    "mmmu_val_health_and_medicine": 0.0,
+    "mmmu_val_history": 0.0,
+    "mmmu_val_humanities_and_social_science": 0.0,
+    "mmmu_val_literature": 0.0,
+    "mmmu_val_manage": 0.0,
+    "mmmu_val_marketing": 0.0,
+    "mmmu_val_materials": 0.0,
+    "mmmu_val_math": 0.0,
+    "mmmu_val_mechanical_engineering": 0.0,
+    "mmmu_val_music": 0.0,
+    "mmmu_val_pharmacy": 0.0,
+    "mmmu_val_physics": 0.0,
+    "mmmu_val_psychology": 0.0,
+    "mmmu_val_public_health": 0.0,
+    "mmmu_val_science": 0.0,
+    "mmmu_val_sociology": 0.0,
+    "mmmu_val_tech_and_engineering": 0.0
+  },
+  "n-shot": {
+    "mmmu_val_accounting": 0,
+    "mmmu_val_agriculture": 0,
+    "mmmu_val_architecture_and_engineering": 0,
+    "mmmu_val_art": 0,
+    "mmmu_val_art_theory": 0,
+    "mmmu_val_basic_medical_science": 0,
+    "mmmu_val_biology": 0,
+    "mmmu_val_chemistry": 0,
+    "mmmu_val_clinical_medicine": 0,
+    "mmmu_val_computer_science": 0,
+    "mmmu_val_design": 0,
+    "mmmu_val_diagnostics_and_laboratory_medicine": 0,
+    "mmmu_val_economics": 0,
+    "mmmu_val_electronics": 0,
+    "mmmu_val_energy_and_power": 0,
+    "mmmu_val_finance": 0,
+    "mmmu_val_geography": 0,
+    "mmmu_val_history": 0,
+    "mmmu_val_literature": 0,
+    "mmmu_val_manage": 0,
+    "mmmu_val_marketing": 0,
+    "mmmu_val_materials": 0,
+    "mmmu_val_math": 0,
+    "mmmu_val_mechanical_engineering": 0,
+    "mmmu_val_music": 0,
+    "mmmu_val_pharmacy": 0,
+    "mmmu_val_physics": 0,
+    "mmmu_val_psychology": 0,
+    "mmmu_val_public_health": 0,
+    "mmmu_val_sociology": 0
+  },
+  "higher_is_better": {
+    "mmmu_val": {
+      "acc": true
+    },
+    "mmmu_val_accounting": {
+      "acc": true
+    },
+    "mmmu_val_agriculture": {
+      "acc": true
+    },
+    "mmmu_val_architecture_and_engineering": {
+      "acc": true
+    },
+    "mmmu_val_art": {
+      "acc": true
+    },
+    "mmmu_val_art_and_design": {
+      "acc": true
+    },
+    "mmmu_val_art_theory": {
+      "acc": true
+    },
+    "mmmu_val_basic_medical_science": {
+      "acc": true
+    },
+    "mmmu_val_biology": {
+      "acc": true
+    },
+    "mmmu_val_business": {
+      "acc": true
+    },
+    "mmmu_val_chemistry": {
+      "acc": true
+    },
+    "mmmu_val_clinical_medicine": {
+      "acc": true
+    },
+    "mmmu_val_computer_science": {
+      "acc": true
+    },
+    "mmmu_val_design": {
+      "acc": true
+    },
+    "mmmu_val_diagnostics_and_laboratory_medicine": {
+      "acc": true
+    },
+    "mmmu_val_economics": {
+      "acc": true
+    },
+    "mmmu_val_electronics": {
+      "acc": true
+    },
+    "mmmu_val_energy_and_power": {
+      "acc": true
+    },
+    "mmmu_val_finance": {
+      "acc": true
+    },
+    "mmmu_val_geography": {
+      "acc": true
+    },
+    "mmmu_val_health_and_medicine": {
+      "acc": true
+    },
+    "mmmu_val_history": {
+      "acc": true
+    },
+    "mmmu_val_humanities_and_social_science": {
+      "acc": true
+    },
+    "mmmu_val_literature": {
+      "acc": true
+    },
+    "mmmu_val_manage": {
+      "acc": true
+    },
+    "mmmu_val_marketing": {
+      "acc": true
+    },
+    "mmmu_val_materials": {
+      "acc": true
+    },
+    "mmmu_val_math": {
+      "acc": true
+    },
+    "mmmu_val_mechanical_engineering": {
+      "acc": true
+    },
+    "mmmu_val_music": {
+      "acc": true
+    },
+    "mmmu_val_pharmacy": {
+      "acc": true
+    },
+    "mmmu_val_physics": {
+      "acc": true
+    },
+    "mmmu_val_psychology": {
+      "acc": true
+    },
+    "mmmu_val_public_health": {
+      "acc": true
+    },
+    "mmmu_val_science": {
+      "acc": true
+    },
+    "mmmu_val_sociology": {
+      "acc": true
+    },
+    "mmmu_val_tech_and_engineering": {
+      "acc": true
+    }
+  },
+  "n-samples": {
+    "mmmu_val_art": {
+      "original": 30,
+      "effective": 30
+    },
+    "mmmu_val_art_theory": {
+      "original": 30,
+      "effective": 30
+    },
+    "mmmu_val_design": {
+      "original": 30,
+      "effective": 30
+    },
+    "mmmu_val_music": {
+      "original": 30,
+      "effective": 30
+    },
+    "mmmu_val_accounting": {
+      "original": 30,
+      "effective": 30
+    },
+    "mmmu_val_economics": {
+      "original": 30,
+      "effective": 30
+    },
+    "mmmu_val_finance": {
+      "original": 30,
+      "effective": 30
+    },
+    "mmmu_val_manage": {
+      "original": 30,
+      "effective": 30
+    },
+    "mmmu_val_marketing": {
+      "original": 30,
+      "effective": 30
+    },
+    "mmmu_val_basic_medical_science": {
+      "original": 30,
+      "effective": 30
+    },
+    "mmmu_val_clinical_medicine": {
+      "original": 30,
+      "effective": 30
+    },
+    "mmmu_val_diagnostics_and_laboratory_medicine": {
+      "original": 30,
+      "effective": 30
+    },
+    "mmmu_val_pharmacy": {
+      "original": 30,
+      "effective": 30
+    },
+    "mmmu_val_public_health": {
+      "original": 30,
+      "effective": 30
+    },
+    "mmmu_val_history": {
+      "original": 30,
+      "effective": 30
+    },
+    "mmmu_val_literature": {
+      "original": 30,
+      "effective": 30
+    },
+    "mmmu_val_sociology": {
+      "original": 30,
+      "effective": 30
+    },
+    "mmmu_val_psychology": {
+      "original": 30,
+      "effective": 30
+    },
+    "mmmu_val_biology": {
+      "original": 30,
+      "effective": 30
+    },
+    "mmmu_val_chemistry": {
+      "original": 30,
+      "effective": 30
+    },
+    "mmmu_val_geography": {
+      "original": 30,
+      "effective": 30
+    },
+    "mmmu_val_math": {
+      "original": 30,
+      "effective": 30
+    },
+    "mmmu_val_physics": {
+      "original": 30,
+      "effective": 30
+    },
+    "mmmu_val_agriculture": {
+      "original": 30,
+      "effective": 30
+    },
+    "mmmu_val_architecture_and_engineering": {
+      "original": 30,
+      "effective": 30
+    },
+    "mmmu_val_computer_science": {
+      "original": 30,
+      "effective": 30
+    },
+    "mmmu_val_electronics": {
+      "original": 30,
+      "effective": 30
+    },
+    "mmmu_val_energy_and_power": {
+      "original": 30,
+      "effective": 30
+    },
+    "mmmu_val_materials": {
+      "original": 30,
+      "effective": 30
+    },
+    "mmmu_val_mechanical_engineering": {
+      "original": 30,
+      "effective": 30
+    }
+  },
+  "config": {
+    "model": "local-chat-completions",
+    "model_args": {
+      "model": "meta-llama/Llama-4-Scout-17B-16E-Instruct",
+      "base_url": "http://localhost:8011/v1/chat/completions",
+      "add_bos_token": true,
+      "max_model_len": 4096,
+      "max_length": 4096,
+      "num_concurrent": 16,
+      "tokenizer_backend": null,
+      "tokenized_requests": false
+    },
+    "batch_size": 1,
+    "batch_sizes": [],
+    "device": "cuda:0",
+    "use_cache": null,
+    "limit": 250.0,
+    "bootstrap_iters": 100000,
+    "gen_kwargs": {},
+    "random_seed": 0,
+    "numpy_seed": 1234,
+    "torch_seed": 1234,
+    "fewshot_seed": 1234
+  },
+  "git_hash": "d1a6fe8",
+  "date": 1771481559.6286862,
+  "pretty_env_info": "PyTorch version: 2.9.1+cu129\nIs debug build: False\nCUDA used to build PyTorch: 12.9\nROCM used to build PyTorch: N/A\n\nOS: Ubuntu 24.04.3 LTS (x86_64)\nGCC version: (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0\nClang version: Could not collect\nCMake version: version 3.28.3\nLibc version: glibc-2.39\n\nPython version: 3.12.3 (main, Jan 22 2026, 20:57:42) [GCC 13.3.0] (64-bit runtime)\nPython platform: Linux-6.8.0-90-generic-x86_64-with-glibc2.39\nIs CUDA available: True\nCUDA runtime version: 12.6.85\nCUDA_MODULE_LOADING set to: \nGPU models and configuration: \nGPU 0: NVIDIA H200\nGPU 1: NVIDIA H200\nGPU 2: NVIDIA H200\nGPU 3: NVIDIA H200\nGPU 4: NVIDIA H200\nGPU 5: NVIDIA H200\nGPU 6: NVIDIA H200\nGPU 7: NVIDIA H200\n\nNvidia driver version: 560.35.05\ncuDNN version: Could not collect\nIs XPU available: False\nHIP runtime version: N/A\nMIOpen runtime version: N/A\nIs XNNPACK available: True\n\nCPU:\nArchitecture:                         x86_64\nCPU op-mode(s):                       32-bit, 64-bit\nAddress sizes:                        52 bits physical, 57 bits virtual\nByte Order:                           Little Endian\nCPU(s):                               128\nOn-line CPU(s) list:                  0-127\nVendor ID:                            AuthenticAMD\nModel name:                           AMD EPYC 9554 64-Core Processor\nCPU family:                           25\nModel:                                17\nThread(s) per core:                   1\nCore(s) per socket:                   64\nSocket(s):                            2\nStepping:                             1\nFrequency boost:                      enabled\nCPU(s) scaling MHz:                   52%\nCPU max MHz:                          3100.0000\nCPU min MHz:                          1500.0000\nBogoMIPS:                             6200.16\nFlags:                                fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good amd_lbr_v2 nopl nonstop_tsc cpuid extd_apicid aperfmperf rapl pni pclmulqdq monitor ssse3 fma cx16 pcid sse4_1 sse4_2 movbe popcnt aes xsave avx f16c rdrand lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt tce topoext perfctr_core perfctr_nb bpext perfctr_llc mwaitx cpb cat_l3 cdp_l3 hw_pstate ssbd mba perfmon_v2 ibrs ibpb stibp ibrs_enhanced vmmcall fsgsbase bmi1 avx2 smep bmi2 erms invpcid cqm rdt_a avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local user_shstk avx512_bf16 clzero irperf xsaveerptr rdpru wbnoinvd amd_ppin cppc amd_ibpb_ret arat npt lbrv svm_lock nrip_save tsc_scale vmcb_clean flushbyasid decodeassists pausefilter pfthreshold avic v_vmsave_vmload vgif x2avic v_spec_ctrl vnmi avx512vbmi umip pku ospke avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg avx512_vpopcntdq la57 rdpid overflow_recov succor smca fsrm flush_l1d debug_swap ibpb_exit_to_user\nVirtualization:                       AMD-V\nL1d cache:                            4 MiB (128 instances)\nL1i cache:                            4 MiB (128 instances)\nL2 cache:                             128 MiB (128 instances)\nL3 cache:                             512 MiB (16 instances)\nNUMA node(s):                         2\nNUMA node0 CPU(s):                    0-63\nNUMA node1 CPU(s):                    64-127\nVulnerability Gather data sampling:   Not affected\nVulnerability Itlb multihit:          Not affected\nVulnerability L1tf:                   Not affected\nVulnerability Mds:                    Not affected\nVulnerability Meltdown:               Not affected\nVulnerability Mmio stale data:        Not affected\nVulnerability Reg file data sampling: Not affected\nVulnerability Retbleed:               Not affected\nVulnerability Spec rstack overflow:   Mitigation; Safe RET\nVulnerability Spec store bypass:      Mitigation; Speculative Store Bypass disabled via prctl\nVulnerability Spectre v1:             Mitigation; usercopy/swapgs barriers and __user pointer sanitization\nVulnerability Spectre v2:             Mitigation; Enhanced / Automatic IBRS; IBPB conditional; STIBP disabled; RSB filling; PBRSB-eIBRS Not affected; BHI Not affected\nVulnerability Srbds:                  Not affected\nVulnerability Tsx async abort:        Not affected\nVulnerability Vmscape:                Mitigation; IBPB before exit to userspace\n\nVersions of relevant libraries:\n[pip3] Could not collect\n[conda] Could not collect",
+  "transformers_version": "4.57.6",
+  "lm_eval_version": "0.4.11.dev0",
+  "upper_git_hash": null,
+  "task_hashes": {
+    "mmmu_val_art": "4ea1971c88be9823a01ff0a17c75e0e18159d2698c536fd384c510091cd932e3",
+    "mmmu_val_art_theory": "e1976ef4bd7dc4e80a1b6833c2a445d0874cc17311dd6a3cd6e15b5f70c41167",
+    "mmmu_val_design": "88c7420d30ea8d6abca954c5d8ed6d7ad1cfbe913a91b568d9db6f8891f61b56",
+    "mmmu_val_music": "70c583d33e5d7a543462200090457c00810ef2561536a17f1e87dc952f05aa16",
+    "mmmu_val_accounting": "086d4808f9c88b9bbd44a6f15997dac5b4f765d6100fa0d531ce15b3769f3b12",
+    "mmmu_val_economics": "dfaef7b07c1863b932cd06fdcbecc0d53884efa93d7072125320f2c864046e80",
+    "mmmu_val_finance": "79db6bc3dd4b157e074a583807db986b9d0ffda899b0cbdd72b20a500017aff7",
+    "mmmu_val_manage": "7b74af9d2e9010685ce2b2f506987a085be4f1c054752564d8637b777cc066d6",
+    "mmmu_val_marketing": "5f1d053bd054f28f508e51c1f17844eb3065736c581aec1fd609be56cb794bf0",
+    "mmmu_val_basic_medical_science": "d9f86b15b33b908e5d7f24db4ffe096874df645f1b8bf27c1666cc7dfa23bc63",
+    "mmmu_val_clinical_medicine": "75907b6486fb05eaffe86bfaca57b55cfb6b281e78d6f2a767f5a698a5e99aaf",
+    "mmmu_val_diagnostics_and_laboratory_medicine": "8a766f45120824fc0a9fb896393899ceb327047112f808b5318ecd1c3d12c313",
+    "mmmu_val_pharmacy": "fd7e732539d7501e4ac3a4f661e21f146461c97a6a366baebc6fc04c1f37b230",
+    "mmmu_val_public_health": "2799d5f5a1d5775c8be8ebf52cc6ded8453a4917d824b070b996cc9a4fbabb67",
+    "mmmu_val_history": "6e8154d455abf90c84e62fb5ba80225158e4102777b894f01c20d226417c471e",
+    "mmmu_val_literature": "1e3c1f18bc33e6b34c5a59b8484acd6af01ba663aa3c8acc10bc10d2e16f8066",
+    "mmmu_val_sociology": "3e52257d4f9b98af1df8f4b6db532319b5ecae7a686d44188ded81ed08011160",
+    "mmmu_val_psychology": "02fde8f423f3f35034690b1cf86c739ed236341a61646bb2f328edfbe4b06a90",
+    "mmmu_val_biology": "f7183d5888955379d64f6988cac9b369bbe280ebdadff1e8e80d318c52387e9f",
+    "mmmu_val_chemistry": "46097e68fbbbf3f2b60637e0e7ab44512d08217f0920a00cd0fb0ae954ba66bb",
+    "mmmu_val_geography": "6a54eafcd8f2e7d8294d6ee0a8b94f56ccef9f55d063bdf27d1756277f169666",
+    "mmmu_val_math": "d1adca24a90374784c30ec77a9a317d2b54ec7c868b530a17a4762272a27947e",
+    "mmmu_val_physics": "62ab7adf5604164e8d8932dff687c7fc979756e7b229964de7e8ed54ea47a05a",
+    "mmmu_val_agriculture": "5ac346ef3fbc5c6be4a0f0fb7da3c864dfe1a453f500304badefe48b6f47f00b",
+    "mmmu_val_architecture_and_engineering": "47d8540f2ee5c4a247e3f9e24b47867b47cb38986857811872eb4bcb8c070baf",
+    "mmmu_val_computer_science": "a0c6099b6958c54ccc888fb1a5dd055a817f802ec767c22acc6e7dc879bb192b",
+    "mmmu_val_electronics": "65d742886063e2fdf3194e6644203432220470cd826797c6a59729ab4336b8d2",
+    "mmmu_val_energy_and_power": "4919fb93cfc85d80d9a321b39464519ff1dd356dcd60664eab2eed33ef2f1cdd",
+    "mmmu_val_materials": "2f4d51753ea9e3ef5f8739dbba660e3043c74488a45a6f0ba1c1bc8704be0208",
+    "mmmu_val_mechanical_engineering": "cc0c2a576e15c66fa89d60a9c447d5b235eab02b380f46f5abc3d85cf9f3d1f2"
+  },
+  "model_source": "local-chat-completions",
+  "model_name": "meta-llama/Llama-4-Scout-17B-16E-Instruct",
+  "model_name_sanitized": "meta-llama__Llama-4-Scout-17B-16E-Instruct",
+  "system_instruction": null,
+  "system_instruction_sha": null,
+  "fewshot_as_multiturn": true,
+  "chat_template": "",
+  "chat_template_sha": null,
+  "total_evaluation_time_seconds": "682.6988347659353"
+}

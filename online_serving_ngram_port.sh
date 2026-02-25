@@ -16,6 +16,16 @@ export MAX_MODEL_LEN=${MAX_MODEL_LEN:-4096}
 ENFORCE_EAGER=${ENFORCE_EAGER:-false}
 # Allow override of cudagraph mode via env.
 CUDAGRAPH_MODE=${CUDAGRAPH_MODE:-""}
+REASONING_PARSER=${REASONING_PARSER:-""}
+MM_ENCODER_TP_MODE=${MM_ENCODER_TP_MODE:-""}
+
+# Sensible defaults for Qwen3-Omni if caller did not set them.
+if [[ -z "${REASONING_PARSER}" && "${MODEL}" == *"Qwen3-Omni"* ]]; then
+    REASONING_PARSER="qwen3"
+fi
+if [[ -z "${MM_ENCODER_TP_MODE}" && "${MODEL}" == *"Qwen3-Omni"* ]]; then
+    MM_ENCODER_TP_MODE="data"
+fi
 
 export MODELNAME=$( basename ${MODEL} )
 export CONFIGNAME=$( basename ${CONFIG_FILE} )
@@ -67,6 +77,14 @@ else
     COMPILATION_ARGS=(--compilation-config "$COMPILATION_JSON")
 fi
 
+OPTIONAL_MODEL_FLAGS=()
+if [ -n "${REASONING_PARSER}" ]; then
+    OPTIONAL_MODEL_FLAGS+=(--reasoning-parser "${REASONING_PARSER}")
+fi
+if [ -n "${MM_ENCODER_TP_MODE}" ]; then
+    OPTIONAL_MODEL_FLAGS+=(--mm-encoder-tp-mode "${MM_ENCODER_TP_MODE}")
+fi
+
 echo "Starting vLLM server on port ${PORT}"
 #--compilation-config '{"full_cuda_graph": true}' \
 # if value of K is 0, then don't use speculative model 
@@ -84,6 +102,7 @@ then
     "${COMPILATION_ARGS[@]}" \
     --gpu-memory-utilization 0.9  \
     --mixtral-config-file ${CONFIG_FILE} \
+    "${OPTIONAL_MODEL_FLAGS[@]}" \
     --trust-remote-code \
     ${EAGER_FLAG} \
     ${EP_FLAGS} \
@@ -120,6 +139,7 @@ else
     --gpu-memory-utilization 0.99 --enforce-eager \
     --speculative-model [ngram] --speculative-draft-tensor-parallel-size 1 \
     --num-speculative-tokens ${K} --ngram-prompt-lookup-max $((K*2)) \
+    "${OPTIONAL_MODEL_FLAGS[@]}" \
     --trust-remote-code \
     ${EP_FLAGS} \
     2>&1 | tee ${STATS_DIR}/${STAT_FILE}

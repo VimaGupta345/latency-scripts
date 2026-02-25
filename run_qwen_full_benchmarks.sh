@@ -7,7 +7,7 @@ MODEL_PATH="Qwen/Qwen2-57B-A14B-Instruct"
 MODEL_NAME="qwen"
 PORT=8089
 TP_SIZE=4
-GPUS="2, 3, 4, 5"
+GPUS="0,1,2,3"
 ENABLE_EXPERT_PARALLEL=${ENABLE_EXPERT_PARALLEL:-false}
 
 # Config files for Qwen

@@ -8,7 +8,7 @@ MODEL_NAME="qwen"
 PORT=8012
 TP_SIZE=2
 GPUS="0,1"
-BATCH_SIZES=(4)
+BATCH_SIZES=(16)
 
 # Config files for Qwen
 configs=(

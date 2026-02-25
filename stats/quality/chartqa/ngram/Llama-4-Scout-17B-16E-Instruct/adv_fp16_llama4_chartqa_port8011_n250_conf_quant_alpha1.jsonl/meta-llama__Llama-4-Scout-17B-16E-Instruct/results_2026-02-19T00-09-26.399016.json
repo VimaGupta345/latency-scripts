@@ -1,0 +1,144 @@
+{
+  "results": {
+    "chartqa": {
+      "alias": "chartqa",
+      "exact_match,none": 0.572,
+      "exact_match_stderr,none": 0.031355968923772626,
+      "relaxed_accuracy,none": 0.8,
+      "relaxed_accuracy_stderr,none": 0.02534897002097912,
+      "anywhere_accuracy,none": 0.8,
+      "anywhere_accuracy_stderr,none": 0.02534897002097912
+    }
+  },
+  "group_subtasks": {
+    "chartqa": []
+  },
+  "configs": {
+    "chartqa": {
+      "task": "chartqa",
+      "dataset_path": "HuggingFaceM4/ChartQA",
+      "test_split": "test",
+      "doc_to_text": "<image>{{query}}\nAnalyze the image and question carefully, using step-by-step reasoning.\nFirst, describe any image provided in detail. Then, present your reasoning. And finally your final answer in this format:\nFinal Answer: <answer>\nwhere <answer> follows the following instructions:\n- <answer> should should be a single phrase or number.\n- <answer> should not paraphrase or reformat the text in the image.\n- If <answer> is a ratio, it should be a decimal value like 0.25 instead of 1:4.\n- If the question is a Yes/No question, <answer> should be Yes/No.\n- If <answer> is a number, it should not contain any units.\n- If <answer> is a percentage, it should include a % sign.\n- If <answer> is an entity, it should include the full label from the graph.\nIMPORTANT: Remember, to end your answer with Final Answer: <answer>.\n",
+      "doc_to_target": "{{ label[0] }}",
+      "doc_to_image": [
+        "image"
+      ],
+      "unsafe_code": false,
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "fewshot_config": {
+        "sampler": "default",
+        "split": null,
+        "process_docs": null,
+        "fewshot_indices": null,
+        "samples": null,
+        "doc_to_text": "<image>{{query}}\nAnalyze the image and question carefully, using step-by-step reasoning.\nFirst, describe any image provided in detail. Then, present your reasoning. And finally your final answer in this format:\nFinal Answer: <answer>\nwhere <answer> follows the following instructions:\n- <answer> should should be a single phrase or number.\n- <answer> should not paraphrase or reformat the text in the image.\n- If <answer> is a ratio, it should be a decimal value like 0.25 instead of 1:4.\n- If the question is a Yes/No question, <answer> should be Yes/No.\n- If <answer> is a number, it should not contain any units.\n- If <answer> is a percentage, it should include a % sign.\n- If <answer> is an entity, it should include the full label from the graph.\nIMPORTANT: Remember, to end your answer with Final Answer: <answer>.\n",
+        "doc_to_choice": null,
+        "doc_to_target": "{{ label[0] }}",
+        "gen_prefix": null,
+        "fewshot_delimiter": "\n\n",
+        "target_delimiter": " "
+      },
+      "num_fewshot": 0,
+      "metric_list": [
+        {
+          "metric": "def exact_match(references, predictions):\n    pred = predictions[0]\n    ref = references[0]\n\n    match = re.search(r\"(?:Final Answer|FINAL ANSWER): (.+)$\", pred, re.IGNORECASE)\n    if match:\n        extracted_pred = match.group(1).strip()\n        if extracted_pred.lower().removesuffix(\".\") == ref.strip().lower():\n            return {\"exact_match\": 1.0}\n        else:\n            return {\"exact_match\": 0.0}\n    else:\n        return {\"exact_match\": 0.0}\n",
+          "aggregation": "mean",
+          "higher_is_better": true
+        },
+        {
+          "metric": "def relaxed_accuracy(references, predictions):\n    pred = predictions[0]\n    ref = references[0]\n    score = ExplicitPromptRelaxedCorrectness().score(pred, ref)\n    if score:\n        if score == 1.0:\n            return {\"relaxed_accuracy\": 1.0}\n    else:\n        return {\"relaxed_accuracy\": 0.0}\n",
+          "aggregation": "mean",
+          "higher_is_better": true
+        },
+        {
+          "metric": "def anywhere_accuracy(references, predictions):\n    pred = predictions[0]\n    ref = references[0]\n    score = AnywhereInAnswerRelaxedCorrectness().score(pred, ref)\n    if score:\n        if score == 1.0:\n            return {\"anywhere_accuracy\": 1.0}\n    else:\n        return {\"anywhere_accuracy\": 0.0}\n",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "generate_until",
+      "generation_kwargs": {
+        "until": [],
+        "temperature": 0.0,
+        "do_sample": false,
+        "max_gen_toks": 512
+      },
+      "repeats": 1,
+      "should_decontaminate": false,
+      "metadata": {
+        "version": 0.0,
+        "model": "meta-llama/Llama-4-Scout-17B-16E-Instruct",
+        "base_url": "http://localhost:8011/v1/chat/completions",
+        "add_bos_token": true,
+        "max_model_len": 4096,
+        "max_length": 4096,
+        "num_concurrent": 16,
+        "tokenizer_backend": null,
+        "tokenized_requests": false
+      }
+    }
+  },
+  "versions": {
+    "chartqa": 0.0
+  },
+  "n-shot": {
+    "chartqa": 0
+  },
+  "higher_is_better": {
+    "chartqa": {
+      "exact_match": true,
+      "relaxed_accuracy": true,
+      "anywhere_accuracy": true
+    }
+  },
+  "n-samples": {
+    "chartqa": {
+      "original": 2500,
+      "effective": 250
+    }
+  },
+  "config": {
+    "model": "local-chat-completions",
+    "model_args": {
+      "model": "meta-llama/Llama-4-Scout-17B-16E-Instruct",
+      "base_url": "http://localhost:8011/v1/chat/completions",
+      "add_bos_token": true,
+      "max_model_len": 4096,
+      "max_length": 4096,
+      "num_concurrent": 16,
+      "tokenizer_backend": null,
+      "tokenized_requests": false
+    },
+    "batch_size": 1,
+    "batch_sizes": [],
+    "device": "cuda:0",
+    "use_cache": null,
+    "limit": 250.0,
+    "bootstrap_iters": 100000,
+    "gen_kwargs": {},
+    "random_seed": 0,
+    "numpy_seed": 1234,
+    "torch_seed": 1234,
+    "fewshot_seed": 1234
+  },
+  "git_hash": "d1a6fe8",
+  "date": 1771477667.0268695,
+  "pretty_env_info": "PyTorch version: 2.9.1+cu129\nIs debug build: False\nCUDA used to build PyTorch: 12.9\nROCM used to build PyTorch: N/A\n\nOS: Ubuntu 24.04.3 LTS (x86_64)\nGCC version: (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0\nClang version: Could not collect\nCMake version: version 3.28.3\nLibc version: glibc-2.39\n\nPython version: 3.12.3 (main, Jan 22 2026, 20:57:42) [GCC 13.3.0] (64-bit runtime)\nPython platform: Linux-6.8.0-90-generic-x86_64-with-glibc2.39\nIs CUDA available: True\nCUDA runtime version: 12.6.85\nCUDA_MODULE_LOADING set to: \nGPU models and configuration: \nGPU 0: NVIDIA H200\nGPU 1: NVIDIA H200\nGPU 2: NVIDIA H200\nGPU 3: NVIDIA H200\nGPU 4: NVIDIA H200\nGPU 5: NVIDIA H200\nGPU 6: NVIDIA H200\nGPU 7: NVIDIA H200\n\nNvidia driver version: 560.35.05\ncuDNN version: Could not collect\nIs XPU available: False\nHIP runtime version: N/A\nMIOpen runtime version: N/A\nIs XNNPACK available: True\n\nCPU:\nArchitecture:                         x86_64\nCPU op-mode(s):                       32-bit, 64-bit\nAddress sizes:                        52 bits physical, 57 bits virtual\nByte Order:                           Little Endian\nCPU(s):                               128\nOn-line CPU(s) list:                  0-127\nVendor ID:                            AuthenticAMD\nModel name:                           AMD EPYC 9554 64-Core Processor\nCPU family:                           25\nModel:                                17\nThread(s) per core:                   1\nCore(s) per socket:                   64\nSocket(s):                            2\nStepping:                             1\nFrequency boost:                      enabled\nCPU(s) scaling MHz:                   57%\nCPU max MHz:                          3100.0000\nCPU min MHz:                          1500.0000\nBogoMIPS:                             6200.16\nFlags:                                fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good amd_lbr_v2 nopl nonstop_tsc cpuid extd_apicid aperfmperf rapl pni pclmulqdq monitor ssse3 fma cx16 pcid sse4_1 sse4_2 movbe popcnt aes xsave avx f16c rdrand lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt tce topoext perfctr_core perfctr_nb bpext perfctr_llc mwaitx cpb cat_l3 cdp_l3 hw_pstate ssbd mba perfmon_v2 ibrs ibpb stibp ibrs_enhanced vmmcall fsgsbase bmi1 avx2 smep bmi2 erms invpcid cqm rdt_a avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local user_shstk avx512_bf16 clzero irperf xsaveerptr rdpru wbnoinvd amd_ppin cppc amd_ibpb_ret arat npt lbrv svm_lock nrip_save tsc_scale vmcb_clean flushbyasid decodeassists pausefilter pfthreshold avic v_vmsave_vmload vgif x2avic v_spec_ctrl vnmi avx512vbmi umip pku ospke avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg avx512_vpopcntdq la57 rdpid overflow_recov succor smca fsrm flush_l1d debug_swap ibpb_exit_to_user\nVirtualization:                       AMD-V\nL1d cache:                            4 MiB (128 instances)\nL1i cache:                            4 MiB (128 instances)\nL2 cache:                             128 MiB (128 instances)\nL3 cache:                             512 MiB (16 instances)\nNUMA node(s):                         2\nNUMA node0 CPU(s):                    0-63\nNUMA node1 CPU(s):                    64-127\nVulnerability Gather data sampling:   Not affected\nVulnerability Itlb multihit:          Not affected\nVulnerability L1tf:                   Not affected\nVulnerability Mds:                    Not affected\nVulnerability Meltdown:               Not affected\nVulnerability Mmio stale data:        Not affected\nVulnerability Reg file data sampling: Not affected\nVulnerability Retbleed:               Not affected\nVulnerability Spec rstack overflow:   Mitigation; Safe RET\nVulnerability Spec store bypass:      Mitigation; Speculative Store Bypass disabled via prctl\nVulnerability Spectre v1:             Mitigation; usercopy/swapgs barriers and __user pointer sanitization\nVulnerability Spectre v2:             Mitigation; Enhanced / Automatic IBRS; IBPB conditional; STIBP disabled; RSB filling; PBRSB-eIBRS Not affected; BHI Not affected\nVulnerability Srbds:                  Not affected\nVulnerability Tsx async abort:        Not affected\nVulnerability Vmscape:                Mitigation; IBPB before exit to userspace\n\nVersions of relevant libraries:\n[pip3] Could not collect\n[conda] Could not collect",
+  "transformers_version": "4.57.6",
+  "lm_eval_version": "0.4.11.dev0",
+  "upper_git_hash": null,
+  "task_hashes": {
+    "chartqa": "d2bb8b2469525e5736fbabe6c12bb2f88d4748323dc5209097fecf4f4051a131"
+  },
+  "model_source": "local-chat-completions",
+  "model_name": "meta-llama/Llama-4-Scout-17B-16E-Instruct",
+  "model_name_sanitized": "meta-llama__Llama-4-Scout-17B-16E-Instruct",
+  "system_instruction": null,
+  "system_instruction_sha": null,
+  "fewshot_as_multiturn": true,
+  "chat_template": "",
+  "chat_template_sha": null,
+  "total_evaluation_time_seconds": "118.96361033897847"
+}

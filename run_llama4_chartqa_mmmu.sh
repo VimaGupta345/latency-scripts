@@ -12,7 +12,7 @@ MODEL_NAME=${MODEL_NAME:-"llama4"}
 PORT=${PORT:-8011}
 TP_SIZE=${TP_SIZE:-4}
 GPUS=${GPUS:-"0,1,2,3"}
-MAX_BATCH_SIZE=${MAX_BATCH_SIZE:-8}
+MAX_BATCH_SIZE=${MAX_BATCH_SIZE:-16}
 TMP_HOME=${TMP_HOME:-/nethome/rdudala3}
 
 CONFIG_FILE=${CONFIG_FILE:-"${TMP_HOME}/prowl/configs/llama4/do-nothing.json"}

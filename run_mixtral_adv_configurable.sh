@@ -30,6 +30,10 @@ STAT_PORT=${PORT}
 export STATFILENAME="adv_fp16_${MODEL_NAME}_${BENCHMARK}_port${STAT_PORT}"
 export MODEL="${MODEL_PATH}"
 
+# lm-eval API client timeout is 300s by default in the harness, which is too low
+# for long-thinking / long-generation runs (e.g. Omni AIME). Allow override.
+export LM_EVAL_TIMEOUT=${LM_EVAL_TIMEOUT:-1800}
+
 # Kill any existing process on this port
 echo "Cleaning up ports..."
 for p in ${PORT}; do
@@ -43,6 +47,19 @@ echo "Health check address: $HEALTH_ADDRESS"
 echo "Running benchmark: $BENCHMARK with limit: $LIMIT"
 echo "Config file: $CONFIG_FILE"
 echo "Tensor Parallel Size: $TP_SIZE"
+echo "lm-eval timeout (s): ${LM_EVAL_TIMEOUT}"
+if [ -n "${LM_EVAL_GEN_KWARGS:-}" ]; then
+    echo "lm-eval gen kwargs: ${LM_EVAL_GEN_KWARGS}"
+fi
+if [ -n "${LM_EVAL_FORCE_CHAT_COMPLETIONS:-}" ]; then
+    echo "Force chat completions: ${LM_EVAL_FORCE_CHAT_COMPLETIONS}"
+fi
+if [ -n "${REASONING_PARSER:-}" ]; then
+    echo "Reasoning parser: ${REASONING_PARSER}"
+fi
+if [ -n "${MM_ENCODER_TP_MODE:-}" ]; then
+    echo "MM encoder TP mode: ${MM_ENCODER_TP_MODE}"
+fi
 
 # Export sizes for the serving script to use
 export TP_SIZE="${TP_SIZE}"
