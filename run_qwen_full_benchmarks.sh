@@ -2,7 +2,7 @@
 
 # Qwen Full Benchmarks - 99% completion
 # Runs on GPUs 2,3 with TP=2 on port 8001
-TMP_HOME=/nethome/vgupta345/j_prown_opensource
+TMP_HOME=/nethome/jkim3934
 MODEL_PATH="Qwen/Qwen2-57B-A14B-Instruct"
 MODEL_NAME="qwen"
 PORT=8017

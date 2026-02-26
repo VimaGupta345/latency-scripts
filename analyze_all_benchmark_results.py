@@ -132,7 +132,7 @@ def get_config_name(file_path):
 
 def collect_all_benchmark_data():
     """Collect all benchmark data (n500 for most, n164 for humaneval)."""
-    base_path = Path('/nethome/vgupta345/stats/quality')
+    base_path = Path('/nethome/jkim3934/stats/quality')
     
     results = []
     

@@ -28,9 +28,9 @@ benchmarks=("gsm8k")
 
 # List of config files
 config_files=(
-    "/nethome/vgupta345/prowl/configs/mixtral/do_nothing.json"
-    "/nethome/vgupta345/prowl/configs/mixtral/advanced_alpha0_beta0.7.json"
-    "/nethome/vgupta345/prowl/configs/mixtral/advanced_alpha0_beta1.25.json"
+    "/nethome/jkim3934/prowl/configs/mixtral/do_nothing.json"
+    "/nethome/jkim3934/prowl/configs/mixtral/advanced_alpha0_beta0.7.json"
+    "/nethome/jkim3934/prowl/configs/mixtral/advanced_alpha0_beta1.25.json"
 )
 
 for cf in "${config_files[@]}"; do

@@ -165,7 +165,7 @@ def curl_metrics(
 
     bmkname = get_mixed_bmk_name(benchmarks)
 
-    stats_dir = os.path.expanduser(f"/nethome/vgupta345/j_prown_opensource/results/{model_name}/{bmkname}/")
+    stats_dir = os.path.expanduser(f"/nethome/jkim3934/results/{model_name}/{bmkname}/")
     os.makedirs(stats_dir, exist_ok=True)
 
     stat_file = f"{stat_filename}_n{duration}_k{k}_maxexp{maxexp}_thres{conf_thres}"
@@ -209,7 +209,7 @@ def run_spec_decode_eval(
     conf_name = os.path.basename(conf_file) if conf_file else "default"
     conf_name = conf_name.replace(".json", "")
 
-    stats_dir = os.path.expanduser(f"/nethome/vgupta345/j_prown_opensource/results/{model_name}/{benchmark}/")
+    stats_dir = os.path.expanduser(f"/nethome/jkim3934/results/{model_name}/{benchmark}/")
     os.makedirs(stats_dir, exist_ok=True)
 
     stat_file = f"{stat_filename}_n{limit}_conf_{conf_name}"
@@ -406,7 +406,7 @@ def main():
                         help="Seconds to wait for vLLM to start before running the benchmark.")
     parser.add_argument("-mt", "--mt_bmk", default=None, help="Select bmk for MT-Bench.")
     parser.add_argument("-cf", "--config_file", 
-                        default=f"/nethome/vgupta345/new-vllm/vllm/configs/qwen/qwen_do-nothing.json", 
+                        default=f"/nethome/jkim3934/prowl/configs/qwen/qwen_do-nothing.json", 
                         help="Lynx config file.")
     parser.add_argument("-sa", "--server_address", 
                         default="localhost:8000",

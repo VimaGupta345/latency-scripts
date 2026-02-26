@@ -2,8 +2,8 @@
 
 # Qwen Full Benchmarks - 99% completion
 # Runs on GPUs 2,3 with TP=2 on port 8001
-TMP_HOME=/nethome/vgupta345/j_prown_opensource
-MODEL_PATH="Qwen/Qwen3-30B-A3B-Instruct-2507"
+TMP_HOME=/nethome/jkim3934
+MODEL_PATH="/data/models_dir/jkim3934/qwen3-omni-30b-thinking"
 MODEL_NAME="qwen3"
 PORT=8019
 TP_SIZE=1
