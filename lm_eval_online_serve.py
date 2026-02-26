@@ -221,7 +221,7 @@ def run_spec_decode_eval(
             "add_bos_token=True,"
             "max_model_len=4096,"
             "max_length=4096,"
-            "num_concurrent=20,"
+            "num_concurrent=20"
         )
 
         os.environ["HF_ALLOW_CODE_EVAL"] = "1"
