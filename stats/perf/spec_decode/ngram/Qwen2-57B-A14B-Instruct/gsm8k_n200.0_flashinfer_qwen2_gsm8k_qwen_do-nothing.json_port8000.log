@@ -1,0 +1,31 @@
+INFO 02-25 03:12:10 [__init__.py:241] Automatically detected platform cuda.
+WARNING 02-25 03:12:13 [compilation.py:455] full_cuda_graph is deprecated, use cudagraph_mode=FULL instead.
+[1;36m(APIServer pid=2366954)[0;0m INFO 02-25 03:12:13 [api_server.py:1873] vLLM API server version 0.1.dev8863+g745e6a14b
+[1;36m(APIServer pid=2366954)[0;0m INFO 02-25 03:12:13 [utils.py:326] non-default args: {'host': 'localhost', 'model': 'Qwen/Qwen2-57B-A14B-Instruct', 'trust_remote_code': True, 'max_model_len': 4096, 'tensor_parallel_size': 2, 'max_num_seqs': 16, 'compilation_config': {"level":null,"debug_dump_path":"","cache_dir":"","backend":"","custom_ops":[],"splitting_ops":null,"use_inductor":true,"compile_sizes":null,"inductor_compile_config":{"enable_auto_functionalized_v2":false},"inductor_passes":{},"cudagraph_mode":2,"use_cudagraph":true,"cudagraph_num_of_warmups":0,"cudagraph_capture_sizes":null,"cudagraph_copy_inputs":false,"full_cuda_graph":true,"pass_config":{},"max_capture_size":null,"local_cache_dir":null}, 'mixtral_config_file': '/data/vgupta345/prowl_related_data/prowl-open-source/latency-scripts/../prowl/configs/qwen/qwen_do-nothing.json'}
+[1;36m(APIServer pid=2366954)[0;0m Traceback (most recent call last):
+[1;36m(APIServer pid=2366954)[0;0m   File "<frozen runpy>", line 198, in _run_module_as_main
+[1;36m(APIServer pid=2366954)[0;0m   File "<frozen runpy>", line 88, in _run_code
+[1;36m(APIServer pid=2366954)[0;0m   File "/data/vgupta345/prowl_related_data/prowl-open-source/prowl/vllm/entrypoints/openai/api_server.py", line 1988, in <module>
+[1;36m(APIServer pid=2366954)[0;0m     uvloop.run(run_server(args))
+[1;36m(APIServer pid=2366954)[0;0m   File "/data/vgupta345/prowl_related_data/prowl-open-source/prowl/.venv/lib/python3.12/site-packages/uvloop/__init__.py", line 96, in run
+[1;36m(APIServer pid=2366954)[0;0m     return __asyncio.run(
+[1;36m(APIServer pid=2366954)[0;0m            ^^^^^^^^^^^^^^
+[1;36m(APIServer pid=2366954)[0;0m   File "/usr/lib/python3.12/asyncio/runners.py", line 194, in run
+[1;36m(APIServer pid=2366954)[0;0m     return runner.run(main)
+[1;36m(APIServer pid=2366954)[0;0m            ^^^^^^^^^^^^^^^^
+[1;36m(APIServer pid=2366954)[0;0m   File "/usr/lib/python3.12/asyncio/runners.py", line 118, in run
+[1;36m(APIServer pid=2366954)[0;0m     return self._loop.run_until_complete(task)
+[1;36m(APIServer pid=2366954)[0;0m            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[1;36m(APIServer pid=2366954)[0;0m   File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+[1;36m(APIServer pid=2366954)[0;0m   File "/data/vgupta345/prowl_related_data/prowl-open-source/prowl/.venv/lib/python3.12/site-packages/uvloop/__init__.py", line 48, in wrapper
+[1;36m(APIServer pid=2366954)[0;0m     return await main
+[1;36m(APIServer pid=2366954)[0;0m            ^^^^^^^^^^
+[1;36m(APIServer pid=2366954)[0;0m   File "/data/vgupta345/prowl_related_data/prowl-open-source/prowl/vllm/entrypoints/openai/api_server.py", line 1917, in run_server
+[1;36m(APIServer pid=2366954)[0;0m     listen_address, sock = setup_server(args)
+[1;36m(APIServer pid=2366954)[0;0m                            ^^^^^^^^^^^^^^^^^^
+[1;36m(APIServer pid=2366954)[0;0m   File "/data/vgupta345/prowl_related_data/prowl-open-source/prowl/vllm/entrypoints/openai/api_server.py", line 1888, in setup_server
+[1;36m(APIServer pid=2366954)[0;0m     sock = create_server_socket(sock_addr)
+[1;36m(APIServer pid=2366954)[0;0m            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[1;36m(APIServer pid=2366954)[0;0m   File "/data/vgupta345/prowl_related_data/prowl-open-source/prowl/vllm/entrypoints/openai/api_server.py", line 1843, in create_server_socket
+[1;36m(APIServer pid=2366954)[0;0m     sock.bind(addr)
+[1;36m(APIServer pid=2366954)[0;0m OSError: [Errno 98] Address already in use

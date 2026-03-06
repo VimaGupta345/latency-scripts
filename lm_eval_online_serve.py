@@ -181,7 +181,8 @@ def curl_metrics(
 
     bmkname = get_mixed_bmk_name(benchmarks)
 
-    stats_dir = os.path.expanduser(f"/var/tmp/jae/stats/quality/{bmkname}/{spec_decode}/{model_name}/")
+    stats_base = os.environ.get("STATS_BASE_DIR", "./stats")
+    stats_dir = os.path.expanduser(f"{stats_base}/quality/{bmkname}/{spec_decode}/{model_name}/")
     os.makedirs(stats_dir, exist_ok=True)
 
     stat_file = f"{stat_filename}_n{duration}_k{k}_maxexp{maxexp}_thres{conf_thres}"
@@ -225,7 +226,8 @@ def run_spec_decode_eval(
     conf_name = os.path.basename(conf_file) if conf_file else "default"
     conf_name = conf_name.replace(".json", "")
 
-    stats_dir = os.path.expanduser(f"/var/tmp/jae/stats/quality/{benchmark}/{spec_decode}/{model_name}/")
+    stats_base = os.environ.get("STATS_BASE_DIR", "./stats")
+    stats_dir = os.path.expanduser(f"{stats_base}/quality/{benchmark}/{spec_decode}/{model_name}/")
     os.makedirs(stats_dir, exist_ok=True)
 
     stat_file = f"{stat_filename}_n{limit}_conf_{conf_name}"
@@ -422,7 +424,7 @@ def main():
                         help="Seconds to wait for vLLM to start before running the benchmark.")
     parser.add_argument("-mt", "--mt_bmk", default=None, help="Select bmk for MT-Bench.")
     parser.add_argument("-cf", "--config_file", 
-                        default=f"/var/tmp/jae/prowl-plots/configs/qwen/qwen_do-nothing.json", 
+                        default=os.environ.get("CONFIG_FILE", "./configs/qwen/qwen_do-nothing.json"), 
                         help="Lynx config file.")
     parser.add_argument("-sa", "--server_address", 
                         default="localhost:8000",
@@ -463,7 +465,7 @@ def main():
             f"{args.config_file} "
             f"{port} "
             f"{args.max_batch_size} "
-            f"> /dev/null 2>&1'"
+            f"'"
         )
         print(f"serving_cmd: {serving_cmd}")
         processA = subprocess.Popen(serving_cmd, shell=True, start_new_session=True)
