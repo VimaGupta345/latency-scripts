@@ -6,6 +6,8 @@ import signal
 import argparse
 import subprocess
 import threading
+import urllib.request
+import urllib.error
 from datetime import datetime
 
 # Default settings per benchmark
@@ -165,7 +167,8 @@ def curl_metrics(
 
     bmkname = get_mixed_bmk_name(benchmarks)
 
-    stats_dir = os.path.expanduser(f"/nethome/vgupta345/j_prown_opensource/results/{model_name}/{bmkname}/")
+    tmp_home = os.environ.get("TMP_HOME", "/data/vgupta345/prowl_related_data/prowl-open-source")
+    stats_dir = os.path.expanduser(f"{tmp_home}/results/{model_name}/{bmkname}/")
     os.makedirs(stats_dir, exist_ok=True)
 
     stat_file = f"{stat_filename}_n{duration}_k{k}_maxexp{maxexp}_thres{conf_thres}"
@@ -209,7 +212,8 @@ def run_spec_decode_eval(
     conf_name = os.path.basename(conf_file) if conf_file else "default"
     conf_name = conf_name.replace(".json", "")
 
-    stats_dir = os.path.expanduser(f"/nethome/vgupta345/j_prown_opensource/results/{model_name}/{benchmark}/")
+    tmp_home = os.environ.get("TMP_HOME", "/data/vgupta345/prowl_related_data/prowl-open-source")
+    stats_dir = os.path.expanduser(f"{tmp_home}/results/{model_name}/{benchmark}/")
     os.makedirs(stats_dir, exist_ok=True)
 
     stat_file = f"{stat_filename}_n{limit}_conf_{conf_name}"
@@ -221,7 +225,7 @@ def run_spec_decode_eval(
             "add_bos_token=True,"
             "max_model_len=4096,"
             "max_length=4096,"
-            "num_concurrent=20,"
+            "num_concurrent=20"
         )
 
         os.environ["HF_ALLOW_CODE_EVAL"] = "1"
@@ -453,7 +457,26 @@ def main():
         processA = subprocess.Popen(serving_cmd, shell=True, start_new_session=True)
         bg_pid = processA.pid
 
-        time.sleep(args.sleep_time)
+        # Poll server until ready (or timeout)
+        health_url = f"http://{args.server_address}/health"
+        max_wait = args.sleep_time  # use -t as max timeout
+        poll_interval = 10
+        elapsed = 0
+        server_ready = False
+        print(f"Waiting for server at {health_url} (timeout={max_wait}s, poll every {poll_interval}s)...")
+        while elapsed < max_wait:
+            try:
+                resp = urllib.request.urlopen(health_url, timeout=5)
+                if resp.status == 200:
+                    print(f"Server is ready after {elapsed}s")
+                    server_ready = True
+                    break
+            except (urllib.error.URLError, ConnectionError, OSError):
+                pass
+            time.sleep(poll_interval)
+            elapsed += poll_interval
+        if not server_ready:
+            print(f"WARNING: Server not ready after {max_wait}s, proceeding anyway...")
 
         # ---------------------------------------------------
         # 2. Run the Python benchmark in the foreground

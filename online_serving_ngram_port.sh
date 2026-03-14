@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Activate prowl venv to use the correct vllm fork
+source "${TMP_HOME:-/data/vgupta345/prowl_related_data/prowl-open-source}/prowl/.venv/bin/activate"
+
 export MODEL=${1}
 export STATFILENAME=${2}
 export K=${3}
@@ -11,7 +14,7 @@ export MAX_BATCH_SIZE=${8:-16}
 
 export MODELNAME=$( basename ${MODEL} )
 export CONFIGNAME=$( basename ${CONFIG_FILE} )
-export STATS_DIR="/nethome/vgupta345/j_prown_opensource/results/server_logs/${MODELNAME}"
+export STATS_DIR="${TMP_HOME:-/data/vgupta345/prowl_related_data/prowl-open-source}/results/server_logs/${MODELNAME}"
 mkdir -p ${STATS_DIR}
 export INF_TOKS=$((K+1))
 export STAT_FILE="${STATFILENAME}_${CONFIGNAME}_port${PORT}.log"
@@ -45,7 +48,7 @@ then
     --max-num-seqs ${MAX_BATCH_SIZE} \
     --tensor-parallel-size ${TP_SIZE} \
     --max-model-len 4096 \
-    --compilation-config '{"full_cuda_graph": true}' \
+    --enforce-eager \
     --gpu-memory-utilization 0.9  \
     --mixtral_config_file ${CONFIG_FILE} \
     --trust-remote-code 2>&1 | tee ${STATS_DIR}/${STAT_FILE}

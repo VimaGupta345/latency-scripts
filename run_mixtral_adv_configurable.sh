@@ -1,5 +1,10 @@
 #!/bin/bash
 
+export TMP_HOME="${TMP_HOME:-/data/vgupta345/prowl_related_data/prowl-open-source}"
+
+# Activate prowl venv to use the correct vllm fork
+source "${TMP_HOME}/prowl/.venv/bin/activate"
+
 # Check if required parameters are provided
 if [ $# -lt 5 ]; then
     echo "Usage: $0 <port> <model_name> <model_path> <benchmark> <limit> [config_file] [tp_size]"
@@ -41,6 +46,7 @@ export TP_SIZE="${TP_SIZE}"
 
 # Run the single benchmark with specified limit and config
 # Build command with optional limit flag
+export TMP_HOME="${TMP_HOME}"
 CMD="TMP_HOME=${TMP_HOME} python lm_eval_online_serve.py -m \"${MODEL}\" -o \"${STATFILENAME}\" -b \"${BENCHMARK}\""
 
 # Add limit flag only if LIMIT is not empty
@@ -49,7 +55,7 @@ if [ -n "${LIMIT}" ]; then
 fi
 
 # Add remaining flags
-CMD="${CMD} -k 0 -t 150 -cf \"${CONFIG_FILE}\" -sa \"${SERVER_ADDRESS}\" -mb ${MAX_BATCH_SIZE} -s \"./online_serving_ngram_port.sh\""
+CMD="${CMD} -k 0 -t 900 -cf \"${CONFIG_FILE}\" -sa \"${SERVER_ADDRESS}\" -mb ${MAX_BATCH_SIZE} -s \"./online_serving_ngram_port.sh\""
 
 # Execute the command
 eval ${CMD}
