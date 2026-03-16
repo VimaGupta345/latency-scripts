@@ -132,6 +132,14 @@ bmk_defaults = {
         "tasks": "squadv2",
         "extra_args": "--num_fewshot 0",
     },
+    "aime24": {
+        "limit": 30,  # AIME 2024 has 30 problems
+        "k": 0,
+        "maxexp": 8,
+        "conf_thres": 1.0,
+        "tasks": "aime24",
+        "extra_args": "--num_fewshot 0 --trust_remote_code",
+    },
     # Add more benchmarks here if needed
 }
 
@@ -220,12 +228,24 @@ def run_spec_decode_eval(
 
     if benchmark != "mt_bench":
         # 3. Build lm-eval command
+        # max_length tells lm-eval the server's context window so it
+        # doesn't over-truncate prompts.  Query the server for the real
+        # value; fall back to 163840 (DeepSeek-R1 default).
+        try:
+            import urllib.request, json as _json
+            _resp = urllib.request.urlopen(
+                f"http://{server_address}/v1/models", timeout=5
+            ).read()
+            _info = _json.loads(_resp)
+            _max_len = _info["data"][0].get("max_model_len", 163840)
+        except Exception:
+            _max_len = 163840
         model_args = (
             f"base_url=http://{server_address}/v1/completions,"
             "add_bos_token=True,"
-            "max_model_len=4096,"
-            "max_length=4096,"
-            "num_concurrent=20"
+            f"max_length={_max_len},"
+            "num_concurrent=20,"
+            "timeout=1800"
         )
 
         os.environ["HF_ALLOW_CODE_EVAL"] = "1"

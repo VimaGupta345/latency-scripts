@@ -47,7 +47,6 @@ then
     --port ${PORT} \
     --max-num-seqs ${MAX_BATCH_SIZE} \
     --tensor-parallel-size ${TP_SIZE} \
-    --max-model-len 4096 \
     --enforce-eager \
     --gpu-memory-utilization 0.9  \
     --mixtral_config_file ${CONFIG_FILE} \
@@ -80,7 +79,7 @@ else
     --host localhost \
     --port ${PORT} \
     --tensor-parallel-size ${TP_SIZE} \
-    --max-num-seqs 1 --max-num-batched-tokens 4096 --max-model-len 4096 \
+    --max-num-seqs 1 \
     --gpu-memory-utilization 0.99 --enforce-eager \
     --speculative-model [ngram] --speculative-draft-tensor-parallel-size 1 \
     --num-speculative-tokens ${K} --ngram-prompt-lookup-max $((K*2)) \
