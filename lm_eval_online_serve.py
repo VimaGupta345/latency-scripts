@@ -21,7 +21,7 @@ bmk_defaults = {
         "extra_args": " --trust_remote_code --confirm_run_unsafe_code",
     },
     "gsm8k": {
-        "limit": 250,  # Reduced from full dataset to avoid problematic samples
+        "limit": 900,  # Increased from 250 for more stable throughput measurement
         "k": 0,
         "maxexp": 8,
         "conf_thres": 1.0,
@@ -29,7 +29,7 @@ bmk_defaults = {
         "extra_args": "--num_fewshot 5",
     },
     "minerva_math_algebra": {
-        "limit": 250,
+        "limit": 900,
         "k": 0,
         "maxexp": 8,
         "conf_thres": 1.0,
@@ -225,7 +225,8 @@ def run_spec_decode_eval(
             "add_bos_token=True,"
             "max_model_len=4096,"
             "max_length=4096,"
-            "num_concurrent=20"
+            "num_concurrent=20,"
+            "timeout=1800"
         )
 
         os.environ["HF_ALLOW_CODE_EVAL"] = "1"
@@ -234,7 +235,7 @@ def run_spec_decode_eval(
             f"lm-eval --model local-completions "
             f"--tasks {cfg['tasks']} "
             f"--model_args model={model},{model_args} "
-            f"--limit {limit} --log_samples {extra_args} {extra_args} "
+            f"{'--limit ' + str(limit) + ' ' if limit > 0 else ''}--log_samples --seed 42 {extra_args} "
             f"--output_path {stats_dir}/{stat_file}.jsonl "
             f"2>&1 | tee {stats_dir}/{stat_file}.log"
         )

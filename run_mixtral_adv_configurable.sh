@@ -31,10 +31,20 @@ SERVER_ADDRESS="localhost:${PORT}"
 export STATFILENAME="adv_fp16_${MODEL_NAME}_${BENCHMARK}_port${PORT}"
 export MODEL="${MODEL_PATH}"
 
-# Kill any existing process on this port
+# Kill any existing vLLM server and its worker processes on this port
 echo "Cleaning up port ${PORT}..."
-lsof -ti:${PORT} | xargs -r kill -9 2>/dev/null
-sleep 2
+SERVER_PIDS=$(lsof -ti:${PORT} 2>/dev/null)
+if [ -n "${SERVER_PIDS}" ]; then
+    for pid in ${SERVER_PIDS}; do
+        # Kill the entire process group to catch TP worker children
+        pgid=$(ps -o pgid= -p ${pid} 2>/dev/null | tr -d ' ')
+        if [ -n "${pgid}" ]; then
+            kill -9 -${pgid} 2>/dev/null
+        fi
+        kill -9 ${pid} 2>/dev/null
+    done
+fi
+sleep 5
 
 echo "Using server at: $SERVER_ADDRESS"
 echo "Running benchmark: $BENCHMARK with limit: $LIMIT"
