@@ -150,6 +150,32 @@ def env_flag(name: str, default: bool = False) -> bool:
         return default
     return value.strip().lower() in {"1", "true", "yes", "on"}
 
+
+def post_server_endpoint(
+    address: str,
+    endpoint: str,
+    timeout: int = 60,
+    retries: int = 3,
+    retry_interval: int = 2,
+):
+    """POST helper for vLLM control endpoints like /start_profile."""
+    url = f"http://{address}{endpoint}"
+    last_err = None
+    for attempt in range(1, retries + 1):
+        try:
+            req = urllib.request.Request(url=url, method="POST")
+            with urllib.request.urlopen(req, timeout=timeout) as resp:
+                if resp.status == 200:
+                    print(f"{endpoint} succeeded on {address}")
+                    return
+                raise RuntimeError(f"{endpoint} returned status {resp.status}")
+        except Exception as exc:
+            last_err = exc
+            print(f"{endpoint} attempt {attempt}/{retries} failed: {exc}")
+            if attempt < retries:
+                time.sleep(retry_interval)
+    raise RuntimeError(f"Failed to call {endpoint} on {address}: {last_err}")
+
 def is_multimodal_benchmark(benchmark: str) -> bool:
     return benchmark in {"chartqa"} or benchmark.startswith("mmmu")
 
@@ -556,7 +582,17 @@ def main():
                         help="Max batch size for vLLM.")
     parser.add_argument("--enable-expert-parallel", action="store_true",
                         help="Enable vLLM expert parallel mode when launching the server.")
+    parser.add_argument("--enable-lynx-eplb", "--enable-eplb",
+                        dest="enable_lynx_eplb", action="store_true",
+                        help="Enable Lynx routing EP load correction (lynx_routing EPLB), not vLLM built-in EPLB. Requires --enable-expert-parallel.")
+    parser.add_argument("--enable-vllm-eplb", action="store_true",
+                        help="Enable vLLM native expert-parallel load balancer (--enable-eplb). Requires --enable-expert-parallel.")
     args = parser.parse_args()
+
+    if args.enable_lynx_eplb and not args.enable_expert_parallel:
+        raise ValueError("--enable-lynx-eplb/--enable-eplb requires --enable-expert-parallel.")
+    if args.enable_vllm_eplb and not args.enable_expert_parallel:
+        raise ValueError("--enable-vllm-eplb requires --enable-expert-parallel.")
 
     # If user didn't provide a --serving_script, build one dynamically
     # based on the spec_decode name:
@@ -572,6 +608,13 @@ def main():
     args.health_address = health_address
 
     bg_pid = None
+    profile_requested = (
+        env_flag("ENABLE_VLLM_PROFILE")
+        or bool(os.environ.get("VLLM_PROFILER_CONFIG_JSON"))
+    )
+    profile_started = False
+    profile_http_timeout = int(os.environ.get("VLLM_PROFILE_HTTP_TIMEOUT", "1800"))
+    profile_retries = int(os.environ.get("VLLM_PROFILE_RETRIES", "3"))
     try:
         # ---------------------------------------------------
         # 1. Start vLLM serving in the background
@@ -592,6 +635,8 @@ def main():
         # Extract port from server_address (e.g., "localhost:8000" -> "8000")
         port = args.server_address.split(':')[-1] if ':' in args.server_address else '8000'
         ep_token = "true" if args.enable_expert_parallel else "false"
+        lynx_eplb_token = "true" if args.enable_lynx_eplb else "false"
+        vllm_eplb_token = "true" if args.enable_vllm_eplb else "false"
 
         serving_cmd = (
             f"bash -c '{args.serving_script} {args.model} {vllm_statfilename} "
@@ -602,6 +647,8 @@ def main():
             f"{port} "
             f"{args.max_batch_size} "
             f"{ep_token} "
+            f"{lynx_eplb_token} "
+            f"{vllm_eplb_token} "
             f"> /dev/null 2>&1'"
         )
         print(f"serving_cmd: {serving_cmd}")
@@ -627,6 +674,18 @@ def main():
             raise TimeoutError(f"Timed out waiting for vLLM server at {address} to become ready.")
 
         wait_for_server_ready(health_address, timeout=args.startup_timeout)
+
+        if profile_requested:
+            print(
+                f"Profiling requested; calling /start_profile on {args.server_address}"
+            )
+            post_server_endpoint(
+                args.server_address,
+                "/start_profile",
+                timeout=profile_http_timeout,
+                retries=profile_retries,
+            )
+            profile_started = True
 
         # ---------------------------------------------------
         # 2. Run the Python benchmark in the foreground
@@ -656,6 +715,21 @@ def main():
         # ---------------------------------------------------
         # 3. Gracefully terminate vLLM if it was started
         # ---------------------------------------------------
+        if bg_pid is not None and profile_started:
+            try:
+                print(
+                    f"Profiling active; calling /stop_profile on {args.server_address}"
+                )
+                post_server_endpoint(
+                    args.server_address,
+                    "/stop_profile",
+                    timeout=profile_http_timeout,
+                    retries=profile_retries,
+                )
+                profile_started = False
+            except Exception as e:
+                print(f"Error while stopping profiler: {e}")
+
         if bg_pid is not None:
             time.sleep(30)
             try:

@@ -1,0 +1,99 @@
+=== SCORE CORRECTION OFF ===
+metrics_file: /nethome/rdudala3/latency-scripts/stats/quality/gsm8k/ngram/Qwen2-57B-A14B-Instruct/scorecorr_off_n250.0_conf_quant_alpha1_optimized_20260312-163917.metrics
+============================================================
+vLLM Performance Metrics Summary
+============================================================
+
+📊 THROUGHPUT METRICS:
+  Mean TPOT:             16.32 ms
+  TPOT P50: 17.44 ms | P90: 23.49 ms | P99: 24.85 ms
+  Generation Throughput: 61.79 tokens/sec
+  Prefill Throughput:    10656.68 tokens/sec
+  Overall Throughput:    494.00 tokens/sec
+
+📈 REQUEST STATISTICS:
+  Currently Running: 0 requests
+  Currently Waiting: 0 requests
+  Total Completed:   250 requests
+    Stopped (EOS):   233
+    Max Length:      17
+
+🔢 TOKEN STATISTICS:
+  Total Prompt Tokens:      254040
+  Total Generated Tokens:   34192
+  Avg Prompt Tokens/Req:    1016.2
+  Avg Generated Tokens/Req: 136.8
+  Input/Output Ratio:       7.4
+
+⏱️  LATENCY PERCENTILES:
+  Time to First Token:
+    P50: 76.1ms | P90: 223.5ms | P99: 895.8ms
+  Inter-Token Latency:
+    P50: 18.3ms | P90: 26.3ms | P99: 72.2ms
+  Per-Request TPOT:
+    P50: 17.44ms | P90: 23.49ms | P99: 24.85ms
+  End-to-End Latency:
+    P50: 2.14s | P90: 4.38s | P99: 4.96s
+  Queue Time:
+    P50: 150.0ms | P90: 270.0ms | P99: 297.0ms
+  Prefill Time:
+    P50: 157.6ms | P90: 283.6ms | P99: 675.0ms
+  Decode Time:
+    P50: 1.96s | P90: 4.25s | P99: 4.92s
+
+💾 CACHE UTILIZATION:
+  KV Cache Usage:    0.0%
+  Preemptions:       0
+  Prefix Cache Hits: 800/254040 (0.3%)
+
+============================================================
+
+=== SCORE CORRECTION ON ===
+metrics_file: /nethome/rdudala3/latency-scripts/stats/quality/gsm8k/ngram/Qwen2-57B-A14B-Instruct/scorecorr_on_n250.0_conf_quant_alpha1_optimized_20260312-164559.metrics
+============================================================
+vLLM Performance Metrics Summary
+============================================================
+
+📊 THROUGHPUT METRICS:
+  Mean TPOT:             16.38 ms
+  TPOT P50: 17.47 ms | P90: 23.54 ms | P99: 24.91 ms
+  Generation Throughput: 61.64 tokens/sec
+  Prefill Throughput:    10116.78 tokens/sec
+  Overall Throughput:    499.30 tokens/sec
+
+📈 REQUEST STATISTICS:
+  Currently Running: 0 requests
+  Currently Waiting: 0 requests
+  Total Completed:   250 requests
+    Stopped (EOS):   233
+    Max Length:      17
+
+🔢 TOKEN STATISTICS:
+  Total Prompt Tokens:      254040
+  Total Generated Tokens:   33637
+  Avg Prompt Tokens/Req:    1016.2
+  Avg Generated Tokens/Req: 134.5
+  Input/Output Ratio:       7.6
+
+⏱️  LATENCY PERCENTILES:
+  Time to First Token:
+    P50: 76.8ms | P90: 223.7ms | P99: 930.6ms
+  Inter-Token Latency:
+    P50: 18.3ms | P90: 26.4ms | P99: 72.5ms
+  Per-Request TPOT:
+    P50: 17.47ms | P90: 23.54ms | P99: 24.91ms
+  End-to-End Latency:
+    P50: 2.11s | P90: 4.35s | P99: 4.96s
+  Queue Time:
+    P50: 151.2ms | P90: 272.2ms | P99: 299.4ms
+  Prefill Time:
+    P50: 159.6ms | P90: 287.2ms | P99: 743.8ms
+  Decode Time:
+    P50: 2.01s | P90: 4.26s | P99: 4.93s
+
+💾 CACHE UTILIZATION:
+  KV Cache Usage:    0.0%
+  Preemptions:       0
+  Prefix Cache Hits: 800/254040 (0.3%)
+
+============================================================

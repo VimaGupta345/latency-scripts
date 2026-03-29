@@ -2,11 +2,11 @@
 
 # Check if required parameters are provided
 if [ $# -lt 5 ]; then
-    echo "Usage: $0 <port> <model_name> <model_path> <benchmark> <limit> [config_file] [tp_size] [enable_expert_parallel]"
+    echo "Usage: $0 <port> <model_name> <model_path> <benchmark> <limit> [config_file] [tp_size] [max_batch_size] [enable_expert_parallel] [enable_lynx_eplb] [enable_vllm_eplb]"
     echo "Examples:"
     echo "  $0 8000 mixtral /path/to/model/ humaneval 164"
     echo "  $0 8001 mixtral /path/to/model/ gsm8k 100 /path/to/config.json 1"
-    echo "  $0 8002 qwen /path/to/model/ mbpp 500 /path/to/config.json 2 16 true"
+    echo "  $0 8002 qwen /path/to/model/ mbpp 500 /path/to/config.json 2 16 true true false"
     echo ""
     echo "Available benchmarks: humaneval, gsm8k, mbpp, minerva_math_algebra"
     exit 1
@@ -20,7 +20,9 @@ LIMIT=$5
 CONFIG_FILE=${6:-"${TMP_HOME}/prowl/configs/mixtral/do_nothing.json"}  # Optional config, default to do_nothing
 TP_SIZE=${7:-1}  # Optional TP size, default to 1
 MAX_BATCH_SIZE=${8:-16}
-ENABLE_EXPERT_PARALLEL=${9:-false}
+ENABLE_EXPERT_PARALLEL=${9:-${ENABLE_EXPERT_PARALLEL:-false}}
+ENABLE_EPLB=${10:-${ENABLE_EPLB:-false}}
+ENABLE_VLLM_EPLB=${11:-${ENABLE_VLLM_EPLB:-false}}
 
 SERVER_ADDRESS="localhost:${PORT}"
 METRICS_ADDRESS=${METRICS_ADDRESS:-${SERVER_ADDRESS}}
@@ -47,6 +49,9 @@ echo "Health check address: $HEALTH_ADDRESS"
 echo "Running benchmark: $BENCHMARK with limit: $LIMIT"
 echo "Config file: $CONFIG_FILE"
 echo "Tensor Parallel Size: $TP_SIZE"
+echo "Expert parallelism: ${ENABLE_EXPERT_PARALLEL}"
+echo "Lynx EPLB (lynx_routing EP correction): ${ENABLE_EPLB}"
+echo "vLLM native EPLB (--enable-eplb): ${ENABLE_VLLM_EPLB}"
 echo "lm-eval timeout (s): ${LM_EVAL_TIMEOUT}"
 if [ -n "${LM_EVAL_GEN_KWARGS:-}" ]; then
     echo "lm-eval gen kwargs: ${LM_EVAL_GEN_KWARGS}"
@@ -64,6 +69,17 @@ fi
 # Export sizes for the serving script to use
 export TP_SIZE="${TP_SIZE}"
 export ENABLE_EXPERT_PARALLEL="${ENABLE_EXPERT_PARALLEL}"
+export ENABLE_EPLB="${ENABLE_EPLB}"
+export ENABLE_VLLM_EPLB="${ENABLE_VLLM_EPLB}"
+
+if [ "${ENABLE_EPLB}" = "true" ] && [ "${ENABLE_EXPERT_PARALLEL}" != "true" ]; then
+    echo "ERROR: ENABLE_EPLB=true requires ENABLE_EXPERT_PARALLEL=true"
+    exit 1
+fi
+if [ "${ENABLE_VLLM_EPLB}" = "true" ] && [ "${ENABLE_EXPERT_PARALLEL}" != "true" ]; then
+    echo "ERROR: ENABLE_VLLM_EPLB=true requires ENABLE_EXPERT_PARALLEL=true"
+    exit 1
+fi
 
 # Run the single benchmark with specified limit and config
 # Build command with optional limit flag
@@ -79,6 +95,14 @@ CMD="${CMD} -k 0 -t 150 -cf \"${CONFIG_FILE}\" -sa \"${SERVER_ADDRESS}\" -mb ${M
 
 if [ "${ENABLE_EXPERT_PARALLEL}" = "true" ]; then
     CMD="${CMD} --enable-expert-parallel"
+fi
+
+if [ "${ENABLE_EPLB}" = "true" ]; then
+    CMD="${CMD} --enable-lynx-eplb"
+fi
+
+if [ "${ENABLE_VLLM_EPLB}" = "true" ]; then
+    CMD="${CMD} --enable-vllm-eplb"
 fi
 
 # Execute the command

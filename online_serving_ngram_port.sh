@@ -11,6 +11,8 @@ export CONFIG_FILE=${6}
 export PORT=${7:-8000}  # New port parameter, default to 8000
 export MAX_BATCH_SIZE=${8:-16}
 export ENABLE_EXPERT_PARALLEL=${9:-false}
+export ENABLE_EPLB=${10:-false}
+export ENABLE_VLLM_EPLB=${11:-${ENABLE_VLLM_EPLB:-false}}
 export MAX_MODEL_LEN=${MAX_MODEL_LEN:-4096}
 
 ENFORCE_EAGER=${ENFORCE_EAGER:-false}
@@ -58,6 +60,29 @@ else
     EP_FLAGS=""
 fi
 
+if [ "${ENABLE_EPLB}" = "true" ]; then
+    if [ "${ENABLE_EXPERT_PARALLEL}" != "true" ]; then
+        echo "Lynx EPLB requires expert parallelism. Set ENABLE_EXPERT_PARALLEL=true." >&2
+        exit 1
+    fi
+    echo "Lynx EP load correction (lynx_routing EPLB) ENABLED"
+else
+    echo "Lynx EP load correction (lynx_routing EPLB) DISABLED"
+fi
+export LYNX_ENABLE_EPLB="${ENABLE_EPLB}"
+
+if [ "${ENABLE_VLLM_EPLB}" = "true" ]; then
+    if [ "${ENABLE_EXPERT_PARALLEL}" != "true" ]; then
+        echo "vLLM native EPLB requires expert parallelism. Set ENABLE_EXPERT_PARALLEL=true." >&2
+        exit 1
+    fi
+    echo "vLLM native EPLB ENABLED"
+    VLLM_EPLB_FLAGS="--enable-eplb"
+else
+    echo "vLLM native EPLB DISABLED"
+    VLLM_EPLB_FLAGS=""
+fi
+
 if [ "${ENFORCE_EAGER}" = "true" ]; then
     echo "Enforce eager ENABLED"
     EAGER_FLAG="--enforce-eager"
@@ -84,6 +109,15 @@ fi
 if [ -n "${MM_ENCODER_TP_MODE}" ]; then
     OPTIONAL_MODEL_FLAGS+=(--mm-encoder-tp-mode "${MM_ENCODER_TP_MODE}")
 fi
+ATTENTION_BACKEND_OVERRIDE=${ATTENTION_BACKEND:-${VLLM_ATTENTION_BACKEND:-""}}
+if [ -n "${ATTENTION_BACKEND_OVERRIDE}" ]; then
+    OPTIONAL_MODEL_FLAGS+=(--attention-backend "${ATTENTION_BACKEND_OVERRIDE}")
+    echo "Attention backend override: ${ATTENTION_BACKEND_OVERRIDE}"
+fi
+if [ -n "${VLLM_PROFILER_CONFIG_JSON:-}" ]; then
+    OPTIONAL_MODEL_FLAGS+=(--profiler-config "${VLLM_PROFILER_CONFIG_JSON}")
+    echo "Profiler config override enabled"
+fi
 
 echo "Starting vLLM server on port ${PORT}"
 #--compilation-config '{"full_cuda_graph": true}' \
@@ -106,6 +140,7 @@ then
     --trust-remote-code \
     ${EAGER_FLAG} \
     ${EP_FLAGS} \
+    ${VLLM_EPLB_FLAGS} \
     2>&1 | tee ${STATS_DIR}/${STAT_FILE}
     exit 0
 else
@@ -142,5 +177,6 @@ else
     "${OPTIONAL_MODEL_FLAGS[@]}" \
     --trust-remote-code \
     ${EP_FLAGS} \
+    ${VLLM_EPLB_FLAGS} \
     2>&1 | tee ${STATS_DIR}/${STAT_FILE}
 fi

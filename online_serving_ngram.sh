@@ -23,6 +23,7 @@ if [[ $MODEL == *"FP8"* ]]
 then
     export TP_SIZE=1
 fi
+
 # if value of K is 0, then don't use speculative model 
 if [ $K -eq 0 ]
 then
@@ -69,4 +70,3 @@ else
     --num-speculative-tokens ${K} --ngram-prompt-lookup-max $((K*2)) \
     --trust-remote-code 2>&1 | tee ${STATS_DIR}/${STAT_FILE}
 fi
-

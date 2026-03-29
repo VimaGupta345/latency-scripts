@@ -75,31 +75,20 @@ def compute_metrics(file_path):
     prefill_time = metrics.get("vllm:request_prefill_time_seconds_sum", 0)
     total_time = metrics.get("vllm:e2e_request_latency_seconds_sum", 0)
 
-    # vLLM metric naming varies by version.
+    # vLLM metric naming varies by version; prefer request_* if present.
     tpot_seconds_sum = metrics.get(
         "vllm:request_time_per_output_token_seconds_sum",
         metrics.get("vllm:time_per_output_token_seconds_sum", 0),
     )
-    total_output_tokens_sum = metrics.get(
+    tpot_count = metrics.get(
         "vllm:request_time_per_output_token_seconds_count",
         metrics.get("vllm:time_per_output_token_seconds_count", 0),
     )
 
-    # Keep one TPOT output line while supporting multiple vLLM metric variants.
-    if total_output_tokens_sum > 0:
-        tpot_ms = tpot_seconds_sum / total_output_tokens_sum * 1000
-        print(f"  TPOT: {tpot_ms:.2f} ms")
+    if tpot_count > 0:
+        print(f"  TPOT: {tpot_seconds_sum / tpot_count * 1000:.2f} ms")
     else:
-        itl_sum = metrics.get("vllm:inter_token_latency_seconds_sum", 0)
-        itl_count = metrics.get("vllm:inter_token_latency_seconds_count", 0)
-        if itl_count > 0:
-            tpot_ms = itl_sum / itl_count * 1000
-            print(f"  TPOT: {tpot_ms:.2f} ms")
-        elif gen_tokens > 0 and decode_time > 0:
-            tpot_ms = decode_time / gen_tokens * 1000
-            print(f"  TPOT: {tpot_ms:.2f} ms")
-        else:
-            print("  TPOT: n/a (no output-token counters found)")
+        print("  TPOT: n/a")
     
     gen_throughput = gen_tokens / decode_time if decode_time > 0 else 0
     prefill_throughput = prompt_tokens / prefill_time if prefill_time > 0 else 0
