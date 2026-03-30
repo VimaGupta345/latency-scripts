@@ -286,10 +286,9 @@ def build_server_log_index(results_dir):
                     if info.get("tp"):
                         index[(model_dir, "_fallback", "_fallback")] = info
 
-    # 2. Parse disagg decode logs for cuda_graph info
+    # 2. Parse disagg decode logs for TP and cuda_graph info
     # Filenames: decode_{model_short}_{config}_{benchmark}_{timestamp}.log
-    # We only need one log per model_short to get enforce_eager/cudagraph info
-    known_shorts = {"deepseek_v2", "mixtral", "qwen", "qwen3"}
+    # Index by timestamp so we can match to specific result files.
     for subdir in ("disagg_sweep", "disagg"):
         decode_log_dir = os.path.join(results_dir, "logs", subdir)
         if not os.path.isdir(decode_log_dir):
@@ -297,15 +296,13 @@ def build_server_log_index(results_dir):
         for logfile in sorted(os.listdir(decode_log_dir)):
             if not logfile.startswith("decode_") or not logfile.endswith(".log"):
                 continue
-            # Extract model_short from filename prefix
-            for short in known_shorts:
-                if logfile.startswith(f"decode_{short}_"):
-                    key = ("_disagg_decode", short, "_fallback")
-                    if key not in index:
-                        info = parse_server_log(os.path.join(decode_log_dir, logfile))
-                        if info:
-                            index[key] = info
-                    break
+            # Extract timestamp from filename
+            ts_match = re.search(r"(\d{8}-\d{6})\.log$", logfile)
+            if ts_match:
+                ts = ts_match.group(1)
+                info = parse_server_log(os.path.join(decode_log_dir, logfile))
+                if info:
+                    index[("_disagg_ts", ts)] = info
 
     return index
 
@@ -320,9 +317,15 @@ _MODEL_DIR_TO_SHORT = {
 }
 
 
-def lookup_server_info(index, model_dir, benchmark, config, is_disagg=False):
+def lookup_server_info(index, model_dir, benchmark, config,
+                       is_disagg=False, timestamp=None):
     """Look up server info, with fallback to model-level defaults."""
-    # Try exact match
+    # For disagg: try timestamp-based decode log match first (most accurate)
+    if is_disagg and timestamp:
+        info = index.get(("_disagg_ts", timestamp))
+        if info:
+            return info
+    # Try exact match from server_logs/
     info = index.get((model_dir, benchmark, config))
     if info:
         return info
@@ -330,13 +333,6 @@ def lookup_server_info(index, model_dir, benchmark, config, is_disagg=False):
     info = index.get((model_dir, "_fallback", "_fallback"))
     if info:
         return info
-    # Try disagg decode log fallback
-    if is_disagg:
-        short = _MODEL_DIR_TO_SHORT.get(model_dir)
-        if short:
-            info = index.get(("_disagg_decode", short, "_fallback"))
-            if info:
-                return info
     return {}
 
 
@@ -469,9 +465,12 @@ def gather_lm_eval_results(results_dir, server_log_index, disagg_gpu_info):
                 is_disagg = entry.startswith("disagg_nixl_") or entry.startswith("disagg_")
                 mode = "disagg" if is_disagg else "colocated"
 
-                # Config name
+                # Config name and timestamp
                 config_match = re.search(r"_conf_(.+)\.jsonl$", entry)
                 config_name = config_match.group(1) if config_match else "unknown"
+                # Extract timestamp before stripping it from config
+                ts_match = re.search(r"_(\d{8}-\d{6})$", config_name)
+                entry_timestamp = ts_match.group(1) if ts_match else None
                 config_name = re.sub(r"_\d{8}-\d{6}$", "", config_name)
 
                 # Find results_*.json
@@ -498,7 +497,8 @@ def gather_lm_eval_results(results_dir, server_log_index, disagg_gpu_info):
                 # Server log info
                 srv = lookup_server_info(server_log_index, model_dir_name,
                                          benchmark_dir_name, config_name,
-                                         is_disagg=is_disagg)
+                                         is_disagg=is_disagg,
+                                         timestamp=entry_timestamp)
                 tp = srv.get("tp") or KNOWN_TP.get(model_dir_name, "")
                 batch_size = srv.get("max_num_seqs", 16)
                 enforce_eager = srv.get("enforce_eager")
@@ -789,21 +789,52 @@ def gather_aiperf_results(results_dir):
 #  Compute speedup and accuracy degradation vs baseline
 # ─────────────────────────────────────────────────────────────────────────
 
+def _avg_floats(values):
+    """Average a list of values, ignoring empty/None entries."""
+    nums = []
+    for v in values:
+        if v not in ("", None):
+            try:
+                nums.append(float(v))
+            except (ValueError, TypeError):
+                pass
+    return sum(nums) / len(nums) if nums else ""
+
+
 def compute_comparisons(rows):
-    # Build baseline index: group key -> baseline row
-    baselines = {}
+    # Build baseline index: group key -> averaged baseline values
+    # Multiple baselines for the same group are averaged (repeat runs).
+    from collections import defaultdict
+    baseline_groups = defaultdict(list)
     for row in rows:
         if is_baseline(row["config"]):
             key = (row["model"], row["benchmark"], row["mode"],
-                   row["batch_size"], row["source"])
-            existing = baselines.get(key)
-            if existing is None or \
-               (row["accuracy"] not in ("", None) and existing["accuracy"] in ("", None)):
-                baselines[key] = row
+                   row["tp"], row["batch_size"], row["source"])
+            baseline_groups[key].append(row)
+
+    baselines = {}
+    avg_cols = ["accuracy",
+                "p50_tpot_ms_hist_fine", "p90_tpot_ms_hist_fine",
+                "p99_tpot_ms_hist_fine", "mean_tpot_ms_hist_fine",
+                "p50_tpot_ms_hist_coarse", "p90_tpot_ms_hist_coarse",
+                "p99_tpot_ms_hist_coarse", "mean_tpot_ms_hist_coarse",
+                "p50_tpot_ms_direct", "p90_tpot_ms_direct",
+                "p99_tpot_ms_direct", "mean_tpot_ms_direct",
+                "p50_itl_ms_direct", "p90_itl_ms_direct",
+                "p99_itl_ms_direct", "mean_itl_ms_direct"]
+    for key, group in baseline_groups.items():
+        if len(group) == 1:
+            baselines[key] = group[0]
+        else:
+            # Average numeric columns across repeat runs
+            averaged = dict(group[0])  # copy first row for non-numeric fields
+            for col in avg_cols:
+                averaged[col] = _avg_floats([r.get(col) for r in group])
+            baselines[key] = averaged
 
     for row in rows:
         key = (row["model"], row["benchmark"], row["mode"],
-               row["batch_size"], row["source"])
+               row["tp"], row["batch_size"], row["source"])
         baseline = baselines.get(key)
         row["is_baseline"] = is_baseline(row["config"])
 
@@ -811,7 +842,7 @@ def compute_comparisons(rows):
             # Accuracy delta: prowl - baseline (negative = prowl is worse)
             if row["accuracy"] not in ("", None) and baseline["accuracy"] not in ("", None):
                 try:
-                    row["accuracy_delta"] = float(row["accuracy"]) - float(baseline["accuracy"])
+                    row["accuracy_delta"] = (float(row["accuracy"]) - float(baseline["accuracy"])) * 100
                 except (ValueError, TypeError):
                     row["accuracy_delta"] = ""
             else:
@@ -849,6 +880,8 @@ COLUMNS = [
     "config", "is_baseline",
     # Accuracy
     "accuracy", "accuracy_metric", "accuracy_delta",
+    # Speedup summary (right after accuracy for quick reading)
+    "p50_tpot_speedup_hist_fine", "mean_tpot_speedup_hist_fine",
     # TPOT direct (from bench_bs*.json)
     "p50_tpot_ms_direct", "p90_tpot_ms_direct", "p99_tpot_ms_direct", "mean_tpot_ms_direct",
     # TPOT histogram — fine granularity (109 buckets, 1ms steps)
@@ -858,12 +891,10 @@ COLUMNS = [
     "p50_tpot_ms_hist_coarse", "p90_tpot_ms_hist_coarse", "p99_tpot_ms_hist_coarse", "mean_tpot_ms_hist_coarse",
     # ITL direct (from bench_bs*.json or AIPerf CSV)
     "p50_itl_ms_direct", "p90_itl_ms_direct", "p99_itl_ms_direct", "mean_itl_ms_direct",
-    # Speedup direct
+    # Remaining speedup columns
+    "p90_tpot_speedup_hist_fine", "p99_tpot_speedup_hist_fine",
     "p50_tpot_speedup_direct", "p90_tpot_speedup_direct", "p99_tpot_speedup_direct", "mean_tpot_speedup_direct",
     "p50_itl_speedup_direct", "p90_itl_speedup_direct", "p99_itl_speedup_direct", "mean_itl_speedup_direct",
-    # Speedup histogram fine
-    "p50_tpot_speedup_hist_fine", "p90_tpot_speedup_hist_fine", "p99_tpot_speedup_hist_fine", "mean_tpot_speedup_hist_fine",
-    # Speedup histogram coarse
     "p50_tpot_speedup_hist_coarse", "p90_tpot_speedup_hist_coarse", "p99_tpot_speedup_hist_coarse", "mean_tpot_speedup_hist_coarse",
     # Metadata
     "source",
