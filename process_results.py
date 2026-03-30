@@ -28,7 +28,7 @@ import os
 
 
 # Columns to always drop from the filtered output
-FORCE_DROP_COLS = {"hist_n_buckets", "hist_granularity", "source", "accuracy_metric"}
+FORCE_DROP_COLS = {"hist_n_buckets", "hist_granularity", "source"}
 
 EXCLUDE_BENCHMARKS = {
     "sharegpt",
@@ -46,7 +46,8 @@ EXCLUDE_BENCHMARKS = {
 def group_key(row):
     """Key that defines a baseline group (baseline + its prowl variants)."""
     return (row["model"], row["benchmark"], row["mode"],
-            row["tp"], row["batch_size"], row["source"])
+            row["tp"], row["batch_size"], row["source"],
+            row.get("accuracy_metric", ""))
 
 
 def main():

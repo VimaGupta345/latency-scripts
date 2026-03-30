@@ -176,43 +176,41 @@ def extract_tpot_from_metrics(metrics_path):
 #  Accuracy extraction from results_*.json
 # ─────────────────────────────────────────────────────────────────────────
 
-def extract_accuracy(results_json_path, benchmark_name):
+def extract_all_accuracies(results_json_path, benchmark_name):
+    """Extract ALL accuracy metrics and nshot from a results_*.json file.
+    Returns (list of (accuracy, metric_name) tuples, nshot)."""
     try:
         with open(results_json_path) as f:
             data = json.load(f)
     except (json.JSONDecodeError, IOError):
-        return None, None, None
+        return [], None
 
     if "results" not in data:
-        return None, None, None
+        return [], None
 
     # nshot
     nshot = None
     if "n-shot" in data:
-        for bmk, val in data["n-shot"].items():
+        for _, val in data["n-shot"].items():
             nshot = val
             break
     if nshot is None and "configs" in data:
-        for bmk, cfg in data["configs"].items():
+        for _, cfg in data["configs"].items():
             if "num_fewshot" in cfg:
                 nshot = cfg["num_fewshot"]
                 break
 
-    # accuracy
-    accuracy, metric_name = None, None
-    for bmk_name, bmk_results in data["results"].items():
-        marker = ACCURACY_MARKERS.get(bmk_name) or ACCURACY_MARKERS.get(benchmark_name)
-        if marker:
-            for key, val in bmk_results.items():
-                if key.startswith(marker) and isinstance(val, (int, float)):
-                    accuracy, metric_name = val, key
-                    break
-        if accuracy is None:
-            for key, val in bmk_results.items():
-                if isinstance(val, (int, float)) and "stderr" not in key and key != "alias":
-                    accuracy, metric_name = val, key
-                    break
-    return accuracy, metric_name, nshot
+    # Collect all numeric metrics (excluding stderr and alias)
+    all_metrics = []
+    for bmk_results in data["results"].values():
+        for key, val in bmk_results.items():
+            if isinstance(val, (int, float)) and "stderr" not in key and key != "alias":
+                all_metrics.append((val, key))
+
+    if not all_metrics:
+        return [], nshot
+
+    return all_metrics, nshot
 
 
 # ─────────────────────────────────────────────────────────────────────────
@@ -221,7 +219,7 @@ def extract_accuracy(results_json_path, benchmark_name):
 
 def parse_server_log(log_path):
     """Extract settings from a vLLM server log file."""
-    info = {}
+    info = {"_path": log_path}
     try:
         with open(log_path) as f:
             content = f.read(50000)  # first 50KB is enough
@@ -485,7 +483,7 @@ def gather_lm_eval_results(results_dir, server_log_index, disagg_gpu_info):
                 if not results_json:
                     continue
 
-                accuracy, metric_name, nshot = extract_accuracy(results_json, benchmark_dir_name)
+                all_metrics, nshot = extract_all_accuracies(results_json, benchmark_dir_name)
                 if nshot is None:
                     nshot = NSHOT_DEFAULTS.get(benchmark_dir_name, "")
 
@@ -521,41 +519,54 @@ def gather_lm_eval_results(results_dir, server_log_index, disagg_gpu_info):
                 else:
                     num_gpus = tp if tp else ""
 
-                rows.append({
-                    "model": model_dir_name,
-                    "benchmark": benchmark_dir_name,
-                    "nshot": nshot if nshot is not None else "",
-                    "tp": tp,
-                    "num_gpus": num_gpus,
-                    "batch_size": batch_size,
-                    "mode": mode,
-                    "cuda_graph_enabled": cuda_graph_enabled,
-                    "cudagraph_mode": cudagraph_mode if cudagraph_mode is not None else "",
-                    "config": config_name,
-                    "accuracy": accuracy,
-                    "accuracy_metric": metric_name or "",
-                    # Direct values: not available for lm-eval
-                    "p50_tpot_ms_direct": "",
-                    "p90_tpot_ms_direct": "",
-                    "p99_tpot_ms_direct": "",
-                    "mean_tpot_ms_direct": "",
-                    "p50_itl_ms_direct": "",
-                    "p90_itl_ms_direct": "",
-                    "p99_itl_ms_direct": "",
-                    "mean_itl_ms_direct": "",
-                    # Histogram-estimated values — fine (1ms buckets) or coarse (19 buckets)
-                    "hist_granularity": tpot_hist.get("hist_granularity", ""),
-                    "hist_n_buckets": tpot_hist.get("hist_n_buckets", ""),
-                    "p50_tpot_ms_hist_fine": tpot_hist.get("p50_tpot_ms_hist_fine", ""),
-                    "p90_tpot_ms_hist_fine": tpot_hist.get("p90_tpot_ms_hist_fine", ""),
-                    "p99_tpot_ms_hist_fine": tpot_hist.get("p99_tpot_ms_hist_fine", ""),
-                    "mean_tpot_ms_hist_fine": tpot_hist.get("mean_tpot_ms_hist_fine", ""),
-                    "p50_tpot_ms_hist_coarse": tpot_hist.get("p50_tpot_ms_hist_coarse", ""),
-                    "p90_tpot_ms_hist_coarse": tpot_hist.get("p90_tpot_ms_hist_coarse", ""),
-                    "p99_tpot_ms_hist_coarse": tpot_hist.get("p99_tpot_ms_hist_coarse", ""),
-                    "mean_tpot_ms_hist_coarse": tpot_hist.get("mean_tpot_ms_hist_coarse", ""),
-                    "source": "lm-eval",
-                })
+                # Server log path for verification
+                srv_log_path = srv.get("_path", "")
+
+                # If no metrics extracted, emit one row with empty accuracy
+                if not all_metrics:
+                    all_metrics = [(None, "")]
+
+                # One row per accuracy metric (creates separate baseline groups)
+                for accuracy, metric_name in all_metrics:
+                    rows.append({
+                        "model": model_dir_name,
+                        "benchmark": benchmark_dir_name,
+                        "nshot": nshot if nshot is not None else "",
+                        "tp": tp,
+                        "num_gpus": num_gpus,
+                        "batch_size": batch_size,
+                        "mode": mode,
+                        "cuda_graph_enabled": cuda_graph_enabled,
+                        "cudagraph_mode": cudagraph_mode if cudagraph_mode is not None else "",
+                        "config": config_name,
+                        "accuracy": accuracy,
+                        "accuracy_metric": metric_name or "",
+                        # Direct values: not available for lm-eval
+                        "p50_tpot_ms_direct": "",
+                        "p90_tpot_ms_direct": "",
+                        "p99_tpot_ms_direct": "",
+                        "mean_tpot_ms_direct": "",
+                        "p50_itl_ms_direct": "",
+                        "p90_itl_ms_direct": "",
+                        "p99_itl_ms_direct": "",
+                        "mean_itl_ms_direct": "",
+                        # Histogram-estimated values
+                        "hist_granularity": tpot_hist.get("hist_granularity", ""),
+                        "hist_n_buckets": tpot_hist.get("hist_n_buckets", ""),
+                        "p50_tpot_ms_hist_fine": tpot_hist.get("p50_tpot_ms_hist_fine", ""),
+                        "p90_tpot_ms_hist_fine": tpot_hist.get("p90_tpot_ms_hist_fine", ""),
+                        "p99_tpot_ms_hist_fine": tpot_hist.get("p99_tpot_ms_hist_fine", ""),
+                        "mean_tpot_ms_hist_fine": tpot_hist.get("mean_tpot_ms_hist_fine", ""),
+                        "p50_tpot_ms_hist_coarse": tpot_hist.get("p50_tpot_ms_hist_coarse", ""),
+                        "p90_tpot_ms_hist_coarse": tpot_hist.get("p90_tpot_ms_hist_coarse", ""),
+                        "p99_tpot_ms_hist_coarse": tpot_hist.get("p99_tpot_ms_hist_coarse", ""),
+                        "mean_tpot_ms_hist_coarse": tpot_hist.get("mean_tpot_ms_hist_coarse", ""),
+                        "source": "lm-eval",
+                        # File paths for verification
+                        "file_accuracy": results_json,
+                        "file_tpot_histogram": metrics_file or "",
+                        "file_server_log": srv_log_path,
+                    })
 
     return rows
 
@@ -672,6 +683,10 @@ def gather_bs_sweep_results(results_dir):
                     "p99_tpot_ms_hist_coarse": tpot_hist.get("p99_tpot_ms_hist_coarse", ""),
                     "mean_tpot_ms_hist_coarse": tpot_hist.get("mean_tpot_ms_hist_coarse", ""),
                     "source": "bs_sweep",
+                    # File paths for verification
+                    "file_accuracy": "",
+                    "file_tpot_histogram": server_metrics if os.path.isfile(server_metrics) else "",
+                    "file_server_log": server_log if os.path.isfile(server_log) else "",
                 })
 
     return rows
@@ -780,6 +795,10 @@ def gather_aiperf_results(results_dir):
                 "p99_tpot_ms_hist_coarse": "",
                 "mean_tpot_ms_hist_coarse": "",
                 "source": f"aiperf:{dir_name}",
+                # File paths for verification
+                "file_accuracy": "",
+                "file_tpot_histogram": "",
+                "file_server_log": "",
             })
 
     return rows
@@ -809,7 +828,8 @@ def compute_comparisons(rows):
     for row in rows:
         if is_baseline(row["config"]):
             key = (row["model"], row["benchmark"], row["mode"],
-                   row["tp"], row["batch_size"], row["source"])
+                   row["tp"], row["batch_size"], row["source"],
+                   row.get("accuracy_metric", ""))
             baseline_groups[key].append(row)
 
     baselines = {}
@@ -834,7 +854,8 @@ def compute_comparisons(rows):
 
     for row in rows:
         key = (row["model"], row["benchmark"], row["mode"],
-               row["tp"], row["batch_size"], row["source"])
+               row["tp"], row["batch_size"], row["source"],
+               row.get("accuracy_metric", ""))
         baseline = baselines.get(key)
         row["is_baseline"] = is_baseline(row["config"])
 
@@ -898,6 +919,10 @@ COLUMNS = [
     "p50_tpot_speedup_hist_coarse", "p90_tpot_speedup_hist_coarse", "p99_tpot_speedup_hist_coarse", "mean_tpot_speedup_hist_coarse",
     # Metadata
     "source",
+    # File paths for verification
+    "file_accuracy",       # verify: accuracy, nshot, accuracy_metric
+    "file_tpot_histogram", # verify: p50/p90/p99/mean_tpot_ms_hist_*
+    "file_server_log",     # verify: tp, batch_size, cuda_graph_enabled, cudagraph_mode
 ]
 
 
