@@ -12,7 +12,24 @@ Latency columns are split:
   - *_hist:   values estimated from Prometheus histogram bucket interpolation
 
 Usage:
-    python gather_all_results.py [results_dir] [--output FILE]
+    # Default: scan ./results and write ./results/all_results.csv
+    python latency-scripts/gather_all_results.py
+
+    # Custom output path
+    python latency-scripts/gather_all_results.py --output /tmp/my_results.csv
+
+    # Point at a different results directory
+    python latency-scripts/gather_all_results.py /path/to/results -o out.csv
+
+Example output columns:
+    model, benchmark, nshot, tp, num_gpus, batch_size, mode,
+    cuda_graph_enabled, cudagraph_mode, config, is_baseline,
+    accuracy, accuracy_metric, accuracy_delta,
+    p50_tpot_ms_direct, p90_tpot_ms_direct, p99_tpot_ms_direct, mean_tpot_ms_direct,
+    p50_tpot_ms_hist_fine, ..., p50_tpot_ms_hist_coarse, ...,
+    p50_itl_ms_direct, p90_itl_ms_direct, p99_itl_ms_direct, mean_itl_ms_direct,
+    p50_tpot_speedup_direct, ..., p50_tpot_speedup_hist, ...,
+    source
 """
 
 import argparse
@@ -21,8 +38,6 @@ import json
 import glob
 import os
 import re
-import sys
-from collections import defaultdict
 
 
 # ── Known TP mappings (fallback; overridden by server_logs when available) ─
@@ -41,6 +56,8 @@ KNOWN_TP = {
     "Qwen3-235B-A22B-Thinking-2507": 4,
     "gpt-oss-120b": 4,
     "Llama-4-Scout-17B-16E-Instruct": 4,
+    "Qwen3-32B": 1,
+    "Qwen3-4B": 1,
 }
 
 # ── N-shot defaults per benchmark (from lm_eval_online_serve.py) ────────
@@ -124,19 +141,34 @@ def percentile_from_buckets(buckets, count, p):
     return prev_le
 
 
+def classify_histogram_granularity(buckets):
+    """Classify histogram as 'fine' (1ms steps, ~109 buckets) or 'coarse' (19 buckets).
+    Returns ('fine', n_buckets) or ('coarse', n_buckets)."""
+    n = len([b for b in buckets if b[0] != float("inf")])
+    return ("fine" if n > 50 else "coarse", n)
+
+
 def extract_tpot_from_metrics(metrics_path):
-    """Returns dict with p50/p90/p99/mean_tpot_ms_hist (estimated from histogram)."""
+    """Returns dict with p50/p90/p99/mean_tpot_ms_hist (estimated from histogram),
+    split into _hist_fine and _hist_coarse columns based on bucket granularity."""
     prefix = "vllm:time_per_output_token_seconds"
     buckets, count, total = parse_histogram(metrics_path, prefix)
     if not buckets or not count or count == 0:
         return {}
+
+    granularity, n_buckets = classify_histogram_granularity(buckets)
+    suffix = f"_hist_{granularity}"
+
     result = {}
+    result["hist_granularity"] = granularity
+    result["hist_n_buckets"] = n_buckets
+
     mean = total / count
-    result["mean_tpot_ms_hist"] = mean * 1000
+    result[f"mean_tpot_ms{suffix}"] = mean * 1000
     for p, label in [(0.50, "p50"), (0.90, "p90"), (0.99, "p99")]:
         val = percentile_from_buckets(buckets, count, p)
         if val is not None:
-            result[f"{label}_tpot_ms_hist"] = val * 1000
+            result[f"{label}_tpot_ms{suffix}"] = val * 1000
     return result
 
 
@@ -206,6 +238,11 @@ def parse_server_log(log_path):
         except Exception:
             pass
 
+    # Fallback: if TP not in non-default args (i.e. TP=1 default), try direct regex
+    if info.get("tp") is None:
+        tp_match = re.search(r"tensor_parallel_size=(\d+)", content)
+        info["tp"] = int(tp_match.group(1)) if tp_match else 1  # vLLM default is 1
+
     # enforce_eager
     m = re.search(r"enforce_eager=(\w+)", content)
     if m:
@@ -225,40 +262,65 @@ def parse_server_log(log_path):
 def build_server_log_index(results_dir):
     """Build index: (model_dir, benchmark, config) -> server log info."""
     index = {}
-    server_logs_dir = os.path.join(results_dir, "server_logs")
-    if not os.path.isdir(server_logs_dir):
-        return index
 
-    for model_dir in os.listdir(server_logs_dir):
-        model_path = os.path.join(server_logs_dir, model_dir)
-        if not os.path.isdir(model_path):
-            continue
-        for logfile in os.listdir(model_path):
-            if not logfile.endswith(".log"):
+    # 1. Parse results/server_logs/{model}/*.log (colocated lm-eval runs)
+    server_logs_dir = os.path.join(results_dir, "server_logs")
+    if os.path.isdir(server_logs_dir):
+        for model_dir in os.listdir(server_logs_dir):
+            model_path = os.path.join(server_logs_dir, model_dir)
+            if not os.path.isdir(model_path):
                 continue
-            # Pattern: {benchmark}_ndef_adv_fp16_{model}_{benchmark}_port{PORT}_{config}.json_port{PORT}.log
-            # Extract benchmark and config
-            m = re.match(r"(\w+?)_ndef_.*_conf_(.+?)\.json_port\d+\.log$", logfile)
-            if not m:
-                # Alternative: {benchmark}_ndef_..._port{PORT}_{config}.json_port{PORT}.log
-                m = re.match(r"(\w+?)_ndef_.*_port\d+_(.+?)\.json_port\d+\.log$", logfile)
-            if m:
-                benchmark = m.group(1)
-                config = m.group(2)
-                # Strip .json suffix if present
-                config = re.sub(r"\.json$", "", config)
-                info = parse_server_log(os.path.join(model_path, logfile))
-                index[(model_dir, benchmark, config)] = info
-            else:
-                # Still parse for model-level fallback
-                info = parse_server_log(os.path.join(model_path, logfile))
-                if info.get("tp"):
-                    index[(model_dir, "_fallback", "_fallback")] = info
+            for logfile in os.listdir(model_path):
+                if not logfile.endswith(".log"):
+                    continue
+                m = re.match(r"(\w+?)_ndef_.*_conf_(.+?)\.json_port\d+\.log$", logfile)
+                if not m:
+                    m = re.match(r"(\w+?)_ndef_.*_port\d+_(.+?)\.json_port\d+\.log$", logfile)
+                if m:
+                    benchmark = m.group(1)
+                    config = re.sub(r"\.json$", "", m.group(2))
+                    info = parse_server_log(os.path.join(model_path, logfile))
+                    index[(model_dir, benchmark, config)] = info
+                else:
+                    info = parse_server_log(os.path.join(model_path, logfile))
+                    if info.get("tp"):
+                        index[(model_dir, "_fallback", "_fallback")] = info
+
+    # 2. Parse disagg decode logs for cuda_graph info
+    # Filenames: decode_{model_short}_{config}_{benchmark}_{timestamp}.log
+    # We only need one log per model_short to get enforce_eager/cudagraph info
+    known_shorts = {"deepseek_v2", "mixtral", "qwen", "qwen3"}
+    for subdir in ("disagg_sweep", "disagg"):
+        decode_log_dir = os.path.join(results_dir, "logs", subdir)
+        if not os.path.isdir(decode_log_dir):
+            continue
+        for logfile in sorted(os.listdir(decode_log_dir)):
+            if not logfile.startswith("decode_") or not logfile.endswith(".log"):
+                continue
+            # Extract model_short from filename prefix
+            for short in known_shorts:
+                if logfile.startswith(f"decode_{short}_"):
+                    key = ("_disagg_decode", short, "_fallback")
+                    if key not in index:
+                        info = parse_server_log(os.path.join(decode_log_dir, logfile))
+                        if info:
+                            index[key] = info
+                    break
 
     return index
 
 
-def lookup_server_info(index, model_dir, benchmark, config):
+# Map model dir names to short names used in disagg decode log filenames
+_MODEL_DIR_TO_SHORT = {
+    "DeepSeek-Coder-V2-Instruct": "deepseek_v2",
+    "Mixtral-8x7B-Instruct-v0.1": "mixtral",
+    "Qwen2-57B-A14B-Instruct": "qwen",
+    "Qwen3-30B-A3B-Instruct-2507": "qwen3",
+    "Qwen3-30B-A3B-Thinking-2507": "qwen3",
+}
+
+
+def lookup_server_info(index, model_dir, benchmark, config, is_disagg=False):
     """Look up server info, with fallback to model-level defaults."""
     # Try exact match
     info = index.get((model_dir, benchmark, config))
@@ -268,6 +330,13 @@ def lookup_server_info(index, model_dir, benchmark, config):
     info = index.get((model_dir, "_fallback", "_fallback"))
     if info:
         return info
+    # Try disagg decode log fallback
+    if is_disagg:
+        short = _MODEL_DIR_TO_SHORT.get(model_dir)
+        if short:
+            info = index.get(("_disagg_decode", short, "_fallback"))
+            if info:
+                return info
     return {}
 
 
@@ -318,6 +387,12 @@ def parse_orchestration_logs(logs_dir):
 #  Find corresponding .metrics file
 # ─────────────────────────────────────────────────────────────────────────
 
+def _metrics_conf_key(name):
+    """Extract the _conf_XXX portion from a filename for matching."""
+    m = re.search(r"_conf_(.+?)(?:_\d{8}-\d{6})?(?:_(?:decode|prefill))?\.(?:metrics|jsonl)$", name)
+    return m.group(1) if m else None
+
+
 def find_metrics_file(result_dir, base_name, is_disagg):
     candidates = []
     try:
@@ -325,22 +400,37 @@ def find_metrics_file(result_dir, base_name, is_disagg):
     except OSError:
         return None
 
+    base_no_ts = re.sub(r"_\d{8}-\d{6}$", "", base_name)
+    conf_key = _metrics_conf_key(base_name + ".jsonl")  # reuse extraction
+
     if is_disagg:
+        # Exact prefix match first
         for f in entries:
             if f.startswith(base_name) and f.endswith("_decode.metrics"):
                 return os.path.join(result_dir, f)
-        # Also check without _nixl prefix variations
-        base_no_ts = re.sub(r"_\d{8}-\d{6}$", "", base_name)
         for f in entries:
             if f.endswith("_decode.metrics") and base_no_ts in f:
                 return os.path.join(result_dir, f)
+        # Fall back to config-based matching for disagg
+        if conf_key:
+            for f in entries:
+                if f.endswith("_decode.metrics") and f"_conf_{conf_key}" in f:
+                    candidates.append(os.path.join(result_dir, f))
     else:
-        base_no_ts = re.sub(r"_\d{8}-\d{6}$", "", base_name)
         for f in entries:
             if f.endswith(".metrics") and not f.endswith("_prefill.metrics") and \
                not f.endswith("_decode.metrics"):
                 if f.startswith(base_no_ts):
                     candidates.append(os.path.join(result_dir, f))
+
+        # Fallback: match on _conf_ key when limit (nXXX) differs between
+        # .jsonl dir name and .metrics filename (e.g. n0.0 vs n250)
+        if not candidates and conf_key:
+            for f in entries:
+                if f.endswith(".metrics") and not f.endswith("_prefill.metrics") and \
+                   not f.endswith("_decode.metrics"):
+                    if f"_conf_{conf_key}" in f:
+                        candidates.append(os.path.join(result_dir, f))
 
     if candidates:
         candidates.sort()
@@ -407,7 +497,8 @@ def gather_lm_eval_results(results_dir, server_log_index, disagg_gpu_info):
 
                 # Server log info
                 srv = lookup_server_info(server_log_index, model_dir_name,
-                                         benchmark_dir_name, config_name)
+                                         benchmark_dir_name, config_name,
+                                         is_disagg=is_disagg)
                 tp = srv.get("tp") or KNOWN_TP.get(model_dir_name, "")
                 batch_size = srv.get("max_num_seqs", 16)
                 enforce_eager = srv.get("enforce_eager")
@@ -452,11 +543,17 @@ def gather_lm_eval_results(results_dir, server_log_index, disagg_gpu_info):
                     "p90_itl_ms_direct": "",
                     "p99_itl_ms_direct": "",
                     "mean_itl_ms_direct": "",
-                    # Histogram-estimated values
-                    "p50_tpot_ms_hist": tpot_hist.get("p50_tpot_ms_hist", ""),
-                    "p90_tpot_ms_hist": tpot_hist.get("p90_tpot_ms_hist", ""),
-                    "p99_tpot_ms_hist": tpot_hist.get("p99_tpot_ms_hist", ""),
-                    "mean_tpot_ms_hist": tpot_hist.get("mean_tpot_ms_hist", ""),
+                    # Histogram-estimated values — fine (1ms buckets) or coarse (19 buckets)
+                    "hist_granularity": tpot_hist.get("hist_granularity", ""),
+                    "hist_n_buckets": tpot_hist.get("hist_n_buckets", ""),
+                    "p50_tpot_ms_hist_fine": tpot_hist.get("p50_tpot_ms_hist_fine", ""),
+                    "p90_tpot_ms_hist_fine": tpot_hist.get("p90_tpot_ms_hist_fine", ""),
+                    "p99_tpot_ms_hist_fine": tpot_hist.get("p99_tpot_ms_hist_fine", ""),
+                    "mean_tpot_ms_hist_fine": tpot_hist.get("mean_tpot_ms_hist_fine", ""),
+                    "p50_tpot_ms_hist_coarse": tpot_hist.get("p50_tpot_ms_hist_coarse", ""),
+                    "p90_tpot_ms_hist_coarse": tpot_hist.get("p90_tpot_ms_hist_coarse", ""),
+                    "p99_tpot_ms_hist_coarse": tpot_hist.get("p99_tpot_ms_hist_coarse", ""),
+                    "mean_tpot_ms_hist_coarse": tpot_hist.get("mean_tpot_ms_hist_coarse", ""),
                     "source": "lm-eval",
                 })
 
@@ -564,10 +661,16 @@ def gather_bs_sweep_results(results_dir):
                     "p99_itl_ms_direct": bench_data.get("p99_itl_ms", ""),
                     "mean_itl_ms_direct": bench_data.get("mean_itl_ms", ""),
                     # Histogram-estimated from server.metrics
-                    "p50_tpot_ms_hist": tpot_hist.get("p50_tpot_ms_hist", ""),
-                    "p90_tpot_ms_hist": tpot_hist.get("p90_tpot_ms_hist", ""),
-                    "p99_tpot_ms_hist": tpot_hist.get("p99_tpot_ms_hist", ""),
-                    "mean_tpot_ms_hist": tpot_hist.get("mean_tpot_ms_hist", ""),
+                    "hist_granularity": tpot_hist.get("hist_granularity", ""),
+                    "hist_n_buckets": tpot_hist.get("hist_n_buckets", ""),
+                    "p50_tpot_ms_hist_fine": tpot_hist.get("p50_tpot_ms_hist_fine", ""),
+                    "p90_tpot_ms_hist_fine": tpot_hist.get("p90_tpot_ms_hist_fine", ""),
+                    "p99_tpot_ms_hist_fine": tpot_hist.get("p99_tpot_ms_hist_fine", ""),
+                    "mean_tpot_ms_hist_fine": tpot_hist.get("mean_tpot_ms_hist_fine", ""),
+                    "p50_tpot_ms_hist_coarse": tpot_hist.get("p50_tpot_ms_hist_coarse", ""),
+                    "p90_tpot_ms_hist_coarse": tpot_hist.get("p90_tpot_ms_hist_coarse", ""),
+                    "p99_tpot_ms_hist_coarse": tpot_hist.get("p99_tpot_ms_hist_coarse", ""),
+                    "mean_tpot_ms_hist_coarse": tpot_hist.get("mean_tpot_ms_hist_coarse", ""),
                     "source": "bs_sweep",
                 })
 
@@ -639,9 +742,9 @@ def gather_aiperf_results(results_dir):
             if not aiperf_data:
                 continue
 
-            # Extract batch size from dir name if present
+            # Extract batch size from dir name if present (default 16 per script)
             bs_match = re.search(r"bs(\d+)", dir_name)
-            batch_size = int(bs_match.group(1)) if bs_match else ""
+            batch_size = int(bs_match.group(1)) if bs_match else 16
 
             tp = KNOWN_TP.get(model_name, "")
 
@@ -666,10 +769,16 @@ def gather_aiperf_results(results_dir):
                 "p90_itl_ms_direct": aiperf_data.get("p90_itl_ms_direct", ""),
                 "p99_itl_ms_direct": aiperf_data.get("p99_itl_ms_direct", ""),
                 "mean_itl_ms_direct": aiperf_data.get("mean_itl_ms_direct", ""),
-                "p50_tpot_ms_hist": "",
-                "p90_tpot_ms_hist": "",
-                "p99_tpot_ms_hist": "",
-                "mean_tpot_ms_hist": "",
+                "hist_granularity": "",
+                "hist_n_buckets": "",
+                "p50_tpot_ms_hist_fine": "",
+                "p90_tpot_ms_hist_fine": "",
+                "p99_tpot_ms_hist_fine": "",
+                "mean_tpot_ms_hist_fine": "",
+                "p50_tpot_ms_hist_coarse": "",
+                "p90_tpot_ms_hist_coarse": "",
+                "p99_tpot_ms_hist_coarse": "",
+                "mean_tpot_ms_hist_coarse": "",
                 "source": f"aiperf:{dir_name}",
             })
 
@@ -709,7 +818,7 @@ def compute_comparisons(rows):
                 row["accuracy_delta"] = ""
 
             # Speedup for all latency columns: baseline / prowl (>1 = prowl faster)
-            for suffix in ("_direct", "_hist"):
+            for suffix in ("_direct", "_hist_fine", "_hist_coarse"):
                 for metric_base in ("p50_tpot_ms", "p90_tpot_ms", "p99_tpot_ms", "mean_tpot_ms",
                                     "p50_itl_ms", "p90_itl_ms", "p99_itl_ms", "mean_itl_ms"):
                     col = f"{metric_base}{suffix}"
@@ -722,7 +831,7 @@ def compute_comparisons(rows):
                         row[speedup_col] = ""
         else:
             row["accuracy_delta"] = ""
-            for suffix in ("_direct", "_hist"):
+            for suffix in ("_direct", "_hist_fine", "_hist_coarse"):
                 for metric_base in ("p50_tpot", "p90_tpot", "p99_tpot", "mean_tpot",
                                     "p50_itl", "p90_itl", "p99_itl", "mean_itl"):
                     row[f"{metric_base}_speedup{suffix}"] = ""
@@ -742,15 +851,20 @@ COLUMNS = [
     "accuracy", "accuracy_metric", "accuracy_delta",
     # TPOT direct (from bench_bs*.json)
     "p50_tpot_ms_direct", "p90_tpot_ms_direct", "p99_tpot_ms_direct", "mean_tpot_ms_direct",
-    # TPOT histogram-estimated (from .metrics)
-    "p50_tpot_ms_hist", "p90_tpot_ms_hist", "p99_tpot_ms_hist", "mean_tpot_ms_hist",
+    # TPOT histogram — fine granularity (109 buckets, 1ms steps)
+    "hist_granularity", "hist_n_buckets",
+    "p50_tpot_ms_hist_fine", "p90_tpot_ms_hist_fine", "p99_tpot_ms_hist_fine", "mean_tpot_ms_hist_fine",
+    # TPOT histogram — coarse granularity (19 buckets, 10-25ms steps)
+    "p50_tpot_ms_hist_coarse", "p90_tpot_ms_hist_coarse", "p99_tpot_ms_hist_coarse", "mean_tpot_ms_hist_coarse",
     # ITL direct (from bench_bs*.json or AIPerf CSV)
     "p50_itl_ms_direct", "p90_itl_ms_direct", "p99_itl_ms_direct", "mean_itl_ms_direct",
     # Speedup direct
     "p50_tpot_speedup_direct", "p90_tpot_speedup_direct", "p99_tpot_speedup_direct", "mean_tpot_speedup_direct",
     "p50_itl_speedup_direct", "p90_itl_speedup_direct", "p99_itl_speedup_direct", "mean_itl_speedup_direct",
-    # Speedup histogram
-    "p50_tpot_speedup_hist", "p90_tpot_speedup_hist", "p99_tpot_speedup_hist", "mean_tpot_speedup_hist",
+    # Speedup histogram fine
+    "p50_tpot_speedup_hist_fine", "p90_tpot_speedup_hist_fine", "p99_tpot_speedup_hist_fine", "mean_tpot_speedup_hist_fine",
+    # Speedup histogram coarse
+    "p50_tpot_speedup_hist_coarse", "p90_tpot_speedup_hist_coarse", "p99_tpot_speedup_hist_coarse", "mean_tpot_speedup_hist_coarse",
     # Metadata
     "source",
 ]
@@ -821,7 +935,8 @@ def main():
     n_aiperf = len(aiperf_rows)
     n_with_acc = sum(1 for r in all_rows if r["accuracy"] not in ("", None))
     n_with_tpot_direct = sum(1 for r in all_rows if r["p50_tpot_ms_direct"] not in ("", None))
-    n_with_tpot_hist = sum(1 for r in all_rows if r["p50_tpot_ms_hist"] not in ("", None))
+    n_with_tpot_hist_fine = sum(1 for r in all_rows if r.get("p50_tpot_ms_hist_fine") not in ("", None))
+    n_with_tpot_hist_coarse = sum(1 for r in all_rows if r.get("p50_tpot_ms_hist_coarse") not in ("", None))
     n_with_itl = sum(1 for r in all_rows if r["p50_itl_ms_direct"] not in ("", None))
     n_with_cudagraph = sum(1 for r in all_rows if r["cuda_graph_enabled"] not in ("", None))
 
@@ -833,7 +948,8 @@ def main():
     print(f"    AIPerf trace:            {n_aiperf}")
     print(f"    With accuracy:           {n_with_acc}")
     print(f"    With TPOT (direct):      {n_with_tpot_direct}")
-    print(f"    With TPOT (histogram):   {n_with_tpot_hist}")
+    print(f"    With TPOT (hist fine):   {n_with_tpot_hist_fine}")
+    print(f"    With TPOT (hist coarse): {n_with_tpot_hist_coarse}")
     print(f"    With ITL (direct):       {n_with_itl}")
     print(f"    With CUDA graph info:    {n_with_cudagraph}")
 
