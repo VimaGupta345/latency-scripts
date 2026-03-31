@@ -47,13 +47,39 @@ BENCHMARKS=(
 # --- Model definitions ---
 # Format: "name|path|tp_size|do_nothing_config|prowl_config"
 MODELS=(
-    "qwen|Qwen/Qwen2-57B-A14B-Instruct|2|${PROWL_ROOT}/configs/qwen/qwen_do-nothing.json|${PROWL_ROOT}/configs/qwen/quant_alpha3_beta4_optimized.json"
-    "qwen|Qwen/Qwen2-57B-A14B-Instruct|2|${PROWL_ROOT}/configs/qwen/qwen_do-nothing.json|${PROWL_ROOT}/configs/qwen/quant_alpha3_beta6_optimized.json"
     "qwen|Qwen/Qwen2-57B-A14B-Instruct|2|${PROWL_ROOT}/configs/qwen/qwen_do-nothing.json|${PROWL_ROOT}/configs/qwen/quant_alpha4_beta5_optimized.json"
+    "qwen|Qwen/Qwen2-57B-A14B-Instruct|2|${PROWL_ROOT}/configs/qwen/qwen_do-nothing.json|${PROWL_ROOT}/configs/qwen/quant_alpha3_beta6_optimized.json"
     "qwen|Qwen/Qwen2-57B-A14B-Instruct|2|${PROWL_ROOT}/configs/qwen/qwen_do-nothing.json|${PROWL_ROOT}/configs/qwen/quant_alpha4_beta7_optimized.json"
+    "qwen|Qwen/Qwen2-57B-A14B-Instruct|2|${PROWL_ROOT}/configs/qwen/qwen_do-nothing.json|${PROWL_ROOT}/configs/qwen/quant_alpha3_beta4_optimized.json"
+    "qwen3|Qwen/Qwen3-30B-A3B-Instruct-2507|2|${PROWL_ROOT}/configs/qwen3_30b/qwen_do-nothing.json|${PROWL_ROOT}/configs/qwen3_30b/quant_alpha1_beta2_optimized.json"
+    "qwen3|Qwen/Qwen3-30B-A3B-Instruct-2507|2|${PROWL_ROOT}/configs/qwen3_30b/qwen_do-nothing.json|${PROWL_ROOT}/configs/qwen3_30b/quant_alpha2_beta2_optimized.json"
+    "qwen3|Qwen/Qwen3-30B-A3B-Instruct-2507|2|${PROWL_ROOT}/configs/qwen3_30b/qwen_do-nothing.json|${PROWL_ROOT}/configs/qwen3_30b/quant_alpha2_beta3_optimized.json"
     "qwen3|Qwen/Qwen3-30B-A3B-Instruct-2507|2|${PROWL_ROOT}/configs/qwen3_30b/qwen_do-nothing.json|${PROWL_ROOT}/configs/qwen3_30b/quant_alpha1_beta1_optimized.json"
+    "mixtral|mistralai/Mixtral-8x7B-Instruct-v0.1|2|${PROWL_ROOT}/configs/mixtral/do_nothing.json|${PROWL_ROOT}/configs/mixtral/quant_alpha1_beta1_optimized.json"
+    "mixtral|mistralai/Mixtral-8x7B-Instruct-v0.1|2|${PROWL_ROOT}/configs/mixtral/do_nothing.json|${PROWL_ROOT}/configs/mixtral/quant_alpha1_beta2_optimized.json"
+    "mixtral|mistralai/Mixtral-8x7B-Instruct-v0.1|2|${PROWL_ROOT}/configs/mixtral/do_nothing.json|${PROWL_ROOT}/configs/mixtral/quant_alpha2_beta2_optimized.json"
     "mixtral|mistralai/Mixtral-8x7B-Instruct-v0.1|2|${PROWL_ROOT}/configs/mixtral/do_nothing.json|${PROWL_ROOT}/configs/mixtral/quant_alpha0.7_beta1_optimized.json"
+    "deepseek_v2|deepseek-ai/DeepSeek-Coder-V2-Instruct|4|${PROWL_ROOT}/configs/deepseek_v2_coder/config_do_nothing.json|${PROWL_ROOT}/configs/deepseek_v2_coder/quant_alpha1.5_beta2_optimized.json"
+    "deepseek_v2|deepseek-ai/DeepSeek-Coder-V2-Instruct|4|${PROWL_ROOT}/configs/deepseek_v2_coder/config_do_nothing.json|${PROWL_ROOT}/configs/deepseek_v2_coder/quant_alpha1.5_beta3_optimized.json"
+    "deepseek_v2|deepseek-ai/DeepSeek-Coder-V2-Instruct|4|${PROWL_ROOT}/configs/deepseek_v2_coder/config_do_nothing.json|${PROWL_ROOT}/configs/deepseek_v2_coder/quant_alpha2_beta2_optimized.json"
+    "deepseek_v2|deepseek-ai/DeepSeek-Coder-V2-Instruct|4|${PROWL_ROOT}/configs/deepseek_v2_coder/config_do_nothing.json|${PROWL_ROOT}/configs/deepseek_v2_coder/quant_alpha2_beta3_optimized.json"
     "deepseek_v2|deepseek-ai/DeepSeek-Coder-V2-Instruct|4|${PROWL_ROOT}/configs/deepseek_v2_coder/config_do_nothing.json|${PROWL_ROOT}/configs/deepseek_v2_coder/quant_alpha1.125_beta2_optimized.json"
+    "qwen|Qwen/Qwen2-57B-A14B-Instruct|2|${PROWL_ROOT}/configs/qwen/qwen_do-nothing.json|${PROWL_ROOT}/configs/qwen/quant_alpha6_beta8_optimized.json"
+    "qwen3|Qwen/Qwen3-30B-A3B-Instruct-2507|2|${PROWL_ROOT}/configs/qwen3_30b/qwen_do-nothing.json|${PROWL_ROOT}/configs/qwen3_30b/quant_alpha3_beta3_optimized.json"
+    "mixtral|mistralai/Mixtral-8x7B-Instruct-v0.1|2|${PROWL_ROOT}/configs/mixtral/do_nothing.json|${PROWL_ROOT}/configs/mixtral/quant_alpha1.4_beta2_optimized.json"
+    "deepseek_v2|deepseek-ai/DeepSeek-Coder-V2-Instruct|4|${PROWL_ROOT}/configs/deepseek_v2_coder/config_do_nothing.json|${PROWL_ROOT}/configs/deepseek_v2_coder/quant_alpha2.25_beta4_optimized.json"
+    "qwen|Qwen/Qwen2-57B-A14B-Instruct|2|${PROWL_ROOT}/configs/qwen/qwen_do-nothing.json|${PROWL_ROOT}/configs/qwen/quant_alpha3_optimized.json"
+    "qwen3|Qwen/Qwen3-30B-A3B-Instruct-2507|2|${PROWL_ROOT}/configs/qwen3_30b/qwen_do-nothing.json|${PROWL_ROOT}/configs/qwen3_30b/quant_alpha1_optimized.json"
+    "mixtral|mistralai/Mixtral-8x7B-Instruct-v0.1|2|${PROWL_ROOT}/configs/mixtral/do_nothing.json|${PROWL_ROOT}/configs/mixtral/quant_alpha0.7_optimized.json"
+    "deepseek_v2|deepseek-ai/DeepSeek-Coder-V2-Instruct|4|${PROWL_ROOT}/configs/deepseek_v2_coder/config_do_nothing.json|${PROWL_ROOT}/configs/deepseek_v2_coder/quant_alpha1.125_optimized.json"
+    "qwen|Qwen/Qwen2-57B-A14B-Instruct|2|${PROWL_ROOT}/configs/qwen/qwen_do-nothing.json|${PROWL_ROOT}/configs/qwen/quant_alpha4_optimized.json"
+    "qwen3|Qwen/Qwen3-30B-A3B-Instruct-2507|2|${PROWL_ROOT}/configs/qwen3_30b/qwen_do-nothing.json|${PROWL_ROOT}/configs/qwen3_30b/quant_alpha2_optimized.json"
+    "mixtral|mistralai/Mixtral-8x7B-Instruct-v0.1|2|${PROWL_ROOT}/configs/mixtral/do_nothing.json|${PROWL_ROOT}/configs/mixtral/quant_alpha1_optimized.json"
+    "deepseek_v2|deepseek-ai/DeepSeek-Coder-V2-Instruct|4|${PROWL_ROOT}/configs/deepseek_v2_coder/config_do_nothing.json|${PROWL_ROOT}/configs/deepseek_v2_coder/quant_alpha2_optimized.json"
+    "qwen|Qwen/Qwen2-57B-A14B-Instruct|2|${PROWL_ROOT}/configs/qwen/qwen_do-nothing.json|${PROWL_ROOT}/configs/qwen/quant_alpha5_optimized.json"
+    "qwen3|Qwen/Qwen3-30B-A3B-Instruct-2507|2|${PROWL_ROOT}/configs/qwen3_30b/qwen_do-nothing.json|${PROWL_ROOT}/configs/qwen3_30b/quant_alpha3_optimized.json"
+    "mixtral|mistralai/Mixtral-8x7B-Instruct-v0.1|2|${PROWL_ROOT}/configs/mixtral/do_nothing.json|${PROWL_ROOT}/configs/mixtral/quant_alpha2_optimized.json"
+    "deepseek_v2|deepseek-ai/DeepSeek-Coder-V2-Instruct|4|${PROWL_ROOT}/configs/deepseek_v2_coder/config_do_nothing.json|${PROWL_ROOT}/configs/deepseek_v2_coder/quant_alpha3_optimized.json"
 )
 
 # --- Tunable parameters ---
@@ -255,11 +281,11 @@ run_one() {
 # =========================================================================
 TOTAL_MODELS=${#MODELS[@]}
 TOTAL_BENCHMARKS=${#BENCHMARKS[@]}
-TOTAL_RUNS=$((TOTAL_MODELS * TOTAL_BENCHMARKS * 2))  # x2 for do-nothing + prowl
+TOTAL_RUNS=$((TOTAL_MODELS * TOTAL_BENCHMARKS))  # prowl config only (no do-nothing)
 RUN_NUM=0
 
 echo "========================================="
-echo "DISAGGREGATED SWEEP: ${TOTAL_MODELS} models x ${TOTAL_BENCHMARKS} benchmarks x 2 configs"
+echo "DISAGGREGATED SWEEP: ${TOTAL_MODELS} models x ${TOTAL_BENCHMARKS} benchmarks x 1 config (prowl only)"
 echo "  Total runs:    ${TOTAL_RUNS}"
 echo "  Prefill GPUs:  ${PREFILL_GPUS}"
 echo "  Decode GPUs:   ${DECODE_GPUS}"
@@ -275,7 +301,7 @@ for model_entry in "${MODELS[@]}"; do
     echo "MODEL: ${MODEL_NAME} (${MODEL_PATH}), TP=${TP_SIZE}"
     echo "========================================="
 
-    for config in "${DO_NOTHING_CONFIG}" "${PROWL_CONFIG}"; do
+    for config in "${PROWL_CONFIG}"; do
         for bench_entry in "${BENCHMARKS[@]}"; do
             IFS='|' read -r BENCH_NAME LIMIT TASKS EXTRA_ARGS <<< "${bench_entry}"
 

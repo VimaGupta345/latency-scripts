@@ -24,8 +24,8 @@ from collections import defaultdict
 ACCURACY_MARKERS = {
     "humaneval":              "pass@1,",
     "mbpp":                   "pass_at_1,",
-    "minerva_math_algebra":   "exact_match,n",
-    "gsm8k":                  "exact_match,s",
+    "minerva_math_algebra":   "math_verify,",
+    "gsm8k":                  "exact_match,flexible",
     "truthfulqa":             "rougeL_acc,n",
     "truthfulqa_mc2":         "acc,n",
     "squad_completion":       "contains,n",
